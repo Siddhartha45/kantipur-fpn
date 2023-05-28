@@ -24,3 +24,18 @@ class CustomUserManager(BaseUserManager):
         if extra_fields.get("is_superuser") is not True:
             raise ValueError("superuser must have is_superuser set to True")
         return self.create_user(email, password, **extra_fields)
+    
+    
+    def normalize_email(self, email):
+        """customizing the normalize_email function to turn email_name and domain_name to lowercase"""
+        
+        email = email
+        try:
+            email_name, domain_part = email.strip().rsplit('@', 1)
+        except ValueError:
+            pass
+        else:
+            email_name = email_name.lower()
+            domain_part = domain_part.lower()
+            email = '@'.join([email_name, domain_part])
+        return email

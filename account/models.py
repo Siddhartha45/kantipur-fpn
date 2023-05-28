@@ -4,6 +4,8 @@ from .managers import CustomUserManager
 
 
 class CustomUser(AbstractUser):
+    """defining our model for custom users"""
+    
     CATEGORY_CHOICES = (
         ('IE', 'Import/Export'),
         ('DO', 'Division Office'),
