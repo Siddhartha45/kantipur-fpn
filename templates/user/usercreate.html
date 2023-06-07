@@ -1,0 +1,148 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            User<span class="sub-nav ms-2"> > Create</span>
+        </h3>
+        <p><a href=""><i class="fa-regular fa-eye"></i>View Users</a></p>
+    </div>
+
+    <form action="{% url 'user-create' %}" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">Create User</h3>
+        </div>
+
+        <div class="row mb-2">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Full Name</label>
+                <input type="text" class="form-control cm" placeholder="Enter full name" name="name">
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Username</label>
+                <input type="text" class="form-control cm" placeholder="Enter username" name="username">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Email address</label>
+                <input type="text" class="form-control cm" placeholder="Enter email address" name="email">
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Phone Number</label>
+                <input type="text" class="form-control cm" placeholder="Enter phone number" name="phone_number">
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Password</label>
+                <input type="text" class="form-control cm" placeholder="Enter full name" name="password">
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Role</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="role" id="select_box">
+                    <option value="" selected disabled>Select user role</option>
+                    {% for key,value in data.role %}
+                        <option value="{{key}}">{{value}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div id="DE" class="row mb-2 hide">
+            <div class="col-md-12 mb-3">
+            <label for="" class="form-label cm">Department Category</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="" id="office-selection">
+                    <option value="all" selected disabled>Select department category</option>
+                    {% for key,value in data.department_category %}
+                        <option value="{{key}}">{{value}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div id="import-export" class="row mb-2 hide">
+            <div class="col-md-12">
+            <label for="" class="form-label cm">Import Export Office</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="">
+                    <option value="all" selected disabled>Select import export office</option>
+                    <option value="">खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, त्रि.अ.बि.</option>
+                    <option value="">Division Office</option>
+                    <option value="">Food Office</option>
+                    <option value="">DFTQC</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="division-office" class="row mb-2 hide">
+            <div class="col-md-12">
+            <label for="" class="form-label cm">Division Office</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="">
+                    <option value="all" selected disabled>Select division office</option>
+                    <option value="">खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, त्रि.अ.बि.</option>
+                    <option value="">Division Office</option>
+                    <option value="">Food Office</option>
+                    <option value="">DFTQC</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="food-office" class="row mb-2 hide">
+            <div class="col-md-12">
+            <label for="" class="form-label cm">Food Office</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="">
+                    <option value="all" selected disabled>Select food office</option>
+                    <option value="">खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, त्रि.अ.बि.</option>
+                    <option value="">Division Office</option>
+                    <option value="">Food Office</option>
+                    <option value="">DFTQC</option>
+                </select>
+            </div>
+        </div>
+
+
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end"><button type="submit" name="verify" class="btn btn-primary">Create User</button></div>
+        </div>
+
+    </form> 
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    $('#select_box').change(function () {
+        var select1 = $(this).find(':selected').val();
+        $(".hide").hide();
+        $('#' + select1).show();
+    }).change();
+
+    $('#office-selection').change(function () {
+        var select2 = $(this).find(':selected').val();
+        
+        $(".hide").hide();
+        if(select2=='IE'){
+            $('#DE').show();
+            $('#import-export').show();
+        }else if(select2=="DO"){
+            $("#DE").show();
+            $('#division-office').show();
+        }else if(select2=="FO"){
+            $("#DE").show();
+            $('#food-office').show();
+        }else if(select2=="FFSQRD" || select2=="FTDND" || select2=="NFFRL" || select2=="A"){
+            $("#DE").show();
+        }
+    }).change();
+</script>
+{% endblock %}
+    

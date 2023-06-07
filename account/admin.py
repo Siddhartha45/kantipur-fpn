@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser, Branch
+from .models import CustomUser, Office, Category
 
 
 class CustomUserAdmin(UserAdmin):
@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
     
     """for showing fields we want in admin panel"""
     fieldsets = (
-        (None, {"fields": ("email", "password", "name", "phone_number", "department", "role", "form_type", "branch")}),
+        (None, {"fields": ("email", "password", "name", "username", "phone_number", "role", "department_category")}),
         ("Permissions", {"fields": ("is_superuser", "is_staff", "is_active", "groups", "user_permissions")}),
     )
     
@@ -24,7 +24,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {
             "classes": ("wide",),
             "fields": (
-                "email", "password1", "password2", "name", "phone_number", "department", "role", "form_type", "branch", "is_superuser", "is_staff",
+                "email", "password1", "password2", "name", "username", "phone_number", "role", "department_category", "is_superuser", "is_staff",
                 "is_active", "groups", "user_permissions"
             )}
         ),
@@ -34,4 +34,6 @@ class CustomUserAdmin(UserAdmin):
     
 admin.site.register(CustomUser, CustomUserAdmin)
 
-admin.site.register(Branch)
+admin.site.register(Office)
+
+admin.site.register(Category)

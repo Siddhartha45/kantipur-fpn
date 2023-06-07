@@ -16,8 +16,10 @@ DEPARTMENT_CHOICES = (
     ('A', 'Account'),
 )
 
-"""for selecting users form types"""
-FORM_TYPES = (
-    ('Account', 'Account'),
-    ('Report', 'Report'),
+"""for selecting offices"""
+OFFICE_CHOICES = (
+    ('A', 'A'),
+    ('B', 'B'),
+    ('C', 'C'),
 )
+

@@ -6,15 +6,13 @@ from fpn import commons
 
 class CustomUser(AbstractUser):
     """defining our model for custom users"""
-
-    username = None
-    name = models.CharField(max_length=255, blank=True)
+    
+    username = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=255, blank=True)
     role = models.CharField(max_length=255, choices=commons.ROLE_CHOICES)
-    department = models.CharField(max_length=255, choices=commons.DEPARTMENT_CHOICES, blank=True)
-    form_type = models.CharField(max_length=255, choices=commons.FORM_TYPES, blank=True)
-    branch = models.CharField(max_length=255, blank=True)
+    department_category = models.CharField(max_length=255, choices=commons.DEPARTMENT_CHOICES, blank=True)
     
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
@@ -25,5 +23,14 @@ class CustomUser(AbstractUser):
         return self.email
     
     
-class Branch(models.Model):
-    branch_name = models.CharField(max_length=255, unique=True)
+class Office(models.Model):
+    department_category = models.CharField(max_length=255)
+    address = models.CharField(max_length=255)
+    email = models.EmailField(blank=True)
+    contact_no = models.CharField(max_length=15, blank=True)
+    
+    
+class Category(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    
+    

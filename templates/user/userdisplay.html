@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            User<span class="sub-nav ms-2"> > All</span>
+        </h3>
+        <p><a href=""><i class="fa-regular fa-eye"></i>View Users</a></p>
+    </div>
+    <div class="table-row">
+        <div class="row mb-4 filter-row filters">
+            <div class="col-md-4">
+                <select id="role" class="form-select kit-form-control">
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="Data Entry Operator">Data Entry Operator</option>
+                    <option value="Report Viewer">Verifier</option>
+                    <option value="Report Viewer">Admin</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control cm" id="min" name="min" placeholder="From">
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control cm" id="max" name="max" placeholder="To">
+            </div>
+            <div class="col-md-2">
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+    
+        <table id="sampleTable" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>S No.</th>
+                    <th>User Name</th>
+                    <th>Email Address</th>
+                    <th>Role</th>
+                    <th>Created Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td>Test</td>
+                    <td>test@gmail.com</td>
+                    <td>Data Entry Operator</td>
+                    <td>2022-06-01</td>
+    
+                    <td>
+                        <div class="d-flex kit-action-com">
+                            <div class="action-btn-pen">
+                            <a href="" method="put"><span class="material-symbols-outlined">
+                                    edit
+                                    </span></a>
+                            </div>
+    
+                            <form class="action-btn-dlt" action="" method="post">
+                                <button type="submit">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+
+
+
+
+    
