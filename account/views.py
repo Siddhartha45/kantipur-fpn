@@ -56,7 +56,10 @@ def user_create(request):
 
 
 def user_list(request):
-    return render(request, 'user/userdisplay.html')
+    users = CustomUser.objects.all()
+    context = {'users': users}
+    return render(request, 'user/userdisplay.html', context)
+
 
 def user_profile(request, user_id):
     user = get_object_or_404(CustomUser, id=user_id)

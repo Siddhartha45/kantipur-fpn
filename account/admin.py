@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser, Office, Category
+from .models import CustomUser, Office
 
 
 class CustomUserAdmin(UserAdmin):
@@ -35,5 +35,3 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 
 admin.site.register(Office)
-
-admin.site.register(Category)

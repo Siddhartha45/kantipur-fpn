@@ -18,8 +18,8 @@ DEPARTMENT_CHOICES = (
 
 """for selecting offices"""
 OFFICE_CHOICES = (
-    ('A', 'A'),
-    ('B', 'B'),
-    ('C', 'C'),
+    ('IE', 'Import/Export'),
+    ('DO', 'Division Office'),
+    ('FO', 'Food Office'),
 )
 

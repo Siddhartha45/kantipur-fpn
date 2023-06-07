@@ -120,15 +120,10 @@
     </form> 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
-    $('#select_box').change(function () {
-        var select1 = $(this).find(':selected').val();
-        $(".hide").hide();
-        $('#' + select1).show();
-    }).change();
-
+    
     $('#office-selection').change(function () {
         var select2 = $(this).find(':selected').val();
-        
+
         $(".hide").hide();
         if(select2=='IE'){
             $('#DE').show();
@@ -143,6 +138,15 @@
             $("#DE").show();
         }
     }).change();
+
+
+    $('#select_box').change(function () {
+        var select1 = $(this).find(':selected').val();
+        console.log(select1)
+        $(".hide").hide();
+        $('#' + select1).show();
+    }).change();
+
 </script>
 {% endblock %}
     

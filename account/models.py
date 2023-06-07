@@ -24,13 +24,8 @@ class CustomUser(AbstractUser):
     
     
 class Office(models.Model):
-    department_category = models.CharField(max_length=255)
-    address = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    address = models.CharField(max_length=255, unique=True)
     email = models.EmailField(blank=True)
     contact_no = models.CharField(max_length=15, blank=True)
-    
-    
-class Category(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    
-    
+    category = models.CharField(max_length=255, choices=commons.OFFICE_CHOICES)

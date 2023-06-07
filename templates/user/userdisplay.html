@@ -43,13 +43,13 @@
                 </tr>
             </thead>
             <tbody>
-            
+                {% for u in users %}
                 <tr>
-                    <td>1</td>
-                    <td>Test</td>
-                    <td>test@gmail.com</td>
-                    <td>Data Entry Operator</td>
-                    <td>2022-06-01</td>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.get_role_display}}</td>
+                    <td>{{u.date_joined|date:"Y-m-d"}}</td>
     
                     <td>
                         <div class="d-flex kit-action-com">
@@ -67,6 +67,7 @@
                         </div>
                     </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
