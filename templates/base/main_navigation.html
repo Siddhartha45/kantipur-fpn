@@ -19,7 +19,7 @@
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="http://127.0.0.1:5500/html/namuna_bibaran/newentry.html"><span class="material-symbols-outlined">
+                        href="{% url 'namuna' %}"><span class="material-symbols-outlined">
                             summarize
                         </span>
                         खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</a>
@@ -27,7 +27,7 @@
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="http://127.0.0.1:5500/html/anugaman_bibaran/newentry.html"><span class="material-symbols-outlined">
+                        href="{% url 'anugaman' %}"><span class="material-symbols-outlined">
                             summarize
                         </span>
                         निरीक्षण अनुगमन विवरण</a>
@@ -35,7 +35,7 @@
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="http://127.0.0.1:5500/html/logobitaran_bibaran/newentry.html"><span class="material-symbols-outlined">
+                        href="{% url 'logobitaran' %}"><span class="material-symbols-outlined">
                             summarize
                         </span>
                         होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण</a>
@@ -45,14 +45,14 @@
     
                 <li class="nav-item">
                 <a class="nav-link"
-                    href="http://127.0.0.1:5500/html/bisleysan_bibaran/newentry.html"><span class="material-symbols-outlined">
+                    href="{% url 'namuna-bisleysan' %}"><span class="material-symbols-outlined">
                         summarize
                     </span>
                     खाद्य तथा दाना नमुना विश्लेषण विवरण</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link"
-                    href="http://127.0.0.1:5500/html/pratibedan_bibaran/newentry.html"><span class="material-symbols-outlined">
+                    href="{% url 'prayogsala-bisleysan' %}"><span class="material-symbols-outlined">
                         summarize
                     </span>
                     प्रयोगशाला विश्लेषण प्रतिवेदन सारांश</a>
@@ -73,9 +73,9 @@
                         <div id="details-collapseregistration"
                             class="accordion-collapse details-collapseOne collapse">
                             <div class="accordion-body d-flex flex-column">
-                                <a class="nav-link" href="http://127.0.0.1:5500/html/registration/new.html">खाद्य तथा दाना अनुज्ञा पत्र जारी</a>
-                                <a class="nav-link" href="http://127.0.0.1:5500/html/registration/renew.html">खाद्य तथा दाना अनुज्ञा पत्र नविकरण</a>
-                                <a class="nav-link" href="http://127.0.0.1:5500/html/registration/udyog.html">उद्योग सिफारिस</a>
+                                <a class="nav-link" href="{% url 'khadya1' %}">खाद्य तथा दाना अनुज्ञा पत्र जारी</a>
+                                <a class="nav-link" href="{% url 'khadya2' %}">खाद्य तथा दाना अनुज्ञा पत्र नविकरण</a>
+                                <a class="nav-link" href="{% url 'udyog' %}">उद्योग सिफारिस</a>
                             </div>
                         </div>
                     </div>
@@ -83,21 +83,21 @@
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="http://127.0.0.1:5500/html/import-export/index.html"><span class="material-symbols-outlined">
+                        href="{% url 'aayat' %}"><span class="material-symbols-outlined">
                         flag
                         </span> आयात निर्यात गुण प्रमाणिकरण</a>
                 </li>
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="http://127.0.0.1:5500/html/gunasho/index.html"><span class="material-symbols-outlined">
+                        href="{% url 'ujuri' %}"><span class="material-symbols-outlined">
                         flag
                         </span> उजुरी/गुनासो ब्येवस्थापन</a>
                 </li>
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="http://127.0.0.1:5500/html/hotel-patrakar/index.html"><span class="material-symbols-outlined">
+                        href="{% url 'khadya-prasodhan' %}"><span class="material-symbols-outlined">
                         event_list
                         </span>
                         खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि</a>
@@ -105,7 +105,7 @@
     
                 <li class="nav-item">
                 <a class="nav-link"
-                    href="http://127.0.0.1:5500/html/account/summary.html"><span class="material-symbols-outlined">
+                    href="{% url 'masik-bittiya' %}"><span class="material-symbols-outlined">
                     card_travel
                     </span>
                     मासिक वित्तिय विवरण</a>
@@ -113,7 +113,7 @@
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="http://127.0.0.1:5500/html/report/summary.html"><span class="material-symbols-outlined">
+                        href="{% url 'masik-pragati' %}"><span class="material-symbols-outlined">
                         summarize
                     </span> 
                         मासिक प्रगति विवरण</a>
@@ -132,8 +132,8 @@
                         <div id="details-collapseuser"
                             class="accordion-collapse details-collapseOne collapse">
                             <div class="accordion-body d-flex flex-column">
-                                <a class="nav-link" href="http://127.0.0.1:5500/html/user/userdisplay.html">प्रयोगकर्ताहरु</a>
-                                <a class="nav-link" href="http://127.0.0.1:5500/html/user/usercreate.html">प्रयोगकर्ता सृजना </a>
+                                <a class="nav-link" href="{% url 'user-list' %}">प्रयोगकर्ताहरु</a>
+                                <a class="nav-link" href="{% url 'user-create' %}">प्रयोगकर्ता सृजना </a>
                             </div>
                         </div>
                     </div>

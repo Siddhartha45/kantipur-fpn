@@ -1,0 +1,140 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+                <div class="add-heading">
+                    <h3 class="heading-cm">
+                        <a href="" class="nav-icon me-2">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </a>
+                        खाद्य तथा दाना अनुज्ञा पत्र जारी/नविकरण/उद्योग सिफारिस <span class="sub-nav ms-2"> > खाद्य तथा दाना अनुज्ञा पत्र नविकरण</span>
+                    </h3>
+                </div>
+
+
+                <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+                    id="myForm">
+                    {% csrf_token %}
+                    <div class="col-md-12">
+                        <h3 class="create-form-heading">नया इन्ट्री</h3>
+                    </div>
+
+                    <div class="field-container mb-4">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">कार्यालयको नाम</label>
+                                <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">मिति</label>
+                                <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="name" disabled>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                                <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12 heading-cm">महिना अनुसार डेटा हल्नुहोस्</div>
+                    </div>
+
+                    <div class="field-container mb-4">
+                        <div class="row mb-4">
+                           <div class="col-md-3">
+                                <label for="" class="form-label cm">दुध तथा दुध पदार्थ</label>
+                                <input type="number" min="0" class="form-control cm" placeholder="दुध तथा दुध पदार्थ" name="milk">
+                           </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">तेल तथा घेउ जन्य</label>
+                                <input type="number" min="0" class="form-control cm" placeholder="तेल तथा घेउ जन्य" name="oil">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">फल तथा सागपात</label>
+                                <input type="number" min="0" class="form-control cm" placeholder="फल तथा सागपात" name="fruits">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">मसला</label>
+                                <input type="number" min="0" class="form-control cm" placeholder="मसला" name="spice">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                 <label for="" class="form-label cm">चिया, कफि</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="चिया, कफि" name="tea">
+                            </div>
+ 
+                             <div class="col-md-3">
+                                 <label for="" class="form-label cm">नुन</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="नुन" name="salt">
+                             </div>
+ 
+                             <div class="col-md-3">
+                                 <label for="" class="form-label cm">खाद्यान्न दलहन र सोबाट बनेको</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="खाद्यान्न दलहन र सोबाट बनेको" name="khadanna">
+                             </div>
+                             <div class="col-md-3">
+                                 <label for="" class="form-label cm">प्र. पिउने पानी</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="प्र. पिउने पानी" name="water">
+                             </div>
+                         </div>
+                         <div class="row mb-4">
+                            <div class="col-md-3">
+                                 <label for="" class="form-label cm">गुलियो पदार्थ</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="गुलियो पदार्थ" name="sweets">
+                            </div>
+ 
+                             <div class="col-md-3">
+                                 <label for="" class="form-label cm">कन्फेक्सनरी</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="कन्फेक्सनरी" name="confectionery">
+                             </div>
+ 
+                             <div class="col-md-3">
+                                 <label for="" class="form-label cm">मासु तथा मासुजन्य</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="मासु तथा मासुजन्य" name="meat">
+                             </div>
+                             <div class="col-md-3">
+                                 <label for="" class="form-label cm">दाना</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="दाना" name="grain">
+                             </div>
+                         </div>
+                         <div class="row">
+                            <div class="col-md-3">
+                                 <label for="" class="form-label cm">अन्य</label>
+                                 <input type="number" min="0" class="form-control cm" placeholder="अन्य" name="others">
+                            </div>
+ 
+                             
+                         </div>
+
+                    </div>
+
+
+                    <div class="row mt-3">
+                        <div class="col-md-12 text-end">
+                            <button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button>
+                        </div>
+                    </div>
+
+                </form>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+
+{% endblock %}

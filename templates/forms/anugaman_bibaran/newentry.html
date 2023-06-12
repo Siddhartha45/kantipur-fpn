@@ -1,0 +1,384 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            निरीक्षण अनुगमन विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+        </h3>
+    </div>
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">नया इन्ट्री</h3>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यालयको नाम</label>
+                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">मिति</label>
+                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12 heading-cm">महिना अनुसार डेटा हल्नुहोस्</div>
+        </div>
+
+
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                <button class="accordion-button cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    उद्योग
+                </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                                <label for="" class="form-label cm">पटक </label>
+                                <input type="number" class="form-control cm" placeholder=" पटक" name="u_patak">
+                        </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">संख्या</label>
+                                <input type="number" class="form-control cm" placeholder="संख्या" name="u_sankhya">
+                            </div>
+                            <div class="col-md-4">
+                            <label for="" class="form-label cm">हालसम्मको प्रगति</label>
+                            <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="u_pragati">
+                        </div>
+                        </div>
+                        <div class="row">
+                        <div class="col-md-12">
+                            <label for="" class="form-label cm">कैफियत</label>
+                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="u_kaifiyat"></textarea>
+                        </div>
+                        </div>
+                </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    पसल
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">पटक </label>
+                                <input type="number" class="form-control cm" placeholder=" पटक" name="p_patak">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">संख्या</label>
+                                <input type="number" class="form-control cm" placeholder="संख्या" name="p_sankhya">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हालसम्मको प्रगति</label>
+                                <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="p_pragati">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="p_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    सुपरमार्केट
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">पटक </label>
+                                <input type="number" class="form-control cm" placeholder=" पटक" name="s_patak">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">संख्या</label>
+                                <input type="number" class="form-control cm" placeholder="संख्या" name="s_sankhya">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हालसम्मको प्रगति</label>
+                                <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="s_pragati">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="s_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                    गोदाम
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">पटक </label>
+                                <input type="number" class="form-control cm" placeholder=" पटक" name="g_patak">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">संख्या</label>
+                                <input type="number" class="form-control cm" placeholder="संख्या" name="g_sankhya">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हालसम्मको प्रगति</label>
+                                <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="g_pragati">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="g_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                    होटल, रेस्टुरेन्ट, मिठाई पसल आदी
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">पटक </label>
+                                <input type="number" class="form-control cm" placeholder=" पटक" name="h_patak">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">संख्या</label>
+                                <input type="number" class="form-control cm" placeholder="संख्या" name="h_sankhya">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हालसम्मको प्रगति</label>
+                                <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="h_pragati">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="h_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
+                    दाना पदार्थ
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">पटक </label>
+                                <input type="number" class="form-control cm" placeholder=" पटक" name="d_patak">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">संख्या</label>
+                                <input type="number" class="form-control cm" placeholder="संख्या" name="d_sankhya">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हालसम्मको प्रगति</label>
+                                <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="d_pragati">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="d_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+                    अन्य
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">पटक </label>
+                                <input type="number" class="form-control cm" placeholder=" पटक" name="a_patak">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">संख्या</label>
+                                <input type="number" class="form-control cm" placeholder="संख्या" name="a_sankhya">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हालसम्मको प्रगति</label>
+                                <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="a_pragati">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="a_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end">
+                <button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button>
+            </div>
+        </div>
+
+    </form> 
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.mySelect').select2({
+                placeholder: 'Select'
+            });
+        });
+
+        $(document).ready(function () {
+            $('.multipleselect').select2({
+                closeOnSelect: false,
+                placeholder: 'Select'
+            });
+        });
+
+
+        $(document).ready(function () {
+            var successAlert = $(".alert");
+
+            if (successAlert.length > 0) {
+                setTimeout(function () {
+                    successAlert.alert('close');
+                }, 5000);
+            }
+        });
+
+        jQuery(document).ready(function() {
+            $('.date-picker').nepaliDatePicker();
+        })
+
+
+
+        function previewImages(event) {
+        var previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = '';
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var image = document.createElement('img');
+                image.src = e.target.result;
+                image.classList.add('previewImage');
+                previewContainer.appendChild(image);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+
+
+
+    $('#select_box').change(function () {
+        var select1 = $(this).find(':selected').val();
+        $(".hide").hide();
+        $('#' + select1).show();
+    }).change()
+
+    $('#office-selection').change(function () {
+        var select2 = $(this).find(':selected').val();
+        $(".hide").hide();
+        if(select2==5){
+            $("#1").show();
+            $('#import-export').show();
+        }else if(select2==6){
+            $("#1").show();
+            $('#division-office').show();
+        }else if(select2==7){
+            $("#1").show();
+            $('#food-office').show();
+        }else if(select2==8 || select2==9 || select2==10 || select2==11){
+            $("#1").show();
+        }
+    }).change()
+
+
+
+    $(document).ready(function(){
+        $('#addNew').click(function(){
+            var newElement = $('.field-container:last').clone();
+            $(newElement).insertAfter(".field-container:last");
+        });
+    });
+
+    </script>
+{% endblock %}

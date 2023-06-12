@@ -23,5 +23,5 @@ class CustomUserForm(forms.Form):
     username = forms.CharField()
     name = forms.CharField()
     email = forms.EmailField()
-    phone_number = forms.CharField()
+    phone_number = forms.CharField(required=False)
     role = forms.ChoiceField(choices=commons.ROLE_CHOICES)

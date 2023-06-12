@@ -1,0 +1,193 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            मासिक वित्तिय विवरण <span class="sub-nav ms-2"> > वित्तिय सारांश</span>
+        </h3>
+    </div>
+
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">वित्तिय सारांश</h3>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यालयको नाम</label>
+                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">मिति</label>
+                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <div class="col-md-12 heading-cm">बार्षिक बजेट</div>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="form-label cm">पुँजीगत</label>
+                    <input type="text" class="form-control cm" placeholder="रु." name="yearly_pujigat">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="" class="form-label cm">चालु तर्फ</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " name="yearly_chalu">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12 heading-cm">मासिक बजेट</div>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">महिनाको खर्च (पुँजीगत)</label>
+                    <input type="text" class="form-control cm" placeholder="रु." name="monthly_pujigat">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm"> महिनाको खर्च (चालु )</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " name="monthly_chalu">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm"> महिनाको राजस्वो</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " name="monthly_rajaswo">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end"><button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button></div>
+        </div>
+
+    </form> 
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.mySelect').select2({
+                placeholder: 'Select'
+            });
+        });
+
+        $(document).ready(function () {
+            $('.multipleselect').select2({
+                closeOnSelect: false,
+                placeholder: 'Select'
+            });
+        });
+
+
+        $(document).ready(function () {
+            var successAlert = $(".alert");
+
+            if (successAlert.length > 0) {
+                setTimeout(function () {
+                    successAlert.alert('close');
+                }, 5000);
+            }
+        });
+
+        jQuery(document).ready(function() {
+            $('.date-picker').nepaliDatePicker();
+        })
+
+
+
+        function previewImages(event) {
+        var previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = '';
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var image = document.createElement('img');
+                image.src = e.target.result;
+                image.classList.add('previewImage');
+                previewContainer.appendChild(image);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+
+
+
+    $('#select_box').change(function () {
+        var select1 = $(this).find(':selected').val();
+        $(".hide").hide();
+        $('#' + select1).show();
+    }).change()
+
+    $('#office-selection').change(function () {
+        var select2 = $(this).find(':selected').val();
+        $(".hide").hide();
+        if(select2==5){
+            $("#1").show();
+            $('#import-export').show();
+        }else if(select2==6){
+            $("#1").show();
+            $('#division-office').show();
+        }else if(select2==7){
+            $("#1").show();
+            $('#food-office').show();
+        }else if(select2==8 || select2==9 || select2==10 || select2==11){
+            $("#1").show();
+        }
+    }).change()
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+{% endblock %}

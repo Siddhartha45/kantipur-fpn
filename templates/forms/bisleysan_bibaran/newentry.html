@@ -1,0 +1,1181 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            खाद्य तथा दाना नमुना विश्लेषण विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+        </h3>
+    </div>
+
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">नया इन्ट्री</h3>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यालयको नाम</label>
+                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">मिति</label>
+                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row mb-3">
+            <div class="col-md-12 heading-cm">महिना अनुसार डेटा हल्नुहोस्</div>
+        </div> -->
+
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <h2 class="heading-cm "> खाद्य नमुना विश्लेषण (खाद्य तथा दाना ऐन/नियम बमोजिम संकलित)</h2>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                <button class="accordion-button cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    दुध तथा दुध पदार्थ
+                </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    
+                <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">इकाई
+                    </label>
+                    <select name="m_ekai" id="" class="form-control cm"> 
+                        <option selected disabled>इकाई</option>
+                        {% for key,value in data.ekai %}
+                            <option value="{{key}}">{{value}}</option>
+                        {% endfor %}
+                        </select> 
+                </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">लक्ष्य
+                    </label>
+                        <input type="number" min="0" class="form-control cm" placeholder="लक्ष्य
+                        " name="m_lakshya">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">प्रगति
+                    </label>
+                        <input type="number" min="0" class="form-control cm" placeholder=" प्रगति
+                        " name="m_pragati1">
+                    </div>
+                    
+                    <div class="col-md-3">
+                    <label for="" class="form-label cm">महिनाको प्रगति 
+                    </label>
+                    <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति 
+                    " name="m_mahina_pragati">
+                </div>
+                </div>
+                <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                    </label>
+                        <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                        " name="m_sankhya">
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                    </label>
+                    <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                    " name="m_parameter">
+                </div>
+                <div class="col-md-3">
+                <label for="" class="form-label cm">प्रगति
+                </label>
+                <input type="text" class="form-control cm" placeholder="प्रगति
+                
+                " name="m_pragati2">
+            </div>
+            <div class="col-md-3">
+                    <label for="" class="form-label cm">प्रगति प्रतिशत
+                    </label>
+                    <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                    " name="m_pratisat">
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                    <label for="" class="form-label cm">कैफियत</label>
+                    <textarea type="text" class="form-control cm" placeholder="कैफियत" name="m_kaifiyat"></textarea>
+                </div>
+                </div>
+                        
+                </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    तेल तथा घिउ जन्य
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="o_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="o_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="0_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="o_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="o_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="o_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="o_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="o_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="o_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    फल तथा सागपात
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="f_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="f_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="f_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="f_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="f_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="f_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="f-pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="f_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="f_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                    मसला
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="s_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="s_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="s_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="s_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="s_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="s_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="s_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="s_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="s_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                    चिया, कफि
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="t_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="t_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="t_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="t_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="t_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="t_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="t_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="t_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="t_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false" aria-controls="panelsStayOpen-collapseSix">
+                    नुन  
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="sa_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="sa_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="sa_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="sa_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="sa_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="sa_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="sa_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="sa_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="sa_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+                    खाद्यान्न दलहन र सोवाट बनेका
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="k_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="k_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="k_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="k_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="k_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="k_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="k_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="k_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="k_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false" aria-controls="panelsStayOpen-collapseEight">
+                    प्र. पिउने पानी     
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="w_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="w_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="w_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="w_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="w_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="w_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="w_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="w_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="w_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="false" aria-controls="panelsStayOpen-collapseNine">
+                    गुलियो पदार्थ    
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="sw_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="sw_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="sw_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="sw_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="sw_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="sw_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="sw_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="sw_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="sw_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen" aria-expanded="false" aria-controls="panelsStayOpen-collapseTen">
+                    कन्फेक्सनरी    
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="c_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="c_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="c_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="c_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="c_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="c_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="c_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="c_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="c_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEleven" aria-expanded="false" aria-controls="panelsStayOpen-collapseEleven">
+                    मासु तथा मासुजन्य     
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="me_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="me_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="me_pragati">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="me_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="me_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="me_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="me_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="me_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="me_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwelve" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwelve">
+                    अन्य    
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="ot_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="ot_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="ot_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="ot_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="ot_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="ot_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="ot_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="ot_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="ot_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThirteen" aria-expanded="false" aria-controls="panelsStayOpen-collapseThirteen">
+                    दाना     
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThirteen" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="g_ekai" id="" class="form-control cm"> 
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                    </select> 
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">लक्ष्य
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="लक्ष्य
+                                " name="g_lakshya">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" प्रगति
+                                " name="g_pragati1">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">महिनाको प्रगति 
+                                </label>
+                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति 
+                                " name="g_mahina_pragati">
+                            </div>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                                " name="g_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                                " name="g_parameter">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">प्रगति
+                            </label>
+                            <input type="text" class="form-control cm" placeholder="प्रगति
+                            
+                            " name="g_pragati2">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">प्रगति प्रतिशत
+                                </label>
+                                <input type="text" class="form-control cm" placeholder="प्रगति प्रतिशत
+                                " name="g_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="g_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end">
+                <button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button>
+            </div>
+        </div>
+
+    </form> 
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.mySelect').select2({
+                placeholder: 'Select'
+            });
+        });
+
+        $(document).ready(function () {
+            $('.multipleselect').select2({
+                closeOnSelect: false,
+                placeholder: 'Select'
+            });
+        });
+
+
+        $(document).ready(function () {
+            var successAlert = $(".alert");
+
+            if (successAlert.length > 0) {
+                setTimeout(function () {
+                    successAlert.alert('close');
+                }, 5000);
+            }
+        });
+
+        jQuery(document).ready(function() {
+            $('.date-picker').nepaliDatePicker();
+        })
+
+
+
+        function previewImages(event) {
+        var previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = '';
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var image = document.createElement('img');
+                image.src = e.target.result;
+                image.classList.add('previewImage');
+                previewContainer.appendChild(image);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+
+
+
+    $('#select_box').change(function () {
+        var select1 = $(this).find(':selected').val();
+        $(".hide").hide();
+        $('#' + select1).show();
+    }).change()
+
+    $('#office-selection').change(function () {
+        var select2 = $(this).find(':selected').val();
+        $(".hide").hide();
+        if(select2==5){
+            $("#1").show();
+            $('#import-export').show();
+        }else if(select2==6){
+            $("#1").show();
+            $('#division-office').show();
+        }else if(select2==7){
+            $("#1").show();
+            $('#food-office').show();
+        }else if(select2==8 || select2==9 || select2==10 || select2==11){
+            $("#1").show();
+        }
+    }).change()
+
+
+
+    $(document).ready(function(){
+        $('#addNew').click(function(){
+            var newElement = $('.field-container:last').clone();
+            $(newElement).insertAfter(".field-container:last");
+        });
+    });
+
+
+
+
+
+
+
+
+    </script>
+
+{% endblock %}

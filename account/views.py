@@ -15,17 +15,13 @@ def user_login(request):
         user = authenticate(request, email_or_username=email_or_username, password=password)
         if user:
             login(request, user)
-            return redirect('home')
+            return redirect('namuna')
     return render(request, 'login.html')
 
 
 def user_logout(request):
     logout(request)
     return redirect('login')
-
-
-def index(request):
-    return render(request, 'base/base.html')
 
 
 def user_create(request):
@@ -67,3 +63,6 @@ def user_profile(request, user_id):
         return redirect('home')
     context = {'user': user}
     return render(request, 'user/userprofile.html', context)
+
+
+
