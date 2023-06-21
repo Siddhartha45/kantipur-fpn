@@ -18,4 +18,18 @@ urlpatterns = [
     path('forms/khadya-prasodhan/', views.khadya_prasodhan, name="khadya-prasodhan"),
     path('forms/masik-bittiya/', views.masik_bittiya, name="masik-bittiya"),
     path('forms/masik-pragati/', views.masik_pragati, name="masik-pragati"),
+    
+    #details
+    path('forms/details/anugaman/', views.detail_anugaman, name="detail-anugaman"),
+    path('forms/details/gunasho/', views.detail_gunasho, name="detail-gunasho"),
+    path('forms/details/hotel/', views.detail_hotel, name="detail-hotel"),
+    path('forms/details/mudha/', views.detail_mudha, name="detail-mudha"),
+    path('forms/details/rbpa/', views.detail_rbpa, name="detail-rbpa"),
+    path('forms/details/registration/', views.detail_registration, name="detail-registration"),
+    path('forms/details/renew/', views.detail_renew, name="detail-renew"),
+    path('forms/details/udyog/', views.detail_udyog, name="detail-udyog"),
+    
+    
+    #report
+    path('report/anugaman/', views.anugaman_report, name="anugaman-report"),
 ]

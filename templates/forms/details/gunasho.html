@@ -1,0 +1,117 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            उजुरी गुनासो<span class="sub-nav ms-2"> > वृस्तृत विवरण</span>
+        </h3>
+    </div>
+
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">वृस्तृत विवरण</h3>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यालयको नाम</label>
+                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="" disabled>
+                </div>
+                
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">मिति</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="2080/02/22" name="" disabled>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <div class="col-md-12 heading-cm">विवरण उल्लेख गर्नुहोस</div>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">उजुरी तथा गुनासो प्राप्त मिति</label>
+                    <input type="date"  class="form-control cm date-picker" data-single="1" placeholder="जारी मिति" name="p_miti[]">
+                </div> 
+                
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">उजुरी तथा गुनासोको स्रोत</label>
+                    <select class="form-control form-select kit-form-control cm" name="srot[]">
+                        <option value="" disabled selected>उजुरी तथा गुनासोको स्रोत</option>
+                        
+                        {% for key, value in data.srot %}
+                            <option value="{{key}}">{{value}}</option>
+                        {% endfor %}
+                            
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">उजुरी/गुनासो सम्बोधन मिति</label>
+                    <input type="date"  class="form-control cm date-picker" data-single="1" placeholder="उजुरी/गुनासो सम्बोधन मिति" name="s_miti[]">
+                </div> 
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="" class="form-label cm">सम्बोधन/कार्यवाही विवरण</label>
+                    <textarea name="bibaran[]" class="form-control cm" id="" cols="30" rows="4"></textarea>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end">
+                <button type="button" id="add" class="btn btn-primary"><i class="fa-solid fa-plus"></i> नयाँ</button>
+                <button type="submit" class="btn btn-primary">पेश गर्नुहोस</button>
+            </div>
+        </div>
+
+    </form> 
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+
+    <script>
+        jQuery(document).ready(function() {
+            $('.date-picker').nepaliDatePicker();
+        })
+
+        $(document).ready(function(){
+        $('#add').click(function(){
+            var newElement = $('.field-container:last').clone();
+            $(newElement).insertAfter(".field-container:last");
+        });
+    });
+    </script>
+
+{% endblock %}

@@ -13,6 +13,7 @@
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
+        {% csrf_token %}
         <div class="col-md-12">
             <h3 class="create-form-heading">नया इन्ट्री</h3>
         </div>
@@ -21,17 +22,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यालयको नाम</label>
-                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">मिति</label>
-                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="" disabled>
                 </div>
             </div>
         </div>
@@ -54,35 +55,35 @@
                         <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                     </label>
-                    <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                    <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                        " name="name">
+                        " name="m_b_sankhya">
                 </div>
                     <div class="col-md-3">
                         <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                     </label>
-                        <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                        <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                        " name="name">
+                        " name="m_b_pratikul">
                     </div>
 
                     <div class="col-md-3">
                         <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                     </label>
-                        <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                        <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                        " name="name">
+                        " name="m_u_sankhya">
                     </div>
                     
                     <div class="col-md-3">
                     <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                     </label>
-                    <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                    <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                    " name="name">
+                    " name="m_u_pratikul">
                 </div>
                 </div>
                 <div class="row mb-3">
@@ -90,28 +91,28 @@
                         <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                     </label>
-                        <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                        <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                        " name="name">
+                        " name="m_ay_sankhya">
                 </div>
                 <div class="col-md-3">
                     <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                     </label>
-                    <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                    " name="name">
+                    <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                    " name="m_ay_pratikul">
                 </div>
                 <div class="col-md-3">
                 <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                 </label>
-                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                 
-                " name="name">
+                " name="m_v_sankhya">
             </div>
             <div class="col-md-3">
                     <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                     </label>
-                    <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                    " name="name">
+                    <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                    " name="m_v_pratikul">
                 </div>
                 </div>
                 <div class="row mb-3">
@@ -119,28 +120,28 @@
                         <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                     </label>
-                        <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                        <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                        " name="name">
+                        " name="m_k_sankhya">
                 </div>
                 <div class="col-md-3">
                     <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                     </label>
-                    <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                    " name="name">
+                    <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                    " name="m_k_pratikul">
                 </div>
                 <div class="col-md-3">
                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                 </label>
-                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                 
-                " name="name">
+                " name="m_a_sankhya">
             </div>
             <div class="col-md-3">
                     <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                     </label>
-                    <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                    " name="name">
+                    <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                    " name="m_a_pratikul">
                 </div>
                 </div>
                 <div class="row mb-3">
@@ -148,28 +149,28 @@
                         <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                     </label>
-                        <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                        <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                        " name="name">
+                        " name="m_kul_sankhya">
                 </div>
                 <div class="col-md-3">
                     <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                     </label>
-                    <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                    " name="name">
+                    <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                    " name="m_kul_pratikul">
                 </div>
                 <div class="col-md-3">
                 <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                 
-                " name="name">
+                " name="m_sample">
             </div>
             
                 </div>
                 <div class="row">
                 <div class="col-md-12">
                     <label for="" class="form-label cm">कैफियत</label>
-                    <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                    <textarea type="text" class="form-control cm" placeholder="कैफियत" name="m_kaifiyat"></textarea>
                 </div>
                 </div>
                         
@@ -190,35 +191,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="o_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="o_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="o_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="o_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -226,28 +227,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="o_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="o_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="o_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="o_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -255,28 +256,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="o_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="o_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="o_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="o_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -284,28 +285,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="o_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="o_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="o_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="o_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -326,35 +327,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="f_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="f_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="f_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="f_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -362,28 +363,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="f_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="f_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="f_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="f_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -391,28 +392,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="f_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="f_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="f_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="f_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -420,28 +421,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="f_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="f_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="f_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="f_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -462,35 +463,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="s_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="s_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="s_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="s_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -498,28 +499,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="s_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="s_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="s_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="s_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -527,28 +528,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="s_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="s_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="s_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="s_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -556,28 +557,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="s_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="s_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="s_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="s_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -598,35 +599,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="t_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="t_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="t_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="t_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -634,28 +635,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="t_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="t_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="t_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="t_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -663,28 +664,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="t_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="t_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="t_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="t_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -692,28 +693,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="t_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="t_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="t_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="t_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -734,35 +735,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="sa_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="sa_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="sa_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="sa_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -770,28 +771,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="sa_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="sa_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="sa_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="sa_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -799,28 +800,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="sa_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="sa_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="sa_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="sa_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -828,28 +829,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="sa_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="sa_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="sa_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="sa_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -870,35 +871,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="k_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="k_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="k_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="k_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -906,28 +907,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="k_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="k_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="k_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="k_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -935,28 +936,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="k_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="k_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="k_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="k_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -964,28 +965,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="k_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="k_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="k_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="k_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -1006,35 +1007,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="w_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="w_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="w_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="w_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1042,28 +1043,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="w_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="w_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="w_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="w_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1071,28 +1072,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="w_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="w_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="w_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="w_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1100,28 +1101,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="w_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="w_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="w_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="w_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -1142,35 +1143,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="sw_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="sw_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="sw_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="sw_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1178,28 +1179,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="sw_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="sw_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="sw_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="sw_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1207,28 +1208,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="sw_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="sw_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="sw_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="sw_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1236,28 +1237,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="sw_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="sw_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="sw_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="sw_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -1278,35 +1279,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="c_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="c_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="c_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="c_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1314,28 +1315,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="c_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="c_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="c_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="c_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1343,28 +1344,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="c_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="c_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="c_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="c_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1372,28 +1373,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="c_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="c_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="c_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="c_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -1414,35 +1415,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="me_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="me_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="me_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="me_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1450,28 +1451,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="me_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="me_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="me_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="me_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1479,28 +1480,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="me_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="me_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="me_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="me_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1508,28 +1509,28 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="me_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="me_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="me_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="me_kaifiyat"></textarea>
                             </div>
                         </div>
                                 
@@ -1539,7 +1540,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header cm">
                     <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwelve" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwelve">
-                    अन्य    
+                    दाना    
                     </button>
                 </h2>
                 <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse ">
@@ -1550,35 +1551,35 @@
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                                " name="name">
+                                " name="g_b_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                                " name="name">
+                                " name="g_b_pratikul">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                                " name="name">
+                                " name="g_u_sankhya">
                             </div>
                             
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                                " name="name">
+                                " name="g_u_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1586,28 +1587,28 @@
                                 <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="g_ay_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="g_ay_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="g_v_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="g_v_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1615,28 +1616,28 @@
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="g_k_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="g_k_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                             </label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="g_a_sankhya">
                         </div>
                         <div class="col-md-3">
                                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="g_a_pratikul">
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -1644,28 +1645,165 @@
                                 <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
 
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                                " name="name">
+                                " name="g_kul_sankhya">
                             </div>
                             <div class="col-md-3">
                                 <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="g_kul_pratikul">
                             </div>
                             <div class="col-md-3">
                             <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
-                            <input type="text" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                             
-                            " name="name">
+                            " name="g_sample">
                         </div>
                         
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="g_kaifiyat"></textarea>
+                            </div>
+                        </div>
+                                
+                            </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThirteen" aria-expanded="false" aria-controls="panelsStayOpen-collapseThirteen">
+                    अन्य    
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThirteen" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+                    
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">बजारबाट नमुना संकलन (नमुना संख्या)
+
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
+
+                                " name="ot_b_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
+
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
+
+                                " name="ot_b_pratikul">
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
+
+                                " name="ot_u_sankhya">
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
+
+                                " name="ot_u_pratikul">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">आयात निर्यात  (नमुना संख्या)
+
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+
+                                " name="ot_ay_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="ot_ay_pratikul">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
+                            </label>
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            
+                            " name="ot_v_sankhya">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="ot_v_pratikul">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य  (नमुना संख्या)
+
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+
+                                " name="ot_k_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="ot_k_pratikul">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
+                            </label>
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            
+                            " name="ot_a_sankhya">
+                        </div>
+                        <div class="col-md-3">
+                                <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
+                                " name="ot_a_pratikul">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">कुल  जम्मा   (नमुना संख्या)
+
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
+
+                                " name="ot_kul_sankhya">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
+                                " name="ot_kul_pratikul">
+                            </div>
+                            <div class="col-md-3">
+                            <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
+                            <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
+                            
+                            " name="ot_sample">
+                        </div>
+                        
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="ot_kaifiyat"></textarea>
                             </div>
                         </div>
                                 

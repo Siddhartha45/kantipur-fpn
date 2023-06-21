@@ -14,6 +14,7 @@
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
+        {% csrf_token %}
         <div class="col-md-12">
             <h3 class="create-form-heading">नया इन्ट्री</h3>
         </div>
@@ -22,17 +23,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यालयको नाम</label>
-                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">मिति</label>
-                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="" disabled>
                 </div>
             </div>
         </div>
@@ -53,21 +54,21 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                                 <label for="" class="form-label cm">महिना, चौमासिक प्रगति </label>
-                                <input type="text" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="g_c_pragati">
                         </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">यस आ ब को हालसम्मको प्रगति
                             </label>
-                                <input type="text" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
+                                " name="g_h_pragati1">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बिगत बर्षहरुदेखि हालसम्मको प्रगति
                             </label>
-                                <input type="text" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
-                                " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
+                                " name="g_h_pragati2">
                             </div>
                         
                             
@@ -75,7 +76,7 @@
                         <div class="row">
                         <div class="col-md-12">
                             <label for="" class="form-label cm">कैफियत</label>
-                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="g_kaifiyat"></textarea>
                         </div>
                         </div>
                 </div>
@@ -92,21 +93,21 @@
                         <div class="row mb-4">
                             <div class="col-md-4">
                                     <label for="" class="form-label cm">महिना, चौमासिक प्रगति </label>
-                                    <input type="text" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="name">
+                                    <input type="number" min="0" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="y1_c_pragati">
                             </div>
     
                                 <div class="col-md-4">
                                     <label for="" class="form-label cm">यस आ ब को हालसम्मको प्रगति
                                 </label>
-                                    <input type="text" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
-                                    " name="name">
+                                    <input type="number" min="0" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
+                                    " name="y1_h_pragati1">
                                 </div>
     
                                 <div class="col-md-4">
                                     <label for="" class="form-label cm">बिगत बर्षहरुदेखि हालसम्मको प्रगति
                                 </label>
-                                    <input type="text" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
-                                    " name="name">
+                                    <input type="number" min="0" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
+                                    " name="y1_h_pragati2">
                                 </div>
                             
                                 
@@ -114,7 +115,7 @@
                             <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="y1_kaifiyat"></textarea>
                             </div>
                             </div>
                     </div>
@@ -130,25 +131,32 @@
                     <div class="accordion-body">
                         <div class="row mb-4">
                             <div class="col-md-4">
-                                <label for="" class="form-label cm">पटक </label>
-                                <input type="number" class="form-control cm" placeholder=" पटक" name="name">
+                                    <label for="" class="form-label cm">महिना, चौमासिक प्रगति </label>
+                                    <input type="number" min="0" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="y2_c_pragati">
                             </div>
-
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">संख्या</label>
-                                <input type="number" class="form-control cm" placeholder="संख्या" name="name">
+    
+                                <div class="col-md-4">
+                                    <label for="" class="form-label cm">यस आ ब को हालसम्मको प्रगति
+                                </label>
+                                    <input type="number" min="0" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
+                                    " name="y2_h_pragati1">
+                                </div>
+    
+                                <div class="col-md-4">
+                                    <label for="" class="form-label cm">बिगत बर्षहरुदेखि हालसम्मको प्रगति
+                                </label>
+                                    <input type="number" min="0" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
+                                    " name="y2_h_pragati2">
+                                </div>
+                            
+                                
                             </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">हालसम्मको प्रगति</label>
-                                <input type="number" class="form-control cm" placeholder="हालसम्मको प्रगति" name="name">
-                            </div>
-                        </div>
-                        <div class="row">
+                            <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="y2_kaifiyat"></textarea>
                             </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -163,21 +171,21 @@
                         <div class="row mb-4">
                             <div class="col-md-4">
                                     <label for="" class="form-label cm">महिना, चौमासिक प्रगति </label>
-                                    <input type="text" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="name">
+                                    <input type="number" min="0" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="r_c_pragati">
                             </div>
     
                                 <div class="col-md-4">
                                     <label for="" class="form-label cm">यस आ ब को हालसम्मको प्रगति
                                 </label>
-                                    <input type="text" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
-                                    " name="name">
+                                    <input type="number" min="0" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
+                                    " name="r_h_pragati1">
                                 </div>
     
                                 <div class="col-md-4">
                                     <label for="" class="form-label cm">बिगत बर्षहरुदेखि हालसम्मको प्रगति
                                 </label>
-                                    <input type="text" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
-                                    " name="name">
+                                    <input type="number" min="0" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
+                                    " name="r_h_pragati2">
                                 </div>
                             
                                 
@@ -185,7 +193,7 @@
                             <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="name"></textarea>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत" name="r_kaifiyat"></textarea>
                             </div>
                             </div>
                     </div>

@@ -14,6 +14,9 @@
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
+        {% csrf_token %}
+
+        
         <div class="col-md-12">
             <h3 class="create-form-heading">नया इन्ट्री</h3>
         </div>
@@ -22,17 +25,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यालयको नाम</label>
-                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" disabled>
                 </div>
                 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">मिति</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="2080/02/22" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="2080/02/22" disabled>
                 </div>
             </div>
         </div>
@@ -42,66 +45,67 @@
             <div class="col-md-12 heading-cm">डेटा उल्लेख गर्नुहोस</div>
         </div>
 
+
         <div class="field-container mb-4">
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यक्रम संचालन मिति</label>
-                    <input type="text" class="form-control cm date-picker" data-single="1" placeholder="कार्यक्रम संचालन मिति" name="name">
+                    <input type="date" class="form-control cm date-picker" data-single="1" placeholder="कार्यक्रम संचालन मिति" name="miti[]">
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यक्रम संचालन अवधि</label>
-                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संचालन अवधि" name="name">
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संचालन अवधि" name="abadhi[]">
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यक्रमको नाम</label>
-                    <input type="text" class="form-control cm" placeholder="कार्यक्रमको नाम" name="name">
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रमको नाम" name="naam[]">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यक्रम संचालन स्थान</label>
-                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संचालन स्थान" name="name">
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संचालन स्थान" name="sthan[]">
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label cm">महिला सहभागी संख्या</label>
-                    <input type="number"  class="form-control cm" placeholder="महिला सहभागी संख्या" name="name">
+                    <input type="number" min="0" class="form-control cm" placeholder="महिला सहभागी संख्या" name="m_sankhya[]">
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label cm">पुरुष सहभागी संख्या</label>
-                    <input type="number"  class="form-control cm" placeholder="पुरुष सहभागी संख्या" name="name">
+                    <input type="number" min="0" class="form-control cm" placeholder="पुरुष सहभागी संख्या" name="p_sankhya[]">
                 </div>
             </div>
 
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यक्रम संयोजक नाम</label>
-                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संयोजक नाम" name="name">
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संयोजक नाम" name="sanyojak[]">
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यक्रम संयोजक फोन नं</label>
-                    <input type="text"  class="form-control cm" placeholder="कार्यक्रम संयोजक फोन नं" name="name">
+                    <input type="text"  class="form-control cm" placeholder="कार्यक्रम संयोजक फोन नं" name="phone[]">
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label cm">प्रशिक्षक</label>
-                    <input type="text" class="form-control cm" placeholder="प्रशिक्षक">
+                    <input type="text" class="form-control cm" placeholder="प्रशिक्षक" name="prasikshak[]">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">उपस्थित निकायहरु</label>
-                    <textarea class="form-control cm" name="" id="" cols="30" rows="4"></textarea>
+                    <textarea class="form-control cm" name="nikaya[]" id="" cols="30" rows="4"></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यक्रम/कार्यपत्रमा समेटिएका बिषयबस्तु</label>
-                    <textarea class="form-control cm" name="" id="" cols="30" rows="4"></textarea>
+                    <textarea class="form-control cm" name="bisaya[]" id="" cols="30" rows="4"></textarea>
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कैफियत</label>
-                    <textarea class="form-control cm" name="" id="" cols="30" rows="4"></textarea>
+                    <textarea class="form-control cm" name="kaifiyat[]" id="" cols="30" rows="4"></textarea>
                 </div>
             </div>
 

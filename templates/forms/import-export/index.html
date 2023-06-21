@@ -14,6 +14,7 @@
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data" id="myForm">
         <div class="col-md-12">
+            {% csrf_token %}
             <h3 class="create-form-heading">नया इन्ट्री</h3>
         </div>
 
@@ -58,66 +59,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="m_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="m_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="m_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="m_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="m_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="m_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="m_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="m_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="m_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="m_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -139,66 +141,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="o_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="o_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="o_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="o_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="o_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="o_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="o_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="o_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="o_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="o_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -220,66 +223,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="f_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="f_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="f_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="f_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="f_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="f_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="f_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="f_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="f_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="f_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -301,66 +305,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="s_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="s_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="s_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="s_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="s_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="s_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="s_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="s_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="s_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="s_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -382,66 +387,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="t_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="t_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="t_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="t_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="t_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="t_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="t_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="t_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="t_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="t_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -463,66 +469,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="sa_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="sa_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="sa_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="sa_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="sa_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="sa_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="sa_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="sa_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="sa_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="sa_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -544,66 +551,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="k_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="k_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="k_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="k_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="k_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="k_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="k_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="k_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="k_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="k_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -625,66 +633,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="w_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="w_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="w_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="w_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="w_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="w_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="w_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="w_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="w_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="w_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -706,66 +715,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="sw_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="sw_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="sw_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="sw_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="sw_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="sw_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="sw_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="sw_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="sw_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="sw_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -787,66 +797,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="c_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="c_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="c_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="c_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="c_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="c_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="c_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="c_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="c_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="c_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -868,147 +879,67 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="me_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="me_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="me_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="me_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="me_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="me_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="me_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="me_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="me_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header cm">
-                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwelve" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwelve">
-                        अन्य
-                    </button>
-                </h2>
-                <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse ">
-                    <div class="accordion-body">
-
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">इकाई
-                                </label>
-                                <select name="" id="" class="form-control cm">
-                                    <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">बार्षिक लक्ष्य
-                                </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
-                            </div>
-
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">चौमासिक लक्ष्य
-                                </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">चौमासिक प्रगति
-                                </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">महिनाको प्रगति
-                                </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
-                                </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
-                                </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">हाल सम्मको प्रगति
-                                </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
-                            </div>
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
-                                </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="" class="form-label cm">कैफियत</label>
-                                <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="me_kaifiyat"></textarea>
                             </div>
                         </div>
 
@@ -1016,7 +947,6 @@
                 </div>
             </div>
 
-            <h2 class="heading-cm mt-4">दाना </h2>
             <div class="accordion-item">
                 <h2 class="accordion-header cm">
                     <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse"
@@ -1032,66 +962,150 @@
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">इकाई
                                 </label>
-                                <select name="" id="" class="form-control cm">
+                                <select name="g_ekai" id="" class="form-control form-select kit-form-control cm">
                                     <option selected disabled>इकाई</option>
-                                    <option value="1">संख्या</option>
-                                    <option value="2">पटक </option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बार्षिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="g_b_lakshya">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक लक्ष्य
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक लक्ष्य"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="g_c_lakshya">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">चौमासिक प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="चौमासिक प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="g_c_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">महिनाको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder=" महिनाको प्रगति " name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="g_m_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="g_pratikul_n">
                             </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">प्रतिकूल पारामिटर
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="g_pratikul_p">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति"
-                                    name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="g_h_pragati">
                             </div>
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
                                 </label>
-                                <input type="text" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="name">
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="g_h_pratisat">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="" class="form-label cm">कैफियत</label>
                                 <textarea type="text" class="form-control cm" placeholder="कैफियत"
-                                    name="name"></textarea>
+                                    name="g_kaifiyat"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button collapsed cm" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwelve" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwelve">
+                        अन्य
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse ">
+                    <div class="accordion-body">
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="ot_ekai" id="" class="form-control form-select kit-form-control cm">
+                                    <option selected disabled>इकाई</option>
+                                    {% for key,value in data.ekai %}
+                                        <option value="{{key}}">{{value}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">बार्षिक लक्ष्य
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="ot_b_lakshya">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">चौमासिक लक्ष्य
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="ot_c_lakshya">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">चौमासिक प्रगति
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="ot_c_pragati">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">महिनाको प्रगति
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="ot_m_pragati">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="ot_pratikul_n">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="ot_pratikul_p">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हाल सम्मको प्रगति
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="ot_h_pragati">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="ot_h_pratisat">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत"
+                                    name="ot_kaifiyat"></textarea>
                             </div>
                         </div>
 

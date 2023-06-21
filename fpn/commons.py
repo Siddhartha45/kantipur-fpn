@@ -23,7 +23,7 @@ OFFICE_CHOICES = (
     ('FO', 'Food Office'),
 )
 
-"""choices for anugaman views"""
+"""choices for anugamanbibaran model"""
 ANUGAMAN_CHOICES = (
     ('udyog', 'udyog'),
     ('pasal', 'pasal'),
@@ -34,8 +34,8 @@ ANUGAMAN_CHOICES = (
     ('anya', 'anya'),
 )
 
-"""choices for namuna bisleysan"""
-NAMUNA_BISLEYSAN_CHOICES = (
+"""choices for namunabisleysan, aayatniryat and prayogsalabisleysan models"""
+TYPES_CHOICES = (
     ('milk', 'milk'),
     ('oil', 'oil'),
     ('fruits', 'fruits'),
@@ -47,12 +47,93 @@ NAMUNA_BISLEYSAN_CHOICES = (
     ('sweets', 'sweets'),
     ('confectionery', 'confectionery'),
     ('meat', 'meat'),
-    ('others', 'others'),
     ('grain', 'grain'),
+    ('others', 'others'),
 )
 
-"""choices for ekai fields in BisleysanBibaran models"""
+"""choices for ekai fields in BisleysanBibaran model"""
 EKAI_CHOICES = (
     ('S', 'संख्या'),
     ('P', 'पटक'),
+)
+
+"""choices for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण model"""
+LOGO_CHOICES = (
+    ('green', 'green'),
+    ('yellow1', 'yellow1'),
+    ('yellow2', 'yellow2'),
+    ('red', 'red'),
+)
+
+"""choices for DetailAnugaman model"""
+DETAIL_ANUGAMAN_CHOICES = (
+    ('B', 'बजार/पसल'),
+    ('K', 'खाद्य उद्योग'),
+    ('H', 'होटल, रेष्टुरेण्ट, मिठाई पसल'),
+    ('S', 'संयुक्त अनुगमन'),
+    ('D', 'दाना उद्योग'),
+    ('A', 'अन्य'),
+)
+
+"""choices for logo in DetailHotel model"""
+DETAIL_LOGO_CHOICES = (
+    ('A', 'अति उत्तम'),
+    ('B', 'उत्तम'),
+    ('C', 'संतोषजनक'),
+    ('D', 'सामान्य'),
+    ('E', 'स्तरकिरणमा नपरेको'),
+)
+
+"""choices for samuha in DetailRegistration model"""
+DETAIL_SAMUHA_CHOICES = (
+    ('A', 'दूध तथा दुग्ध पदार्थहरु'),
+    ('B', 'तेल तथा घउि'),
+    ('C', 'फल तथा सागपात पदार्थहरु'),
+    ('D', 'मसला पदार्थहरु'),
+    ('E', 'चिया, कफि कोका तथा सो बाट बनेका पदार्थहरु'),
+    ('F', 'नुन'),
+    ('G', 'खाद्यान्न दलहन तथा सो बाट बनेका पदार्थहरु'),
+    ('H', 'प्याक गरएिको पउिने पानी'),
+    ('I', 'गुलियो पदार्थ'),
+    ('J', 'कन्फेक्सनरी'),
+    ('K', 'आहारपुरक'),
+    ('L', 'ईनर्जी ड्रिंक'),
+    ('M', 'बालआहार'),
+    ('N', 'विविध')
+)
+
+"""choices for srot in DetailGunaso model"""
+DETAIL_SROT_CHOICES = (
+    ('A', 'गुनासो पेटीका'),
+    ('B', 'गुनासो अधिकारी समक्ष'),
+    ('C', 'जिल्ला प्रशासन कार्यालयबाट लेखिआएको'),
+    ('D', 'बाणिज्य कार्यालयबाट लेखिआएको'),
+    ('E', 'पत्र पत्रिका'),
+    ('F', 'अख्तियार दु. अ.आ.'),
+    ('G', 'पत्रकार'),
+    ('H', 'हेलो सरकार'),
+    ('I', 'उपभोक्ता संघ संस्था'),
+    ('J', 'अन्य'),
+)
+
+"""choices for selecting months in  PragatiBibaran"""
+MONTHS_CHOICES = (
+    ('A', 'वैशाख'),
+    ('B', 'जेठ'),
+    ('C', 'असार'),
+    ('D', 'साउन'),
+    ('E', 'भदौ'),
+    ('F', 'असोज'),
+    ('G', 'कार्तिक'),
+    ('H', 'मंसिर'),
+    ('I', 'पुष'),
+    ('J', 'माघ'),
+    ('K', 'फागुन'),
+    ('L', 'चैत'),
+)
+
+"""choices for selecting kharcha type in  PragatiBibaran"""
+KHARCHA_CHOICES = (
+    ('P', 'पुँजीगत'),
+    ('C', 'चालु'),
 )
