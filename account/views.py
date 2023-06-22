@@ -1,9 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .models import CustomUser
-from .forms import CustomUserForm
+from .models import CustomUser, Office
+from .forms import CustomUserForm, OfficeForm
 from fpn import commons
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from django.contrib import messages
 
 
 def user_login(request):
@@ -41,7 +42,8 @@ def user_create(request):
             }
             password = make_password(request.POST['password'])
             user = CustomUser.objects.create(password=password, **user_data)
-            return HttpResponse("user created")
+            messages.success(request, 'User Created')
+            return redirect('user-list')
     else:
         form = CustomUserForm()
     context = {
@@ -58,6 +60,8 @@ def user_list(request):
 
 
 def user_profile(request, user_id):
+    """for viewing users profile"""
+    
     user = get_object_or_404(CustomUser, id=user_id)
     if request.user != user:
         return redirect('home')
@@ -66,3 +70,23 @@ def user_profile(request, user_id):
 
 
 
+def create_office(request):
+    data = {
+        'office': commons.OFFICE_CHOICES,
+    }
+    if request.method == 'POST':
+        form = OfficeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New Office Created')
+            return redirect('office-list')
+    else:
+        form = OfficeForm()
+    context = {'form': form, 'data': data}
+    return render(request, 'office.html', context)
+
+
+def office_list(request):
+    offices = Office.objects.all()
+    context = {'offices': offices}
+    return render(request, 'officetable.html', context)

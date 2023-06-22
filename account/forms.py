@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser
+from .models import CustomUser, Office
 from django import forms
 from fpn import commons
 
@@ -25,3 +25,9 @@ class CustomUserForm(forms.Form):
     email = forms.EmailField()
     phone_number = forms.CharField(required=False)
     role = forms.ChoiceField(choices=commons.ROLE_CHOICES)
+    
+    
+class OfficeForm(forms.ModelForm):
+    class Meta:
+        model = Office
+        fields = '__all__'

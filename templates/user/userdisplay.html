@@ -10,6 +10,11 @@
         </h3>
         <p><a href=""><i class="fa-regular fa-eye"></i>View Users</a></p>
     </div>
+
+    {% for message in messages %}
+        <div class="alert alert-success mt-3">{{ message }}</div>
+    {% endfor %}
+
     <div class="table-row">
         <div class="row mb-4 filter-row filters">
             <div class="col-md-4">

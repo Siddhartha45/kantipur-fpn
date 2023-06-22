@@ -1,5 +1,8 @@
 from django.db import models
 from fpn import commons
+import nepali_datetime
+from datetime import date
+from django.utils import timezone
 
 
 class NamunaBibaran(models.Model):
@@ -170,6 +173,7 @@ class KhadyaPrasodhan(models.Model):
     kaifiyat = models.TextField(default="", blank=True)    
     
 
+
 class BittiyaBibaran(models.Model):
     """model for मासिक वित्तिय विवरण"""
     yearly_pujigat = models.FloatField(default=0, blank=True)
@@ -299,8 +303,8 @@ class DetailMudha(models.Model):
     n_miti = models.DateField(blank=True)
     n_sthan = models.CharField(max_length=255, default="", blank=True)
     n_khani = models.CharField(max_length=255, default="", blank=True)
-    p_miti = models.DateField(default=True)
-    b_miti = models.DateField(default=True)
+    p_miti = models.DateField(blank=True)
+    b_miti = models.DateField(blank=True)
     prakar = models.CharField(max_length=255, default="", blank=True)
     parameter = models.CharField(max_length=255, default="", blank=True)
     m_sthan = models.CharField(max_length=255, default="", blank=True)

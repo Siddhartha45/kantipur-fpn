@@ -59,10 +59,10 @@ EKAI_CHOICES = (
 
 """choices for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण model"""
 LOGO_CHOICES = (
-    ('green', 'green'),
-    ('yellow1', 'yellow1'),
-    ('yellow2', 'yellow2'),
-    ('red', 'red'),
+    ('green', 'हरियो स्टिकर'),
+    ('yellow1', 'पेहेलोमा एउटा रातो धर्सो'),
+    ('yellow2', 'पेहेलोमा दुइटा रातो धर्सो'),
+    ('red', 'रातो स्टिकर'),
 )
 
 """choices for DetailAnugaman model"""

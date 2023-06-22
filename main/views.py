@@ -3,10 +3,19 @@ from .forms import (UjuriGunasoForm, BittiyaBibaranForm, NamunaBibaranForm, Patr
                     UdyogSifarisForm, AnugamanBibaranForm, NamunaBisleysanForm, AayatNiryatForm, PrayogsalaBisleysanForm,
                     LogobitaranForm, KhadyaPrasodhanForm, DetailAnugamanForm, DetailHotelForm, DetailRegistrationForm, DetailRenewForm,
                     DetailUdyogForm, DetailGunasoForm, DetailMudhaForm, DetailRbpaForm, MasikPragatiForm)
-from .models import AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran
+from .models import (AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, BittiyaBibaran, UjuriGunaso,
+                    NamunaBibaran, PragatiBibaran, DetailRbpa, UdyogSifaris, PatraNabikaran, PatraJari, KhadyaPrasodhan)
 from fpn import commons
+import datetime
+import nepali_datetime
 
 
+def home(request):
+    """view for dashboard"""
+    return render(request, 'index.html')
+
+
+#-----------------------FORMS PART BELOW -----------------------
 def namuna_bibaran(request):
     """views for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     
@@ -982,6 +991,8 @@ def masik_bittiya(request):
 
 
 def masik_pragati(request):
+    """views for मासिक प्रगति विवरण"""
+    
     data = {
         'months': commons.MONTHS_CHOICES,
         'ekai': commons.EKAI_CHOICES,
@@ -1032,11 +1043,12 @@ def masik_pragati(request):
     return render(request, 'forms/report/summary.html', context)
 
 
+#-------------------- DETAILS FORM BELOW ---------------------------
 
-
-#DETAILS FORM
 
 def detail_hotel(request):
+    """views for detail होटल रेष्टुरेण्टको स्तरकिरण लोगो वितरण"""
+    
     data = {
         'logo': commons.DETAIL_LOGO_CHOICES,
     }
@@ -1078,6 +1090,8 @@ def detail_hotel(request):
 
 
 def detail_registration(request):
+    """views for detail अनुज्ञापत्र जारी"""
+    
     data = {
         'samuha': commons.DETAIL_SAMUHA_CHOICES,
     }
@@ -1124,6 +1138,8 @@ def detail_registration(request):
 
 
 def detail_renew(request):
+    """views for detail अनुज्ञापत्र नवकिरण"""
+    
     data = {
         'samuha': commons.DETAIL_SAMUHA_CHOICES,
     }
@@ -1170,6 +1186,8 @@ def detail_renew(request):
 
 
 def detail_udyog(request):
+    """views for detail उद्योग सिफारिस"""
+    
     data = {
         'samuha': commons.DETAIL_SAMUHA_CHOICES,
     }
@@ -1216,6 +1234,8 @@ def detail_udyog(request):
 
 
 def detail_anugaman(request):
+    """views for detail अनुगमन निरीक्षण"""
+    
     data = {
         'anugaman': commons.DETAIL_ANUGAMAN_CHOICES,
     }
@@ -1264,6 +1284,8 @@ def detail_anugaman(request):
 
 
 def detail_mudha(request):
+    """views for detail मुद्धा दायरी"""
+    
     if request.method == 'POST':
         d_naam = request.POST.getlist('naam[]')
         d_b_naam = request.POST.getlist('b_naam[]')
@@ -1311,6 +1333,8 @@ def detail_mudha(request):
 
 
 def detail_rbpa(request):
+    """views for detail RBPA Analysis"""
+    
     if request.method == 'POST':
         d_date = request.POST.getlist('date[]')
         d_commodity1 = request.POST.getlist('commodity1[]')
@@ -1349,8 +1373,13 @@ def detail_rbpa(request):
 
 
 def detail_gunasho(request):
+    """views for detail उजुरी गुनासो"""
+    
     data = {
         'srot': commons.DETAIL_SROT_CHOICES,
+        'current_date': datetime.date.today().strftime("%Y/%m/%d"),
+        'current_nepali_date': nepali_datetime.date.today().strftime("%Y/%m/%d"),
+        'current_nepali_year': nepali_datetime.date.today().strftime("%Y"),
     }
     if request.method == 'POST':
         d_p_miti = request.POST.getlist('p_miti[]')
@@ -1376,8 +1405,135 @@ def detail_gunasho(request):
     return render(request, 'forms/details/gunasho.html', context)
 
 
+#--------------------- REPORT PART BELOW --------------------------
 
+#not working
+def khadyaact_report(request):
+    """table list for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
+    
+    data = NamunaBibaran.objects.all()
+    context = {'data': data}
+    return render(request, 'report/khadyaact.html', context)
 
-#REPORT PART
+#working
 def anugaman_report(request):
-    return render(request, 'report/anugaman.html')
+    """table list for निरीक्षण अनुगमन विवरण"""
+    
+    data = AnugamanBibaran.objects.all()
+    context = {'data': data}
+    return render(request, 'report/anugaman.html', context)
+
+#working
+def hotel_report(request):
+    """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
+    
+    data = Logobitaran.objects.all()
+    context = {'data': data}
+    return render(request, 'report/hotel.html', context)
+
+#working
+def khadya_report(request):
+    """table list for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
+    
+    data = NamunaBisleysan.objects.all()
+    context = {'data': data}
+    return render(request, 'report/khadyanamuna.html', context)
+
+#working
+def prayogsala_report(request):
+    """table list for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
+    
+    data = PrayogsalaBisleysan.objects.all()
+    context = {'data': data}
+    return render(request, 'report/prayogsala.html', context)
+
+#working
+def rbpa_report(request):
+    """table list for RBPA Analysis Report"""
+    
+    data = DetailRbpa.objects.all()
+    context = {'data': data}
+    return render(request, 'report/rbpa.html', context)
+
+#working
+def importexport_report(request):
+    """table list for आयात निर्यात गुण प्रमाणिकरण"""
+    
+    data = AayatNiryat.objects.all()
+    context = {'data': data}
+    return render(request, 'report/importexport.html', context)
+
+#working
+def gunasho_report(request):
+    """table list for उजुरी/गुनासो ब्येवस्थापन"""
+    
+    data = UjuriGunaso.objects.all()
+    context = {'data': data}
+    return render(request, 'report/gunasho.html', context)
+
+#working
+def patrakar_report(request):
+    """table list for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
+    
+    data = KhadyaPrasodhan.objects.all()
+    context = {'data': data}
+    return render(request, 'report/patrakar.html', context)
+
+#not working
+def patrajari_report(request):
+    """table list for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
+    
+    data = PatraJari.objects.all()
+    context = {'data': data}
+    return render(request, 'report/patrajari.html', context)
+
+#not working
+def renew_report(request):
+    """table list for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
+    
+    data = PatraNabikaran.objects.all()
+    context = {'data': data}
+    return render(request, 'report/renew.html', context)
+
+#not working
+def udyog_report(request):
+    """table list for उद्योग सिफारिस"""
+    
+    data = UdyogSifaris.objects.all()
+    context = {'data': data}
+    return render(request, 'report/udyog.html', context)
+
+#working
+def finance_report(request):
+    """table list for मासिक वित्तिय विवरण"""
+    
+    data = BittiyaBibaran.objects.all()
+    context = {'data': data}
+    return render(request, 'report/finance.html', context)
+
+#working
+def monthly_report(request):
+    """table list for मासिक प्रगति विवरण"""
+    
+    data = PragatiBibaran.objects.all()
+    context = {'data': data}
+    return render(request, 'report/monthly.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

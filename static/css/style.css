@@ -1763,3 +1763,77 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button{
 }
 
 /*Food Project*/
+
+
+.action-btn-dltt{
+    height: 34px;
+    width: 34px;
+}
+.action-btn-dltt button{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    background-color: #FFDBDB;
+    border: transparent;
+    border-radius: 5px;
+    color: red;
+    font-size: 1.25rem;
+    padding: 7px;
+}
+.action-btn-dltt button:hover{
+    background-color: red;
+    color: #fff
+}
+
+
+.field-container{
+    border: 1px solid #ECECEC;
+    padding: 20px;
+    border-radius: 4px;
+}
+#accordionPanelsStayOpenExample{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.kit-card-link{
+    text-decoration: none;
+}
+.kit-card{
+    border: none;
+    padding: 30px;
+    text-decoration: none;
+    background: rgba(255,255,255,0.7);
+}
+.kit-card:hover{
+    background: rgba(255,255,255,1);
+}
+.kit-card h2{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0;
+    text-decoration: none;
+}
+.action-btn-dltt{
+    height: 34px;
+    width: 34px;
+}
+.action-btn-dltt button{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    background-color: #FFDBDB;
+    border: transparent;
+    border-radius: 5px;
+    color: red;
+    font-size: 1.25rem;
+    padding: 7px;
+}
+.action-btn-dltt button:hover{
+    background-color: red;
+    color: #fff
+}

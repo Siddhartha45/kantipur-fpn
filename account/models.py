@@ -24,8 +24,13 @@ class CustomUser(AbstractUser):
     
     
 class Office(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(blank=True)
+    email = models.EmailField(blank=True, unique=True)
     contact_no = models.CharField(max_length=15, blank=True)
     category = models.CharField(max_length=255, choices=commons.OFFICE_CHOICES)
+    working_area = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return self.name

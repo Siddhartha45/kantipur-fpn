@@ -3,9 +3,9 @@ from . import views
 
 
 urlpatterns = [
-    #path('', views.home, name="home"),
-    
-    path('', views.namuna_bibaran, name="namuna"),
+    path('', views.home, name="home"),
+    #forms path
+    path('forms/namuna-bibaran', views.namuna_bibaran, name="namuna"),
     path('forms/anugaman-bibaran/', views.anugaman, name="anugaman"),
     path('forms/logobitaran/', views.logobitaran, name="logobitaran"),
     path('forms/namuna-bisleysan/', views.namuna_bisleysan, name="namuna-bisleysan"),
@@ -18,8 +18,7 @@ urlpatterns = [
     path('forms/khadya-prasodhan/', views.khadya_prasodhan, name="khadya-prasodhan"),
     path('forms/masik-bittiya/', views.masik_bittiya, name="masik-bittiya"),
     path('forms/masik-pragati/', views.masik_pragati, name="masik-pragati"),
-    
-    #details
+    #details form path
     path('forms/details/anugaman/', views.detail_anugaman, name="detail-anugaman"),
     path('forms/details/gunasho/', views.detail_gunasho, name="detail-gunasho"),
     path('forms/details/hotel/', views.detail_hotel, name="detail-hotel"),
@@ -28,8 +27,19 @@ urlpatterns = [
     path('forms/details/registration/', views.detail_registration, name="detail-registration"),
     path('forms/details/renew/', views.detail_renew, name="detail-renew"),
     path('forms/details/udyog/', views.detail_udyog, name="detail-udyog"),
-    
-    
-    #report
+    #reports path
     path('report/anugaman/', views.anugaman_report, name="anugaman-report"),
+    path('report/finance/', views.finance_report, name="finance-report"),
+    path('report/gunasho/', views.gunasho_report, name="gunasho-report"),
+    path('report/hotel/', views.hotel_report, name="hotel-report"),
+    path('report/import-export/', views.importexport_report, name="import-export-report"),
+    path('report/khadya-act/', views.khadyaact_report, name="khadya-act-report"),
+    path('report/monthly/', views.monthly_report, name="monthly-report"),
+    path('report/patrajari/', views.patrajari_report, name="patrajari-report"),
+    path('report/patrakar/', views.patrakar_report, name="patrakar-report"),
+    path('report/prayogsala/', views.prayogsala_report, name="prayogsala-report"),
+    path('report/rbpa/', views.rbpa_report, name="rbpa-report"),
+    path('report/renew/', views.renew_report, name="renew-report"),
+    path('report/udyog/', views.udyog_report, name="udyog-report"),
+    path('report/khadya/', views.khadya_report, name="khadya-report"),
 ]

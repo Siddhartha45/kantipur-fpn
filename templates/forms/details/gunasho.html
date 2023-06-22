@@ -28,12 +28,12 @@
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{data.current_nepali_year}}" name="" disabled>
                 </div>
                 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">मिति</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="2080/02/22" name="" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{data.current_nepali_date}}" name="" disabled>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">उजुरी तथा गुनासो प्राप्त मिति</label>
-                    <input type="date"  class="form-control cm date-picker" data-single="1" placeholder="जारी मिति" name="p_miti[]">
+                    <input type="text"  class="form-control cm date-picker" data-single="1" placeholder="जारी मिति" name="p_miti[]">
                 </div> 
                 
                 <div class="col-md-4">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="" class="form-label cm">उजुरी/गुनासो सम्बोधन मिति</label>
-                    <input type="date"  class="form-control cm date-picker" data-single="1" placeholder="उजुरी/गुनासो सम्बोधन मिति" name="s_miti[]">
+                    <input type="text"  class="form-control cm date-picker" data-single="1" placeholder="उजुरी/गुनासो सम्बोधन मिति" name="s_miti[]">
                 </div> 
             </div>
             <div class="row mb-3">

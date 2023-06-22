@@ -1763,3 +1763,26 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button{
 }
 
 /*Food Project*/
+
+
+.action-btn-dltt{
+    height: 34px;
+    width: 34px;
+}
+.action-btn-dltt button{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    background-color: #FFDBDB;
+    border: transparent;
+    border-radius: 5px;
+    color: red;
+    font-size: 1.25rem;
+    padding: 7px;
+}
+.action-btn-dltt button:hover{
+    background-color: red;
+    color: #fff
+}
