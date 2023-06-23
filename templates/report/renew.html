@@ -52,8 +52,19 @@
                     <thead>
                         <tr>
                             <th>क्र. सं.</th>
-                            <th>खाद्य समूह</th>
-                            <th>संख्या</th>
+                            <th>दुध तथा दुध पदार्थ</th>
+                            <th>तेल तथा घेउ जन्य</th>
+                            <th>फल तथा सागपात</th>
+                            <th>मसला</th>
+                            <th>चिया, कफि</th>
+                            <th>नुन</th>
+                            <th>खाद्यान्न दलहन र सोबाट बनेको</th>
+                            <th>प्र. पिउने पानी</th>
+                            <th>गुलियो पदार्थ</th>
+                            <th>कन्फेक्सनरी</th>
+                            <th>मासु तथा मासुजन्य</th>
+                            <th>दाना</th>
+                            <th>अन्य</th>
                             <th>महिना</th>
                             <th>कार्यालय</th>
                             <th>Action</th>
@@ -62,9 +73,20 @@
                     <tbody>
                         {% for d in data %}
                         <tr>
-                            <td>०१</td>
-                            <td>दुध तथा दुध पदार्थ</td>
-                            <td>५०</td>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{d.milk}}</td>
+                            <td>{{d.oil}}</td>
+                            <td>{{d.fruits}}</td>
+                            <td>{{d.spice}}</td>
+                            <td>{{d.tea}}</td>
+                            <td>{{d.salt}}</td>
+                            <td>{{d.khadanna}}</td>
+                            <td>{{d.water}}</td>
+                            <td>{{d.sweets}}</td>
+                            <td>{{d.confectionery}}</td>
+                            <td>{{d.meat}}</td>
+                            <td>{{d.grain}}</td>
+                            <td>{{d.others}}</td>
                             <td>बैशाख</td>
                             <td>Pending</td>
                             <td>

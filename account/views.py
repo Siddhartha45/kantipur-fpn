@@ -5,6 +5,7 @@ from fpn import commons
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def user_login(request):
@@ -12,11 +13,13 @@ def user_login(request):
         email_or_username = request.POST['email']
         password = request.POST['password']
         
-        """authenticates users with both username or email"""
+        #authenticates users with both username or email(in authentication file)
         user = authenticate(request, email_or_username=email_or_username, password=password)
         if user:
             login(request, user)
-            return redirect('namuna')
+            return redirect('home')
+        else:
+            messages.error(request, 'Please enter correct credentials')
     return render(request, 'login.html')
 
 

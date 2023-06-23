@@ -49,14 +49,21 @@
                         <span>Babarmahal, Kathmandu</span> 
                     </p>
                 </div>
+
                 <form method="POST" action="{% url 'login' %}" class="entry-form login-form">
                     {% csrf_token %}
+
                     <div class="row fst-row mb-2">
                         <h3>Login to your Account</h3>
                         <p>Please put your login credentials below.</p>
                     </div>
+
+                    {% for message in messages %}
+                        <div class="alert alert-danger mt-3" id="message">{{ message }}</div>
+                    {% endfor %}
+
                     <div class="row">
-                        <label for="" class="form-label cm">Email Address</label>
+                        <label for="" class="form-label cm">Email Address or Username</label>
                         <div class="input-container">
                             <img class="login-icon-left" src="{% static 'image/user.svg' %}" alt="">
                             <input id="email" type="text" class="form-control cm" required autocomplete="email" autofocus aria-describedby="emailHelp"

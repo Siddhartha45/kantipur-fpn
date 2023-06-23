@@ -6,10 +6,12 @@ from .forms import (UjuriGunasoForm, BittiyaBibaranForm, NamunaBibaranForm, Patr
 from .models import (AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, BittiyaBibaran, UjuriGunaso,
                     NamunaBibaran, PragatiBibaran, DetailRbpa, UdyogSifaris, PatraNabikaran, PatraJari, KhadyaPrasodhan)
 from fpn import commons
+from django.contrib.auth.decorators import login_required
 import datetime
 import nepali_datetime
 
 
+@login_required
 def home(request):
     """view for dashboard"""
     return render(request, 'index.html')
@@ -1407,7 +1409,7 @@ def detail_gunasho(request):
 
 #--------------------- REPORT PART BELOW --------------------------
 
-#not working
+#working
 def khadyaact_report(request):
     """table list for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     
@@ -1479,7 +1481,7 @@ def patrakar_report(request):
     context = {'data': data}
     return render(request, 'report/patrakar.html', context)
 
-#not working
+#working
 def patrajari_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
     
@@ -1487,7 +1489,7 @@ def patrajari_report(request):
     context = {'data': data}
     return render(request, 'report/patrajari.html', context)
 
-#not working
+#working
 def renew_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
     

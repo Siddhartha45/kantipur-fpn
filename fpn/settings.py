@@ -135,3 +135,6 @@ AUTH_USER_MODEL = "account.CustomUser"
 AUTHENTICATION_BACKENDS = [
     'account.authentication.EmailOrUsernameModelBackend',
 ]
+
+"""redirects unauthenticated users to login page"""
+LOGIN_URL = 'login'
