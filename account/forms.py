@@ -25,6 +25,8 @@ class CustomUserForm(forms.Form):
     email = forms.EmailField()
     phone_number = forms.CharField(required=False)
     role = forms.ChoiceField(choices=commons.ROLE_CHOICES)
+    department_category = forms.ChoiceField(choices=commons.DEPARTMENT_CHOICES, required=False)
+    office = forms.CharField(required=False)
     
     
 class OfficeForm(forms.ModelForm):

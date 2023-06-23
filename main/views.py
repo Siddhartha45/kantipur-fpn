@@ -1379,7 +1379,6 @@ def detail_gunasho(request):
     
     data = {
         'srot': commons.DETAIL_SROT_CHOICES,
-        'current_date': datetime.date.today().strftime("%Y/%m/%d"),
         'current_nepali_date': nepali_datetime.date.today().strftime("%Y/%m/%d"),
         'current_nepali_year': nepali_datetime.date.today().strftime("%Y"),
     }

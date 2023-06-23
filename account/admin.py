@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
     
     """for showing fields we want in admin panel"""
     fieldsets = (
-        (None, {"fields": ("email", "password", "name", "username", "phone_number", "role", "department_category")}),
+        (None, {"fields": ("email", "password", "name", "username", "phone_number", "role", "department_category", "office", "user_office")}),
         ("Permissions", {"fields": ("is_superuser", "is_staff", "is_active", "groups", "user_permissions")}),
     )
     
@@ -24,7 +24,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {
             "classes": ("wide",),
             "fields": (
-                "email", "password1", "password2", "name", "username", "phone_number", "role", "department_category", "is_superuser", "is_staff",
+                "email", "password1", "password2", "name", "username", "phone_number", "role", "department_category", "office", "user_office", "is_superuser", "is_staff",
                 "is_active", "groups", "user_permissions"
             )}
         ),

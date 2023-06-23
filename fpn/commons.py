@@ -21,6 +21,7 @@ OFFICE_CHOICES = (
     ('IE', 'Import/Export'),
     ('DO', 'Division Office'),
     ('FO', 'Food Office'),
+    ('dd', 'dd')
 )
 
 """choices for anugamanbibaran model"""

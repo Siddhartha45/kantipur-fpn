@@ -62,7 +62,7 @@
         <div id="DE" class="row mb-2 hide">
             <div class="col-md-12 mb-3">
             <label for="" class="form-label cm">Department Category</label>
-                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="" id="office-selection">
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="department_category" id="office-selection">
                     <option value="all" selected disabled>Select department category</option>
                     {% for key,value in data.department_category %}
                         <option value="{{key}}">{{value}}</option>
@@ -74,12 +74,11 @@
         <div id="import-export" class="row mb-2 hide">
             <div class="col-md-12">
             <label for="" class="form-label cm">Import Export Office</label>
-                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="">
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="office">
                     <option value="all" selected disabled>Select import export office</option>
-                    <option value="">खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, त्रि.अ.बि.</option>
-                    <option value="">Division Office</option>
-                    <option value="">Food Office</option>
-                    <option value="">DFTQC</option>
+                    {% for office in data.office_IE %}
+                        <option value="{{ office.id }}">{{ office.office_name }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -87,12 +86,11 @@
         <div id="division-office" class="row mb-2 hide">
             <div class="col-md-12">
             <label for="" class="form-label cm">Division Office</label>
-                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="">
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="office">
                     <option value="all" selected disabled>Select division office</option>
-                    <option value="">खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, त्रि.अ.बि.</option>
-                    <option value="">Division Office</option>
-                    <option value="">Food Office</option>
-                    <option value="">DFTQC</option>
+                    {% for office in data.office_DO %}
+                        <option value="{{ office.id }}">{{ office.office_name }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -100,12 +98,11 @@
         <div id="food-office" class="row mb-2 hide">
             <div class="col-md-12">
             <label for="" class="form-label cm">Food Office</label>
-                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="">
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="office">
                     <option value="all" selected disabled>Select food office</option>
-                    <option value="">खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, त्रि.अ.बि.</option>
-                    <option value="">Division Office</option>
-                    <option value="">Food Office</option>
-                    <option value="">DFTQC</option>
+                    {% for office in data.office_FO %}
+                        <option value="{{ office.id }}">{{ office.office_name }}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

@@ -43,6 +43,8 @@
                     <th>User Name</th>
                     <th>Email Address</th>
                     <th>Role</th>
+                    <th>Department</th>
+                    <th>Office</th>
                     <th>Created Date</th>
                     <th>Action</th>
                 </tr>
@@ -54,6 +56,8 @@
                     <td>{{u.username}}</td>
                     <td>{{u.email}}</td>
                     <td>{{u.get_role_display}}</td>
+                    <td>{{u.get_department_category_display}}</td>
+                    <td>{{u.office.office_name}}</td>
                     <td>{{u.date_joined|date:"Y-m-d"}}</td>
     
                     <td>

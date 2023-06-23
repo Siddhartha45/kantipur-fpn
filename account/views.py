@@ -32,16 +32,22 @@ def user_create(request):
     data = {
         'role': commons.ROLE_CHOICES,
         'department_category': commons.DEPARTMENT_CHOICES,
+        'office_IE': Office.objects.filter(category='IE'),
+        'office_DO': Office.objects.filter(category='DO'),
+        'office_FO': Office.objects.filter(category='FO'),
     }
     if request.method == "POST":
         form = CustomUserForm(request.POST)
         if form.is_valid():
+            print()
             user_data = {
                 'username': form.cleaned_data.get('username'),
                 'name': form.cleaned_data.get('name'),
                 'email': form.cleaned_data.get('email'),
                 'phone_number': form.cleaned_data.get('phone_number'),
                 'role': form.cleaned_data.get('role'),
+                'department_category': form.cleaned_data.get('department_category'),
+                'office_id': form.cleaned_data.get('office'),
             }
             password = make_password(request.POST['password'])
             user = CustomUser.objects.create(password=password, **user_data)

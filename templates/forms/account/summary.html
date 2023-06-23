@@ -23,17 +23,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यालयको नाम</label>
-                    <input type="text" class="form-control cm" placeholder="" value="खाद्य आयात निर्यात गुण प्रमाणीकरण कार्यालय, महेन्द्रनगर" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="{{user.office}}" name="name" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">मिति</label>
-                    <input type="text" class="form-control cm" placeholder="" value="२०८०-०२-१८" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" name="name" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="7980" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="name" disabled>
                 </div>
             </div>
         </div>
