@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load nepali_month_filter %}
 {% block container %}
 
                 <div class="add-heading">
@@ -87,7 +88,7 @@
                             <td>{{d.meat}}</td>
                             <td>{{d.grain}}</td>
                             <td>{{d.others}}</td>
-                            <td>बैशाख</td>
+                            <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
                             <td>Pending</td>
                             <td>
                                 <div class="d-flex kit-action-com">

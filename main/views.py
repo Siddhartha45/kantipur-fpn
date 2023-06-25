@@ -10,6 +10,7 @@ from fpn import commons
 from django.contrib.auth.decorators import login_required
 import datetime
 import nepali_datetime
+from django.contrib import messages
 
 
 @login_required
@@ -27,7 +28,10 @@ def namuna_bibaran(request):
         form = NamunaBibaranForm(request.POST)
         if form.is_valid():
             NamunaBibaran.new(**form.cleaned_data)
-            return HttpResponse("data saved")
+            messages.success(request, "Form submitted successfully")
+            return redirect('namuna')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = NamunaBibaranForm()
     context = {'form': form}
@@ -114,7 +118,10 @@ def anugaman(request):
 
             #AnugamanBibaran.objects.bulk_create(objects_to_create)
             
-            return HttpResponse("data saved")
+            messages.success(request, "Form submitted successfully")
+            return redirect('anugaman')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = AnugamanBibaranForm()
     context = {'form': form}
@@ -172,7 +179,10 @@ def logobitaran(request):
             
             #Logobitaran.objects.bulk_create(objects_to_create)
             
-            return HttpResponse("data saved")
+            messages.success(request, "Form submitted successfully")
+            return redirect('logobitaran')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = LogobitaranForm()
     context = {'form': form}
@@ -389,7 +399,10 @@ def namuna_bisleysan(request):
             
             #NamunaBisleysan.objects.bulk_create(objects_to_create)
             
-            return HttpResponse("data saved")
+            messages.success(request, "Form submitted successfully")
+            return redirect('namuna-bisleysan')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = NamunaBisleysanForm()
     context = {'form': form, 'data': data}
@@ -693,7 +706,10 @@ def prayogsala_bisleysan(request):
             
             #PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
             
-            return HttpResponse("data saved")
+            messages.success(request, "Form submitted successfully")
+            return redirect('prayogsala-bisleysan')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = PrayogsalaBisleysanForm()
     context = {'form': form}
@@ -708,7 +724,10 @@ def khadya1(request):
         form = PatraJariForm(request.POST)
         if form.is_valid():
             PatraJari.new(**form.cleaned_data)
-            return HttpResponse("ok")
+            messages.success(request, "Form submitted successfully")
+            return redirect('khadya1')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = PatraJariForm()
     context = {'form': form}
@@ -723,11 +742,14 @@ def khadya2(request):
         form = PatraNabikaranForm(request.POST)
         if form.is_valid():
             PatraNabikaran.new(**form.cleaned_data)
-            return HttpResponse("ok")
+            messages.success(request, "Form submitted successfully")
+            return redirect('khadya2')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = PatraNabikaranForm()
     context = {'form': form}
-    return render(request, 'forms/registration/renew.html')
+    return render(request, 'forms/registration/renew.html', context)
 
 
 @login_required
@@ -738,11 +760,14 @@ def udyog(request):
         form = UdyogSifarisForm(request.POST)
         if form.is_valid():
             UdyogSifaris.new(**form.cleaned_data)
-            return HttpResponse("ok")
+            messages.success(request, "Form submitted successfully")
+            return redirect('udyog')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = UdyogSifarisForm()
     context = {'form': form}
-    return render(request, 'forms/registration/udyog.html')
+    return render(request, 'forms/registration/udyog.html', context)
 
 
 @login_required
@@ -968,7 +993,10 @@ def aayat(request):
             
             #AayatNiryat.objects.bulk_create(objects_to_create)
             
-            return HttpResponse("saved")
+            messages.success(request, "Form submitted successfully")
+            return redirect('aayat')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = AayatNiryatForm()
     context = {
@@ -986,7 +1014,10 @@ def ujuri(request):
         form = UjuriGunasoForm(request.POST)
         if form.is_valid():
             UjuriGunaso.new(**form.cleaned_data)
-            return HttpResponse("data saved")
+            messages.success(request, "Form submitted successfully")
+            return redirect('ujuri')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = UjuriGunasoForm()
     context = {'form': form}
@@ -1033,8 +1064,13 @@ def khadya_prasodhan(request):
                 # khadya_object = form.save(commit=False)
                 # khadya_object.save()
                 KhadyaPrasodhan.new(**form.cleaned_data)
-        return HttpResponse("data saved")
-        
+                
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('khadya-prasodhan')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('khadya-prasodhan')
     else:
         form = KhadyaPrasodhanForm()
     context = {'form': form}
@@ -1049,7 +1085,10 @@ def masik_bittiya(request):
         form = BittiyaBibaranForm(request.POST)
         if form.is_valid():
             BittiyaBibaran.new(**form.cleaned_data)
-            return HttpResponse("saved data with modelform")
+            messages.succes(request, "Form submitted successfully")
+            return redirect('masik-bittiya')
+        else:
+            messages.error(request, "Please fill the form with correct data")
     else:
         form = BittiyaBibaranForm()
     context = {'form': form}
@@ -1104,7 +1143,12 @@ def masik_pragati(request):
                 # masik_object = form.save(commit=False)
                 # masik_object.save()
                 PragatiBibaran.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('masik-pragati')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('masik-pragati')
     else:
         form = MasikPragatiForm()
     context = {'form': form, 'data': data}
@@ -1151,7 +1195,12 @@ def detail_hotel(request):
                 # hotel_object = form.save(commit=False)
                 # hotel_object.save()
                 DetailHotel.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-hotel')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-hotel')
     else:
         form = DetailHotelForm()
     context = {'form': form, 'data': data}
@@ -1202,7 +1251,12 @@ def detail_registration(request):
                 # reg_object = form.save(commit=False)
                 # reg_object.save()
                 DetailRegistration.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-registration')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-registration')
     else:
         form = DetailRegistrationForm()
     context = {'form': form, 'data': data}
@@ -1252,7 +1306,12 @@ def detail_renew(request):
                 # reg_object = form.save(commit=False)
                 # reg_object.save()
                 DetailRenew.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-renew')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-renew')
     else:
         form = DetailRenewForm()
     context = {'form': form, 'data': data}
@@ -1302,7 +1361,12 @@ def detail_udyog(request):
                 # reg_object = form.save(commit=False)
                 # reg_object.save()
                 DetailUdyog.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-udyog')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-udyog')
     else:
         form = DetailUdyogForm()
     context = {'form': form, 'data': data}
@@ -1354,7 +1418,12 @@ def detail_anugaman(request):
                 # anugaman_object = form.save(commit=False)
                 # anugaman_object.save()
                 DetailAnugaman.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-anugaman')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-anugaman')
     else:
         form = DetailAnugamanForm()
     context = {'form': form, 'data': data}
@@ -1405,7 +1474,12 @@ def detail_mudha(request):
                 # mudha_object = form.save(commit=False)
                 # mudha_object.save()
                 DetailMudha.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-mudha')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-mudha')
     else:
         form = DetailMudhaForm()
     context = {'form': form}
@@ -1447,7 +1521,12 @@ def detail_rbpa(request):
                 # rbpa_object = form.save(commit=False)
                 # rbpa_object.save()
                 DetailRbpa.new(**form.cleaned_data)
-        return HttpResponse("data saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-rbpa')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-rbpa')
     else:
         form = DetailRbpaForm()
     context = {'form': form}
@@ -1481,7 +1560,12 @@ def detail_gunasho(request):
                 # gunaso_object = form.save(commit=False)
                 # gunaso_object.save()
                 DetailGunaso.new(**form.cleaned_data)
-        return HttpResponse("saved")
+            else:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('detail-gunasho')
+            
+        messages.success(request, "Form submitted successfully")
+        return redirect('detail-gunasho')
     else:
         form = DetailGunasoForm()
     context = {'form': form, 'data': data}
