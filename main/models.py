@@ -3,9 +3,10 @@ from fpn import commons
 import nepali_datetime
 from datetime import date
 from django.utils import timezone
+from fpn.model_mixins import FPNBaseModel
 
 
-class NamunaBibaran(models.Model):
+class NamunaBibaran(FPNBaseModel):
     """model for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     milk = models.PositiveIntegerField(default=0, blank=True)
     oil = models.PositiveIntegerField(default=0, blank=True)
@@ -22,7 +23,7 @@ class NamunaBibaran(models.Model):
     others = models.PositiveIntegerField(default=0, blank=True)
     
     
-class AnugamanBibaran(models.Model):
+class AnugamanBibaran(FPNBaseModel):
     """model for निरीक्षण अनुगमन विवरण"""
     type = models.CharField(max_length=100, choices=commons.ANUGAMAN_CHOICES)
     patak = models.PositiveIntegerField(default=0, blank=True)
@@ -31,7 +32,7 @@ class AnugamanBibaran(models.Model):
     kaifiyat = models.TextField(default="", blank=True)
     
     
-class Logobitaran(models.Model):
+class Logobitaran(FPNBaseModel):
     """model for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
     type = models.CharField(max_length=50, choices=commons.LOGO_CHOICES)
     c_pragati = models.PositiveIntegerField(default=0, blank=True)
@@ -40,7 +41,7 @@ class Logobitaran(models.Model):
     kaifiyat = models.TextField(default="", blank=True)
     
     
-class NamunaBisleysan(models.Model):
+class NamunaBisleysan(FPNBaseModel):
     """model for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
     type = models.CharField(max_length=100, choices=commons.TYPES_CHOICES)
     ekai = models.CharField(max_length=10, choices=commons.EKAI_CHOICES, blank=True)
@@ -54,7 +55,7 @@ class NamunaBisleysan(models.Model):
     kaifiyat = models.TextField(default="", blank=True)
     
     
-class PrayogsalaBisleysan(models.Model):
+class PrayogsalaBisleysan(FPNBaseModel):
     """model for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
     type = models.CharField(max_length=100, choices=commons.TYPES_CHOICES)
     b_sankhya = models.PositiveIntegerField(default=0, blank=True)
@@ -75,7 +76,7 @@ class PrayogsalaBisleysan(models.Model):
     kaifiyat = models.TextField(default="", blank=True)
     
     
-class PatraJari(models.Model):
+class PatraJari(FPNBaseModel):
     """model for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
     milk = models.PositiveIntegerField(default=0, blank=True)
     oil = models.PositiveIntegerField(default=0, blank=True)
@@ -92,7 +93,7 @@ class PatraJari(models.Model):
     others = models.PositiveIntegerField(default=0, blank=True)
     
     
-class PatraNabikaran(models.Model):
+class PatraNabikaran(FPNBaseModel):
     """model for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
     milk = models.PositiveIntegerField(default=0, blank=True)
     oil = models.PositiveIntegerField(default=0, blank=True)
@@ -109,7 +110,7 @@ class PatraNabikaran(models.Model):
     others = models.PositiveIntegerField(default=0, blank=True)
     
     
-class UdyogSifaris(models.Model):
+class UdyogSifaris(FPNBaseModel):
     """model for उद्योग सिफारिस"""
     milk = models.PositiveIntegerField(default=0, blank=True)
     oil = models.PositiveIntegerField(default=0, blank=True)
@@ -126,7 +127,7 @@ class UdyogSifaris(models.Model):
     others = models.PositiveIntegerField(default=0, blank=True)
     
     
-class AayatNiryat(models.Model):
+class AayatNiryat(FPNBaseModel):
     """model for आयात निर्यात गुण प्रमाणिकरण"""
     type = models.CharField(max_length=100, choices=commons.TYPES_CHOICES)
     ekai = models.CharField(max_length=10, choices=commons.EKAI_CHOICES, blank=True)
@@ -141,7 +142,7 @@ class AayatNiryat(models.Model):
     kaifiyat = models.TextField(default="", blank=True)    
 
 
-class UjuriGunaso(models.Model):
+class UjuriGunaso(FPNBaseModel):
     """model for उजुरी/गुनासो ब्येवस्थापन"""
     gunaso_petika = models.PositiveIntegerField(default=0, blank=True)
     gunaso_adhikari = models.PositiveIntegerField(default=0, blank=True)
@@ -157,7 +158,7 @@ class UjuriGunaso(models.Model):
     sambodhan = models.PositiveIntegerField(default=0, blank=True)
     
     
-class KhadyaPrasodhan(models.Model):
+class KhadyaPrasodhan(FPNBaseModel):
     """model for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
     miti= models.DateField(blank=True, null=True)
     abadhi = models.CharField(max_length=255, default="", blank=True)
@@ -171,19 +172,18 @@ class KhadyaPrasodhan(models.Model):
     nikaya = models.TextField(default="", blank=True)
     bisaya = models.TextField(default="", blank=True)
     kaifiyat = models.TextField(default="", blank=True)    
-    
 
 
-class BittiyaBibaran(models.Model):
+class BittiyaBibaran(FPNBaseModel):
     """model for मासिक वित्तिय विवरण"""
     yearly_pujigat = models.FloatField(default=0, blank=True)
     yearly_chalu = models.FloatField(default=0, blank=True)
     monthly_pujigat = models.FloatField(default=0, blank=True)
     monthly_chalu= models.FloatField(default=0, blank=True)
     monthly_rajaswo = models.FloatField(default=0, blank=True)
-    
-    
-class PragatiBibaran(models.Model):
+
+
+class PragatiBibaran(FPNBaseModel):
     """model for मासिक प्रगति विवरण"""
     months = models.CharField(max_length=10, choices=commons.MONTHS_CHOICES, blank=True)
     kharcha_type = models.CharField(max_length=10, choices=commons.KHARCHA_CHOICES, blank=True)
@@ -219,7 +219,7 @@ class PragatiBibaran(models.Model):
 
 #Details Models
 
-class DetailHotel(models.Model):
+class DetailHotel(FPNBaseModel):
     """model for detail होटल रेष्टुरेण्टको स्तरकिरण लोगो वितरण"""
     naam = models.CharField(max_length=255, default="", blank=True)
     logo = models.CharField(max_length=10, choices=commons.DETAIL_LOGO_CHOICES, blank=True)
@@ -232,7 +232,7 @@ class DetailHotel(models.Model):
     kaifiyat = models.TextField(default="", blank=True)
     
     
-class DetailRegistration(models.Model):
+class DetailRegistration(FPNBaseModel):
     """model for detail अनुज्ञापत्र जारी"""
     samuha = models.CharField(max_length=10, choices=commons.DETAIL_SAMUHA_CHOICES, blank=True)
     naam = models.CharField(max_length=255, default="", blank=True)
@@ -248,7 +248,7 @@ class DetailRegistration(models.Model):
     kaifiyat = models.TextField(default="", blank=True) 
     
     
-class DetailRenew(models.Model):
+class DetailRenew(FPNBaseModel):
     """model for detail अनुज्ञापत्र नवकिरण"""
     samuha = models.CharField(max_length=10, choices=commons.DETAIL_SAMUHA_CHOICES, blank=True)
     naam = models.CharField(max_length=255, default="", blank=True)
@@ -264,7 +264,7 @@ class DetailRenew(models.Model):
     kaifiyat = models.TextField(default="", blank=True)
     
     
-class DetailUdyog(models.Model):
+class DetailUdyog(FPNBaseModel):
     """अmodel for detail उद्योग सिफारिस"""
     samuha = models.CharField(max_length=10, choices=commons.DETAIL_SAMUHA_CHOICES, blank=True)
     naam = models.CharField(max_length=255, default="", blank=True)
@@ -280,7 +280,7 @@ class DetailUdyog(models.Model):
     kaifiyat = models.TextField(default="", blank=True)
     
     
-class DetailAnugaman(models.Model):
+class DetailAnugaman(FPNBaseModel):
     """model for detail अनुगमन निरीक्षण"""
     nirichad = models.CharField(max_length=100, choices=commons.DETAIL_ANUGAMAN_CHOICES, blank=True)
     miti = models.DateField(blank=True)
@@ -296,7 +296,7 @@ class DetailAnugaman(models.Model):
     kaifiyat = models.CharField(max_length=255, default="", blank=True)
     
     
-class DetailMudha(models.Model):
+class DetailMudha(FPNBaseModel):
     """model for detail मुद्धा दायरी"""
     naam = models.CharField(max_length=255, default="", blank=True)
     b_naam = models.CharField(max_length=255, default="", blank=True)
@@ -314,7 +314,7 @@ class DetailMudha(models.Model):
     kaifiyat = models.TextField(default="", blank=True)    
 
 
-class DetailRbpa(models.Model):
+class DetailRbpa(FPNBaseModel):
     """model for detail RBPA Analysis"""
     date = models.DateField(blank=True)
     commodity1 = models.CharField(max_length=255, default="", blank=True)
@@ -328,7 +328,7 @@ class DetailRbpa(models.Model):
     commodity3 = models.CharField(max_length=255, default="", blank=True)
 
 
-class DetailGunaso(models.Model):
+class DetailGunaso(FPNBaseModel):
     """model for detail उजुरी गुनासो"""
     p_miti = models.DateField(blank=True)
     srot = models.CharField(max_length=10, choices=commons.DETAIL_SROT_CHOICES, blank=True)

@@ -6,6 +6,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from fpn.email_normalization import normalize_email
 
 
 def user_login(request):
@@ -39,20 +40,38 @@ def user_create(request):
     if request.method == "POST":
         form = CustomUserForm(request.POST)
         if form.is_valid():
-            print()
+            
+            email = form.cleaned_data.get('email')
+            normalized_email = normalize_email(email)
+            username = form.cleaned_data.get('username')
+            normalized_username = username.lower().strip().replace(" ", "")
+            
             user_data = {
-                'username': form.cleaned_data.get('username'),
+                'username': normalized_username,
                 'name': form.cleaned_data.get('name'),
-                'email': form.cleaned_data.get('email'),
+                'email': normalized_email,
                 'phone_number': form.cleaned_data.get('phone_number'),
                 'role': form.cleaned_data.get('role'),
                 'department_category': form.cleaned_data.get('department_category'),
                 'office_id': form.cleaned_data.get('office'),
             }
             password = make_password(request.POST['password'])
+            
+            #checks existing same email
+            if CustomUser.objects.filter(email=user_data['email']).first():
+                messages.info(request, f'User with this email "{user_data["email"]}" already exists')
+                return redirect('user-create')
+            
+            #checks existing same username
+            if CustomUser.objects.filter(username=user_data['username']).first():
+                messages.info(request, f'User with this username "{user_data["username"]}" already exists')
+                return redirect('user-create')
+            
             user = CustomUser.objects.create(password=password, **user_data)
             messages.success(request, 'User Created')
             return redirect('user-list')
+        else:
+            messages.error(request, 'User not created! Please fill the form with correct data!')
     else:
         form = CustomUserForm()
     context = {

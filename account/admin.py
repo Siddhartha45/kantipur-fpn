@@ -10,12 +10,12 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ("email", "is_staff", "is_superuser",)
-    list_filter = ("email", "is_staff", "is_superuser",)
+    list_display = ("email", "username", "is_staff", "is_superuser",)
+    list_filter = ("email", "username", "is_staff", "is_superuser",)
     
     """for showing fields we want in admin panel"""
     fieldsets = (
-        (None, {"fields": ("email", "password", "name", "username", "phone_number", "role", "department_category", "office", "user_office")}),
+        (None, {"fields": ("email", "password", "name", "username", "phone_number", "role", "department_category", "office")}),
         ("Permissions", {"fields": ("is_superuser", "is_staff", "is_active", "groups", "user_permissions")}),
     )
     
@@ -24,7 +24,7 @@ class CustomUserAdmin(UserAdmin):
         (None, {
             "classes": ("wide",),
             "fields": (
-                "email", "password1", "password2", "name", "username", "phone_number", "role", "department_category", "office", "user_office", "is_superuser", "is_staff",
+                "email", "password1", "password2", "name", "username", "phone_number", "role", "department_category", "office", "is_superuser", "is_staff",
                 "is_active", "groups", "user_permissions"
             )}
         ),

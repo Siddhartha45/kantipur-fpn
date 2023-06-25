@@ -984,7 +984,7 @@ def masik_bittiya(request):
     if request.method == 'POST':
         form = BittiyaBibaranForm(request.POST)
         if form.is_valid():
-            form.save()
+            bitiyabibaran = BittiyaBibaran.new(**form.cleaned_data)
             return HttpResponse("saved data with modelform")
     else:
         form = BittiyaBibaranForm()
@@ -1419,8 +1419,10 @@ def khadyaact_report(request):
 #working
 def anugaman_report(request):
     """table list for निरीक्षण अनुगमन विवरण"""
-    
     data = AnugamanBibaran.objects.all()
+    # month = request.query_params.get("month", "")
+    # if month:
+    #     data = data.filter(created_on_np_date__regex=r"[\d]*-{month}-[\d]*".format(month=month))
     context = {'data': data}
     return render(request, 'report/anugaman.html', context)
 
