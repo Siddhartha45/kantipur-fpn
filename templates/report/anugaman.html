@@ -12,6 +12,10 @@
         </h3>
     </div>
 
+    {% for message in messsages %}
+        {{message}}
+    {% endfor %}
+
     <div class="row mb-4 filter-row filters">
         <div class="row">
             <div class="col-md-5">
@@ -84,21 +88,16 @@
 
 
                             <div class="action-btn-pen">
-                                <a href="" method="put"><span class="material-symbols-outlined">
+                                <a href="{% url 'anugaman-edit' id=d.id %}" method="put"><span class="material-symbols-outlined">
                                         edit
                                         </span></a>
                                 </div>
 
                             <div class="action-btn-pen dlt-btn">
-                                <a href="" method="put" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-symbols-outlined ">
+                                <a href="#" method="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-symbols-outlined ">
                                     delete
                                     </span></a>
                                 </div>
-
-                            
-
-                        <form class="action-btn-dlt" action="" method="post">
-                            
 
                             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered confirmation-modal">
@@ -113,7 +112,7 @@
                                     <div class="row d-flex">
                                         <div class="col-md-12">
                                             <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
-                                            <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+                                            <a href="{% url 'anugaman-delete' id=d.id %}"><button type="submit" class="btn btn-danger delete-btn">Delete</button></a>
                                         </div>
                                     </div>
                                         
@@ -121,9 +120,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
-
-
 
                     </div>
                 </td>

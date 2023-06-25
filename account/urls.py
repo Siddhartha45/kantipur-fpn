@@ -11,4 +11,7 @@ urlpatterns = [
     #office
     path('office/create/', views.create_office, name="office-create"),
     path('office/list/', views.office_list, name="office-list"),
+    
+    path('count/', views.progress_count, name="count"),
+    path('amount/', views.progress_amount, name="amount"),
 ]

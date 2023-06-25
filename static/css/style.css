@@ -1837,3 +1837,28 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button{
     background-color: red;
     color: #fff
 }
+
+
+.count-report-table{
+    border: none!important;
+}
+.count-report-table tr{
+    border: 0.8px solid #C2C2C2;
+}
+.count-report-table th{
+    text-align: center;
+    border: 0.8px solid #C2C2C2;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+}
+.count-report-table td{
+    text-align: center;
+    border: 0.8px solid #C2C2C2;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000000A6;
+}
+#report-container{
+    display: none;
+}

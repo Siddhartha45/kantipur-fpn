@@ -123,3 +123,11 @@ def office_list(request):
     offices = Office.objects.all()
     context = {'offices': offices}
     return render(request, 'officetable.html', context)
+
+
+def progress_count(request):
+    return render(request, 'count.html')
+
+
+def progress_amount(request):
+    return render(request, 'amount.html')

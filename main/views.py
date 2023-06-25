@@ -1,8 +1,9 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from .forms import (UjuriGunasoForm, BittiyaBibaranForm, NamunaBibaranForm, PatraJariForm, PatraNabikaranForm,
                     UdyogSifarisForm, AnugamanBibaranForm, NamunaBisleysanForm, AayatNiryatForm, PrayogsalaBisleysanForm,
                     LogobitaranForm, KhadyaPrasodhanForm, DetailAnugamanForm, DetailHotelForm, DetailRegistrationForm, DetailRenewForm,
-                    DetailUdyogForm, DetailGunasoForm, DetailMudhaForm, DetailRbpaForm, MasikPragatiForm)
+                    DetailUdyogForm, DetailGunasoForm, DetailMudhaForm, DetailRbpaForm, MasikPragatiForm,
+                    AnugamanEditForm)
 from .models import (AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, BittiyaBibaran, UjuriGunaso,
                     NamunaBibaran, PragatiBibaran, DetailRbpa, UdyogSifaris, PatraNabikaran, PatraJari, KhadyaPrasodhan,
                     DetailAnugaman, DetailGunaso, DetailHotel, DetailMudha, DetailRegistration, DetailRenew, DetailUdyog)
@@ -1583,7 +1584,8 @@ def khadyaact_report(request):
     context = {'data': data}
     return render(request, 'report/khadyaact.html', context)
 
-#working
+
+#निरीक्षण अनुगमन विवरण(list, edit, delete)
 @login_required
 def anugaman_report(request):
     """table list for निरीक्षण अनुगमन विवरण"""
@@ -1593,6 +1595,35 @@ def anugaman_report(request):
     #     data = data.filter(created_on_np_date__regex=r"[\d]*-{month}-[\d]*".format(month=month))
     context = {'data': data}
     return render(request, 'report/anugaman.html', context)
+
+
+def anugaman_edit(request, id):
+    object = get_object_or_404(AnugamanBibaran, id=id)
+    if request.method == 'PATCH':
+        form = AnugamanEditForm(request.POST)
+        if form.is_valid():
+            object.patak = form.cleaned_data.get('patak')
+            object.sankhya = form.cleaned_data.get('sankhya')
+            object.pragati = form.cleaned_data.get('pragati')
+            object.kaifiyat = form.cleaned_data.get('kaifiyat')
+            object.save()  # Save the updated data
+            return HttpResponse("updated")
+    else:
+        form = AnugamanEditForm(initial={
+            'patak': object.patak,
+            'sankhya': object.sankhya,
+            'pragati': object.pragati,
+            'kaifiyat': object.kaifiyat,
+        })
+    context = {'form': form}
+    return render(request, 'edit_forms/anugaman_edit.html', context)
+
+def anugaman_report_delete(request, id):
+    object = get_object_or_404(AnugamanBibaran, id=id)
+    object.delete()
+    messages.success(request, "Report deleted")
+    return redirect('anugaman-report')
+
 
 #working
 @login_required

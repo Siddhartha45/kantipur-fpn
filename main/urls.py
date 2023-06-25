@@ -28,18 +28,22 @@ urlpatterns = [
     path('forms/details/renew/', views.detail_renew, name="detail-renew"),
     path('forms/details/udyog/', views.detail_udyog, name="detail-udyog"),
     #reports path
-    path('report/anugaman/', views.anugaman_report, name="anugaman-report"),
-    path('report/finance/', views.finance_report, name="finance-report"),
-    path('report/gunasho/', views.gunasho_report, name="gunasho-report"),
-    path('report/hotel/', views.hotel_report, name="hotel-report"),
-    path('report/import-export/', views.importexport_report, name="import-export-report"),
     path('report/khadya-act/', views.khadyaact_report, name="khadya-act-report"),
-    path('report/monthly/', views.monthly_report, name="monthly-report"),
-    path('report/patrajari/', views.patrajari_report, name="patrajari-report"),
-    path('report/patrakar/', views.patrakar_report, name="patrakar-report"),
+    path('report/anugaman/', views.anugaman_report, name="anugaman-report"),
+    path('report/hotel/', views.hotel_report, name="hotel-report"),
+    path('report/khadya/', views.khadya_report, name="khadya-report"),
     path('report/prayogsala/', views.prayogsala_report, name="prayogsala-report"),
     path('report/rbpa/', views.rbpa_report, name="rbpa-report"),
+    path('report/import-export/', views.importexport_report, name="import-export-report"),
+    path('report/gunasho/', views.gunasho_report, name="gunasho-report"),
+    path('report/patrakar/', views.patrakar_report, name="patrakar-report"),
+    path('report/patrajari/', views.patrajari_report, name="patrajari-report"),
     path('report/renew/', views.renew_report, name="renew-report"),
     path('report/udyog/', views.udyog_report, name="udyog-report"),
-    path('report/khadya/', views.khadya_report, name="khadya-report"),
+    path('report/finance/', views.finance_report, name="finance-report"),
+    path('report/monthly/', views.monthly_report, name="monthly-report"),
+    #edit path
+    path('edit/anugaman/<int:id>/', views.anugaman_edit, name="anugaman-edit"),
+    #delete path
+    path('anugaman/delete/<int:id>/', views.anugaman_report_delete, name="anugaman-delete")
 ]

@@ -830,3 +830,12 @@ class DetailGunasoForm(BaseModelForm):
     class Meta:
         model = DetailGunaso
         fields = '__all__'
+
+
+#EDIT FORMS
+
+class AnugamanEditForm(forms.Form):
+    patak = forms.IntegerField()
+    sankhya = forms.IntegerField()
+    pragati = forms.IntegerField()
+    kaifiyat = forms.CharField()

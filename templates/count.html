@@ -1,0 +1,157 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+
+                <div class="add-heading">
+                    <h3 class="heading-cm">
+                        <a href="http://127.0.0.1:5500/html/" class="nav-icon me-2">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </a>
+                        मासिक प्रगति विवरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
+                    </h3>
+                </div>
+                <form action="" class="report-form">
+                <div class="row mb-4 filter-row filters">
+                    
+                    <div class="row">
+                        <div class="col-md-8">
+                            <select id="month" name="status" class="form-select kit-form-control" placeholder="Select Month" required>
+                                <option value="all" disabled selected hidden>महिना छान्नुहोस्</option>
+                                <option value="बैशाख">बैशाख</option>
+                                <option value="जेठ">जेठ</option>
+                                <option value="असार">असार</option>
+                                <option value="श्रावण">श्रावण</option>
+                                <option value="भदौ">भदौ</option>
+                                <option value="आश्विन">आश्विन</option>
+                                <option value="कार्तिक">कार्तिक</option>
+                                <option value="मंसिर">मंसिर</option>
+                                <option value="पुष">पुष</option>
+                                <option value="माघ">माघ</option>
+                                <option value="फाल्गुन">फाल्गुन</option>
+                                <option value="चैत्र">चैत्र</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" id="reset">रिसेट</button>
+                        </div>
+                    </div>
+                    
+                </div>
+                </form>
+
+                
+
+
+                <div class="form-cm" id="report-container">
+                    <div class="row mb-3">
+                        <div class="col-md-12 text-end">
+                            <button onclick="ExportToExcel('xlsx')" class="btn btn-primary">डाउनलोड रिपोर्ट</button>
+                        </div>
+                    </div>
+                    
+
+                    
+                    
+                    <table class="table count-report-table" id="monthly_report">
+                        <thead>
+                          <tr>
+                            <th scope="col">क्र.स.</th>
+                            <th scope="col">बजेट उप-शिर्षक नं.</th>
+                            <th scope="col">आयोजना/ कार्यक्रमको नाम</th>
+                            <th scope="col" colspan="6">मुख्य मुख्य प्रतिफलहरुको विवरण</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td rowspan="12">1</td>
+                            <td rowspan="12">31203101</td>
+                            <td rowspan="12" class="border-left-table">खाद्य पोषण तथा प्रविधि</td>
+                            <th>क्र.स.</th>
+                            <th>मुख्य मुख्य कार्यहरु</th>
+                            <th>इकाई</th>
+                            <th>वार्षिक लक्ष्य</th>
+                            <th>यस महिनाको प्रगति</th>
+                            <th>हालसम्मको प्रगति</th>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</td>
+                            <td>संख्या</td>
+                            <td>7548</td>
+                            <td>884</td>
+                            <td>1852</td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</td>
+                            <td>संख्या</td>
+                            <td>7548</td>
+                            <td>884</td>
+                            <td>1852</td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</td>
+                            <td>संख्या</td>
+                            <td>7548</td>
+                            <td>884</td>
+                            <td>1852</td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</td>
+                            <td>संख्या</td>
+                            <td>7548</td>
+                            <td>884</td>
+                            <td>1852</td>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td>खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</td>
+                            <td>संख्या</td>
+                            <td>7548</td>
+                            <td>884</td>
+                            <td>1852</td>
+                          </tr>
+                        </tbody>
+                    </table>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+
+    <script src="../../js/script.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
+
+    <script>
+        function ExportToExcel(type, fn, dl) {
+       var elt = document.getElementById('monthly_report');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+       return dl ?
+         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+         XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+    }
+
+    $(document).ready(function(){
+        $("#month").change(function(){
+            $("#report-container").css("display", "block");
+        });
+        $("#reset").click(function(){
+            $("#month").val("all");
+            $("#report-container").css("display", "none");
+        });
+    });
+    </script>
+
+{% endblock %}
