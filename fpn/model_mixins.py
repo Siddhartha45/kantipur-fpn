@@ -15,7 +15,10 @@ class FPNBaseModel(models.Model):
 
     @classmethod
     def new(cls, **kwargs):
+        """custom create function"""
         kwargs.update({
             "created_on_np_date": nepali_datetime.date.today().strftime("%Y-%m-%d")
         })
         return cls.objects.create(**kwargs)
+
+    

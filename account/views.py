@@ -24,11 +24,13 @@ def user_login(request):
     return render(request, 'login.html')
 
 
+@login_required
 def user_logout(request):
     logout(request)
     return redirect('login')
 
 
+@login_required
 def user_create(request):
     data = {
         'role': commons.ROLE_CHOICES,
@@ -81,12 +83,14 @@ def user_create(request):
     return render(request, 'user/usercreate.html', context)
 
 
+@login_required
 def user_list(request):
     users = CustomUser.objects.all()
     context = {'users': users}
     return render(request, 'user/userdisplay.html', context)
 
 
+@login_required
 def user_profile(request, user_id):
     """for viewing users profile"""
     
@@ -97,7 +101,7 @@ def user_profile(request, user_id):
     return render(request, 'user/userprofile.html', context)
 
 
-
+@login_required
 def create_office(request):
     data = {
         'office': commons.OFFICE_CHOICES,
@@ -114,6 +118,7 @@ def create_office(request):
     return render(request, 'office.html', context)
 
 
+@login_required
 def office_list(request):
     offices = Office.objects.all()
     context = {'offices': offices}

@@ -4,7 +4,8 @@ from .forms import (UjuriGunasoForm, BittiyaBibaranForm, NamunaBibaranForm, Patr
                     LogobitaranForm, KhadyaPrasodhanForm, DetailAnugamanForm, DetailHotelForm, DetailRegistrationForm, DetailRenewForm,
                     DetailUdyogForm, DetailGunasoForm, DetailMudhaForm, DetailRbpaForm, MasikPragatiForm)
 from .models import (AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, BittiyaBibaran, UjuriGunaso,
-                    NamunaBibaran, PragatiBibaran, DetailRbpa, UdyogSifaris, PatraNabikaran, PatraJari, KhadyaPrasodhan)
+                    NamunaBibaran, PragatiBibaran, DetailRbpa, UdyogSifaris, PatraNabikaran, PatraJari, KhadyaPrasodhan,
+                    DetailAnugaman, DetailGunaso, DetailHotel, DetailMudha, DetailRegistration, DetailRenew, DetailUdyog)
 from fpn import commons
 from django.contrib.auth.decorators import login_required
 import datetime
@@ -18,13 +19,14 @@ def home(request):
 
 
 #-----------------------FORMS PART BELOW -----------------------
+@login_required
 def namuna_bibaran(request):
     """views for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     
     if request.method == 'POST':
         form = NamunaBibaranForm(request.POST)
         if form.is_valid():
-            form.save()
+            NamunaBibaran.new(**form.cleaned_data)
             return HttpResponse("data saved")
     else:
         form = NamunaBibaranForm()
@@ -32,12 +34,13 @@ def namuna_bibaran(request):
     return render(request, 'forms/namuna_bibaran/newentry.html', context)
 
 
+@login_required
 def anugaman(request):
     """views for निरीक्षण अनुगमन विवरण"""
     if request.method == 'POST':
         form = AnugamanBibaranForm(request.POST)
         if form.is_valid():
-            objects_to_create = []  #creating empty list to store different datas
+            #objects_to_create = []  #creating empty list to store different datas
             
             u_data = {
                 'type' : 'udyog',
@@ -46,7 +49,8 @@ def anugaman(request):
                 'pragati': form.cleaned_data.get('u_pragati'),
                 'kaifiyat': form.cleaned_data.get('u_kaifiyat'),
             }
-            objects_to_create.append(AnugamanBibaran(**u_data))
+            #objects_to_create.append(AnugamanBibaran(**u_data))
+            AnugamanBibaran.new(**u_data)
         
             p_data = {
                 'type' : 'pasal',
@@ -55,7 +59,8 @@ def anugaman(request):
                 'pragati': form.cleaned_data.get('p_pragati'),
                 'kaifiyat': form.cleaned_data.get('p_kaifiyat'),
             }
-            objects_to_create.append(AnugamanBibaran(**p_data))
+            #objects_to_create.append(AnugamanBibaran(**p_data))
+            AnugamanBibaran.new(**p_data)
         
             s_data = {
                 'type' : 'supermarket',
@@ -64,7 +69,8 @@ def anugaman(request):
                 'pragati': form.cleaned_data.get('s_pragati'),
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
-            objects_to_create.append(AnugamanBibaran(**s_data))
+            #objects_to_create.append(AnugamanBibaran(**s_data))
+            AnugamanBibaran.new(**s_data)
             
             g_data = {
                 'type' : 'godam',
@@ -73,7 +79,8 @@ def anugaman(request):
                 'pragati': form.cleaned_data.get('g_pragati'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            objects_to_create.append(AnugamanBibaran(**g_data))
+            #objects_to_create.append(AnugamanBibaran(**g_data))
+            AnugamanBibaran.new(**g_data)
             
             h_data = {
                 'type' : 'hotel',
@@ -82,7 +89,8 @@ def anugaman(request):
                 'pragati': form.cleaned_data.get('h_pragati'),
                 'kaifiyat': form.cleaned_data.get('h_kaifiyat'),
             }
-            objects_to_create.append(AnugamanBibaran(**h_data))
+            #objects_to_create.append(AnugamanBibaran(**h_data))
+            AnugamanBibaran.new(**h_data)
             
             d_data = {
                 'type' : 'dana',
@@ -91,7 +99,8 @@ def anugaman(request):
                 'pragati': form.cleaned_data.get('d_pragati'),
                 'kaifiyat': form.cleaned_data.get('d_kaifiyat'),
             }
-            objects_to_create.append(AnugamanBibaran(**d_data))
+            #objects_to_create.append(AnugamanBibaran(**d_data))
+            AnugamanBibaran.new(**d_data)
             
             a_data = {
                 'type' : 'anya',
@@ -100,9 +109,10 @@ def anugaman(request):
                 'pragati': form.cleaned_data.get('a_pragati'),
                 'kaifiyat': form.cleaned_data.get('a_kaifiyat'),
             }
-            objects_to_create.append(AnugamanBibaran(**a_data))
+            #objects_to_create.append(AnugamanBibaran(**a_data))
+            AnugamanBibaran.new(**a_data)
 
-            AnugamanBibaran.objects.bulk_create(objects_to_create)
+            #AnugamanBibaran.objects.bulk_create(objects_to_create)
             
             return HttpResponse("data saved")
     else:
@@ -111,13 +121,14 @@ def anugaman(request):
     return render(request, 'forms/anugaman_bibaran/newentry.html', context)
 
 
+@login_required
 def logobitaran(request):
     """views for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
     
     if request.method == 'POST':
         form = LogobitaranForm(request.POST)
         if form.is_valid():
-            objects_to_create = []
+            #objects_to_create = []
             
             g_data = {
                 'type': 'green',
@@ -126,7 +137,8 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('g_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            objects_to_create.append(Logobitaran(**g_data))
+            #objects_to_create.append(Logobitaran(**g_data))
+            Logobitaran.new(**g_data)
             
             y1_data = {
                 'type': 'yellow1',
@@ -135,7 +147,8 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('y1_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('y1_kaifiyat'),
             }
-            objects_to_create.append(Logobitaran(**y1_data))
+            #objects_to_create.append(Logobitaran(**y1_data))
+            Logobitaran.new(**y1_data)
             
             y2_data = {
                 'type': 'yellow2',
@@ -144,7 +157,8 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('y2_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('y2_kaifiyat'),
             }
-            objects_to_create.append(Logobitaran(**y2_data))
+            #objects_to_create.append(Logobitaran(**y2_data))
+            Logobitaran.new(**y2_data)
             
             r_data = {
                 'type': 'red',
@@ -153,9 +167,10 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('r_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('r_kaifiyat'),
             }
-            objects_to_create.append(Logobitaran(**r_data))
+            #objects_to_create.append(Logobitaran(**r_data))
+            Logobitaran.new(**r_data)
             
-            Logobitaran.objects.bulk_create(objects_to_create)
+            #Logobitaran.objects.bulk_create(objects_to_create)
             
             return HttpResponse("data saved")
     else:
@@ -164,6 +179,7 @@ def logobitaran(request):
     return render(request, 'forms/logobitaran_bibaran/newentry.html', context)
 
 
+@login_required
 def namuna_bisleysan(request):
     """views for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
     
@@ -174,7 +190,7 @@ def namuna_bisleysan(request):
     if request.method == 'POST':
         form = NamunaBisleysanForm(request.POST)
         if form.is_valid():
-            objects_to_create = []
+            #objects_to_create = []
             
             m_data = {
                 'type': 'milk',
@@ -188,7 +204,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('m_pratisat'),
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**m_data))
+            #objects_to_create.append(NamunaBisleysan(**m_data))
+            NamunaBisleysan.new(**m_data)
             
             o_data = {
                 'type': 'oil',
@@ -202,7 +219,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('o_pratisat'),
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**o_data))
+            #objects_to_create.append(NamunaBisleysan(**o_data))
+            NamunaBisleysan.new(**o_data)
             
             f_data = {
                 'type': 'fruits',
@@ -216,7 +234,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('f_pratisat'),
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**f_data))
+            #objects_to_create.append(NamunaBisleysan(**f_data))
+            NamunaBisleysan.new(**f_data)
             
             s_data = {
                 'type': 'spice',
@@ -230,7 +249,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('s_pratisat'),
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**s_data))
+            #objects_to_create.append(NamunaBisleysan(**s_data))
+            NamunaBisleysan.new(**s_data)
             
             t_data = {
                 'type': 'tea',
@@ -244,7 +264,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('t_pratisat'),
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**t_data))
+            #objects_to_create.append(NamunaBisleysan(**t_data))
+            NamunaBisleysan.new(**t_data)
             
             sa_data = {
                 'type': 'salt',
@@ -258,7 +279,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('sa_pratisat'),
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**sa_data))
+            #objects_to_create.append(NamunaBisleysan(**sa_data))
+            NamunaBisleysan.new(**sa_data)
             
             k_data = {
                 'type': 'khadanna',
@@ -272,7 +294,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('k_pratisat'),
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**k_data))
+            #objects_to_create.append(NamunaBisleysan(**k_data))
+            NamunaBisleysan.new(**k_data)
             
             w_data = {
                 'type': 'water',
@@ -286,7 +309,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('w_pratisat'),
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**w_data))
+            #objects_to_create.append(NamunaBisleysan(**w_data))
+            NamunaBisleysan.new(**w_data)
             
             sw_data = {
                 'type': 'sweets',
@@ -300,7 +324,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('sw_pratisat'),
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**sw_data))
+            #objects_to_create.append(NamunaBisleysan(**sw_data))
+            NamunaBisleysan.new(**sw_data)
             
             c_data = {
                 'type': 'confectionery',
@@ -314,7 +339,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('c_pratisat'),
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**c_data))
+            #objects_to_create.append(NamunaBisleysan(**c_data))
+            NamunaBisleysan.new(**c_data)
             
             me_data = {
                 'type': 'meat',
@@ -328,7 +354,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('me_pratisat'),
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**me_data))
+            #objects_to_create.append(NamunaBisleysan(**me_data))
+            NamunaBisleysan.new(**me_data)
             
             ot_data = {
                 'type': 'others',
@@ -342,7 +369,8 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('ot_pratisat'),
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**ot_data))
+            #objects_to_create.append(NamunaBisleysan(**ot_data))
+            NamunaBisleysan.new(**ot_data)
             
             g_data = {
                 'type': 'grain',
@@ -356,9 +384,10 @@ def namuna_bisleysan(request):
                 'pratisat': form.cleaned_data.get('g_pratisat'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            objects_to_create.append(NamunaBisleysan(**g_data))
+            #objects_to_create.append(NamunaBisleysan(**g_data))
+            NamunaBisleysan.new(**g_data)
             
-            NamunaBisleysan.objects.bulk_create(objects_to_create)
+            #NamunaBisleysan.objects.bulk_create(objects_to_create)
             
             return HttpResponse("data saved")
     else:
@@ -367,13 +396,14 @@ def namuna_bisleysan(request):
     return render(request, 'forms/bisleysan_bibaran/newentry.html', context)
 
 
+@login_required
 def prayogsala_bisleysan(request):
     """views for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
     
     if request.method == 'POST':
         form = PrayogsalaBisleysanForm(request.POST)
         if form.is_valid():
-            objects_to_create = []
+            #objects_to_create = []
             
             m_data = {
                 'type': 'milk',
@@ -394,7 +424,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('m_sample'),
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**m_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**m_data))
+            PrayogsalaBisleysan.new(**m_data)
             
             o_data = {
                 'type': 'oil',
@@ -415,7 +446,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('o_sample'),
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**o_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**o_data))
+            PrayogsalaBisleysan.new(**o_data)
             
             f_data = {
                 'type': 'fruits',
@@ -436,7 +468,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('f_sample'),
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**f_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**f_data))
+            PrayogsalaBisleysan.new(**f_data)
             
             s_data = {
                 'type': 'spice',
@@ -457,7 +490,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('s_sample'),
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**s_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**s_data))
+            PrayogsalaBisleysan.new(**s_data)
             
             t_data = {
                 'type': 'tea',
@@ -478,7 +512,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('t_sample'),
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**t_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**t_data))
+            PrayogsalaBisleysan.new(**t_data)
             
             sa_data = {
                 'type': 'salt',
@@ -499,7 +534,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('sa_sample'),
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**sa_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**sa_data))
+            PrayogsalaBisleysan.new(**sa_data)
             
             k_data = {
                 'type': 'khadanna',
@@ -520,7 +556,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('k_sample'),
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**k_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**k_data))
+            PrayogsalaBisleysan.new(**k_data)
             
             w_data = {
                 'type': 'water',
@@ -541,7 +578,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('w_sample'),
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**w_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**w_data))
+            PrayogsalaBisleysan.new(**w_data)
             
             sw_data = {
                 'type': 'sweets',
@@ -562,7 +600,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('sw_sample'),
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**sw_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**sw_data))
+            PrayogsalaBisleysan.new(**sw_data)
             
             c_data = {
                 'type': 'confectionery',
@@ -583,7 +622,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('c_sample'),
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**c_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**c_data))
+            PrayogsalaBisleysan.new(**c_data)
             
             me_data = {
                 'type': 'meat',
@@ -604,7 +644,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('me_sample'),
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**me_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**me_data))
+            PrayogsalaBisleysan.new(**me_data)
             
             g_data = {
                 'type': 'grain',
@@ -625,7 +666,8 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('g_sample'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**g_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**g_data))
+            PrayogsalaBisleysan.new(**g_data)
             
             ot_data = {
                 'type': 'others',
@@ -646,9 +688,10 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('ot_sample'),
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
-            objects_to_create.append(PrayogsalaBisleysan(**ot_data))
+            #objects_to_create.append(PrayogsalaBisleysan(**ot_data))
+            PrayogsalaBisleysan.new(**ot_data)
             
-            PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
+            #PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
             
             return HttpResponse("data saved")
     else:
@@ -657,13 +700,14 @@ def prayogsala_bisleysan(request):
     return render(request, 'forms/pratibedan_bibaran/newentry.html', context)
 
 
+@login_required
 def khadya1(request):
     """views for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
     
     if request.method == 'POST':
         form = PatraJariForm(request.POST)
         if form.is_valid():
-            form.save()
+            PatraJari.new(**form.cleaned_data)
             return HttpResponse("ok")
     else:
         form = PatraJariForm()
@@ -671,13 +715,14 @@ def khadya1(request):
     return render(request, 'forms/registration/new.html', context)
 
 
+@login_required
 def khadya2(request):
     """views for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
     
     if request.method == 'POST':
         form = PatraNabikaranForm(request.POST)
         if form.is_valid():
-            form.save()
+            PatraNabikaran.new(**form.cleaned_data)
             return HttpResponse("ok")
     else:
         form = PatraNabikaranForm()
@@ -685,13 +730,14 @@ def khadya2(request):
     return render(request, 'forms/registration/renew.html')
 
 
+@login_required
 def udyog(request):
     """views for उद्योग सिफारिस"""
     
     if request.method == 'POST':
         form = UdyogSifarisForm(request.POST)
         if form.is_valid():
-            form.save()
+            UdyogSifaris.new(**form.cleaned_data)
             return HttpResponse("ok")
     else:
         form = UdyogSifarisForm()
@@ -699,6 +745,7 @@ def udyog(request):
     return render(request, 'forms/registration/udyog.html')
 
 
+@login_required
 def aayat(request):
     """views for आयात निर्यात गुण प्रमाणिकरण"""
     
@@ -709,7 +756,7 @@ def aayat(request):
     if request.method == 'POST':
         form = AayatNiryatForm(request.POST)
         if form.is_valid():
-            objects_to_create = []
+            #objects_to_create = []
             
             m_data = {
                 'type': 'milk',
@@ -724,7 +771,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('m_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**m_data))
+            #objects_to_create.append(AayatNiryat(**m_data))
+            AayatNiryat.new(**m_data)
             
             o_data = {
                 'type': 'oil',
@@ -739,7 +787,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('o_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**o_data))
+            #objects_to_create.append(AayatNiryat(**o_data))
+            AayatNiryat.new(**o_data)
             
             f_data = {
                 'type': 'fruits',
@@ -754,7 +803,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('f_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**f_data))
+            #objects_to_create.append(AayatNiryat(**f_data))
+            AayatNiryat.new(**f_data)
             
             s_data = {
                 'type': 'spice',
@@ -769,7 +819,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('s_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**s_data))
+            #objects_to_create.append(AayatNiryat(**s_data))
+            AayatNiryat.new(**s_data)
             
             t_data = {
                 'type': 'tea',
@@ -784,7 +835,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('t_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**t_data))
+            #objects_to_create.append(AayatNiryat(**t_data))
+            AayatNiryat.new(**t_data)
             
             sa_data = {
                 'type': 'salt',
@@ -799,7 +851,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('sa_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**sa_data))
+            #objects_to_create.append(AayatNiryat(**sa_data))
+            AayatNiryat.new(**sa_data)
             
             k_data = {
                 'type': 'khadanna',
@@ -814,7 +867,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('k_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**k_data))
+            #objects_to_create.append(AayatNiryat(**k_data))
+            AayatNiryat.new(**k_data)
             
             w_data = {
                 'type': 'water',
@@ -829,7 +883,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('w_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**w_data))
+            #objects_to_create.append(AayatNiryat(**w_data))
+            AayatNiryat.new(**w_data)
             
             sw_data = {
                 'type': 'sweets',
@@ -844,7 +899,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('sw_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**sw_data))
+            #objects_to_create.append(AayatNiryat(**sw_data))
+            AayatNiryat.new(**sw_data)
             
             c_data = {
                 'type': 'confectionery',
@@ -859,7 +915,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('c_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**c_data))
+            #objects_to_create.append(AayatNiryat(**c_data))
+            AayatNiryat.new(**c_data)
             
             me_data = {
                 'type': 'meat',
@@ -874,7 +931,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('me_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**me_data))
+            #objects_to_create.append(AayatNiryat(**me_data))
+            AayatNiryat.new(**me_data)
             
             ot_data = {
                 'type': 'others',
@@ -889,7 +947,8 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('ot_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**ot_data))
+            #objects_to_create.append(AayatNiryat(**ot_data))
+            AayatNiryat.new(**ot_data)
             
             g_data = {
                 'type': 'grain',
@@ -904,9 +963,10 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('g_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            objects_to_create.append(AayatNiryat(**g_data))
+            #objects_to_create.append(AayatNiryat(**g_data))
+            AayatNiryat.new(**g_data)
             
-            AayatNiryat.objects.bulk_create(objects_to_create)
+            #AayatNiryat.objects.bulk_create(objects_to_create)
             
             return HttpResponse("saved")
     else:
@@ -918,13 +978,14 @@ def aayat(request):
     return render(request, 'forms/import-export/index.html', context)
 
 
+@login_required
 def ujuri(request):
     """views for उजुरी/गुनासो ब्येवस्थापन"""
     
     if request.method == 'POST':
         form = UjuriGunasoForm(request.POST)
         if form.is_valid():
-            form.save()
+            UjuriGunaso.new(**form.cleaned_data)
             return HttpResponse("data saved")
     else:
         form = UjuriGunasoForm()
@@ -932,6 +993,7 @@ def ujuri(request):
     return render(request, 'forms/gunasho/index.html', context)
 
 
+@login_required
 def khadya_prasodhan(request):
     """views for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
     
@@ -968,9 +1030,10 @@ def khadya_prasodhan(request):
             }
             form = KhadyaPrasodhanForm(form_data)
             if form.is_valid():
-                khadya_object = form.save(commit=False)
-                khadya_object.save()
-        
+                # khadya_object = form.save(commit=False)
+                # khadya_object.save()
+                KhadyaPrasodhan.new(**form.cleaned_data)
+        return HttpResponse("data saved")
         
     else:
         form = KhadyaPrasodhanForm()
@@ -978,13 +1041,14 @@ def khadya_prasodhan(request):
     return render(request, 'forms/hotel-patrakar/index.html', context)
 
 
+@login_required
 def masik_bittiya(request):
     """views for मासिक वित्तिय विवरण"""
     
     if request.method == 'POST':
         form = BittiyaBibaranForm(request.POST)
         if form.is_valid():
-            bitiyabibaran = BittiyaBibaran.new(**form.cleaned_data)
+            BittiyaBibaran.new(**form.cleaned_data)
             return HttpResponse("saved data with modelform")
     else:
         form = BittiyaBibaranForm()
@@ -992,6 +1056,7 @@ def masik_bittiya(request):
     return render(request, 'forms/account/summary.html', context)
 
 
+@login_required
 def masik_pragati(request):
     """views for मासिक प्रगति विवरण"""
     
@@ -1036,8 +1101,9 @@ def masik_pragati(request):
             }
             form = MasikPragatiForm(form_data)
             if form.is_valid():
-                masik_object = form.save(commit=False)
-                masik_object.save()
+                # masik_object = form.save(commit=False)
+                # masik_object.save()
+                PragatiBibaran.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = MasikPragatiForm()
@@ -1048,6 +1114,7 @@ def masik_pragati(request):
 #-------------------- DETAILS FORM BELOW ---------------------------
 
 
+@login_required
 def detail_hotel(request):
     """views for detail होटल रेष्टुरेण्टको स्तरकिरण लोगो वितरण"""
     
@@ -1081,8 +1148,9 @@ def detail_hotel(request):
             }
             form = DetailHotelForm(form_data)
             if form.is_valid():
-                hotel_object = form.save(commit=False)
-                hotel_object.save()
+                # hotel_object = form.save(commit=False)
+                # hotel_object.save()
+                DetailHotel.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = DetailHotelForm()
@@ -1091,6 +1159,7 @@ def detail_hotel(request):
     return render(request, 'forms/details/hotel.html', context)
 
 
+@login_required
 def detail_registration(request):
     """views for detail अनुज्ञापत्र जारी"""
     
@@ -1130,8 +1199,9 @@ def detail_registration(request):
             }
             form = DetailRegistrationForm(form_data)
             if form.is_valid():
-                reg_object = form.save(commit=False)
-                reg_object.save()
+                # reg_object = form.save(commit=False)
+                # reg_object.save()
+                DetailRegistration.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = DetailRegistrationForm()
@@ -1139,6 +1209,7 @@ def detail_registration(request):
     return render(request, 'forms/details/registration.html', context)
 
 
+@login_required
 def detail_renew(request):
     """views for detail अनुज्ञापत्र नवकिरण"""
     
@@ -1178,8 +1249,9 @@ def detail_renew(request):
             }
             form = DetailRenewForm(form_data)
             if form.is_valid():
-                reg_object = form.save(commit=False)
-                reg_object.save()
+                # reg_object = form.save(commit=False)
+                # reg_object.save()
+                DetailRenew.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = DetailRenewForm()
@@ -1187,6 +1259,7 @@ def detail_renew(request):
     return render(request, 'forms/details/renew.html', context)
 
 
+@login_required
 def detail_udyog(request):
     """views for detail उद्योग सिफारिस"""
     
@@ -1226,8 +1299,9 @@ def detail_udyog(request):
             }
             form = DetailUdyogForm(form_data)
             if form.is_valid():
-                reg_object = form.save(commit=False)
-                reg_object.save()
+                # reg_object = form.save(commit=False)
+                # reg_object.save()
+                DetailUdyog.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = DetailUdyogForm()
@@ -1235,6 +1309,7 @@ def detail_udyog(request):
     return render(request, 'forms/details/udyog.html', context)
 
 
+@login_required
 def detail_anugaman(request):
     """views for detail अनुगमन निरीक्षण"""
     
@@ -1276,8 +1351,9 @@ def detail_anugaman(request):
     
             form = DetailAnugamanForm(form_data)
             if form.is_valid():
-                anugaman_object = form.save(commit=False)
-                anugaman_object.save()
+                # anugaman_object = form.save(commit=False)
+                # anugaman_object.save()
+                DetailAnugaman.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = DetailAnugamanForm()
@@ -1285,6 +1361,7 @@ def detail_anugaman(request):
     return render(request, 'forms/details/anugaman.html', context)
 
 
+@login_required
 def detail_mudha(request):
     """views for detail मुद्धा दायरी"""
     
@@ -1325,8 +1402,9 @@ def detail_mudha(request):
             }
             form = DetailMudhaForm(form_data)
             if form.is_valid():
-                mudha_object = form.save(commit=False)
-                mudha_object.save()
+                # mudha_object = form.save(commit=False)
+                # mudha_object.save()
+                DetailMudha.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = DetailMudhaForm()
@@ -1334,6 +1412,7 @@ def detail_mudha(request):
     return render(request, 'forms/details/mudha.html', context)
 
 
+@login_required
 def detail_rbpa(request):
     """views for detail RBPA Analysis"""
     
@@ -1365,8 +1444,9 @@ def detail_rbpa(request):
             }
             form = DetailRbpaForm(form_data)
             if form.is_valid():
-                rbpa_object = form.save(commit=False)
-                rbpa_object.save()
+                # rbpa_object = form.save(commit=False)
+                # rbpa_object.save()
+                DetailRbpa.new(**form.cleaned_data)
         return HttpResponse("data saved")
     else:
         form = DetailRbpaForm()
@@ -1374,6 +1454,7 @@ def detail_rbpa(request):
     return render(request, 'forms/details/rbpa.html', context)
 
 
+@login_required
 def detail_gunasho(request):
     """views for detail उजुरी गुनासो"""
     
@@ -1397,8 +1478,9 @@ def detail_gunasho(request):
             }
             form = DetailGunasoForm(form_data)
             if form.is_valid():
-                gunaso_object = form.save(commit=False)
-                gunaso_object.save()
+                # gunaso_object = form.save(commit=False)
+                # gunaso_object.save()
+                DetailGunaso.new(**form.cleaned_data)
         return HttpResponse("saved")
     else:
         form = DetailGunasoForm()
@@ -1409,6 +1491,7 @@ def detail_gunasho(request):
 #--------------------- REPORT PART BELOW --------------------------
 
 #working
+@login_required
 def khadyaact_report(request):
     """table list for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     
@@ -1417,6 +1500,7 @@ def khadyaact_report(request):
     return render(request, 'report/khadyaact.html', context)
 
 #working
+@login_required
 def anugaman_report(request):
     """table list for निरीक्षण अनुगमन विवरण"""
     data = AnugamanBibaran.objects.all()
@@ -1427,6 +1511,7 @@ def anugaman_report(request):
     return render(request, 'report/anugaman.html', context)
 
 #working
+@login_required
 def hotel_report(request):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
     
@@ -1435,6 +1520,7 @@ def hotel_report(request):
     return render(request, 'report/hotel.html', context)
 
 #working
+@login_required
 def khadya_report(request):
     """table list for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
     
@@ -1443,6 +1529,7 @@ def khadya_report(request):
     return render(request, 'report/khadyanamuna.html', context)
 
 #working
+@login_required
 def prayogsala_report(request):
     """table list for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
     
@@ -1451,6 +1538,7 @@ def prayogsala_report(request):
     return render(request, 'report/prayogsala.html', context)
 
 #working
+@login_required
 def rbpa_report(request):
     """table list for RBPA Analysis Report"""
     
@@ -1459,6 +1547,7 @@ def rbpa_report(request):
     return render(request, 'report/rbpa.html', context)
 
 #working
+@login_required
 def importexport_report(request):
     """table list for आयात निर्यात गुण प्रमाणिकरण"""
     
@@ -1467,6 +1556,7 @@ def importexport_report(request):
     return render(request, 'report/importexport.html', context)
 
 #working
+@login_required
 def gunasho_report(request):
     """table list for उजुरी/गुनासो ब्येवस्थापन"""
     
@@ -1475,6 +1565,7 @@ def gunasho_report(request):
     return render(request, 'report/gunasho.html', context)
 
 #working
+@login_required
 def patrakar_report(request):
     """table list for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
     
@@ -1483,6 +1574,7 @@ def patrakar_report(request):
     return render(request, 'report/patrakar.html', context)
 
 #working
+@login_required
 def patrajari_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
     
@@ -1491,6 +1583,7 @@ def patrajari_report(request):
     return render(request, 'report/patrajari.html', context)
 
 #working
+@login_required
 def renew_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
     
@@ -1499,6 +1592,7 @@ def renew_report(request):
     return render(request, 'report/renew.html', context)
 
 #not working
+@login_required
 def udyog_report(request):
     """table list for उद्योग सिफारिस"""
     
@@ -1507,6 +1601,7 @@ def udyog_report(request):
     return render(request, 'report/udyog.html', context)
 
 #working
+@login_required
 def finance_report(request):
     """table list for मासिक वित्तिय विवरण"""
     
@@ -1515,6 +1610,7 @@ def finance_report(request):
     return render(request, 'report/finance.html', context)
 
 #working
+@login_required
 def monthly_report(request):
     """table list for मासिक प्रगति विवरण"""
     
