@@ -140,7 +140,7 @@
     
                 <li class="nav-item">
                     <a class="nav-link"
-                        href="{% url 'masik-pragati' %}"><span class="material-symbols-outlined">
+                        href="{% url 'count' %}"><span class="material-symbols-outlined">
                         summarize
                     </span> 
                         मासिक प्रगति विवरण</a>
@@ -166,6 +166,26 @@
                     </div>
                 </li>
     
+                <li class="nav-item accordion" id="office">
+                    <div class="accordion-item" style="margin-bottom:40px">
+                        <h2 class="accordion-header">
+                            <p class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#details-collapseoffice"
+                                aria-expanded="false" aria-controls="details-collapseoffice">
+                                <span class="material-symbols-outlined">
+                                    person</span>Office
+                            </p>
+                        </h2>
+                        <div id="details-collapseoffice"
+                            class="accordion-collapse details-collapseOne collapse">
+                            <div class="accordion-body d-flex flex-column">
+                                <a class="nav-link" href="{% url 'office-list' %}">Office list</a>
+                                <a class="nav-link" href="{% url 'office-create' %}">Create Office</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
             </ul>
         </div>
     </div>

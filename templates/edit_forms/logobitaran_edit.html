@@ -7,9 +7,17 @@
             <a href="" class="nav-icon me-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
-            निरीक्षण अनुगमन विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+            होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
         </h3>
     </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
@@ -22,17 +30,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यालयको नाम</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{user.office}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="{{user.office}}" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">मिति</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_year}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="" disabled>
                 </div>
             </div>
         </div>
@@ -40,7 +48,6 @@
         <div class="row mb-3">
             <div class="col-md-12 heading-cm">महिना अनुसार डेटा हल्नुहोस्</div>
         </div>
-
 
         <div class="accordion" id="accordionPanelsStayOpenExample">
             <div class="accordion-item">
@@ -53,18 +60,25 @@
                 <div class="accordion-body">
                     <div class="row mb-4">
                         <div class="col-md-4">
-                                <label for="" class="form-label cm">पटक </label>
-                                <input type="number" min="0" class="form-control cm" placeholder=" पटक" name="patak" value="{{object.patak}}">
+                                <label for="" class="form-label cm">महिना, चौमासिक प्रगति </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="c_pragati" value="{{object.c_pragati}}">
                         </div>
 
                             <div class="col-md-4">
-                                <label for="" class="form-label cm">संख्या</label>
-                                <input type="number" min="0" class="form-control cm" placeholder="संख्या" name="sankhya" value="{{object.sankhya}}">
+                                <label for="" class="form-label cm">यस आ ब को हालसम्मको प्रगति
+                            </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
+                                " name="h_pragati1" value="{{object.h_pragati1}}">
                             </div>
+
                             <div class="col-md-4">
-                            <label for="" class="form-label cm">हालसम्मको प्रगति</label>
-                            <input type="number" min="0" class="form-control cm" placeholder="हालसम्मको प्रगति" name="pragati" value="{{object.pragati}}">
-                        </div>
+                                <label for="" class="form-label cm">बिगत बर्षहरुदेखि हालसम्मको प्रगति
+                            </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
+                                " name="h_pragati2" value="{{object.h_pragati2}}">
+                            </div>
+                        
+                            
                         </div>
                         <div class="row">
                         <div class="col-md-12">
@@ -74,6 +88,7 @@
                         </div>
                 </div>
                 </div>
+            </div>
         </div>
 
         
@@ -86,8 +101,6 @@
         </div>
 
     </form> 
-    
-    
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -188,4 +201,5 @@
     });
 
     </script>
+
 {% endblock %}

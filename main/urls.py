@@ -43,7 +43,11 @@ urlpatterns = [
     path('report/finance/', views.finance_report, name="finance-report"),
     path('report/monthly/', views.monthly_report, name="monthly-report"),
     #edit path
+    path('edit/khadyaact/<int:id>/', views.khadyaact_edit, name="namunabibaran-edit"),
     path('edit/anugaman/<int:id>/', views.anugaman_edit, name="anugaman-edit"),
+    path('edit/hotel/<int:id>/', views.hotel_edit, name="hotel-edit"),
+    path('edit/khadya/<int:id>/', views.khadya_edit, name="khadya-edit"),
+    path('edit/prayogsala/<int:id>/', views.prayogsala_edit, name="prayogsala-edit"),
     #delete path
     path('anugaman/delete/<int:id>/', views.anugaman_report_delete, name="anugaman-delete")
 ]

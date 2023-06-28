@@ -1,15 +1,22 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block container %}
-
     <div class="add-heading">
         <h3 class="heading-cm">
             <a href="" class="nav-icon me-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
-            निरीक्षण अनुगमन विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+            खाद्य तथा दाना नमुना विश्लेषण विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
         </h3>
     </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
@@ -32,17 +39,17 @@
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_year}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="name" disabled>
                 </div>
             </div>
         </div>
 
-        <div class="row mb-3">
+        <!-- <div class="row mb-3">
             <div class="col-md-12 heading-cm">महिना अनुसार डेटा हल्नुहोस्</div>
-        </div>
-
+        </div> -->
 
         <div class="accordion" id="accordionPanelsStayOpenExample">
+            <h2 class="heading-cm "> खाद्य नमुना विश्लेषण (खाद्य तथा दाना ऐन/नियम बमोजिम संकलित)</h2>
             <div class="accordion-item">
                 <h2 class="accordion-header cm">
                 <button class="accordion-button cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
@@ -51,33 +58,68 @@
                 </h2>
                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
                 <div class="accordion-body">
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                                <label for="" class="form-label cm">पटक </label>
-                                <input type="number" min="0" class="form-control cm" placeholder=" पटक" name="patak" value="{{object.patak}}">
-                        </div>
+                    
+                <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">इकाई
+                    </label>
+                    <select name="m_ekai" id="" class="form-control form-select kit-form-control cm"> 
+                            {% if object.ekai %}
+                                <option value="{{object.ekai}}" selected>{{ object.get_ekai_display }}</option>
+                            {% else %}
+                                <option value="" selected disabled>इकाई</option>
+                            {% endif %}
+                            {% for key,value in data.ekai %}
+                                {% if key != object.ekai %}
+                                    <option value="{{key}}">{{value}}</option>
+                                {% endif %}
+                            {% endfor %}
+                    </select> 
+                </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">लक्ष्य
+                    </label>
+                        <input type="number" min="0" class="form-control cm" placeholder="लक्ष्य
+                        " name="m_lakshya" value="{{object.lakshya}}">
+                    </div>
 
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">संख्या</label>
-                                <input type="number" min="0" class="form-control cm" placeholder="संख्या" name="sankhya" value="{{object.sankhya}}">
-                            </div>
-                            <div class="col-md-4">
-                            <label for="" class="form-label cm">हालसम्मको प्रगति</label>
-                            <input type="number" min="0" class="form-control cm" placeholder="हालसम्मको प्रगति" name="pragati" value="{{object.pragati}}">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-12">
-                            <label for="" class="form-label cm">कैफियत</label>
-                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="kaifiyat">{{object.kaifiyat}}</textarea>
-                        </div>
-                        </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">प्रगति
+                    </label>
+                        <input type="number" min="0" class="form-control cm" placeholder=" प्रगति
+                        " name="m_pragati1" value="{{object.pragati1}}">
+                    </div>
+                    
+                    <div class="col-md-3">
+                    <label for="" class="form-label cm">महिनाको प्रगति 
+                    </label>
+                    <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति 
+                    " name="m_mahina_pragati" value="{{object.mahina_pragati}}">
                 </div>
                 </div>
+                <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                    </label>
+                        <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या
+                        " name="m_sankhya" value="{{object.sankhya}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                    </label>
+                    <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर
+                    " name="m_parameter" value="{{object.parameter}}">
+                </div>
+                <div class="col-md-3">
+                <label for="" class="form-label cm">प्रगति
+                </label>
+                <input type="number" min="0" class="form-control cm" placeholder="प्रगति
+                
+                " name="m_pragati2" value="{{object.pragati2}}">
+            </div>
         </div>
 
         
-
 
         <div class="row mt-3">
             <div class="col-md-12 text-end">
@@ -86,8 +128,7 @@
         </div>
 
     </form> 
-    
-    
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -188,4 +229,5 @@
     });
 
     </script>
+
 {% endblock %}

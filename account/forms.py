@@ -33,3 +33,8 @@ class OfficeForm(forms.ModelForm):
     class Meta:
         model = Office
         fields = '__all__'
+        
+        
+class UploadFileForm(forms.Form):
+    
+    file = forms.FileField()

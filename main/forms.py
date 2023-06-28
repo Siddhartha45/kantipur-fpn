@@ -1,7 +1,7 @@
 from django import forms
-from .models import (BittiyaBibaran, UjuriGunaso, NamunaBibaran, PatraJari, PatraNabikaran, UdyogSifaris,
+from .models import (BittiyaBibaran, UjuriGunaso, NamunaBibaran, PatraJari, PatraNabikaran, UdyogSifaris, PrayogsalaBisleysan,
                     KhadyaPrasodhan, DetailAnugaman, DetailHotel, DetailRegistration, DetailRenew, DetailUdyog,
-                    DetailGunaso, DetailMudha, DetailRbpa, PragatiBibaran)
+                    DetailGunaso, DetailMudha, DetailRbpa, PragatiBibaran, AnugamanBibaran, Logobitaran, NamunaBisleysan)
 from fpn import commons
 
 
@@ -832,10 +832,43 @@ class DetailGunasoForm(BaseModelForm):
         fields = '__all__'
 
 
-#EDIT FORMS
+#-----------------------------EDIT FORMS--------------------------------------------
 
-class AnugamanEditForm(forms.Form):
-    patak = forms.IntegerField()
-    sankhya = forms.IntegerField()
-    pragati = forms.IntegerField()
-    kaifiyat = forms.CharField()
+class AnugamanEditForm(forms.ModelForm):
+    # patak = forms.IntegerField()
+    # sankhya = forms.IntegerField()
+    # pragati = forms.IntegerField()
+    # kaifiyat = forms.CharField()
+    class Meta:
+        model = AnugamanBibaran
+        exclude = ["created_on_np_date", "type"]
+        
+        
+class KhadyaactEditForm(forms.ModelForm):
+    class Meta:
+        model = NamunaBibaran
+        exclude = ["created_on_np_date",]
+        
+        
+class HotelEditForm(forms.ModelForm):
+    class Meta:
+        model = Logobitaran
+        exclude = ["created_on_np_date", "type"]
+        
+        
+class KhadyaEditForm(forms.ModelForm):
+    class Meta:
+        model = NamunaBisleysan
+        exclude = ["created-on_np_date", "type"]
+        
+        
+class PrayogsalaEditForm(forms.ModelForm):
+    class Meta:
+        model = PrayogsalaBisleysan
+        exclude = ["created_on_np_date", "type"]
+        
+        
+# class RbpaEditForm(forms.ModelForm):
+#     class Meta:
+#         model = DetailRbpa
+#         pass

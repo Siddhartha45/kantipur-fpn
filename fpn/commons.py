@@ -21,35 +21,34 @@ OFFICE_CHOICES = (
     ('IE', 'Import/Export'),
     ('DO', 'Division Office'),
     ('FO', 'Food Office'),
-    ('dd', 'dd')
 )
 
 """choices for anugamanbibaran model"""
 ANUGAMAN_CHOICES = (
-    ('udyog', 'udyog'),
-    ('pasal', 'pasal'),
-    ('supermarket', 'supermarket'),
-    ('godam', 'godam'),
-    ('hotel', 'hotel'),
-    ('dana', 'dana'),
-    ('anya', 'anya'),
+    ('udyog', 'उद्योग'),
+    ('pasal', 'पसल'),
+    ('supermarket', 'सुपरमार्केट'),
+    ('godam', 'गोदाम'),
+    ('hotel', 'होटल, रेस्टुरेन्ट, मिठाई पसल आदी'),
+    ('dana', 'दाना पदार्थ'),
+    ('anya', 'अन्य'),
 )
 
 """choices for namunabisleysan, aayatniryat and prayogsalabisleysan models"""
 TYPES_CHOICES = (
-    ('milk', 'milk'),
-    ('oil', 'oil'),
-    ('fruits', 'fruits'),
-    ('spice', 'spice'),
-    ('tea', 'tea'),
-    ('salt', 'salt'),
-    ('khadanna', 'khadanna'),
-    ('water', 'water'),
-    ('sweets', 'sweets'),
-    ('confectionery', 'confectionery'),
-    ('meat', 'meat'),
-    ('grain', 'grain'),
-    ('others', 'others'),
+    ('milk', 'दुध तथा दुध पदार्थ'),
+    ('oil', 'तेल तथा घिउ जन्य'),
+    ('fruits', 'फल तथा सागपात'),
+    ('spice', 'मसला'),
+    ('tea', 'चिया, कफि'),
+    ('salt', 'नुन'),
+    ('khadanna', 'खाद्यान्न दलहन र सोवाट बनेका'),
+    ('water', 'प्र. पिउने पानी'),
+    ('sweets', 'गुलियो पदार्थ'),
+    ('confectionery', 'कन्फेक्सनरी'),
+    ('meat', 'मासु तथा मासुजन्य'),
+    ('grain', 'दाना'),
+    ('others', 'अन्य'),
 )
 
 """choices for ekai fields in BisleysanBibaran model"""

@@ -3,7 +3,7 @@ from .forms import (UjuriGunasoForm, BittiyaBibaranForm, NamunaBibaranForm, Patr
                     UdyogSifarisForm, AnugamanBibaranForm, NamunaBisleysanForm, AayatNiryatForm, PrayogsalaBisleysanForm,
                     LogobitaranForm, KhadyaPrasodhanForm, DetailAnugamanForm, DetailHotelForm, DetailRegistrationForm, DetailRenewForm,
                     DetailUdyogForm, DetailGunasoForm, DetailMudhaForm, DetailRbpaForm, MasikPragatiForm,
-                    AnugamanEditForm)
+                    AnugamanEditForm, KhadyaactEditForm, HotelEditForm, KhadyaEditForm, PrayogsalaEditForm)
 from .models import (AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, BittiyaBibaran, UjuriGunaso,
                     NamunaBibaran, PragatiBibaran, DetailRbpa, UdyogSifaris, PatraNabikaran, PatraJari, KhadyaPrasodhan,
                     DetailAnugaman, DetailGunaso, DetailHotel, DetailMudha, DetailRegistration, DetailRenew, DetailUdyog)
@@ -412,7 +412,7 @@ def namuna_bisleysan(request):
 
 @login_required
 def prayogsala_bisleysan(request):
-    """views for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
+    """for data entry of प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
     
     if request.method == 'POST':
         form = PrayogsalaBisleysanForm(request.POST)
@@ -1156,7 +1156,7 @@ def masik_pragati(request):
     return render(request, 'forms/report/summary.html', context)
 
 
-#-------------------- DETAILS FORM BELOW ---------------------------
+#----------------------------------------------- DETAILS FORM BELOW ----------------------------------------------------------------
 
 
 @login_required
@@ -1575,14 +1575,31 @@ def detail_gunasho(request):
 
 #--------------------- REPORT PART BELOW --------------------------
 
-#working
+
+#खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण(list, edit, delete)
 @login_required
 def khadyaact_report(request):
     """table list for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
-    
     data = NamunaBibaran.objects.all()
     context = {'data': data}
     return render(request, 'report/khadyaact.html', context)
+
+def khadyaact_edit(request, id):
+    object = get_object_or_404(NamunaBibaran, id=id)
+    if request.method == 'POST':
+        form = KhadyaactEditForm(request.POST, instance=object)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Report Updated")
+            return redirect('khadya-act-report')
+        else:
+            messages.error(request, 'Please fill the form with correct data')
+    else:
+        form = KhadyaactEditForm(instance=object)
+    context = {'form': form, 'object': object}
+    return render(request, 'edit_forms/namunabibaran_edit.html', context)
+
+
 
 
 #निरीक्षण अनुगमन विवरण(list, edit, delete)
@@ -1596,36 +1613,38 @@ def anugaman_report(request):
     context = {'data': data}
     return render(request, 'report/anugaman.html', context)
 
-
 def anugaman_edit(request, id):
+    """for editing निरीक्षण अनुगमन विवरण"""
     object = get_object_or_404(AnugamanBibaran, id=id)
-    if request.method == 'PATCH':
-        form = AnugamanEditForm(request.POST)
+    if request.method == 'POST':
+        form = AnugamanEditForm(request.POST, instance=object)
         if form.is_valid():
-            object.patak = form.cleaned_data.get('patak')
-            object.sankhya = form.cleaned_data.get('sankhya')
-            object.pragati = form.cleaned_data.get('pragati')
-            object.kaifiyat = form.cleaned_data.get('kaifiyat')
-            object.save()  # Save the updated data
-            return HttpResponse("updated")
+            # object.patak = form.cleaned_data.get('patak')
+            # object.sankhya = form.cleaned_data.get('sankhya')
+            # object.pragati = form.cleaned_data.get('pragati')
+            # object.kaifiyat = form.cleaned_data.get('kaifiyat')
+            # object.save()  # Save the updated data
+            form.save()
+            messages.success(request, "Report Updated")
+            return redirect('anugaman-report')
+        else:
+            messages.error(request, 'Please fill the form with correct data')
     else:
-        form = AnugamanEditForm(initial={
-            'patak': object.patak,
-            'sankhya': object.sankhya,
-            'pragati': object.pragati,
-            'kaifiyat': object.kaifiyat,
-        })
-    context = {'form': form}
+        form = AnugamanEditForm(instance=object)
+    context = {'form': form, 'object': object}
     return render(request, 'edit_forms/anugaman_edit.html', context)
 
 def anugaman_report_delete(request, id):
+    """for deleting निरीक्षण अनुगमन विवरण"""
     object = get_object_or_404(AnugamanBibaran, id=id)
     object.delete()
     messages.success(request, "Report deleted")
     return redirect('anugaman-report')
 
 
-#working
+
+
+#होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण(list, edit, delete)
 @login_required
 def hotel_report(request):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
@@ -1634,7 +1653,24 @@ def hotel_report(request):
     context = {'data': data}
     return render(request, 'report/hotel.html', context)
 
-#working
+def hotel_edit(request, id):
+    object = get_object_or_404(Logobitaran, id=id)
+    if request.method == 'POST':
+        form = HotelEditForm(request.POST, instance=object)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Report Updated")
+            return redirect('hotel-report')
+        else:
+            messages.error(request, "Please fill the form with correct data")
+    else:
+        form = HotelEditForm(instance=object)
+    context = {'form': form, 'object': object}
+    return render(request, 'edit_forms/logobitaran_edit.html', context)
+
+
+
+#खाद्य तथा दाना नमुना विश्लेषण विवरण(list, edit, delete)
 @login_required
 def khadya_report(request):
     """table list for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
@@ -1643,7 +1679,28 @@ def khadya_report(request):
     context = {'data': data}
     return render(request, 'report/khadyanamuna.html', context)
 
-#working
+def khadya_edit(request, id):
+    data = {
+        'ekai': commons.EKAI_CHOICES,
+    }
+    object = get_object_or_404(NamunaBisleysan, id=id)
+    if request.method == 'POST':
+        form = KhadyaEditForm(request.POST, instance=object)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Report Updated")
+            return redirect('khadya-report')
+        else:
+            messages.error(request, "Please fill the form with correct data")
+    else:
+        form = KhadyaEditForm(instance=object)
+    context = {'form': form, 'object': object, 'data': data}
+    return render(request, 'edit_forms/khadya_edit.html', context)
+
+
+
+
+#प्रयोगशाला विश्लेषण प्रतिवेदन सारांश(list, edit, delete)
 @login_required
 def prayogsala_report(request):
     """table list for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
@@ -1651,6 +1708,24 @@ def prayogsala_report(request):
     data = PrayogsalaBisleysan.objects.all()
     context = {'data': data}
     return render(request, 'report/prayogsala.html', context)
+
+def prayogsala_edit(request, id):
+    object = get_object_or_404(PrayogsalaBisleysan, id=id)
+    if request.method == 'POST':
+        form = PrayogsalaEditForm(request.POST, instance=object)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Report Updated")
+            return redirect('prayogsala-report')
+        else:
+            messages.error(request, "Please fill the form with correct data")
+    else:
+        form = PrayogsalaEditForm(instance=object)
+    context = {'form': form, 'object': object}
+    return render(request, 'edit_forms/prayogsala_edit.html', context)
+
+
+
 
 #working
 @login_required
@@ -1660,6 +1735,11 @@ def rbpa_report(request):
     data = DetailRbpa.objects.all()
     context = {'data': data}
     return render(request, 'report/rbpa.html', context)
+
+# def rbpa_edit(request):
+#     object = get_object_or_404(DetailRbpa, id=id)
+#     if request.method == 'POST':
+#         pass
 
 #working
 @login_required

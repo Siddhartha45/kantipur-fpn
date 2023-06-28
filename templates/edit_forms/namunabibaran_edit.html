@@ -7,9 +7,17 @@
             <a href="" class="nav-icon me-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
-            निरीक्षण अनुगमन विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+            खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
         </h3>
     </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
@@ -32,7 +40,7 @@
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_year}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="name" disabled>
                 </div>
             </div>
         </div>
@@ -41,42 +49,77 @@
             <div class="col-md-12 heading-cm">महिना अनुसार डेटा हल्नुहोस्</div>
         </div>
 
-
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header cm">
-                <button class="accordion-button cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    {{object.get_type_display}}
-                </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                                <label for="" class="form-label cm">पटक </label>
-                                <input type="number" min="0" class="form-control cm" placeholder=" पटक" name="patak" value="{{object.patak}}">
-                        </div>
-
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">संख्या</label>
-                                <input type="number" min="0" class="form-control cm" placeholder="संख्या" name="sankhya" value="{{object.sankhya}}">
-                            </div>
-                            <div class="col-md-4">
-                            <label for="" class="form-label cm">हालसम्मको प्रगति</label>
-                            <input type="number" min="0" class="form-control cm" placeholder="हालसम्मको प्रगति" name="pragati" value="{{object.pragati}}">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-12">
-                            <label for="" class="form-label cm">कैफियत</label>
-                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="kaifiyat">{{object.kaifiyat}}</textarea>
-                        </div>
-                        </div>
+        <div class="field-container mb-4">
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">दुध तथा दुध पदार्थ</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="दुध तथा दुध पदार्थ" name="milk" value="{{object.milk}}">
                 </div>
+
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">तेल तथा घेउ जन्य</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="तेल तथा घेउ जन्य" name="oil" value="{{object.oil}}">
                 </div>
+
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">फल तथा सागपात</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="फल तथा सागपात" name="fruits" value="{{object.fruits}}">
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">मसला</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="मसला" name="spice" value="{{object.spice}}">
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">चिया, कफि</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="चिया, कफि" name="tea" value="{{object.tea}}">
+                </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">नुन</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="नुन" name="salt" value="{{object.salt}}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">खाद्यान्न दलहन र सोबाट बनेको</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="खाद्यान्न दलहन र सोबाट बनेको" name="khadanna" value="{{object.khadanna}}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">प्र. पिउने पानी</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="प्र. पिउने पानी" name="water" value="{{object.water}}">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">गुलियो पदार्थ</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="गुलियो पदार्थ" name="sweets" value="{{object.sweets}}">
+                </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">कन्फेक्सनरी</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="कन्फेक्सनरी" name="confectionery" value="{{object.confectionery}}">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">मासु तथा मासुजन्य</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="मासु तथा मासुजन्य" name="meat" value="{{object.meat}}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">दाना</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="दाना" name="grain" value="{{object.grain}}">
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">अन्य</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="अन्य" name="others" value="{{object.others}}">
+                </div>
+
+                    
+                </div>
+
         </div>
-
-        
 
 
         <div class="row mt-3">
@@ -86,7 +129,7 @@
         </div>
 
     </form> 
-    
+
     
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -187,5 +230,13 @@
         });
     });
 
+
+
+
+
+
+
+
     </script>
+
 {% endblock %}

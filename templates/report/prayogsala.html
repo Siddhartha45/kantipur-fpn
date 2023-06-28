@@ -12,6 +12,14 @@
         </h3>
     </div>
 
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
     <div class="row mb-4 filter-row filters">
         <div class="row">
             <div class="col-md-5">
@@ -53,6 +61,7 @@
         <thead>
             <tr>
                 <th>क्र. सं.</th>
+                <th>product</th>
                 <th>बजार</th>
                 <th>उद्योग</th>
                 <th>आयात निर्यात</th>
@@ -70,6 +79,7 @@
             {% for d in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                <td>{{d.get_type_display}}</td>
                 <td>{{d.b_sankhya}}</td>
                 <td>{{d.u_sankhya}}</td>
                 <td>{{d.ay_sankhya}}</td>
@@ -90,7 +100,7 @@
 
 
                             <div class="action-btn-pen">
-                                <a href="" method="put"><span class="material-symbols-outlined">
+                                <a href="{% url 'prayogsala-edit' id=d.id %}" method="put"><span class="material-symbols-outlined">
                                         edit
                                         </span></a>
                                 </div>
