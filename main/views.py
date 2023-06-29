@@ -27,10 +27,11 @@ def namuna_bibaran(request):
     
     if request.method == 'POST':
         form = NamunaBibaranForm(request.POST)
+        print(form.data)
         if form.is_valid():
-            NamunaBibaran.new(**form.cleaned_data)
+            NamunaBibaran.new(created_by=request.user, **form.cleaned_data)
             messages.success(request, "Form submitted successfully")
-            return redirect('namuna')
+            return redirect('khadya-act-report')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -55,7 +56,7 @@ def anugaman(request):
                 'kaifiyat': form.cleaned_data.get('u_kaifiyat'),
             }
             #objects_to_create.append(AnugamanBibaran(**u_data))
-            AnugamanBibaran.new(**u_data)
+            AnugamanBibaran.new(created_by=request.user, **u_data)
         
             p_data = {
                 'type' : 'pasal',
@@ -65,7 +66,7 @@ def anugaman(request):
                 'kaifiyat': form.cleaned_data.get('p_kaifiyat'),
             }
             #objects_to_create.append(AnugamanBibaran(**p_data))
-            AnugamanBibaran.new(**p_data)
+            AnugamanBibaran.new(created_by=request.user, **p_data)
         
             s_data = {
                 'type' : 'supermarket',
@@ -75,7 +76,7 @@ def anugaman(request):
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
             #objects_to_create.append(AnugamanBibaran(**s_data))
-            AnugamanBibaran.new(**s_data)
+            AnugamanBibaran.new(created_by=request.user, **s_data)
             
             g_data = {
                 'type' : 'godam',
@@ -85,7 +86,7 @@ def anugaman(request):
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
             #objects_to_create.append(AnugamanBibaran(**g_data))
-            AnugamanBibaran.new(**g_data)
+            AnugamanBibaran.new(created_by=request.user, **g_data)
             
             h_data = {
                 'type' : 'hotel',
@@ -95,7 +96,7 @@ def anugaman(request):
                 'kaifiyat': form.cleaned_data.get('h_kaifiyat'),
             }
             #objects_to_create.append(AnugamanBibaran(**h_data))
-            AnugamanBibaran.new(**h_data)
+            AnugamanBibaran.new(created_by=request.user, **h_data)
             
             d_data = {
                 'type' : 'dana',
@@ -105,7 +106,7 @@ def anugaman(request):
                 'kaifiyat': form.cleaned_data.get('d_kaifiyat'),
             }
             #objects_to_create.append(AnugamanBibaran(**d_data))
-            AnugamanBibaran.new(**d_data)
+            AnugamanBibaran.new(created_by=request.user, **d_data)
             
             a_data = {
                 'type' : 'anya',
@@ -115,7 +116,7 @@ def anugaman(request):
                 'kaifiyat': form.cleaned_data.get('a_kaifiyat'),
             }
             #objects_to_create.append(AnugamanBibaran(**a_data))
-            AnugamanBibaran.new(**a_data)
+            AnugamanBibaran.new(created_by=request.user, **a_data)
 
             #AnugamanBibaran.objects.bulk_create(objects_to_create)
             
@@ -146,7 +147,7 @@ def logobitaran(request):
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
             #objects_to_create.append(Logobitaran(**g_data))
-            Logobitaran.new(**g_data)
+            Logobitaran.new(created_by=request.user, **g_data)
             
             y1_data = {
                 'type': 'yellow1',
@@ -156,7 +157,7 @@ def logobitaran(request):
                 'kaifiyat': form.cleaned_data.get('y1_kaifiyat'),
             }
             #objects_to_create.append(Logobitaran(**y1_data))
-            Logobitaran.new(**y1_data)
+            Logobitaran.new(created_by=request.user, **y1_data)
             
             y2_data = {
                 'type': 'yellow2',
@@ -166,7 +167,7 @@ def logobitaran(request):
                 'kaifiyat': form.cleaned_data.get('y2_kaifiyat'),
             }
             #objects_to_create.append(Logobitaran(**y2_data))
-            Logobitaran.new(**y2_data)
+            Logobitaran.new(created_by=request.user, **y2_data)
             
             r_data = {
                 'type': 'red',
@@ -176,7 +177,7 @@ def logobitaran(request):
                 'kaifiyat': form.cleaned_data.get('r_kaifiyat'),
             }
             #objects_to_create.append(Logobitaran(**r_data))
-            Logobitaran.new(**r_data)
+            Logobitaran.new(created_by=request.user, **r_data)
             
             #Logobitaran.objects.bulk_create(objects_to_create)
             
@@ -216,7 +217,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**m_data))
-            NamunaBisleysan.new(**m_data)
+            NamunaBisleysan.new(created_by=request.user, **m_data)
             
             o_data = {
                 'type': 'oil',
@@ -231,7 +232,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**o_data))
-            NamunaBisleysan.new(**o_data)
+            NamunaBisleysan.new(created_by=request.user, **o_data)
             
             f_data = {
                 'type': 'fruits',
@@ -246,7 +247,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**f_data))
-            NamunaBisleysan.new(**f_data)
+            NamunaBisleysan.new(created_by=request.user, **f_data)
             
             s_data = {
                 'type': 'spice',
@@ -261,7 +262,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**s_data))
-            NamunaBisleysan.new(**s_data)
+            NamunaBisleysan.new(created_by=request.user, **s_data)
             
             t_data = {
                 'type': 'tea',
@@ -276,7 +277,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**t_data))
-            NamunaBisleysan.new(**t_data)
+            NamunaBisleysan.new(created_by=request.user, **t_data)
             
             sa_data = {
                 'type': 'salt',
@@ -291,7 +292,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**sa_data))
-            NamunaBisleysan.new(**sa_data)
+            NamunaBisleysan.new(created_by=request.user, **sa_data)
             
             k_data = {
                 'type': 'khadanna',
@@ -306,7 +307,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**k_data))
-            NamunaBisleysan.new(**k_data)
+            NamunaBisleysan.new(created_by=request.user, **k_data)
             
             w_data = {
                 'type': 'water',
@@ -321,7 +322,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**w_data))
-            NamunaBisleysan.new(**w_data)
+            NamunaBisleysan.new(created_by=request.user, **w_data)
             
             sw_data = {
                 'type': 'sweets',
@@ -336,7 +337,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**sw_data))
-            NamunaBisleysan.new(**sw_data)
+            NamunaBisleysan.new(created_by=request.user, **sw_data)
             
             c_data = {
                 'type': 'confectionery',
@@ -351,7 +352,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**c_data))
-            NamunaBisleysan.new(**c_data)
+            NamunaBisleysan.new(created_by=request.user, **c_data)
             
             me_data = {
                 'type': 'meat',
@@ -366,7 +367,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**me_data))
-            NamunaBisleysan.new(**me_data)
+            NamunaBisleysan.new(created_by=request.user, **me_data)
             
             ot_data = {
                 'type': 'others',
@@ -381,7 +382,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**ot_data))
-            NamunaBisleysan.new(**ot_data)
+            NamunaBisleysan.new(created_by=request.user, **ot_data)
             
             g_data = {
                 'type': 'grain',
@@ -396,7 +397,7 @@ def namuna_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
             #objects_to_create.append(NamunaBisleysan(**g_data))
-            NamunaBisleysan.new(**g_data)
+            NamunaBisleysan.new(created_by=request.user, **g_data)
             
             #NamunaBisleysan.objects.bulk_create(objects_to_create)
             
@@ -439,7 +440,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**m_data))
-            PrayogsalaBisleysan.new(**m_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **m_data)
             
             o_data = {
                 'type': 'oil',
@@ -461,7 +462,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**o_data))
-            PrayogsalaBisleysan.new(**o_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **o_data)
             
             f_data = {
                 'type': 'fruits',
@@ -483,7 +484,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**f_data))
-            PrayogsalaBisleysan.new(**f_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **f_data)
             
             s_data = {
                 'type': 'spice',
@@ -505,7 +506,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**s_data))
-            PrayogsalaBisleysan.new(**s_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **s_data)
             
             t_data = {
                 'type': 'tea',
@@ -527,7 +528,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**t_data))
-            PrayogsalaBisleysan.new(**t_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **t_data)
             
             sa_data = {
                 'type': 'salt',
@@ -549,7 +550,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**sa_data))
-            PrayogsalaBisleysan.new(**sa_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **sa_data)
             
             k_data = {
                 'type': 'khadanna',
@@ -571,7 +572,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**k_data))
-            PrayogsalaBisleysan.new(**k_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **k_data)
             
             w_data = {
                 'type': 'water',
@@ -593,7 +594,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**w_data))
-            PrayogsalaBisleysan.new(**w_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **w_data)
             
             sw_data = {
                 'type': 'sweets',
@@ -615,7 +616,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**sw_data))
-            PrayogsalaBisleysan.new(**sw_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **sw_data)
             
             c_data = {
                 'type': 'confectionery',
@@ -637,7 +638,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**c_data))
-            PrayogsalaBisleysan.new(**c_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **c_data)
             
             me_data = {
                 'type': 'meat',
@@ -659,7 +660,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**me_data))
-            PrayogsalaBisleysan.new(**me_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **me_data)
             
             g_data = {
                 'type': 'grain',
@@ -681,7 +682,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**g_data))
-            PrayogsalaBisleysan.new(**g_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **g_data)
             
             ot_data = {
                 'type': 'others',
@@ -703,7 +704,7 @@ def prayogsala_bisleysan(request):
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
             #objects_to_create.append(PrayogsalaBisleysan(**ot_data))
-            PrayogsalaBisleysan.new(**ot_data)
+            PrayogsalaBisleysan.new(created_by=request.user, **ot_data)
             
             #PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
             
@@ -724,7 +725,7 @@ def khadya1(request):
     if request.method == 'POST':
         form = PatraJariForm(request.POST)
         if form.is_valid():
-            PatraJari.new(**form.cleaned_data)
+            PatraJari.new(created_by=request.user, **form.cleaned_data)
             messages.success(request, "Form submitted successfully")
             return redirect('khadya1')
         else:
@@ -742,7 +743,7 @@ def khadya2(request):
     if request.method == 'POST':
         form = PatraNabikaranForm(request.POST)
         if form.is_valid():
-            PatraNabikaran.new(**form.cleaned_data)
+            PatraNabikaran.new(created_by=request.user, **form.cleaned_data)
             messages.success(request, "Form submitted successfully")
             return redirect('khadya2')
         else:
@@ -760,7 +761,7 @@ def udyog(request):
     if request.method == 'POST':
         form = UdyogSifarisForm(request.POST)
         if form.is_valid():
-            UdyogSifaris.new(**form.cleaned_data)
+            UdyogSifaris.new(created_by=request.user, **form.cleaned_data)
             messages.success(request, "Form submitted successfully")
             return redirect('udyog')
         else:
@@ -798,7 +799,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**m_data))
-            AayatNiryat.new(**m_data)
+            AayatNiryat.new(created_by=request.user, **m_data)
             
             o_data = {
                 'type': 'oil',
@@ -814,7 +815,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**o_data))
-            AayatNiryat.new(**o_data)
+            AayatNiryat.new(created_by=request.user, **o_data)
             
             f_data = {
                 'type': 'fruits',
@@ -830,7 +831,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**f_data))
-            AayatNiryat.new(**f_data)
+            AayatNiryat.new(created_by=request.user, **f_data)
             
             s_data = {
                 'type': 'spice',
@@ -846,7 +847,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**s_data))
-            AayatNiryat.new(**s_data)
+            AayatNiryat.new(created_by=request.user, **s_data)
             
             t_data = {
                 'type': 'tea',
@@ -862,7 +863,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**t_data))
-            AayatNiryat.new(**t_data)
+            AayatNiryat.new(created_by=request.user, **t_data)
             
             sa_data = {
                 'type': 'salt',
@@ -878,7 +879,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**sa_data))
-            AayatNiryat.new(**sa_data)
+            AayatNiryat.new(created_by=request.user, **sa_data)
             
             k_data = {
                 'type': 'khadanna',
@@ -894,7 +895,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**k_data))
-            AayatNiryat.new(**k_data)
+            AayatNiryat.new(created_by=request.user, **k_data)
             
             w_data = {
                 'type': 'water',
@@ -910,7 +911,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**w_data))
-            AayatNiryat.new(**w_data)
+            AayatNiryat.new(created_by=request.user, **w_data)
             
             sw_data = {
                 'type': 'sweets',
@@ -926,7 +927,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**sw_data))
-            AayatNiryat.new(**sw_data)
+            AayatNiryat.new(created_by=request.user, **sw_data)
             
             c_data = {
                 'type': 'confectionery',
@@ -942,7 +943,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**c_data))
-            AayatNiryat.new(**c_data)
+            AayatNiryat.new(created_by=request.user, **c_data)
             
             me_data = {
                 'type': 'meat',
@@ -958,7 +959,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**me_data))
-            AayatNiryat.new(**me_data)
+            AayatNiryat.new(created_by=request.user, **me_data)
             
             ot_data = {
                 'type': 'others',
@@ -974,7 +975,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**ot_data))
-            AayatNiryat.new(**ot_data)
+            AayatNiryat.new(created_by=request.user, **ot_data)
             
             g_data = {
                 'type': 'grain',
@@ -990,7 +991,7 @@ def aayat(request):
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
             #objects_to_create.append(AayatNiryat(**g_data))
-            AayatNiryat.new(**g_data)
+            AayatNiryat.new(created_by=request.user, **g_data)
             
             #AayatNiryat.objects.bulk_create(objects_to_create)
             
@@ -1014,7 +1015,7 @@ def ujuri(request):
     if request.method == 'POST':
         form = UjuriGunasoForm(request.POST)
         if form.is_valid():
-            UjuriGunaso.new(**form.cleaned_data)
+            UjuriGunaso.new(created_by=request.user, **form.cleaned_data)
             messages.success(request, "Form submitted successfully")
             return redirect('ujuri')
         else:
@@ -1064,7 +1065,7 @@ def khadya_prasodhan(request):
             if form.is_valid():
                 # khadya_object = form.save(commit=False)
                 # khadya_object.save()
-                KhadyaPrasodhan.new(**form.cleaned_data)
+                KhadyaPrasodhan.new(created_by=request.user, **form.cleaned_data)
                 
             else:
                 messages.error(request, "Please fill the form with correct data")
@@ -1084,12 +1085,14 @@ def masik_bittiya(request):
     
     if request.method == 'POST':
         form = BittiyaBibaranForm(request.POST)
+        print(form.data)
         if form.is_valid():
-            BittiyaBibaran.new(**form.cleaned_data)
-            messages.succes(request, "Form submitted successfully")
+            BittiyaBibaran.new(created_by=request.user, **form.cleaned_data)
+            messages.success(request, "Form submitted successfully")
             return redirect('masik-bittiya')
         else:
             messages.error(request, "Please fill the form with correct data")
+        print(form.errors)
     else:
         form = BittiyaBibaranForm()
     context = {'form': form}
@@ -1177,6 +1180,8 @@ def detail_hotel(request):
         d_karyalaya = request.POST.getlist('karyalaya[]')
         d_kaifiyat = request.POST.getlist('kaifiyat[]')
         
+        is_valid_form = True
+        
         for naam, logo, thegana, samparka, jilla, j_miti, n_miti, karyalaya, kaifiyat in zip(
             d_naam, d_logo, d_thegana, d_samparka, d_jilla, d_j_miti, d_n_miti, d_karyalaya, d_kaifiyat
         ):
@@ -1195,13 +1200,16 @@ def detail_hotel(request):
             if form.is_valid():
                 # hotel_object = form.save(commit=False)
                 # hotel_object.save()
-                DetailHotel.new(**form.cleaned_data)
+                DetailHotel.new(created_by=request.user, **form.cleaned_data)
             else:
-                messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-hotel')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-hotel')
+                is_valid_form = False
+        
+        if is_valid_form:
+            messages.success(request, "Form submitted successfully")
+            return redirect('detail-hotel')
+        else:
+            messages.error(request, "Please fill the form with correct data")
+            return redirect('detail-hotel')
     else:
         form = DetailHotelForm()
     context = {'form': form, 'data': data}
@@ -1251,7 +1259,7 @@ def detail_registration(request):
             if form.is_valid():
                 # reg_object = form.save(commit=False)
                 # reg_object.save()
-                DetailRegistration.new(**form.cleaned_data)
+                DetailRegistration.new(created_by=request.user, **form.cleaned_data)
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('detail-registration')
@@ -1306,7 +1314,7 @@ def detail_renew(request):
             if form.is_valid():
                 # reg_object = form.save(commit=False)
                 # reg_object.save()
-                DetailRenew.new(**form.cleaned_data)
+                DetailRenew.new(created_by=request.user, **form.cleaned_data)
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('detail-renew')
@@ -1361,7 +1369,7 @@ def detail_udyog(request):
             if form.is_valid():
                 # reg_object = form.save(commit=False)
                 # reg_object.save()
-                DetailUdyog.new(**form.cleaned_data)
+                DetailUdyog.new(created_by=request.user, **form.cleaned_data)
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('detail-udyog')
@@ -1418,7 +1426,7 @@ def detail_anugaman(request):
             if form.is_valid():
                 # anugaman_object = form.save(commit=False)
                 # anugaman_object.save()
-                DetailAnugaman.new(**form.cleaned_data)
+                DetailAnugaman.new(created_by=request.user, **form.cleaned_data)
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('detail-anugaman')
@@ -1474,7 +1482,7 @@ def detail_mudha(request):
             if form.is_valid():
                 # mudha_object = form.save(commit=False)
                 # mudha_object.save()
-                DetailMudha.new(**form.cleaned_data)
+                DetailMudha.new(created_by=request.user, **form.cleaned_data)
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('detail-mudha')
@@ -1521,7 +1529,7 @@ def detail_rbpa(request):
             if form.is_valid():
                 # rbpa_object = form.save(commit=False)
                 # rbpa_object.save()
-                DetailRbpa.new(**form.cleaned_data)
+                DetailRbpa.new(created_by=request.user, **form.cleaned_data)
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('detail-rbpa')
@@ -1560,7 +1568,7 @@ def detail_gunasho(request):
             if form.is_valid():
                 # gunaso_object = form.save(commit=False)
                 # gunaso_object.save()
-                DetailGunaso.new(**form.cleaned_data)
+                DetailGunaso.new(created_by=request.user, **form.cleaned_data)
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('detail-gunasho')

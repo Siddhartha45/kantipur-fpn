@@ -4,18 +4,18 @@ from django import template
 register = template.Library()
 
 MONTH_NAMES_NP = {
-    '01': 'Baishakh',
-    '02': 'Jestha',
-    '03': 'Asar',
-    '04': 'Shrawan',
-    '05': 'Bhadra',
-    '06': 'Ashoj',
-    '07': 'Kartik',
-    '08': 'Mangsir',
-    '09': 'Poush',
-    '10': 'Magh',
-    '11': 'Falgun',
-    '12': 'Chaitra',
+    '01': 'बैशाख',
+    '02': 'जेठ',
+    '03': 'असार',
+    '04': 'श्रावण',
+    '05': 'भदौ',
+    '06': 'आश्विन',
+    '07': 'कार्तिक',
+    '08': 'मंसिर',
+    '09': 'पुष',
+    '10': 'माघ',
+    '11': 'फाल्गुन',
+    '12': 'चैत्र',
 }
 
 @register.filter
