@@ -1,7 +1,7 @@
 from django import forms
 from .models import (BittiyaBibaran, UjuriGunaso, NamunaBibaran, PatraJari, PatraNabikaran, UdyogSifaris, PrayogsalaBisleysan,
                     KhadyaPrasodhan, DetailAnugaman, DetailHotel, DetailRegistration, DetailRenew, DetailUdyog,
-                    DetailGunaso, DetailMudha, DetailRbpa, PragatiBibaran, AnugamanBibaran, Logobitaran, NamunaBisleysan)
+                    DetailGunaso,KhadyaPrasodhan,UjuriGunaso, DetailMudha, DetailRbpa, PragatiBibaran, AnugamanBibaran, Logobitaran, NamunaBisleysan,AayatNiryat)
 from fpn import commons
 
 
@@ -865,7 +865,58 @@ class PrayogsalaEditForm(forms.ModelForm):
         exclude = ["created_on_np_date", "created_by", "type"]
         
         
-# class RbpaEditForm(forms.ModelForm):
-#     class Meta:
-#         model = DetailRbpa
-#         pass
+class RbpaEditForm(forms.ModelForm):
+    class Meta:
+        model = DetailRbpa
+        exclude = ["created_on_np_date",]
+        
+        
+class AayatNiryatEditForm(forms.ModelForm):
+    class Meta:
+        model= AayatNiryat
+        exclude = ["created_on_np_date",'type']
+        
+class UjuriGunasoEditForm(forms.ModelForm):
+    class Meta:
+        model=UjuriGunaso
+        exclude = ["created_on_np_date",]
+        
+        
+class KhadyaPrasodhanEditForm(forms.ModelForm):
+    class Meta:
+        model=KhadyaPrasodhan
+        
+        exclude = ["created_on_np_date",]
+        
+class BittiyaBibaranEditForm(forms.ModelForm):
+    class Meta:
+        model=BittiyaBibaran
+        exclude = ["created_on_np_date",]
+        
+        
+class PragatiBibaranEditForm(forms.ModelForm):
+    class Meta:
+        model=PragatiBibaran
+        exclude = ["created_on_np_date",]
+        
+class UdyogSifarisEditForm(forms.ModelForm):
+    class Meta:
+        model=UdyogSifaris
+        exclude = ["created_on_np_date",]
+ 
+        
+
+        
+        
+        
+class PatraNabikaranEditForm(forms.ModelForm):
+    class Meta:
+        model=PatraNabikaran
+        exclude = ["created_on_np_date",]
+
+class PatraJariEditForm(forms.ModelForm):
+    class Meta:
+        model=PatraJari
+        exclude = ["created_on_np_date",]
+        
+    
