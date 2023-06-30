@@ -1,0 +1,215 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            User<span class="sub-nav ms-2"> > Update</span>
+        </h3>
+        <p><a href=""><i class="fa-regular fa-eye"></i>Update User Details</a></p>
+    </div>
+
+    {% for message in messages %}
+        {% if message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% elif message.tags == "info" %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">Update User</h3>
+        </div>
+
+        <div class="row mb-2">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Full Name</label>
+                <input type="text" class="form-control cm" placeholder="Enter full name" name="name" value="{{user_object.name}}" required>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Username</label>
+                <input type="text" class="form-control cm" placeholder="Enter username" name="username" value="{{user_object.username}}" required>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Email address</label>
+                <input type="email" class="form-control cm" placeholder="Enter email address" name="email" value="{{user_object.email}}" required>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Phone Number</label>
+                <input type="text" class="form-control cm" placeholder="Enter phone number" name="phone_number" value="{{user_object.phone_number}}" required>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Password</label>
+                <input type="text" class="form-control cm" placeholder="Enter full name" name="password">
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Role</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="role" id="select_box">
+                    {% if user_object.role %}
+                        <option value="{{data.role}}" selected>{{ user_object.get_role_display }}</option>
+                    {% else %}
+                        <option value="" selected disabled>Select User Role</option>
+                    {% endif %}
+                        
+                    {% for key,value in data.role %}
+                        {% if key != user_object.role %}
+                            <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        
+        
+        {% if  user_object.role == "DE" %}
+            <div class="col-md-12 mb-3">
+            <label for="" class="form-label cm">Department Category</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="department_category" id="office-selection">
+                    {% if user_object.department_category %}
+                        <option value="{{data.department}}" selected>{{ user_object.get_department_category_display }}</option>
+                    {% else %}
+                        <option value="" selected disabled>Select department category</option>
+                    {% endif %}
+                        
+                    {% for key,value in data.department %}
+                        {% if key != user_object.department_category %}
+                            <option value="{{key}}">{{value}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        {% else %}
+            <div id="DE" class="row mb-2 hide">
+                <div class="col-md-12 mb-3">
+                <label for="" class="form-label cm">Department Category</label>
+                    <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="department_category" id="office-selection">
+                        {% if user_object.department_category %}
+                            <option value="{{data.department}}" selected>{{ user_object.get_department_category_display }}</option>
+                        {% else %}
+                            <option value="" selected disabled>Select department category</option>
+                        {% endif %}
+                            
+                        {% for key,value in data.department %}
+                            {% if key != user_object.department_category %}
+                                <option value="{{key}}">{{value}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        {% endif %}
+
+        
+        {% if user_object.department_category == "IE" %}
+            
+                <div class="col-md-12">
+                <label for="" class="form-label cm">Import Export Office</label>
+                    <select type="text" class="form-control form-select kit-form-control cm" placeholder="Select import export office" name="office">
+                        {% if user_object.office %}
+                            <option value="{{data.office_IE}}" selected>{{ user_object.office }}</option>
+                        {% else %}
+                            <option value="" selected disabled>Select import export office</option>
+                        {% endif %}
+                            
+                        {% for office in data.office_IE %}
+                            {% if office != user_object.office %}
+                                <option value="{{office.id}}">{{office.office_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+
+        {% elif user_object.department_category == "DO" %}
+            
+                <div class="col-md-12">
+                <label for="" class="form-label cm">Division Office</label>
+                <select type="text" class="form-control form-select kit-form-control cm" placeholder="Select division office" name="office">
+                    {% if user_object.office %}
+                        <option value="{{data.office_DO}}" selected>{{ user_object.office }}</option>
+                    {% else %}
+                        <option value="" selected disabled>Select division office</option>
+                    {% endif %}
+                        
+                    {% for office in data.office_DO %}
+                        {% if office != user_object.office %}
+                            <option value="{{office.id}}">{{office.office_name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                </div>
+        
+        {% elif user_object.department_category == "FO" %}
+        
+                <div class="col-md-12">
+                <label for="" class="form-label cm">Food Office</label>
+                    <select type="text" class="form-control form-select kit-form-control cm" placeholder="Enter username" name="office">
+                        {% if user_object.office %}
+                            <option value="{{data.office_FO}}" selected>{{ user_object.office }}</option>
+                        {% else %}
+                            <option value="" selected disabled>Select food office</option>
+                        {% endif %}
+                        
+                        {% for office in data.office_FO %}
+                            {% if office != user_object.office %}
+                                <option value="{{office.id}}">{{office.office_name}}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+    
+        {% endif %}
+
+
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end"><button type="submit" name="verify" class="btn btn-primary">Update User</button></div>
+        </div>
+
+    </form> 
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+    
+    $('#office-selection').change(function () {
+        var select2 = $(this).find(':selected').val();
+
+        $(".hide").hide();
+        if(select2=='IE'){
+            $('#DE').show();
+            $('#import-export').show();
+        }else if(select2=="DO"){
+            $("#DE").show();
+            $('#division-office').show();
+        }else if(select2=="FO"){
+            $("#DE").show();
+            $('#food-office').show();
+        }else if(select2=="FFSQRD" || select2=="FTDND" || select2=="NFFRL" || select2=="A"){
+            $("#DE").show();
+        }
+    }).change();
+
+
+    $('#select_box').change(function () {
+        var select1 = $(this).find(':selected').val();
+        console.log(select1)
+        $(".hide").hide();
+        $('#' + select1).show();
+    }).change();
+
+</script>
+{% endblock %}
+    

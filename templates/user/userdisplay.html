@@ -12,7 +12,13 @@
     </div>
 
     {% for message in messages %}
-        <div class="alert alert-success mt-3">{{ message }}</div>
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% elif message.tags == "info" %}
+            <div class="alert alert-warning">{{ message }}</div>
+        {% endif %}
     {% endfor %}
 
     <div class="table-row">
@@ -63,12 +69,13 @@
                     <td>
                         <div class="d-flex kit-action-com">
                             <div class="action-btn-pen">
-                            <a href="" method="put"><span class="material-symbols-outlined">
+                            <a href="{% url 'user-edit' id=u.id %}" method="put"><span class="material-symbols-outlined">
                                     edit
                                     </span></a>
                             </div>
     
-                            <form class="action-btn-dlt" action="" method="post">
+                            <form class="action-btn-dlt" action="{% url 'user-delete' id=u.id %}" method="post">
+                                {% csrf_token %}
                                 <button type="submit">
                                     <i class="fa-regular fa-trash-can"></i>
                                 </button>

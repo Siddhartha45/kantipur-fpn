@@ -772,7 +772,8 @@ def udyog(request):
     return render(request, 'forms/registration/udyog.html', context)
 
 
-@login_required
+from fpn.decorators import importexport_required
+@importexport_required
 def aayat(request):
     """views for आयात निर्यात गुण प्रमाणिकरण"""
     
@@ -1581,7 +1582,7 @@ def detail_gunasho(request):
     return render(request, 'forms/details/gunasho.html', context)
 
 
-#--------------------- REPORT PART BELOW --------------------------
+#--------------------------------------------------------------REPORT PART BELOW------------------------------------------------------------
 
 
 #खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण(list, edit, delete)
@@ -1627,11 +1628,6 @@ def anugaman_edit(request, id):
     if request.method == 'POST':
         form = AnugamanEditForm(request.POST, instance=object)
         if form.is_valid():
-            # object.patak = form.cleaned_data.get('patak')
-            # object.sankhya = form.cleaned_data.get('sankhya')
-            # object.pragati = form.cleaned_data.get('pragati')
-            # object.kaifiyat = form.cleaned_data.get('kaifiyat')
-            # object.save()  # Save the updated data
             form.save()
             messages.success(request, "Report Updated")
             return redirect('anugaman-report')

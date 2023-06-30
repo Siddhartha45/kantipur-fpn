@@ -28,13 +28,17 @@ class CustomUserForm(forms.Form):
     department_category = forms.ChoiceField(choices=commons.DEPARTMENT_CHOICES, required=False)
     office = forms.CharField(required=False)
     
-    
+
+
+class UserEditForm(forms.ModelForm):
+    """form for editing users details"""
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
+
+
 class OfficeForm(forms.ModelForm):
+    """form for handling office creation and editing"""
     class Meta:
         model = Office
         fields = '__all__'
-        
-        
-class UploadFileForm(forms.Form):
-    
-    file = forms.FileField()
