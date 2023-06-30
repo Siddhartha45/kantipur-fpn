@@ -7,11 +7,12 @@ from fpn import commons
 
 class BaseModelForm(forms.ModelForm):
     """base model form with common clean method"""
+    
     def clean(self):
         cleaned_data = super().clean()
         for field in self.Meta.model._meta.fields:
             if field.name in cleaned_data and cleaned_data[field.name] is None:
-                cleaned_data[field.name] = field.default
+                cleaned_data[field.name] = field.default    
         return cleaned_data
 
 
@@ -19,42 +20,42 @@ class BittiyaBibaranForm(BaseModelForm):
     """model form for मासिक वित्तिय विवरण"""
     class Meta:
         model = BittiyaBibaran
-        fields = '__all__'
+        exclude = ["created_by",]
 
 
 class PatraJariForm(BaseModelForm):
     """model form for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
     class Meta:
         model = PatraJari
-        fields = '__all__'
+        exclude = ["created_by",]
         
 
 class PatraNabikaranForm(BaseModelForm):
     """model form for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
     class Meta:
         model = PatraNabikaran
-        fields = '__all__'
+        exclude = ["created_by",]
     
 
 class UdyogSifarisForm(BaseModelForm):
     """model form for उद्योग सिफारिस"""
     class Meta:
         model = UdyogSifaris
-        fields = '__all__'
+        exclude = ["created_by",]
     
 
 class UjuriGunasoForm(BaseModelForm):
     """model form for उजुरी/गुनासो ब्येवस्थापन"""
     class Meta:
         model = UjuriGunaso
-        fields = '__all__'
+        exclude = ["created_by",]
     
     
 class NamunaBibaranForm(BaseModelForm):
     """model form for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     class Meta:
         model = NamunaBibaran
-        fields = '__all__'
+        exclude = ["created_by", ]
 
 
 class AnugamanBibaranForm(forms.Form):
@@ -770,102 +771,98 @@ class KhadyaPrasodhanForm(BaseModelForm):
     """modelform for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
     class Meta:
         model = KhadyaPrasodhan
-        fields = '__all__'
+        exclude = ["created_by", ]
 
 
 class MasikPragatiForm(BaseModelForm):
     """modelform for maski pragati"""
     class Meta:
         model = PragatiBibaran
-        fields = '__all__'
+        exclude = ["created_by", ]
 
 
 
 
-#Detail Part Forms
+#----------------------------------------------------Detail Part Forms----------------------------------------------------------------
 
 class DetailHotelForm(BaseModelForm):
     class Meta:
         model = DetailHotel
-        fields = '__all__'
+        exclude = ["created_by",]
 
 
 class DetailRegistrationForm(BaseModelForm):
     class Meta:
         model = DetailRegistration
-        fields = '__all__'
+        exclude = ["created_by",]
         
         
 class DetailRenewForm(BaseModelForm):
     class Meta:
         model = DetailRenew
-        fields = '__all__'
+        exclude = ["created_by",]
 
 
 class DetailUdyogForm(BaseModelForm):
     class Meta:
         model = DetailUdyog
-        fields = '__all__'
+        exclude = ["created_by",]
 
 
 class DetailAnugamanForm(BaseModelForm):
     class Meta:
         model = DetailAnugaman
-        fields = '__all__'  
+        exclude = ["created_by",]  
 
 
 class DetailMudhaForm(BaseModelForm):
     class Meta:
         model = DetailMudha
-        fields = '__all__'
+        exclude = ["created_by",]
 
 
 class DetailRbpaForm(BaseModelForm):
     class Meta:
         model = DetailRbpa
-        fields = '__all__'    
+        exclude = ["created_by",]    
 
         
 class DetailGunasoForm(BaseModelForm):
     class Meta:
         model = DetailGunaso
-        fields = '__all__'
+        exclude = ["created_by",]
 
 
-#-----------------------------EDIT FORMS--------------------------------------------
+#-------------------------------------------------------------------EDIT FORMS----------------------------------------------------------
 
 class AnugamanEditForm(forms.ModelForm):
-    # patak = forms.IntegerField()
-    # sankhya = forms.IntegerField()
-    # pragati = forms.IntegerField()
-    # kaifiyat = forms.CharField()
     class Meta:
         model = AnugamanBibaran
-        exclude = ["created_on_np_date", "type"]
+        exclude = ["created_on_np_date", "created_by", "type"]
         
         
 class KhadyaactEditForm(forms.ModelForm):
     class Meta:
         model = NamunaBibaran
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
         
         
 class HotelEditForm(forms.ModelForm):
     class Meta:
         model = Logobitaran
-        exclude = ["created_on_np_date", "type"]
+        exclude = ["created_on_np_date", "created_by", "type"]
         
         
 class KhadyaEditForm(forms.ModelForm):
     class Meta:
         model = NamunaBisleysan
-        exclude = ["created-on_np_date", "type"]
+        exclude = ["created-on_np_date", "created_by", "type"]
         
         
 class PrayogsalaEditForm(forms.ModelForm):
     class Meta:
         model = PrayogsalaBisleysan
-        exclude = ["created_on_np_date", "type"]
+        exclude = ["created_on_np_date", "created_by", "type"]
         
         
 class RbpaEditForm(forms.ModelForm):
