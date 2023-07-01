@@ -17,6 +17,8 @@
                         </span> ड्यासबोर्ड</a>
                 </li>
     
+                
+                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' %}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="{% url 'namuna' %}"><span class="material-symbols-outlined">
@@ -40,16 +42,20 @@
                         </span>
                         होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण</a>
                 </li>
-               
-           
+                {% endif %}
     
+                
+                {% if request.user.department_category == 'FTDND' %}
                 <li class="nav-item">
                 <a class="nav-link"
                     href="{% url 'namuna-bisleysan' %}"><span class="material-symbols-outlined">
                         summarize
                     </span>
                     खाद्य तथा दाना नमुना विश्लेषण विवरण</a>
-            </li>
+                </li>
+                {% endif %}
+
+            {% if request.user.department_category == 'NFFRL' %}
             <li class="nav-item">
                 <a class="nav-link"
                     href="{% url 'prayogsala-bisleysan' %}"><span class="material-symbols-outlined">
@@ -57,7 +63,7 @@
                     </span>
                     प्रयोगशाला विश्लेषण प्रतिवेदन सारांश</a>
             </li>
-    
+            {% endif %}
     
                 <li class="nav-item accordion" id="users">
                     <div class="accordion-item">
@@ -73,20 +79,25 @@
                         <div id="details-collapseregistration"
                             class="accordion-collapse details-collapseOne collapse">
                             <div class="accordion-body d-flex flex-column">
+                                {% if request.user.department_category == 'FFSQRD' %}
                                 <a class="nav-link" href="{% url 'khadya1' %}">खाद्य तथा दाना अनुज्ञा पत्र जारी</a>
                                 <a class="nav-link" href="{% url 'khadya2' %}">खाद्य तथा दाना अनुज्ञा पत्र नविकरण</a>
+                                {% endif %}
                                 <a class="nav-link" href="{% url 'udyog' %}">उद्योग सिफारिस</a>
                             </div>
                         </div>
                     </div>
                 </li>
     
+                
+                {% if request.user.department_category == 'IE' %}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="{% url 'aayat' %}"><span class="material-symbols-outlined">
                         flag
                         </span> आयात निर्यात गुण प्रमाणिकरण</a>
                 </li>
+                {% endif %}
     
                 <li class="nav-item">
                     <a class="nav-link"
@@ -114,14 +125,19 @@
                                 <a class="nav-link" href="{% url 'detail-renew' %}">अनुज्ञापत्र नवकिरण</a>
                                 <a class="nav-link" href="{% url 'detail-udyog' %}">उद्योग सिफारिस</a>
                                 <a class="nav-link" href="{% url 'detail-anugaman' %}">अनुगमन निरीक्षण</a>
+                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' %}
                                 <a class="nav-link" href="{% url 'detail-mudha' %}">मुद्धा दायरी</a>
+                                {% endif %}
                                 <a class="nav-link" href="{% url 'detail-rbpa' %}">RBPR Analysis</a>
+                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' %}
                                 <a class="nav-link" href="{% url 'detail-gunasho' %}">उजुरी गुनासो</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
                 </li>
 
+                {% if request.user.department_category == 'FTDND' %}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="{% url 'khadya-prasodhan' %}"><span class="material-symbols-outlined">
@@ -129,6 +145,7 @@
                         </span>
                         खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि</a>
                 </li>
+                {% endif %}
     
                 <li class="nav-item">
                 <a class="nav-link"
@@ -159,14 +176,18 @@
                         <div id="details-collapseuser"
                             class="accordion-collapse details-collapseOne collapse">
                             <div class="accordion-body d-flex flex-column">
+                                {% if request.user.role == 'A' %}
                                 <a class="nav-link" href="{% url 'user-list' %}">प्रयोगकर्ताहरु</a>
                                 <a class="nav-link" href="{% url 'user-create' %}">प्रयोगकर्ता सृजना </a>
+                                {% endif %}
                                 <a class="nav-link" href="{% url 'password-change' id=user.id %}">change password</a>
                             </div>
                         </div>
                     </div>
                 </li>
     
+                
+                {% if request.user.role == 'A' %}
                 <li class="nav-item accordion" id="office">
                     <div class="accordion-item" style="margin-bottom:40px">
                         <h2 class="accordion-header">
@@ -186,6 +207,7 @@
                         </div>
                     </div>
                 </li>
+                {% endif %}
 
             </ul>
         </div>

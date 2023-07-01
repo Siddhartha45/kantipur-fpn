@@ -12,6 +12,11 @@ from django.contrib.auth.decorators import login_required
 import datetime
 import nepali_datetime
 from django.contrib import messages
+from fpn.decorators import (all_required, fo_and_ie_required, fo_and_ffsqrd_required, fo_and_nffrl_required, fo_required,
+                            do_and_ffsqrd_and_fo_required, fo_and_ftdnd_required)
+
+
+#----------------------------------------------------------------------------------------------------------------------------------
 
 
 @login_required
@@ -20,8 +25,10 @@ def home(request):
     return render(request, 'index.html')
 
 
-#-----------------------FORMS PART BELOW -----------------------
-@login_required
+#------------------------------------------------------------FORMS PART BELOW -----------------------------------------------------------
+
+
+@do_and_ffsqrd_and_fo_required
 def namuna_bibaran(request):
     """views for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     
@@ -40,7 +47,7 @@ def namuna_bibaran(request):
     return render(request, 'forms/namuna_bibaran/newentry.html', context)
 
 
-@login_required
+@do_and_ffsqrd_and_fo_required
 def anugaman(request):
     """views for निरीक्षण अनुगमन विवरण"""
     if request.method == 'POST':
@@ -130,7 +137,7 @@ def anugaman(request):
     return render(request, 'forms/anugaman_bibaran/newentry.html', context)
 
 
-@login_required
+@do_and_ffsqrd_and_fo_required
 def logobitaran(request):
     """views for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
     
@@ -191,7 +198,7 @@ def logobitaran(request):
     return render(request, 'forms/logobitaran_bibaran/newentry.html', context)
 
 
-@login_required
+@fo_and_ftdnd_required
 def namuna_bisleysan(request):
     """views for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
     
@@ -411,7 +418,7 @@ def namuna_bisleysan(request):
     return render(request, 'forms/bisleysan_bibaran/newentry.html', context)
 
 
-@login_required
+@fo_and_nffrl_required
 def prayogsala_bisleysan(request):
     """for data entry of प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
     
@@ -718,7 +725,7 @@ def prayogsala_bisleysan(request):
     return render(request, 'forms/pratibedan_bibaran/newentry.html', context)
 
 
-@login_required
+@fo_and_ffsqrd_required
 def khadya1(request):
     """views for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
     
@@ -736,7 +743,7 @@ def khadya1(request):
     return render(request, 'forms/registration/new.html', context)
 
 
-@login_required
+@fo_and_ffsqrd_required
 def khadya2(request):
     """views for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
     
@@ -772,8 +779,7 @@ def udyog(request):
     return render(request, 'forms/registration/udyog.html', context)
 
 
-from fpn.decorators import importexport_required
-@importexport_required
+@fo_and_ie_required
 def aayat(request):
     """views for आयात निर्यात गुण प्रमाणिकरण"""
     
@@ -1027,7 +1033,7 @@ def ujuri(request):
     return render(request, 'forms/gunasho/index.html', context)
 
 
-@login_required
+@fo_and_ftdnd_required
 def khadya_prasodhan(request):
     """views for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
     
@@ -1080,7 +1086,7 @@ def khadya_prasodhan(request):
     return render(request, 'forms/hotel-patrakar/index.html', context)
 
 
-@login_required
+@all_required
 def masik_bittiya(request):
     """views for मासिक वित्तिय विवरण"""
     
@@ -1098,8 +1104,6 @@ def masik_bittiya(request):
         form = BittiyaBibaranForm()
     context = {'form': form}
     return render(request, 'forms/account/summary.html', context)
-
-
 
 
 @login_required
@@ -1275,8 +1279,6 @@ def detail_registration(request):
     return render(request, 'forms/details/registration.html', context)
 
 
-
-
 @login_required
 def detail_renew(request):
     """views for detail अनुज्ञापत्र नवकिरण"""
@@ -1330,11 +1332,6 @@ def detail_renew(request):
         form = DetailRenewForm()
     context = {'form': form, 'data': data}
     return render(request, 'forms/details/renew.html', context)\
-        
-
-
-
-
 
 
 @login_required
@@ -1449,7 +1446,7 @@ def detail_anugaman(request):
     return render(request, 'forms/details/anugaman.html', context)
 
 
-@login_required
+@do_and_ffsqrd_and_fo_required
 def detail_mudha(request):
     """views for detail मुद्धा दायरी"""
     
@@ -1552,7 +1549,7 @@ def detail_rbpa(request):
     return render(request, 'forms/details/rbpa.html', context)
 
 
-@login_required
+@do_and_ffsqrd_and_fo_required
 def detail_gunasho(request):
     """views for detail उजुरी गुनासो"""
     
@@ -1605,6 +1602,7 @@ def khadyaact_report(request):
     context = {'data': data}
     return render(request, 'report/khadyaact.html', context)
 
+
 def khadyaact_edit(request, id):
     khadya_object = get_object_or_404(NamunaBibaran, id=id)
     if request.method == 'POST':
@@ -1619,6 +1617,7 @@ def khadyaact_edit(request, id):
         form = KhadyaactEditForm(instance=khadya_object)
     context = {'form': form, 'khadya_object': khadya_object}
     return render(request, 'edit_forms/namunabibaran_edit.html', context)
+
 
 def khadyaact_report_delete(request, id):
     """for deleting निरीक्षण अनुगमन विवरण"""
@@ -1641,6 +1640,7 @@ def anugaman_report(request):
     context = {'data': data}
     return render(request, 'report/anugaman.html', context)
 
+
 def anugaman_edit(request, id):
     """for editing निरीक्षण अनुगमन विवरण"""
     anugaman_object = get_object_or_404(AnugamanBibaran, id=id)
@@ -1656,6 +1656,7 @@ def anugaman_edit(request, id):
         form = AnugamanEditForm(instance=anugaman_object)
     context = {'form': form, 'anugaman_object': anugaman_object}
     return render(request, 'edit_forms/anugaman_edit.html', context)
+
 
 def anugaman_report_delete(request, id):
     """for deleting निरीक्षण अनुगमन विवरण"""
@@ -1676,6 +1677,7 @@ def hotel_report(request):
     context = {'data': data}
     return render(request, 'report/hotel.html', context)
 
+
 def hotel_edit(request, id):
     hotel_object = get_object_or_404(Logobitaran, id=id)
     if request.method == 'POST':
@@ -1690,6 +1692,7 @@ def hotel_edit(request, id):
         form = HotelEditForm(instance=hotel_object)
     context = {'form': form, 'hotel_object': hotel_object}
     return render(request, 'edit_forms/logobitaran_edit.html', context)
+
 
 def hotel_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
@@ -1710,6 +1713,7 @@ def khadya_report(request):
     data = NamunaBisleysan.objects.all()
     context = {'data': data}
     return render(request, 'report/khadyanamuna.html', context)
+
 
 def khadya_edit(request, id):
     data = {
@@ -1750,6 +1754,7 @@ def prayogsala_report(request):
     context = {'data': data}
     return render(request, 'report/prayogsala.html', context)
 
+
 def prayogsala_edit(request, id):
     prayogsala_object = get_object_or_404(PrayogsalaBisleysan, id=id)
     if request.method == 'POST':
@@ -1765,6 +1770,7 @@ def prayogsala_edit(request, id):
     context = {'form': form, 'prayogsala_object': prayogsala_object}
     return render(request, 'edit_forms/prayogsala_edit.html', context)
 
+
 def prayogsala_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
 
@@ -1775,6 +1781,8 @@ def prayogsala_report_delete(request, id):
 
 
 #------------------------------------------------RBPR Analysis Report(list, edit, delete)-------------------------------------------
+
+
 @login_required
 def rbpa_report(request):
     """table list for RBPA Analysis Report"""
@@ -1782,6 +1790,7 @@ def rbpa_report(request):
     data = DetailRbpa.objects.all()
     context = {'data': data}
     return render(request, 'report/rbpa.html', context)
+
 
 def rbpa_edit(request, id):
     rbpa_object = get_object_or_404(DetailRbpa, id=id)
@@ -1797,6 +1806,7 @@ def rbpa_edit(request, id):
         form=RbpaEditForm(instance=rbpa_object)
     context={'form':form,'rbpa_object':rbpa_object}
     return render(request,'edit_forms/rbpa_edit.html',context)
+
 
 def rbpa_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
@@ -1837,6 +1847,7 @@ def importexport_edit(request, id):
     context={'form':form,'ie_object': ie_object, 'data': data}
     return render(request,'edit_forms/importexport_edit.html',context)
 
+
 def importexport_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
 
@@ -1847,6 +1858,8 @@ def importexport_report_delete(request, id):
     
 
 #------------------------------------------------working(list, edit, delete)-----------------------------------------------------
+
+
 @login_required
 def gunasho_report(request):
     """table list for उजुरी/गुनासो ब्येवस्थापन"""
@@ -1854,6 +1867,7 @@ def gunasho_report(request):
     data = UjuriGunaso.objects.all()
     context = {'data': data}
     return render(request, 'report/gunasho.html', context)
+
 
 def gunasho_edit(request, id):
     gunasho_object = get_object_or_404(UjuriGunaso, id=id)
@@ -1891,6 +1905,7 @@ def patrakar_report(request):
     context = {'data': data}
     return render(request, 'report/patrakar.html', context)
 
+
 def patrakar_edit(request, id):
     patrakar_object = get_object_or_404(KhadyaPrasodhan, id=id)
     if request.method == 'POST':
@@ -1906,6 +1921,7 @@ def patrakar_edit(request, id):
     context={'form':form,'patrakar_object':patrakar_object}
     return render(request,'edit_forms/patrakar_edit.html',context)
 
+
 def patrakar_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
 
@@ -1916,6 +1932,8 @@ def patrakar_report_delete(request, id):
     
     
 #---------------------------------------------------------खाद्य तथा दाना अनुज्ञा पत्र जारी-------------------------------------------------
+
+
 @login_required
 def patrajari_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
@@ -1940,6 +1958,7 @@ def patrajari_edit(request, id):
     context={'form':form,'patrajari_object':patrajari_object}
     return render(request,'edit_forms/patrajari_edit.html',context)
 
+
 def patrajari_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
 
@@ -1949,8 +1968,9 @@ def patrajari_report_delete(request, id):
     return redirect('patrajari_report')
     
     
-
 #----------------------------------------------------------खाद्य तथा दाना अनुज्ञा पत्र नविकरण
+
+
 @login_required
 def renew_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
@@ -1958,6 +1978,7 @@ def renew_report(request):
     data = PatraNabikaran.objects.all()
     context = {'data': data}
     return render(request, 'report/renew.html', context)
+
 
 def renew_edit(request, id):
     renew_object = get_object_or_404(PatraNabikaran, id=id)
@@ -1974,6 +1995,7 @@ def renew_edit(request, id):
     context={'form':form,'renew_object':renew_object}
     return render(request,'edit_forms/renew_edit.html',context)
 
+
 def renew_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
 
@@ -1982,7 +2004,10 @@ def renew_report_delete(request, id):
     messages.success(request, "Report deleted")
     return redirect('renew_report')
 
+
 #---------------------------------------------------------------उद्योग सिफारिस
+
+
 @login_required
 def udyog_report(request):
     """table list for उद्योग सिफारिस"""
@@ -1990,6 +2015,7 @@ def udyog_report(request):
     data = UdyogSifaris.objects.all()
     context = {'data': data}
     return render(request, 'report/udyog.html', context)
+
 
 def udyog_edit(request, id):
     udyog_object = get_object_or_404(UdyogSifaris, id=id)
@@ -2006,6 +2032,7 @@ def udyog_edit(request, id):
     context={'form':form,'udyog_object':udyog_object}
     return render(request,'edit_forms/udyog_edit.html',context)
 
+
 def udyog_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
 
@@ -2016,6 +2043,8 @@ def udyog_report_delete(request, id):
 
 
 #-------------------------------------------------------मासिक वित्तिय विवरण
+
+
 @login_required
 def finance_report(request):
     """table list for मासिक वित्तिय विवरण"""
@@ -2023,6 +2052,7 @@ def finance_report(request):
     data = BittiyaBibaran.objects.all()
     context = {'data': data}
     return render(request, 'report/finance.html', context)
+
 
 def finance_edit(request, id):
     finance_object = get_object_or_404(BittiyaBibaran, id=id)
@@ -2039,6 +2069,7 @@ def finance_edit(request, id):
     context={'form':form,'finance_object':finance_object}
     return render(request,'edit_forms/finance_edit.html',context)
 
+
 def finance_report_delete(request, id):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
 
@@ -2047,7 +2078,10 @@ def finance_report_delete(request, id):
     messages.success(request, "Report deleted")
     return redirect('finance_report')
 
+
 #------------------------------------------------------working
+
+
 @login_required
 def monthly_report(request):
     """table list for मासिक प्रगति विवरण"""
