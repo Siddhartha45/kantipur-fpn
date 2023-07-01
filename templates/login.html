@@ -59,7 +59,11 @@
                     </div>
 
                     {% for message in messages %}
-                        <div class="alert alert-danger mt-3" id="message">{{ message }}</div>
+                        {% if message.tags == "success" %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% elif message.tags == "error" %}
+                            <div class="alert alert-danger">{{ message }}</div>
+                        {% endif %}
                     {% endfor %}
 
                     <div class="row">

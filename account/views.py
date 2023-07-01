@@ -114,6 +114,40 @@ def user_edit(request, id):
     return render(request, 'user/user_edit.html', context)
 
 
+def password_change(request, id):
+    user_object = get_object_or_404(CustomUser, id=id)
+    
+    if request.method == 'POST':
+        current_password = request.POST.get('current_password')
+        new_password = request.POST.get('new_password')
+        new_password_confirmation = request.POST.get('new_password_confirmation')
+        
+        if current_password == '' or new_password == '' or new_password_confirmation == '':
+            messages.error(request, "Please fill all the fields")
+            return redirect('password-change', id=id)
+        
+        if not user_object.check_password(current_password):
+            messages.error(request, "Incorrect Current Password")
+            return redirect('password-change', id=id)
+            
+        if new_password != new_password_confirmation:
+            messages.error(request, "New Password and Confirm New Password didn't match")
+            return redirect('password-change', id=id)
+        
+        if current_password == new_password:
+            messages.error(request, "New Password should not be same as Current Password!")
+            return redirect('password-change', id=id)
+        
+        user_object.set_password(new_password)
+        user_object.save()
+        #update_session_auth_hash(request, user_object) #user is not logged out after changing password
+        messages.success(request, "Password Changed Successfully! Login with new password")
+        return redirect('login')
+    
+    context = {'user_object': user_object}
+    return render(request,'user/changepassword.html', context)
+
+
 @login_required
 def user_list(request):
     users = CustomUser.objects.all()
