@@ -7,7 +7,7 @@
             <a href="" class="nav-icon me-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
-            खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+            खाद्य तथा दाना अनुज्ञा पत्र जारी/नविकरण/उद्योग सिफारिस <span class="sub-nav ms-2"> > खाद्य तथा दाना अनुज्ञा पत्र जारी</span>
         </h3>
     </div>
 
@@ -30,17 +30,17 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="" class="form-label cm">कार्यालयको नाम</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{user.office}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="{{user.office}}" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">मिति</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" name="" disabled>
                 </div>
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="" disabled>
                 </div>
             </div>
         </div>
@@ -53,67 +53,67 @@
             <div class="row mb-4">
                 <div class="col-md-3">
                     <label for="" class="form-label cm">दुध तथा दुध पदार्थ</label>
-                    <input type="number" min="0" class="form-control cm" placeholder="दुध तथा दुध पदार्थ" name="milk" value="{{khadya_object.milk}}">
+                    <input type="number" min="0" class="form-control cm" placeholder="दुध तथा दुध पदार्थ" name="milk" value="{{patrajari_object.milk}}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="" class="form-label cm">तेल तथा घेउ जन्य</label>
-                    <input type="number" min="0" class="form-control cm" placeholder="तेल तथा घेउ जन्य" name="oil" value="{{khadya_object.oil}}">
+                    <input type="number" min="0" class="form-control cm" placeholder="तेल तथा घेउ जन्य" name="oil" value="{{patrajari_object.oil}}">
                 </div>
 
                 <div class="col-md-3">
                     <label for="" class="form-label cm">फल तथा सागपात</label>
-                    <input type="number" min="0" class="form-control cm" placeholder="फल तथा सागपात" name="fruits" value="{{khadya_object.fruits}}">
+                    <input type="number" min="0" class="form-control cm" placeholder="फल तथा सागपात" name="fruits" value="{{patrajari_object.fruits}}">
                 </div>
                 <div class="col-md-3">
                     <label for="" class="form-label cm">मसला</label>
-                    <input type="number" min="0" class="form-control cm" placeholder="मसला" name="spice" value="{{khadya_object.spice}}">
+                    <input type="number" min="0" class="form-control cm" placeholder="मसला" name="spice" value="{{patrajari_object.spice}}">
                 </div>
             </div>
             <div class="row mb-4">
                 <div class="col-md-3">
                         <label for="" class="form-label cm">चिया, कफि</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="चिया, कफि" name="tea" value="{{khadya_object.tea}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="चिया, कफि" name="tea" value="{{patrajari_object.tea}}">
                 </div>
 
                     <div class="col-md-3">
                         <label for="" class="form-label cm">नुन</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="नुन" name="salt" value="{{khadya_object.salt}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="नुन" name="salt" value="{{patrajari_object.salt}}">
                     </div>
 
                     <div class="col-md-3">
                         <label for="" class="form-label cm">खाद्यान्न दलहन र सोबाट बनेको</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="खाद्यान्न दलहन र सोबाट बनेको" name="khadanna" value="{{khadya_object.khadanna}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="खाद्यान्न दलहन र सोबाट बनेको" name="khadanna" value="{{patrajari_object.khadanna}}">
                     </div>
                     <div class="col-md-3">
                         <label for="" class="form-label cm">प्र. पिउने पानी</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="प्र. पिउने पानी" name="water" value="{{khadya_object.water}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="प्र. पिउने पानी" name="water" value="{{patrajari_object.water}}">
                     </div>
                 </div>
                 <div class="row mb-4">
                 <div class="col-md-3">
                         <label for="" class="form-label cm">गुलियो पदार्थ</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="गुलियो पदार्थ" name="sweets" value="{{khadya_object.sweets}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="गुलियो पदार्थ" name="sweets" value="{{patrajari_object.sweets}}">
                 </div>
 
                     <div class="col-md-3">
                         <label for="" class="form-label cm">कन्फेक्सनरी</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="कन्फेक्सनरी" name="confectionery" value="{{khadya_object.confectionery}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="कन्फेक्सनरी" name="confectionery" value="{{patrajari_object.confectionery}}">
                     </div>
 
                     <div class="col-md-3">
                         <label for="" class="form-label cm">मासु तथा मासुजन्य</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="मासु तथा मासुजन्य" name="meat" value="{{khadya_object.meat}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="मासु तथा मासुजन्य" name="meat" value="{{patrajari_object.meat}}">
                     </div>
                     <div class="col-md-3">
                         <label for="" class="form-label cm">दाना</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="दाना" name="grain" value="{{khadya_object.grain}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="दाना" name="grain" value="{{patrajari_object.grain}}">
                     </div>
                 </div>
                 <div class="row">
                 <div class="col-md-3">
                         <label for="" class="form-label cm">अन्य</label>
-                        <input type="number" min="0" class="form-control cm" placeholder="अन्य" name="others" value="{{khadya_object.others}}">
+                        <input type="number" min="0" class="form-control cm" placeholder="अन्य" name="others" value="{{patrajari_object.others}}">
                 </div>
 
                     
@@ -130,7 +130,6 @@
 
     </form> 
 
-    
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -146,97 +145,5 @@
 
     <script src="../datepicker/nepali-date-picker.min.js"></script>
     <script src="../../js/script.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.mySelect').select2({
-                placeholder: 'Select'
-            });
-        });
 
-        $(document).ready(function () {
-            $('.multipleselect').select2({
-                closeOnSelect: false,
-                placeholder: 'Select'
-            });
-        });
-
-
-        $(document).ready(function () {
-            var successAlert = $(".alert");
-
-            if (successAlert.length > 0) {
-                setTimeout(function () {
-                    successAlert.alert('close');
-                }, 5000);
-            }
-        });
-
-        jQuery(document).ready(function() {
-            $('.date-picker').nepaliDatePicker();
-        })
-
-
-
-        function previewImages(event) {
-        var previewContainer = document.getElementById('previewContainer');
-        previewContainer.innerHTML = '';
-        var files = event.target.files;
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                var image = document.createElement('img');
-                image.src = e.target.result;
-                image.classList.add('previewImage');
-                previewContainer.appendChild(image);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-
-
-
-
-
-    $('#select_box').change(function () {
-        var select1 = $(this).find(':selected').val();
-        $(".hide").hide();
-        $('#' + select1).show();
-    }).change()
-
-    $('#office-selection').change(function () {
-        var select2 = $(this).find(':selected').val();
-        $(".hide").hide();
-        if(select2==5){
-            $("#1").show();
-            $('#import-export').show();
-        }else if(select2==6){
-            $("#1").show();
-            $('#division-office').show();
-        }else if(select2==7){
-            $("#1").show();
-            $('#food-office').show();
-        }else if(select2==8 || select2==9 || select2==10 || select2==11){
-            $("#1").show();
-        }
-    }).change()
-
-
-
-    $(document).ready(function(){
-        $('#addNew').click(function(){
-            var newElement = $('.field-container:last').clone();
-            $(newElement).insertAfter(".field-container:last");
-        });
-    });
-
-
-
-
-
-
-
-
-    </script>
-
-{% endblock %}
+    {% endblock %}

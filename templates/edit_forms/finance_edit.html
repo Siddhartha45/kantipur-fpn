@@ -7,15 +7,23 @@
             <a href="" class="nav-icon me-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
-            निरीक्षण अनुगमन विवरण <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+            मासिक वित्तिय विवरण <span class="sub-nav ms-2"> > वित्तिय सारांश</span>
         </h3>
     </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
         {% csrf_token %}
         <div class="col-md-12">
-            <h3 class="create-form-heading">नया इन्ट्री</h3>
+            <h3 class="create-form-heading">वित्तिय सारांश</h3>
         </div>
 
         <div class="field-container mb-4">
@@ -32,62 +40,60 @@
 
                 <div class="col-md-4">
                     <label for="" class="form-label cm">आर्थिक वर्ष</label>
-                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_year}}" name="name" disabled>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="name" disabled>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <div class="col-md-12 heading-cm">बार्षिक बजेट</div>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="" class="form-label cm">पुँजीगत</label>
+                    <input type="number" step="0.01" min="0" class="form-control cm" placeholder="रु." name="yearly_pujigat" value="{{finance_object.yearly_pujigat}}">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="" class="form-label cm">चालु तर्फ</label>
+                    <input type="number" step="0.01" min="0" class="form-control cm" placeholder="रु. " name="yearly_chalu" value="{{finance_object.yearly_chalu}}">
                 </div>
             </div>
         </div>
 
         <div class="row mb-3">
-            <div class="col-md-12 heading-cm">महिना अनुसार डेटा हल्नुहोस्</div>
+            <div class="col-md-12 heading-cm">मासिक बजेट</div>
         </div>
 
-
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header cm">
-                <button class="accordion-button cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    {{anugaman_object.get_type_display}}
-                </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                <div class="accordion-body">
-                    <div class="row mb-4">
-                        <div class="col-md-4">
-                                <label for="" class="form-label cm">पटक </label>
-                                <input type="number" min="0" class="form-control cm" placeholder=" पटक" name="patak" value="{{anugaman_object.patak}}">
-                        </div>
-
-                            <div class="col-md-4">
-                                <label for="" class="form-label cm">संख्या</label>
-                                <input type="number" min="0" class="form-control cm" placeholder="संख्या" name="sankhya" value="{{anugaman_object.sankhya}}">
-                            </div>
-                            <div class="col-md-4">
-                            <label for="" class="form-label cm">हालसम्मको प्रगति</label>
-                            <input type="number" min="0" class="form-control cm" placeholder="हालसम्मको प्रगति" name="pragati" value="{{anugaman_object.pragati}}">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-md-12">
-                            <label for="" class="form-label cm">कैफियत</label>
-                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="kaifiyat">{{anugaman_object.kaifiyat}}</textarea>
-                        </div>
-                        </div>
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">महिनाको खर्च (पुँजीगत)</label>
+                    <input type="number" step="0.01" min="0" class="form-control cm" placeholder="रु." name="monthly_pujigat" value="{{finance_object.monthly_pujigat}}">
                 </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm"> महिनाको खर्च (चालु )</label>
+                    <input type="number" step="0.01" min="0" class="form-control cm" placeholder="रु. " name="monthly_chalu" value="{{finance_object.monthly_chalu}}">
                 </div>
-        </div>
 
-        
-
-
-        <div class="row mt-3">
-            <div class="col-md-12 text-end">
-                <button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm"> महिनाको राजस्वो</label>
+                    <input type="number" step="0.01" min="0" class="form-control cm" placeholder="रु. " name="monthly_rajaswo" value="{{finance_object.monthly_rajaswo}}">
+                </div>
             </div>
         </div>
 
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end"><button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button></div>
+        </div>
+
     </form> 
-    
-    
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
@@ -180,12 +186,15 @@
 
 
 
-    $(document).ready(function(){
-        $('#addNew').click(function(){
-            var newElement = $('.field-container:last').clone();
-            $(newElement).insertAfter(".field-container:last");
-        });
-    });
+
+
+
+
+
+
+
 
     </script>
+
+
 {% endblock %}

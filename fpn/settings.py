@@ -140,3 +140,6 @@ AUTHENTICATION_BACKENDS = [
 
 """redirects unauthenticated users to login page"""
 LOGIN_URL = 'login'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -48,6 +48,15 @@ urlpatterns = [
     path('edit/hotel/<int:id>/', views.hotel_edit, name="hotel-edit"),
     path('edit/khadya/<int:id>/', views.khadya_edit, name="khadya-edit"),
     path('edit/prayogsala/<int:id>/', views.prayogsala_edit, name="prayogsala-edit"),
+    path('edit/rbpa/<int:id>/', views.rbpa_edit, name="rbpa-edit"),
+    path('edit/import-export/<int:id>/', views.importexport_edit, name="importexport-edit"),
+    path('edit/gunasho/<int:id>/', views.gunasho_edit, name="gunasho-edit"),
+    path('edit/patrakar/<int:id>/', views.patrakar_edit, name="patrakar-edit"),
+    path('edit/patrajari/<int:id>/', views.patrajari_edit, name="patrajari-edit"),
+    path('edit/renew/<int:id>/', views.renew_edit, name="renew-edit"),
+    path('edit/udyog/<int:id>/', views.udyog_edit, name="udyog-edit"),
+    path('edit/finance/<int:id>/', views.finance_edit, name="finance-edit"),
+    path('edit/monthly/<int:id>/', views.monthly_edit, name="monthly-edit"),
     #delete path
     path('anugaman/delete/<int:id>/', views.anugaman_report_delete, name="anugaman-delete")
 ]

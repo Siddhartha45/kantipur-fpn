@@ -1,0 +1,161 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+        </h3>
+    </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+
+        
+        <div class="col-md-12">
+            <h3 class="create-form-heading">नया इन्ट्री</h3>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यालयको नाम</label>
+                    <input type="text" class="form-control cm" placeholder="" value="{{user.office}}" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">मिति</label>
+                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" disabled>
+                </div>
+                
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_year}}" disabled>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mb-3">
+            <div class="col-md-12 heading-cm">डेटा उल्लेख गर्नुहोस</div>
+        </div>
+
+
+        <div class="field-container mb-4">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यक्रम संचालन मिति</label>
+                    <input type="text" class="form-control cm date-picker" data-single="1" placeholder="कार्यक्रम संचालन मिति" name="miti" value="{{patrakar_object.miti}}">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यक्रम संचालन अवधि</label>
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संचालन अवधि" name="abadhi" value="{{patrakar_object.abadhi}}">
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यक्रमको नाम</label>
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रमको नाम" name="naam" value="{{patrakar_object.naam}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यक्रम संचालन स्थान</label>
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संचालन स्थान" name="sthan" value="{{patrakar_object.sthan}}">
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">महिला सहभागी संख्या</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="महिला सहभागी संख्या" name="m_sankhya" value="{{patrakar_object.m_sankhya}}">
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">पुरुष सहभागी संख्या</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="पुरुष सहभागी संख्या" name="p_sankhya" value="{{patrakar_object.p_sankhya}}">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यक्रम संयोजक नाम</label>
+                    <input type="text" class="form-control cm" placeholder="कार्यक्रम संयोजक नाम" name="sanyojak" value="{{patrakar_object.sanyojak}}">
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यक्रम संयोजक फोन नं</label>
+                    <input type="text"  class="form-control cm" placeholder="कार्यक्रम संयोजक फोन नं" name="phone" value="{{patrakar_object.phone}}">
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">प्रशिक्षक</label>
+                    <input type="text" class="form-control cm" placeholder="प्रशिक्षक" name="prasikshak" value="{{patrakar_object.prasikshak}}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">उपस्थित निकायहरु</label>
+                    <textarea class="form-control cm" name="nikaya" id="" cols="30" rows="4">{{patrakar_object.nikaya}}</textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यक्रम/कार्यपत्रमा समेटिएका बिषयबस्तु</label>
+                    <textarea class="form-control cm" name="bisaya" id="" cols="30" rows="4">{{patrakar_object.bisaya}}</textarea>
+                </div>
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कैफियत</label>
+                    <textarea class="form-control cm" name="kaifiyat" id="" cols="30" rows="4">{{patrakar_object.kaifiyat}}</textarea>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end">
+                <button type="submit" class="btn btn-primary">पेश गर्नुहोस</button>
+            </div>
+        </div>
+
+    </form> 
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script>
+        
+        $(document).ready(function() {
+            $('.date-picker').nepaliDatePicker();
+        })
+
+        $(document).ready(function(){
+            $('#addNew').click(function(){
+                var newElement = $('.field-container:last').clone();
+                $(newElement).insertAfter(".field-container:last");
+            });
+        });
+
+
+    </script>
+
+{% endblock %}

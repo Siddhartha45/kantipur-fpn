@@ -50,7 +50,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header cm">
                 <button class="accordion-button cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    दुध तथा दुध पदार्थ
+                    {{prayogsala_object.get_type_display}}
                 </button>
                 </h2>
                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
@@ -63,7 +63,7 @@
                     </label>
                     <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (नमुना संख्या)
 
-                        " name="b_sankhya" value="{{object.b_sankhya}}">
+                        " name="b_sankhya" value="{{prayogsala_object.b_sankhya}}">
                 </div>
                     <div class="col-md-3">
                         <label for="" class="form-label cm">बजारबाट नमुना संकलन (प्रतिकुल)
@@ -71,7 +71,7 @@
                     </label>
                         <input type="number" min="0" class="form-control cm" placeholder="बजारबाट नमुना संकलन (प्रतिकुल)
 
-                        " name="b_pratikul" value="{{object.b_pratikul}}">
+                        " name="b_pratikul" value="{{prayogsala_object.b_pratikul}}">
                     </div>
 
                     <div class="col-md-3">
@@ -80,7 +80,7 @@
                     </label>
                         <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (नमुना संख्या)
 
-                        " name="u_sankhya" value="{{object.u_sankhya}}">
+                        " name="u_sankhya" value="{{prayogsala_object.u_sankhya}}">
                     </div>
                     
                     <div class="col-md-3">
@@ -89,7 +89,7 @@
                     </label>
                     <input type="number" min="0" class="form-control cm" placeholder=" उद्योगबाट ब्याच प्रमाणिकरण (प्रतिकुल)
 
-                    " name="u_pratikul" value="{{object.u_pratikul}}">
+                    " name="u_pratikul" value="{{prayogsala_object.u_pratikul}}">
                 </div>
                 </div>
                 <div class="row mb-3">
@@ -99,26 +99,26 @@
                     </label>
                         <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                        " name="ay_sankhya" value="{{object.ay_sankhya}}">
+                        " name="ay_sankhya" value="{{prayogsala_object.ay_sankhya}}">
                 </div>
                 <div class="col-md-3">
                     <label for="" class="form-label cm">आयात निर्यात (प्रतिकुल)
                     </label>
                     <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                    " name="ay_pratikul" value="{{object.ay_pratikul}}">
+                    " name="ay_pratikul" value="{{prayogsala_object.ay_pratikul}}">
                 </div>
                 <div class="col-md-3">
                 <label for="" class="form-label cm">भन्सार मुद्दा (नमुना संख्या)
                 </label>
                 <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                 
-                " name="v_sankhya" value="{{object.v_sankhya}}">
+                " name="v_sankhya" value="{{prayogsala_object.v_sankhya}}">
             </div>
             <div class="col-md-3">
                     <label for="" class="form-label cm">भन्सार मुद्दा  (प्रतिकुल)
                     </label>
                     <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                    " name="v_pratikul" value="{{object.v_pratikul}}">
+                    " name="v_pratikul" value="{{prayogsala_object.v_pratikul}}">
                 </div>
                 </div>
                 <div class="row mb-3">
@@ -128,26 +128,26 @@
                     </label>
                         <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                        " name="k_sankhya" value="{{object.k_sankhya}}">
+                        " name="k_sankhya" value="{{prayogsala_object.k_sankhya}}">
                 </div>
                 <div class="col-md-3">
                     <label for="" class="form-label cm">कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य (प्रतिकुल)
                     </label>
                     <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                    " name="k_pratikul" value="{{object.k_pratikul}}">
+                    " name="k_pratikul" value="{{prayogsala_object.k_pratikul}}">
                 </div>
                 <div class="col-md-3">
                 <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित (नमुना संख्या)
                 </label>
                 <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                 
-                " name="a_sankhya" value="{{object.a_sankhya}}">
+                " name="a_sankhya" value="{{prayogsala_object.a_sankhya}}">
             </div>
             <div class="col-md-3">
                     <label for="" class="form-label cm">अनुज्ञा पत्र संग सम्बन्धित  (प्रतिकुल)
                     </label>
                     <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा  (प्रतिकुल)
-                    " name="a_pratikul" value="{{object.a_pratikul}}">
+                    " name="a_pratikul" value="{{prayogsala_object.a_pratikul}}">
                 </div>
                 </div>
                 <div class="row mb-3">
@@ -157,26 +157,26 @@
                     </label>
                         <input type="number" min="0" class="form-control cm" placeholder="आयात निर्यात  (नमुना संख्या)
 
-                        " name="kul_sankhya" value="{{object.kul_sankhya}}">
+                        " name="kul_sankhya" value="{{prayogsala_object.kul_sankhya}}">
                 </div>
                 <div class="col-md-3">
                     <label for="" class="form-label cm">कुल  जम्मा  (प्रतिकुल)
                     </label>
                     <input type="number" min="0" class="form-control cm" placeholder=" आयात निर्यात (प्रतिकुल)
-                    " name="kul_pratikul" value="{{object.kul_pratikul}}">
+                    " name="kul_pratikul" value="{{prayogsala_object.kul_pratikul}}">
                 </div>
                 <div class="col-md-3">
                 <label for="" class="form-label cm">चेक सेम्पल (नमुना संख्या)</label>
                 <input type="number" min="0" class="form-control cm" placeholder="भन्सार मुद्दा (नमुना संख्या)
                 
-                " name="sample" value="{{object.sample}}">
+                " name="sample" value="{{prayogsala_object.sample}}">
             </div>
             
                 </div>
                 <div class="row">
                 <div class="col-md-12">
                     <label for="" class="form-label cm">कैफियत</label>
-                    <textarea type="text" class="form-control cm" placeholder="कैफियत" name="kaifiyat">{{object.kaifiyat}}</textarea>
+                    <textarea type="text" class="form-control cm" placeholder="कैफियत" name="kaifiyat">{{prayogsala_object.kaifiyat}}</textarea>
                 </div>
 
         </div>

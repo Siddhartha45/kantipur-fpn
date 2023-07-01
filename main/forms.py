@@ -868,55 +868,50 @@ class PrayogsalaEditForm(forms.ModelForm):
 class RbpaEditForm(forms.ModelForm):
     class Meta:
         model = DetailRbpa
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
         
         
 class AayatNiryatEditForm(forms.ModelForm):
     class Meta:
         model= AayatNiryat
-        exclude = ["created_on_np_date",'type']
+        exclude = ["created_on_np_date", "created_by", 'type']
         
 class UjuriGunasoEditForm(forms.ModelForm):
     class Meta:
         model=UjuriGunaso
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
         
         
 class KhadyaPrasodhanEditForm(forms.ModelForm):
     class Meta:
         model=KhadyaPrasodhan
         
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
         
 class BittiyaBibaranEditForm(forms.ModelForm):
     class Meta:
         model=BittiyaBibaran
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
         
         
 class PragatiBibaranEditForm(forms.ModelForm):
     class Meta:
         model=PragatiBibaran
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
         
 class UdyogSifarisEditForm(forms.ModelForm):
     class Meta:
         model=UdyogSifaris
-        exclude = ["created_on_np_date",]
- 
-        
-
-        
-        
+        exclude = ["created_on_np_date", "created_by"]
         
 class PatraNabikaranEditForm(forms.ModelForm):
     class Meta:
         model=PatraNabikaran
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
 
 class PatraJariEditForm(forms.ModelForm):
     class Meta:
         model=PatraJari
-        exclude = ["created_on_np_date",]
+        exclude = ["created_on_np_date", "created_by"]
         
     

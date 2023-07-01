@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from fpn.email_normalization import normalize_email
+from django.contrib.auth.views import PasswordResetView
 
 
 #---------------------------------------------------------AUTHENTICATION PART---------------------------------------------------------------
@@ -200,3 +201,20 @@ def progress_amount(request):
     return render(request, 'amount.html')
 
 
+
+#customizing the django default passwordresetview to check if users email exist in database before sending mail
+class CustomPasswordResetView(PasswordResetView):
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        # Check if the email exists in the database
+        if not CustomUser.objects.filter(email=email).exists():
+            # Display an error message
+            messages.error(self.request, 'Email does not exist.')
+            return self.form_invalid(form)
+        return super().form_valid(form) 
+
+
+
+def forget_password(request):
+    return render(request, 'user/forgetpassword.html')
+    

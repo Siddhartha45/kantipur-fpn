@@ -1,0 +1,261 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            आयात निर्यात गुण प्रमाणिकरण<span class="sub-nav ms-2"> > नया इन्ट्री</span>
+        </h3>
+    </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data" id="myForm">
+        <div class="col-md-12">
+            {% csrf_token %}
+            <h3 class="create-form-heading">नया इन्ट्री</h3>
+        </div>
+
+        <div class="field-container mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यालयको नाम</label>
+                    <input type="text" class="form-control cm" placeholder=""
+                        value="{{user.office}}" name="name"
+                        disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">मिति</label>
+                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" name="name"
+                        disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="name"
+                        disabled>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <h2 class="heading-cm "> खाद्य नमुना विश्लेषण (खाद्य तथा दाना ऐन/नियम बमोजिम संकलित)</h2>
+            <div class="accordion-item">
+                <h2 class="accordion-header cm">
+                    <button class="accordion-button cm" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        {{ie_object.get_type_display}}
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">इकाई
+                                </label>
+                                <select name="m_ekai" id="" class="form-control form-select kit-form-control cm">
+                                    {% if ie_object.ekai %}
+                                        <option value="{{k_object.ekai}}" selected>{{ ie_object.get_ekai_display }}</option>
+                                    {% else %}
+                                        <option value="" selected disabled>इकाई</option>
+                                    {% endif %}
+                                    {% for key,value in data.ekai %}
+                                        {% if key != ie_object.ekai %}
+                                            <option value="{{key}}">{{value}}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">बार्षिक लक्ष्य
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="बार्षिक लक्ष्य" name="b_lakshya" value="{{ie_object.b_lakshya}}">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">चौमासिक लक्ष्य
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक लक्ष्य"
+                                    name="c_lakshya" value="{{ie_object.c_lakshya}}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">चौमासिक प्रगति
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="चौमासिक प्रगति"
+                                    name="c_pragati" value="{{ie_object.c_pragati}}">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">महिनाको प्रगति
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिनाको प्रगति " name="m_pragati" value="{{ie_object.m_pragati}}">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">प्रतिकूल नमूना संख्या
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल नमूना संख्या" name="pratikul_n" value="{{ie_object.pratikul_n}}">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">प्रतिकूल पारामिटर
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="प्रतिकूल पारामिटर" name="pratikul_p" value="{{ie_object.pratikul_p}}">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हाल सम्मको प्रगति
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति"
+                                    name="h_pragati" value="{{ie_object.h_pragati}}">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="" class="form-label cm">हाल सम्मको प्रगति प्रतिशत
+                                </label>
+                                <input type="number" min="0" class="form-control cm" placeholder="हाल सम्मको प्रगति प्रतिशत" name="h_pratisat" value="{{ie_object.h_pratisat}}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="" class="form-label cm">कैफियत</label>
+                                <textarea type="text" class="form-control cm" placeholder="कैफियत"
+                                    name="kaifiyat">{{ie_object.kaifiyat}}</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end">
+                <button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button>
+            </div>
+        </div>
+
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.mySelect').select2({
+                placeholder: 'Select'
+            });
+        });
+
+        $(document).ready(function () {
+            $('.multipleselect').select2({
+                closeOnSelect: false,
+                placeholder: 'Select'
+            });
+        });
+
+
+        $(document).ready(function () {
+            var successAlert = $(".alert");
+
+            if (successAlert.length > 0) {
+                setTimeout(function () {
+                    successAlert.alert('close');
+                }, 5000);
+            }
+        });
+
+        jQuery(document).ready(function () {
+            $('.date-picker').nepaliDatePicker();
+        })
+
+
+
+        function previewImages(event) {
+            var previewContainer = document.getElementById('previewContainer');
+            previewContainer.innerHTML = '';
+            var files = event.target.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var image = document.createElement('img');
+                    image.src = e.target.result;
+                    image.classList.add('previewImage');
+                    previewContainer.appendChild(image);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+
+
+
+
+        $('#select_box').change(function () {
+            var select1 = $(this).find(':selected').val();
+            $(".hide").hide();
+            $('#' + select1).show();
+        }).change()
+
+        $('#office-selection').change(function () {
+            var select2 = $(this).find(':selected').val();
+            $(".hide").hide();
+            if (select2 == 5) {
+                $("#1").show();
+                $('#import-export').show();
+            } else if (select2 == 6) {
+                $("#1").show();
+                $('#division-office').show();
+            } else if (select2 == 7) {
+                $("#1").show();
+                $('#food-office').show();
+            } else if (select2 == 8 || select2 == 9 || select2 == 10 || select2 == 11) {
+                $("#1").show();
+            }
+        }).change()
+
+
+
+        $(document).ready(function () {
+            $('#addNew').click(function () {
+                var newElement = $('.field-container:last').clone();
+                $(newElement).insertAfter(".field-container:last");
+            });
+        });
+
+
+
+
+
+
+
+
+    </script>
+
+{% endblock %}

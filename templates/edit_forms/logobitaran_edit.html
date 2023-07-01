@@ -53,7 +53,7 @@
             <div class="accordion-item">
                 <h2 class="accordion-header cm">
                 <button class="accordion-button cm" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    {{object.get_type_display}}
+                    {{hotel_object.get_type_display}}
                 </button>
                 </h2>
                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
@@ -61,21 +61,21 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                                 <label for="" class="form-label cm">महिना, चौमासिक प्रगति </label>
-                                <input type="number" min="0" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="c_pragati" value="{{object.c_pragati}}">
+                                <input type="number" min="0" class="form-control cm" placeholder=" महिना, चौमासिक प्रगति" name="c_pragati" value="{{hotel_object.c_pragati}}">
                         </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">यस आ ब को हालसम्मको प्रगति
                             </label>
                                 <input type="number" min="0" class="form-control cm" placeholder="यस आ ब को हालसम्मको प्रगति
-                                " name="h_pragati1" value="{{object.h_pragati1}}">
+                                " name="h_pragati1" value="{{hotel_object.h_pragati1}}">
                             </div>
 
                             <div class="col-md-4">
                                 <label for="" class="form-label cm">बिगत बर्षहरुदेखि हालसम्मको प्रगति
                             </label>
                                 <input type="number" min="0" class="form-control cm" placeholder="बिगत बर्षहरुदेखि हालसम्मको प्रगति
-                                " name="h_pragati2" value="{{object.h_pragati2}}">
+                                " name="h_pragati2" value="{{hotel_object.h_pragati2}}">
                             </div>
                         
                             
@@ -83,7 +83,7 @@
                         <div class="row">
                         <div class="col-md-12">
                             <label for="" class="form-label cm">कैफियत</label>
-                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="kaifiyat">{{object.kaifiyat}}</textarea>
+                            <textarea type="text" class="form-control cm" placeholder="कैफियत" name="kaifiyat">{{hotel_object.kaifiyat}}</textarea>
                         </div>
                         </div>
                 </div>
