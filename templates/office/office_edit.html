@@ -12,6 +12,13 @@
         <p><a href=""><i class="fa-regular fa-eye"></i>Update Office</a></p>
     </div>
 
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
@@ -49,7 +56,7 @@
                 <label for="" class="form-label cm">Office Category</label>
                 <select type="text" class="form-control form-select kit-form-control cm" placeholder="Select department category" value="{{office_object.category}}" name="category" id="select_box">
                     {% if office_object.category %}
-                        <option value="{{data.office}}" selected>{{ office_object.get_category_display }}</option>
+                        <option value="{{office_object.category}}" selected>{{ office_object.get_category_display }}</option>
                     {% else %}
                         <option value="" selected disabled>Select department category</option>
                     {% endif %}
@@ -64,6 +71,11 @@
             <div class="mb-3 col-md-6">
                 <label for="" class="form-label cm">Working Area</label>
                 <input type="text" class="form-control cm" placeholder="Enter working area" name="working_area" value="{{office_object.working_area}}">
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Contact Person</label>
+                <input type="text" class="form-control cm" placeholder="Enter contact person" name="contact_person" value="{{office_object.contact_person}}">
             </div>
         </div>
 

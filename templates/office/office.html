@@ -12,6 +12,13 @@
         <p><a href=""><i class="fa-regular fa-eye"></i>Create Office</a></p>
     </div>
 
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
 
     <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
         id="myForm">
@@ -57,6 +64,11 @@
             <div class="mb-3 col-md-6">
                 <label for="" class="form-label cm">Working Area</label>
                 <input type="text" class="form-control cm" placeholder="Enter working area" name="working_area" required>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Contact Person</label>
+                <input type="text" class="form-control cm" placeholder="Enter contact person" name="contact_person" required>
             </div>
         </div>
 

@@ -12,6 +12,7 @@ class Office(models.Model):
     address = models.CharField(max_length=255, unique=True)
     email = models.EmailField(blank=True, unique=True)
     contact_no = models.CharField(max_length=15, blank=True)
+    contact_person = models.CharField(max_length=255, blank=True)
     category = models.CharField(max_length=255, choices=commons.OFFICE_CHOICES)
     working_area = models.CharField(max_length=255)
     

@@ -18,7 +18,7 @@
                 </li>
     
                 
-                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' %}
+                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="{% url 'namuna' %}"><span class="material-symbols-outlined">
@@ -45,7 +45,7 @@
                 {% endif %}
     
                 
-                {% if request.user.department_category == 'FTDND' %}
+                {% if request.user.department_category == 'FTDND' or request.user.department_category == 'FO' %}
                 <li class="nav-item">
                 <a class="nav-link"
                     href="{% url 'namuna-bisleysan' %}"><span class="material-symbols-outlined">
@@ -55,7 +55,7 @@
                 </li>
                 {% endif %}
 
-            {% if request.user.department_category == 'NFFRL' %}
+            {% if request.user.department_category == 'NFFRL' or request.user.department_category == 'FO' %}
             <li class="nav-item">
                 <a class="nav-link"
                     href="{% url 'prayogsala-bisleysan' %}"><span class="material-symbols-outlined">
@@ -79,7 +79,7 @@
                         <div id="details-collapseregistration"
                             class="accordion-collapse details-collapseOne collapse">
                             <div class="accordion-body d-flex flex-column">
-                                {% if request.user.department_category == 'FFSQRD' %}
+                                {% if request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
                                 <a class="nav-link" href="{% url 'khadya1' %}">खाद्य तथा दाना अनुज्ञा पत्र जारी</a>
                                 <a class="nav-link" href="{% url 'khadya2' %}">खाद्य तथा दाना अनुज्ञा पत्र नविकरण</a>
                                 {% endif %}
@@ -90,7 +90,7 @@
                 </li>
     
                 
-                {% if request.user.department_category == 'IE' %}
+                {% if request.user.department_category == 'IE' or request.user.department_category == 'FO' %}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="{% url 'aayat' %}"><span class="material-symbols-outlined">
@@ -125,11 +125,11 @@
                                 <a class="nav-link" href="{% url 'detail-renew' %}">अनुज्ञापत्र नवकिरण</a>
                                 <a class="nav-link" href="{% url 'detail-udyog' %}">उद्योग सिफारिस</a>
                                 <a class="nav-link" href="{% url 'detail-anugaman' %}">अनुगमन निरीक्षण</a>
-                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' %}
+                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
                                 <a class="nav-link" href="{% url 'detail-mudha' %}">मुद्धा दायरी</a>
                                 {% endif %}
                                 <a class="nav-link" href="{% url 'detail-rbpa' %}">RBPR Analysis</a>
-                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' %}
+                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
                                 <a class="nav-link" href="{% url 'detail-gunasho' %}">उजुरी गुनासो</a>
                                 {% endif %}
                             </div>
@@ -137,7 +137,7 @@
                     </div>
                 </li>
 
-                {% if request.user.department_category == 'FTDND' %}
+                {% if request.user.department_category == 'FTDND' or request.user.department_category == 'FO' %}
                 <li class="nav-item">
                     <a class="nav-link"
                         href="{% url 'khadya-prasodhan' %}"><span class="material-symbols-outlined">

@@ -34,7 +34,17 @@ class UserEditForm(forms.ModelForm):
     """form for editing users details"""
     class Meta:
         model = CustomUser
-        fields = '__all__'
+        #exclude = ["office", "role", "department_category", "password"]
+        fields = ["username", "name", "email", "phone_number"]
+
+
+
+# class UserEditForm(forms.Form):
+#     username = forms.CharField()
+#     name = forms.CharField()
+#     email = forms.EmailField()
+#     phone_number = forms.CharField(required=False)
+    
 
 
 class OfficeForm(forms.ModelForm):

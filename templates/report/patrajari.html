@@ -113,8 +113,8 @@
 
                             
 
-                        <form class="action-btn-dlt" action="" method="post">
-                            
+                        <form class="action-btn-dlt" action="{% url 'patrajari-delete' id=d.id %}" method="post">
+                            {% csrf_token %}
 
                             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered confirmation-modal">

@@ -39,6 +39,8 @@ def user_logout(request):
 
 @login_required
 def user_create(request):
+    """for creating new users"""
+    
     data = {
         'role': commons.ROLE_CHOICES,
         'department_category': commons.DEPARTMENT_CHOICES,
@@ -92,6 +94,8 @@ def user_create(request):
 
 #left to do
 def user_edit(request, id):
+    """for updating users details"""
+    
     data = {
         'role': commons.ROLE_CHOICES,
         'department': commons.DEPARTMENT_CHOICES,
@@ -102,6 +106,21 @@ def user_edit(request, id):
     user_object = get_object_or_404(CustomUser, id=id)
     if request.method == 'POST':
         form = UserEditForm(request.POST, instance=user_object)
+        
+        new_email = request.POST.get("email")
+        normalized_email = normalize_email(new_email)
+        
+        new_username = request.POST.get('username')
+        l_new_username = new_username.lower().strip().replace(" ", "")
+            
+        if CustomUser.objects.exclude(id=user_object.id).filter(username=l_new_username).first():
+            messages.info(request, f'User with this username "{l_new_username}" already exists')
+            return redirect('user-edit', id=id)
+        
+        if CustomUser.objects.exclude(id=user_object.id).filter(email=normalized_email).first():
+            messages.info(request, f'User with this email "{normalized_email}" already exists')
+            return redirect('user-edit', id=id)
+        
         if form.is_valid():
             form.save()
             messages.success(request, "User Details Updated Successfully")
@@ -111,10 +130,12 @@ def user_edit(request, id):
     else:
         form = UserEditForm(instance=user_object)
     context = {'form': form, 'user_object': user_object, 'data': data}
-    return render(request, 'user/user_edit.html', context)
+    return render(request, 'user/useredit.html', context)
 
 
 def password_change(request, id):
+    """for changing users password"""
+    
     user_object = get_object_or_404(CustomUser, id=id)
     
     if request.method == 'POST':
@@ -150,6 +171,8 @@ def password_change(request, id):
 
 @login_required
 def user_list(request):
+    """list of users"""
+    
     users = CustomUser.objects.all()
     context = {'users': users}
     return render(request, 'user/userdisplay.html', context)
@@ -167,6 +190,8 @@ def user_profile(request, user_id):
 
 
 def user_delete(request, id):
+    """for deleting users"""
+    
     user_object = get_object_or_404(CustomUser, id=id)
     user_object.delete()
     messages.info(request, "User Deleted")
@@ -177,6 +202,8 @@ def user_delete(request, id):
 
 @login_required
 def create_office(request):
+    """for adding new offices"""
+    
     data = {
         'office': commons.OFFICE_CHOICES,
     }
@@ -185,7 +212,9 @@ def create_office(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'New Office Created')
-            return redirect('office/office-list')
+            return redirect('office-list')
+        else:
+            messages.error(request, "Please fill all the fields")
     else:
         form = OfficeForm()
     context = {'form': form, 'data': data}
@@ -194,18 +223,23 @@ def create_office(request):
 
 @login_required
 def office_list(request):
+    """for viewing offices lists"""
+    
     offices = Office.objects.all()
     context = {'offices': offices}
     return render(request, 'office/officetable.html', context)
 
 
 def office_edit(request, id):
+    """for editing office details"""
+    
     data = {
         'office': commons.OFFICE_CHOICES,
     }
     office_object = get_object_or_404(Office, id=id)
     if request.method == 'POST':
         form = OfficeForm(request.POST, instance=office_object)
+        print(form.data)
         if form.is_valid():
             form.save()
             messages.success(request, "Office Details Updated")
@@ -219,6 +253,8 @@ def office_edit(request, id):
 
 
 def office_delete(request, id):
+    """for deleting office"""
+    
     office_object = get_object_or_404(Office, id=id)
     office_object.delete()
     messages.info(request, "Office Deleted")
@@ -235,6 +271,7 @@ def progress_amount(request):
     return render(request, 'amount.html')
 
 
+#-----------------------------------------------------FOR RESETING USERS PASSWORD-------------------------------------------------------
 
 #customizing the django default passwordresetview to check if users email exist in database before sending mail
 class CustomPasswordResetView(PasswordResetView):
@@ -246,9 +283,3 @@ class CustomPasswordResetView(PasswordResetView):
             messages.error(self.request, 'Email does not exist.')
             return self.form_invalid(form)
         return super().form_valid(form) 
-
-
-
-def forget_password(request):
-    return render(request, 'user/forgetpassword.html')
-    

@@ -58,5 +58,18 @@ urlpatterns = [
     path('edit/finance/<int:id>/', views.finance_edit, name="finance-edit"),
     path('edit/monthly/<int:id>/', views.monthly_edit, name="monthly-edit"),
     #delete path
-    path('anugaman/delete/<int:id>/', views.anugaman_report_delete, name="anugaman-delete")
+    path('khadyaact/delete/<int:id>/', views.khadyaact_report_delete, name="khadyaact-delete"),
+    path('anugaman/delete/<int:id>/', views.anugaman_report_delete, name="anugaman-delete"),
+    path('hotel/delete/<int:id>/', views.hotel_report_delete, name="hotel-delete"),
+    path('khadya/delete/<int:id>/', views.khadyaact_report_delete, name="khadya-delete"),
+    path('prayogsala/delete/<int:id>/', views.prayogsala_report_delete, name="prayogsala-delete"),
+    path('rbpr/delete/<int:id>/', views.rbpa_report_delete, name="rbpa-delete"),
+    path('import-export/delete/<int:id>/', views.importexport_report_delete, name="import-export-delete"),
+    path('gunasho/delete/<int:id>/', views.gunasho_report_delete, name="gunasho-delete"),
+    path('patrakar/delete/<int:id>/', views.patrakar_report_delete, name="patrakar-delete"),
+    path('patrajari/delete/<int:id>/', views.patrajari_report_delete, name="patrajari-delete"),
+    path('renew/delete/<int:id>/', views.renew_report_delete, name="renew-delete"),
+    path('udyog/delete/<int:id>/', views.udyog_report_delete, name="udyog-delete"),
+    path('finance/delete/<int:id>/', views.finance_report_delete, name="finance-delete"),
+    path('monthly/delete/<int:id>/', views.monthly_report_delete, name="monthly-delete"),
 ]
