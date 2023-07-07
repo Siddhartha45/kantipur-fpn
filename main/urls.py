@@ -4,6 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('count/', views.progress_count, name="count"),
+    path('amount/', views.progress_amount, name="amount"),
     #forms path
     path('forms/namuna-bibaran', views.namuna_bibaran, name="namuna"),
     path('forms/anugaman-bibaran/', views.anugaman, name="anugaman"),
@@ -42,6 +44,10 @@ urlpatterns = [
     path('report/udyog/', views.udyog_report, name="udyog-report"),
     path('report/finance/', views.finance_report, name="finance-report"),
     path('report/monthly/', views.monthly_report, name="monthly-report"),
+    
+    #view path
+    path('detail/finance/<int:id>/', views.finance_view, name="finance-view"),
+    
     #edit path
     path('edit/khadyaact/<int:id>/', views.khadyaact_edit, name="namunabibaran-edit"),
     path('edit/anugaman/<int:id>/', views.anugaman_edit, name="anugaman-edit"),
@@ -72,4 +78,6 @@ urlpatterns = [
     path('udyog/delete/<int:id>/', views.udyog_report_delete, name="udyog-delete"),
     path('finance/delete/<int:id>/', views.finance_report_delete, name="finance-delete"),
     path('monthly/delete/<int:id>/', views.monthly_report_delete, name="monthly-delete"),
+    #remarks and verify path
+    path('finance/remarks/<int:id>/', views.finance_remarks, name="finance-remarks"),
 ]

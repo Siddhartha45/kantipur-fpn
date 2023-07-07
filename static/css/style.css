@@ -1862,3 +1862,20 @@ button.dt-button, div.dt-button, a.dt-button, input.dt-button{
 #report-container{
     display: none;
 }
+
+
+/*for verified and not verified*/
+.status-box {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: black;
+}
+
+.verified {
+    background-color: rgb(111, 203, 111);
+}
+
+.not-verified {
+    background-color: rgb(218, 97, 97);
+}

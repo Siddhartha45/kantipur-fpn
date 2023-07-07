@@ -20,9 +20,6 @@ urlpatterns = [
     path('office/list/', views.office_list, name="office-list"),
     path('office/edit/<int:id>/', views.office_edit, name="office-edit"),
     path('office/delete/<int:id>/', views.office_delete, name="office-delete"),
-    
-    path('count/', views.progress_count, name="count"),
-    path('amount/', views.progress_amount, name="amount"),
     #url paths for password resetting    
     path('password_reset/',CustomPasswordResetView.as_view(template_name='user/forgetpassword.html'), name='password_reset'),
     path('password_reset/done/',auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),

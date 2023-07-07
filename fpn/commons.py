@@ -137,3 +137,9 @@ KHARCHA_CHOICES = (
     ('P', 'पुँजीगत'),
     ('C', 'चालु'),
 )
+
+
+FORM_STATUS_CHOICES = (
+    ('ok', 'ok'),
+    ('pending', 'pending'),
+)

@@ -1,6 +1,7 @@
 from django.db import models
 from account.models import CustomUser
 
+
 import nepali_datetime
 
 
@@ -11,6 +12,9 @@ class FPNBaseModel(models.Model):
     created_on_np_date = models.CharField(max_length=10, blank=True, db_index=True)
     updated_on = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, related_name="%(class)ss")
+    is_verified = models.BooleanField(default=False)
+    is_rejected = models.BooleanField(default=False)
+    remarks = models.CharField(max_length=255, default="", null=True, blank=True)
 
     class Meta:
         abstract = True

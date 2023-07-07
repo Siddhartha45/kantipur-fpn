@@ -8,8 +8,8 @@ class Office(models.Model):
     """used as users identifier in the system"""
     
     created_at = models.DateTimeField(auto_now_add=True)
-    name = models.CharField(max_length=255)
-    address = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255, unique=True)
+    address = models.CharField(max_length=255)
     email = models.EmailField(blank=True, unique=True)
     contact_no = models.CharField(max_length=15, blank=True)
     contact_person = models.CharField(max_length=255, blank=True)

@@ -14,6 +14,8 @@ import nepali_datetime
 from django.contrib import messages
 from fpn.decorators import (all_required, fo_and_ie_required, fo_and_ffsqrd_required, fo_and_nffrl_required, fo_required,
                             do_and_ffsqrd_and_fo_required, fo_and_ftdnd_required)
+from account.models import CustomUser
+from django.http import JsonResponse
 
 
 #----------------------------------------------------------------------------------------------------------------------------------
@@ -23,6 +25,14 @@ from fpn.decorators import (all_required, fo_and_ie_required, fo_and_ffsqrd_requ
 def home(request):
     """view for dashboard"""
     return render(request, 'index.html')
+
+
+def progress_count(request):
+    return render(request, 'count.html')
+
+
+def progress_amount(request):
+    return render(request, 'amount.html')
 
 
 #------------------------------------------------------------FORMS PART BELOW -----------------------------------------------------------
@@ -1598,7 +1608,12 @@ def detail_gunasho(request):
 @login_required
 def khadyaact_report(request):
     """table list for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
-    data = NamunaBibaran.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = NamunaBibaran.objects.all()
+    else:
+        data = NamunaBibaran.objects.filter(created_by__in=user_office)
+    
     context = {'data': data}
     return render(request, 'report/khadyaact.html', context)
 
@@ -1633,7 +1648,11 @@ def khadyaact_report_delete(request, id):
 @login_required
 def anugaman_report(request):
     """table list for निरीक्षण अनुगमन विवरण"""
-    data = AnugamanBibaran.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = AnugamanBibaran.objects.all()
+    else:
+        data = AnugamanBibaran.objects.filter(created_by_in=user_office)
     # month = request.query_params.get("month", "")
     # if month:
     #     data = data.filter(created_on_np_date__regex=r"[\d]*-{month}-[\d]*".format(month=month))
@@ -1672,8 +1691,12 @@ def anugaman_report_delete(request, id):
 @login_required
 def hotel_report(request):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = Logobitaran.objects.all()
+    else:
+        data = Logobitaran.objects.filter(created_by__in=user_office)
     
-    data = Logobitaran.objects.all()
     context = {'data': data}
     return render(request, 'report/hotel.html', context)
 
@@ -1709,8 +1732,11 @@ def hotel_report_delete(request, id):
 @login_required
 def khadya_report(request):
     """table list for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
-    
-    data = NamunaBisleysan.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = NamunaBisleysan.objects.all()
+    else:
+        data = NamunaBisleysan.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/khadyanamuna.html', context)
 
@@ -1749,8 +1775,11 @@ def khadya_report_delete(request, id):
 @login_required
 def prayogsala_report(request):
     """table list for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
-    
-    data = PrayogsalaBisleysan.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = PrayogsalaBisleysan.objects.all()
+    else:
+        data = PrayogsalaBisleysan.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/prayogsala.html', context)
 
@@ -1786,8 +1815,11 @@ def prayogsala_report_delete(request, id):
 @login_required
 def rbpa_report(request):
     """table list for RBPA Analysis Report"""
-    
-    data = DetailRbpa.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = DetailRbpa.objects.all()
+    else:
+        data = DetailRbpa.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/rbpa.html', context)
 
@@ -1823,8 +1855,11 @@ def rbpa_report_delete(request, id):
 @login_required
 def importexport_report(request):
     """table list for आयात निर्यात गुण प्रमाणिकरण"""
-    
-    data = AayatNiryat.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = AayatNiryat.objects.all()
+    else:
+        data = AayatNiryat.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/importexport.html', context)
 
@@ -1863,8 +1898,11 @@ def importexport_report_delete(request, id):
 @login_required
 def gunasho_report(request):
     """table list for उजुरी/गुनासो ब्येवस्थापन"""
-    
-    data = UjuriGunaso.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = UjuriGunaso.objects.all()
+    else:
+        data = UjuriGunaso.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/gunasho.html', context)
 
@@ -1900,8 +1938,11 @@ def gunasho_report_delete(request, id):
 @login_required
 def patrakar_report(request):
     """table list for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
-    
-    data = KhadyaPrasodhan.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = KhadyaPrasodhan.objects.all()
+    else:
+        data = KhadyaPrasodhan.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/patrakar.html', context)
 
@@ -1937,8 +1978,11 @@ def patrakar_report_delete(request, id):
 @login_required
 def patrajari_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
-    
-    data = PatraJari.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = PatraJari.objects.all()
+    else:
+        data = PatraJari.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/patrajari.html', context)
 
@@ -1974,8 +2018,11 @@ def patrajari_report_delete(request, id):
 @login_required
 def renew_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
-    
-    data = PatraNabikaran.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = PatraNabikaran.objects.all()
+    else:
+        data = PatraNabikaran.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/renew.html', context)
 
@@ -2011,8 +2058,11 @@ def renew_report_delete(request, id):
 @login_required
 def udyog_report(request):
     """table list for उद्योग सिफारिस"""
-    
-    data = UdyogSifaris.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = UdyogSifaris.objects.all()
+    else:
+        data = UdyogSifaris.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/udyog.html', context)
 
@@ -2048,10 +2098,21 @@ def udyog_report_delete(request, id):
 @login_required
 def finance_report(request):
     """table list for मासिक वित्तिय विवरण"""
-    
-    data = BittiyaBibaran.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = BittiyaBibaran.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
+        data = BittiyaBibaran.objects.all()
+    else:
+        data = BittiyaBibaran.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/finance.html', context)
+
+
+def finance_view(request, id):
+    obj = get_object_or_404(BittiyaBibaran, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail_page/finance_detail.html', context)
 
 
 def finance_edit(request, id):
@@ -2079,14 +2140,35 @@ def finance_report_delete(request, id):
     return redirect('finance_report')
 
 
-#------------------------------------------------------working
+def finance_remarks(request, id):
+    obj = get_object_or_404(BittiyaBibaran, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('finance-report')
+    else:
+        messages.error(request, "Bad Request")
+        
+        
+#------------------------------------------------------मासिक प्रगति विवरण(list, edit, delete)-------------------------------------------------------
 
 
 @login_required
 def monthly_report(request):
     """table list for मासिक प्रगति विवरण"""
-    
-    data = PragatiBibaran.objects.all()
+    user_office = CustomUser.objects.filter(office=request.user.office)
+    if request.user.role == 'A':
+        data = PragatiBibaran.objects.all()
+    else:
+        data = PragatiBibaran.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/monthly.html', context)
 

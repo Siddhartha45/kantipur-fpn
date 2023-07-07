@@ -83,8 +83,19 @@ def do_and_ffsqrd_and_fo_required(view_func):
             request.user.is_authenticated and 
             request.user.department_category == 'DO' or
             request.user.department_category == 'FFSQRD' or
-            request.user.department_category == 'FO'
+            request.user.department_category == 'FO' or
+            request.user.role == 'A'
             ):
+            return view_func(request, *args, **kwargs)
+        else:
+            return redirect('home')
+    return wrap
+
+
+def user_login_check(view_func):
+    """restricts users for"""
+    def wrap(request, *args, **kwargs):
+        if not request.user.is_authenticated:
             return view_func(request, *args, **kwargs)
         else:
             return redirect('home')

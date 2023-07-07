@@ -8,11 +8,14 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from fpn.email_normalization import normalize_email
 from django.contrib.auth.views import PasswordResetView
+from fpn.decorators import user_login_check
+from django.http import JsonResponse
 
 
 #---------------------------------------------------------AUTHENTICATION PART---------------------------------------------------------------
 
 
+@user_login_check
 def user_login(request):
     if request.method == 'POST':
         email_or_username = request.POST['email']
@@ -261,16 +264,6 @@ def office_delete(request, id):
     return redirect('office-list')
 
 
-#--------------------------------------------------------------------------------------------------------------------------------------------
-
-def progress_count(request):
-    return render(request, 'count.html')
-
-
-def progress_amount(request):
-    return render(request, 'amount.html')
-
-
 #-----------------------------------------------------FOR RESETING USERS PASSWORD-------------------------------------------------------
 
 #customizing the django default passwordresetview to check if users email exist in database before sending mail
@@ -283,3 +276,4 @@ class CustomPasswordResetView(PasswordResetView):
             messages.error(self.request, 'Email does not exist.')
             return self.form_invalid(form)
         return super().form_valid(form) 
+
