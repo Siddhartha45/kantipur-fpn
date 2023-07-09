@@ -1610,12 +1610,20 @@ def khadyaact_report(request):
     """table list for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = NamunaBibaran.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = NamunaBibaran.objects.all()
     else:
         data = NamunaBibaran.objects.filter(created_by__in=user_office)
     
     context = {'data': data}
     return render(request, 'report/khadyaact.html', context)
+
+
+def khadyaact_view(request, id):
+    obj = get_object_or_404(NamunaBibaran, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail', context)
 
 
 def khadyaact_edit(request, id):
@@ -1642,6 +1650,23 @@ def khadyaact_report_delete(request, id):
     return redirect('khadya-act-report')
 
 
+def khadyaact_remarks(request, id):
+    obj = get_object_or_404(NamunaBibaran, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request,  "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('khadya-act-report')
+    else:
+        messages.error(request, "Bad Request")
+
 #----------------------------------------------निरीक्षण अनुगमन विवरण(list, edit, delete)----------------------------------------------------
 
 
@@ -1650,6 +1675,8 @@ def anugaman_report(request):
     """table list for निरीक्षण अनुगमन विवरण"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = AnugamanBibaran.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = AnugamanBibaran.objects.all()
     else:
         data = AnugamanBibaran.objects.filter(created_by_in=user_office)
@@ -1658,6 +1685,12 @@ def anugaman_report(request):
     #     data = data.filter(created_on_np_date__regex=r"[\d]*-{month}-[\d]*".format(month=month))
     context = {'data': data}
     return render(request, 'report/anugaman.html', context)
+
+
+def anugaman_view(request, id):
+    obj = get_object_or_404(AnugamanBibaran, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def anugaman_edit(request, id):
@@ -1685,6 +1718,24 @@ def anugaman_report_delete(request, id):
     return redirect('anugaman-report')
 
 
+def anugaman_remarks(request, id):
+    obj = get_object_or_404(AnugamanBibaran, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('anugaman-report')
+    else:
+        messages.error(request, "Bad Request")
+
+
 #--------------------------------------होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण(list, edit, delete)----------------------------------------
 
 
@@ -1693,12 +1744,20 @@ def hotel_report(request):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = Logobitaran.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = Logobitaran.objects.all()
     else:
         data = Logobitaran.objects.filter(created_by__in=user_office)
     
     context = {'data': data}
     return render(request, 'report/hotel.html', context)
+
+
+def hotel_view(request, id):
+    obj = get_object_or_404(Logobitaran, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def hotel_edit(request, id):
@@ -1723,7 +1782,25 @@ def hotel_report_delete(request, id):
     object = get_object_or_404(Logobitaran, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('hotel-edit')
+    return redirect('hotel-report')
+
+
+def hotel_remarks(request, id):
+    obj = get_object_or_404(Logobitaran, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('hotel-report')
+    else:
+        messages.error(request, "Bad Request")
 
 
 #----------------------------------------खाद्य तथा दाना नमुना विश्लेषण विवरण(list, edit, delete)----------------------------------------------
@@ -1734,11 +1811,19 @@ def khadya_report(request):
     """table list for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = NamunaBisleysan.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = NamunaBisleysan.objects.all()
     else:
         data = NamunaBisleysan.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/khadyanamuna.html', context)
+
+
+def khadya_view(request, id):
+    obj = get_object_or_404(NamunaBisleysan, id=id)
+    context = {'obj': obj}
+    return render(request, 'deatil', context)
 
 
 def khadya_edit(request, id):
@@ -1769,6 +1854,24 @@ def khadya_report_delete(request, id):
     return redirect('khadya-report')
 
 
+def khadya_remarks(request, id):
+    obj = get_object_or_404(NamunaBisleysan, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('khadya-report')
+    else:
+        messages.error(request, "Bad Request")
+
+
 #------------------------------------------प्रयोगशाला विश्लेषण प्रतिवेदन सारांश(list, edit, delete)------------------------------------------
 
 
@@ -1777,11 +1880,19 @@ def prayogsala_report(request):
     """table list for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = PrayogsalaBisleysan.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = PrayogsalaBisleysan.objects.all()
     else:
         data = PrayogsalaBisleysan.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/prayogsala.html', context)
+
+
+def prayogsala_view(request, id):
+    obj = get_object_or_404(PrayogsalaBisleysan, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def prayogsala_edit(request, id):
@@ -1806,7 +1917,25 @@ def prayogsala_report_delete(request, id):
     object = get_object_or_404(PrayogsalaBisleysan, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('prayogsala_report')
+    return redirect('prayogsala-report')
+
+
+def prayogsala_remarks(request, id):
+    obj = get_object_or_404(PrayogsalaBisleysan, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('prayogsala-report')
+    else:
+        messages.error(request, "Bad Request")
 
 
 #------------------------------------------------RBPR Analysis Report(list, edit, delete)-------------------------------------------
@@ -1817,11 +1946,19 @@ def rbpa_report(request):
     """table list for RBPA Analysis Report"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = DetailRbpa.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = DetailRbpa.objects.all()
     else:
         data = DetailRbpa.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/rbpa.html', context)
+
+
+def rbpa_view(request, id):
+    obj = get_object_or_404(DetailRbpa, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def rbpa_edit(request, id):
@@ -1846,7 +1983,25 @@ def rbpa_report_delete(request, id):
     object = get_object_or_404(DetailRbpa, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('rbpa_report')
+    return redirect('rbpa-report')
+
+
+def rbpa_remarks(request, id):
+    obj = get_object_or_404(DetailRbpa, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('rbpa-report')
+    else:
+        messages.error(request, "Bad Request")
 
 
 #-------------------------------------------------उजुरी/गुनासो ब्येवस्थापन(list, edit, delete)---------------------------------------
@@ -1857,11 +2012,19 @@ def importexport_report(request):
     """table list for आयात निर्यात गुण प्रमाणिकरण"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = AayatNiryat.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = AayatNiryat.objects.all()
     else:
         data = AayatNiryat.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/importexport.html', context)
+
+
+def importexport_view(request, id):
+    obj = get_object_or_404(AayatNiryat, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def importexport_edit(request, id):
@@ -1889,7 +2052,25 @@ def importexport_report_delete(request, id):
     object = get_object_or_404(AayatNiryat, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('importreport_edit')
+    return redirect('import-export-report')
+
+
+def importexport_remarks(request, id):
+    obj = get_object_or_404(AayatNiryat, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('import-export-report')
+    else:
+        messages.error(request, "Bad Request")
     
 
 #------------------------------------------------working(list, edit, delete)-----------------------------------------------------
@@ -1900,11 +2081,19 @@ def gunasho_report(request):
     """table list for उजुरी/गुनासो ब्येवस्थापन"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = UjuriGunaso.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = UjuriGunaso.objects.all()
     else:
         data = UjuriGunaso.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/gunasho.html', context)
+
+
+def gunasho_view(request, id):
+    obj = get_object_or_404(UjuriGunaso, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def gunasho_edit(request, id):
@@ -1929,7 +2118,25 @@ def gunasho_report_delete(request, id):
     object = get_object_or_404(UjuriGunaso, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('gunasho_report')
+    return redirect('gunasho-report')
+
+
+def gunasho_remarks(request, id):
+    obj = get_object_or_404(UjuriGunaso, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('gunasho-report')
+    else:
+        messages.error(request, "Bad Request")
     
 
 #--------------------------------------------खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि-----------------------------------
@@ -1940,11 +2147,19 @@ def patrakar_report(request):
     """table list for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = KhadyaPrasodhan.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = KhadyaPrasodhan.objects.all()
     else:
         data = KhadyaPrasodhan.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/patrakar.html', context)
+
+
+def patrakar_view(request, id):
+    obj = get_object_or_404(KhadyaPrasodhan, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def patrakar_edit(request, id):
@@ -1969,7 +2184,25 @@ def patrakar_report_delete(request, id):
     object = get_object_or_404(KhadyaPrasodhan, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('patrakar_report')
+    return redirect('patrakar-report')
+
+
+def patrakar_remarks(request, id):
+    obj = get_object_or_404(KhadyaPrasodhan, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('patrakar-report')
+    else:
+        messages.error(request, "Bad Request")
     
     
 #---------------------------------------------------------खाद्य तथा दाना अनुज्ञा पत्र जारी-------------------------------------------------
@@ -1980,11 +2213,19 @@ def patrajari_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = PatraJari.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = PatraJari.objects.all()
     else:
         data = PatraJari.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/patrajari.html', context)
+
+
+def patrajari_view(request, id):
+    obj = get_object_or_404(PatraJari, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def patrajari_edit(request, id):
@@ -2009,7 +2250,25 @@ def patrajari_report_delete(request, id):
     object = get_object_or_404(PatraJari, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('patrajari_report')
+    return redirect('patrajari-report')
+
+
+def patrajari_remarks(request, id):
+    obj = get_object_or_404(PatraJari, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('patrajari-report')
+    else:
+        messages.error(request, "Bad Request")
     
     
 #----------------------------------------------------------खाद्य तथा दाना अनुज्ञा पत्र नविकरण
@@ -2020,11 +2279,19 @@ def renew_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = PatraNabikaran.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = PatraNabikaran.objects.all()
     else:
         data = PatraNabikaran.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/renew.html', context)
+
+
+def renew_view(request, id):
+    obj = get_object_or_404(PatraNabikaran, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def renew_edit(request, id):
@@ -2049,7 +2316,25 @@ def renew_report_delete(request, id):
     object = get_object_or_404(PatraNabikaran, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('renew_report')
+    return redirect('renew-report')
+
+
+def renew_remarks(request, id):
+    obj = get_object_or_404(PatraNabikaran, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('renew-report')
+    else:
+        messages.error(request, "Bad Request")
 
 
 #---------------------------------------------------------------उद्योग सिफारिस
@@ -2060,11 +2345,19 @@ def udyog_report(request):
     """table list for उद्योग सिफारिस"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = UdyogSifaris.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = UdyogSifaris.objects.all()
     else:
         data = UdyogSifaris.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/udyog.html', context)
+
+
+def udyog_view(request, id):
+    obj = get_object_or_404(UdyogSifaris, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail', context)
 
 
 def udyog_edit(request, id):
@@ -2089,7 +2382,25 @@ def udyog_report_delete(request, id):
     object = get_object_or_404(UdyogSifaris, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('udyog_report')
+    return redirect('udyog-report')
+
+
+def udyog_remarks(request, id):
+    obj = get_object_or_404(UdyogSifaris, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('udyog-report')
+    else:
+        messages.error(request, "Bad Request")
 
 
 #-------------------------------------------------------मासिक वित्तिय विवरण
@@ -2112,7 +2423,7 @@ def finance_report(request):
 def finance_view(request, id):
     obj = get_object_or_404(BittiyaBibaran, id=id)
     context = {'obj': obj}
-    return render(request, 'detail_page/finance_detail.html', context)
+    return render(request, 'detail/finance_detail.html', context)
 
 
 def finance_edit(request, id):
@@ -2166,11 +2477,19 @@ def monthly_report(request):
     """table list for मासिक प्रगति विवरण"""
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
+        data = PragatiBibaran.objects.filter(is_verified=True)
+    elif request.user.role == 'V':
         data = PragatiBibaran.objects.all()
     else:
         data = PragatiBibaran.objects.filter(created_by__in=user_office)
     context = {'data': data}
     return render(request, 'report/monthly.html', context)
+
+
+def monthly_view(request, id):
+    obj = get_object_or_404(PragatiBibaran, id=id)
+    context = {'obj': obj}
+    return render(request, 'detail/', context)
 
 
 def monthly_edit(request):
@@ -2199,8 +2518,25 @@ def monthly_report_delete(request, id):
     object = get_object_or_404(PragatiBibaran, id=id)
     object.delete()
     messages.success(request, "Report deleted")
-    return redirect('monthly_report')
+    return redirect('monthly-report')
 
+
+def finance_remarks(request, id):
+    obj = get_object_or_404(PragatiBibaran, id=id)
+    if request.method == 'POST':
+        updated_remarks = request.POST.get('remarks')
+        if 'reject' in request.POST:
+            obj.remarks = updated_remarks
+            obj.is_rejected = True
+            obj.save()
+            messages.success(request, "Remarks Sent (Rejected)")
+        elif 'verify' in request.POST:
+            obj.is_verified = True
+            obj.save()
+            messages.success(request, "Verified")
+        return redirect('monthly-report')
+    else:
+        messages.error(request, "Bad Request")
 
 
 
