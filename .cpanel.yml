@@ -1,6 +1,5 @@
 deployment:
   tasks:
-    # - export DEPLOYPATH=/home/radijmdg/fenfitnepal/ #this is demo
     - export DEPLOYPATH=/home/kantggjb/pme1/ #this is original
     - /bin/cp -r account $DEPLOYPATH
     - /bin/cp -r fpn $DEPLOYPATH

@@ -1623,7 +1623,7 @@ def khadyaact_report(request):
 def khadyaact_view(request, id):
     obj = get_object_or_404(NamunaBibaran, id=id)
     context = {'obj': obj}
-    return render(request, 'detail', context)
+    return render(request, 'detail/khadyaact_detail.html', context)
 
 
 def khadyaact_edit(request, id):
@@ -1679,7 +1679,7 @@ def anugaman_report(request):
     elif request.user.role == 'V':
         data = AnugamanBibaran.objects.all()
     else:
-        data = AnugamanBibaran.objects.filter(created_by_in=user_office)
+        data = AnugamanBibaran.objects.filter(created_by__in=user_office)
     # month = request.query_params.get("month", "")
     # if month:
     #     data = data.filter(created_on_np_date__regex=r"[\d]*-{month}-[\d]*".format(month=month))
@@ -1690,7 +1690,7 @@ def anugaman_report(request):
 def anugaman_view(request, id):
     obj = get_object_or_404(AnugamanBibaran, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/anugaman_detail.html', context)
 
 
 def anugaman_edit(request, id):
@@ -1757,7 +1757,7 @@ def hotel_report(request):
 def hotel_view(request, id):
     obj = get_object_or_404(Logobitaran, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/hotel_detail.html', context)
 
 
 def hotel_edit(request, id):
@@ -1823,7 +1823,7 @@ def khadya_report(request):
 def khadya_view(request, id):
     obj = get_object_or_404(NamunaBisleysan, id=id)
     context = {'obj': obj}
-    return render(request, 'deatil', context)
+    return render(request, 'detail/khadya_detail.html', context)
 
 
 def khadya_edit(request, id):

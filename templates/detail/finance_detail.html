@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load nepali_month_filter %}
 {% block container %}
 
                 <div class="add-heading">
@@ -22,18 +23,6 @@
                         <div class="col-md-2">
                             <p>Created at</p>
                             <h4>{{obj.created_on_np_date}}</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <p>Verified By</p>
-                            <h4>Verifier Name</h4>
-                        </div>
-                        <div class="col-md-2">
-                            <p>Verified at</p>
-                            <h4>Verification Date</h4>
-                        </div>
-
-                        <div class="col-md-4 log-status">
-                            <div class="pending">Pending</div>
                         </div>
                     </div>
                 </div>
@@ -60,6 +49,10 @@
                         <div class="col-md-4">
                             <h4>महिनाको राजस्वो</h4>
                             <p>{{obj.monthly_chalu}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>महिना</h4>
+                            <p>{{obj.created_on_np_date|slice:"5:7"|nepali_month_name}}</p>
                         </div>
                     </div>
                 </div>

@@ -46,6 +46,10 @@ urlpatterns = [
     path('report/monthly/', views.monthly_report, name="monthly-report"),
     
     #view path
+    path('detail/khadyaact/<int:id>/', views.khadyaact_view, name="khadyaact-view"),
+    path('detail/anugaman/<int:id>/', views.anugaman_view, name="anugaman-view"),
+    path('detail/hotel/<int:id>/', views.hotel_view, name="hotel-view"),
+    path('detail/khadya/<int:id>/', views.khadya_view, name="khadya-view"),
     path('detail/finance/<int:id>/', views.finance_view, name="finance-view"),
     
     #edit path
@@ -79,5 +83,8 @@ urlpatterns = [
     path('finance/delete/<int:id>/', views.finance_report_delete, name="finance-delete"),
     path('monthly/delete/<int:id>/', views.monthly_report_delete, name="monthly-delete"),
     #remarks and verify path
+    path('khadyaact/remarks/<int:id>/', views.khadyaact_remarks, name="khadyaact-remarks"),
+    path('anugaman/remarks/<int:id>/', views.anugaman_remarks, name="anugaman-remarks"),
+    path('hotel/remarks/<int:id>/', views.hotel_remarks, name="hotel-remarks"),
     path('finance/remarks/<int:id>/', views.finance_remarks, name="finance-remarks"),
 ]

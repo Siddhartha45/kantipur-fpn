@@ -25,63 +25,34 @@
                             <h4>{{obj.created_on_np_date}}</h4>
                         </div>
 
+                        <div class="col-md-4 log-status">
+                            <div class="pending">Pending</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="view-page mb-4">
-                    <h3 class="create-form-heading">Report Details</h3>
+                    <h3 class="create-form-heading">Report Details({{obj.get_type_display}})</h3>
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>दुध तथा दुध पदार्थ</h4>
-                            <p>{{obj.milk}}</p>
+                            <h4>अनुगमन निरीक्षण बिवरण</h4>
+                            <p>{{obj.get_type_display}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>तेल तथा घेउ जन्य</h4>
-                            <p>{{obj.oil}}</p>
+                            <h4>पटक</h4>
+                            <p>{{obj.patak}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>फल तथा सागपात</h4>
-                            <p>{{obj.fruits}}</p>
+                            <h4>संख्या</h4>
+                            <p>{{obj.sankhya}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>मसला</h4>
-                            <p>{{obj.spice}}</p>
+                            <h4>हालसम्मको प्रगति</h4>
+                            <p>{{obj.pragati}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>चिया, कफि</h4>
-                            <p>{{obj.tea}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>नुन</h4>
-                            <p>{{obj.salt}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>खाद्यान्न दलहन र सोबाट बनेको</h4>
-                            <p>{{obj.khadanna}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>प्र. पिउने पानी</h4>
-                            <p>{{obj.water}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>गुलियो पदार्थ</h4>
-                            <p>{{obj.sweets}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>कन्फेक्सनरी</h4>
-                            <p>{{obj.confectionery}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>मासु तथा मासुजन्य</h4>
-                            <p>{{obj.meat}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>दाना</h4>
-                            <p>{{obj.grain}}</p>
-                        </div>
-                        <div class="col-md-4">
-                            <h4>अन्य</h4>
-                            <p>{{obj.others}}</p>
+                            <h4>कैफियत</h4>
+                            <p>{{obj.kaifiyat}}</p>
                         </div>
                         <div class="col-md-4">
                             <h4>महिना</h4>
@@ -97,7 +68,7 @@
                     </div>
                 </div>
 
-            <form action="{% url 'khadyaact-remarks' id=obj.id %}" method="post">
+            <form action="{% url 'anugaman-remarks' id=obj.id %}" method="post">
                 {% csrf_token %}
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

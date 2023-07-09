@@ -127,14 +127,13 @@
                                     </span></a>
                                 </div>
 
-                        {% endif %}
-
                                 <div class="action-btn-pen dlt-btn">
                                     <a href="" method="put" data-bs-toggle="modal" data-bs-target="#report{{d.id}}"><span class="material-symbols-outlined">
                                         report
                                         </span></a>
                                     </div>
-
+                        
+                        {% endif %}
                             
 
                         <form class="action-btn-dlt" action="{% url 'finance-delete' id=d.id %}" method="post">
@@ -163,29 +162,29 @@
                             </div>
                         </form>
 
-                            <div class="modal fade" id="report{{d.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered confirmation-modal">
-                                    <div class="modal-content">
-                                
-                                    <div class="modal-body delete-body">
-                                        <h3 class="mb-2">Remarks</h3>
-                                        {% if d.remarks %}
-                                            <p>{{ d.remarks }}</p>
-                                        {% else %}
-                                            <p>No remarks available</p>
-                                        {% endif %}
-                                    </p></div>
-                                    <div class="modal-footer d-flex justify-content-center">
-                                    <div class="row d-flex">
-                                        <div class="col-md-12">
-                                            <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
-                                        </div>
-                                    </div>
-                                        
-                                    </div>
+                        <div class="modal fade" id="report{{d.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered confirmation-modal">
+                                <div class="modal-content">
+                            
+                                <div class="modal-body delete-body">
+                                    <h3 class="mb-2">Remarks</h3>
+                                    {% if d.remarks %}
+                                        <p>{{ d.remarks }}</p>
+                                    {% else %}
+                                        <p>No remarks available</p>
+                                    {% endif %}
+                                </p></div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                <div class="row d-flex">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
                                     </div>
                                 </div>
+                                    
+                                </div>
+                                </div>
                             </div>
+                        </div>
 
                     </div>
                 </td>
