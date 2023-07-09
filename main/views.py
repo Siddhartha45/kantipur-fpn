@@ -1892,7 +1892,7 @@ def prayogsala_report(request):
 def prayogsala_view(request, id):
     obj = get_object_or_404(PrayogsalaBisleysan, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/prayogsala_detail.html', context)
 
 
 def prayogsala_edit(request, id):

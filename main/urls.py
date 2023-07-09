@@ -50,6 +50,7 @@ urlpatterns = [
     path('detail/anugaman/<int:id>/', views.anugaman_view, name="anugaman-view"),
     path('detail/hotel/<int:id>/', views.hotel_view, name="hotel-view"),
     path('detail/khadya/<int:id>/', views.khadya_view, name="khadya-view"),
+    path('detail/prayogsala/<int:id>/', views.prayogsala_view, name="prayogsala-view"),
     path('detail/finance/<int:id>/', views.finance_view, name="finance-view"),
     
     #edit path
@@ -86,5 +87,6 @@ urlpatterns = [
     path('khadyaact/remarks/<int:id>/', views.khadyaact_remarks, name="khadyaact-remarks"),
     path('anugaman/remarks/<int:id>/', views.anugaman_remarks, name="anugaman-remarks"),
     path('hotel/remarks/<int:id>/', views.hotel_remarks, name="hotel-remarks"),
+    path('prayogsala/remarks/<int:id>/', views.prayogsala_remarks, name="prayogsala-remarks"),
     path('finance/remarks/<int:id>/', views.finance_remarks, name="finance-remarks"),
 ]
