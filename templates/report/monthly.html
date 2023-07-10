@@ -66,7 +66,11 @@
                 <th>कैफियत</th>
                 <th>वर्ग</th>
                 <th>महिना</th>
-                <th>कार्यालय</th>
+                {% if request.user.role != 'DE' %}
+                    <th>department</th>
+                    <th>कार्यालय</th>
+                {% endif %}
+                <th>Verified</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -87,11 +91,33 @@
                 <td>{{d.kaifiyat}}</td>
                 <td>{{d.get_kharcha_type_display}}</td>
                 <td>{{d.get_months_display}}</td>
-                <td>Pending</td>
+                {% if request.user.role != 'DE' %}
+                    <td>{{d.created_by.get_department_category_display}}</td>
+                    <td>{{d.created_by.office.name}}</td>
+                {% endif %}
+                <td>
+                    {% if d.is_verified %}
+                        <div class="status-box verified">
+                            <span class="status-text">Verified</span>
+                        </div>
+                    {% else %}
+                        <div class="status-box not-verified">
+                            <span class="status-text">Not Verified</span>
+                        </div>
+                    {% endif %}
+                </td>
                 <td>
                     <div class="d-flex kit-action-com">
 
+                        {% if not request.user.role == 'DE' %}
+                            <div class="action-btn-pen">
+                            <a href="{% url 'monthly-view' id=d.id %}" method="get"><span class="material-symbols-outlined">
+                                visibility
+                                </span></a>
+                            </div>
+                        {% endif %}
 
+                        {% if not d.is_verified %}
                             <div class="action-btn-pen">
                                 <a href="{% url 'monthly-edit' id=d.id %}" method="put"><span class="material-symbols-outlined">
                                         edit
@@ -104,6 +130,12 @@
                                     </span></a>
                                 </div>
 
+                            <div class="action-btn-pen dlt-btn">
+                                <a href="" method="put" data-bs-toggle="modal" data-bs-target="#report{{d.id}}"><span class="material-symbols-outlined">
+                                    report
+                                    </span></a>
+                                </div>
+                        {% endif %}
                             
 
                         <form class="action-btn-dlt" action="{% url 'monthly-delete' id=d.id %}" method="post">
@@ -132,7 +164,29 @@
                             </div>
                         </form>
 
-
+                        <div class="modal fade" id="report{{d.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered confirmation-modal">
+                                <div class="modal-content">
+                            
+                                <div class="modal-body delete-body">
+                                    <h3 class="mb-2">Remarks</h3>
+                                    {% if d.remarks %}
+                                        <p>{{ d.remarks }}</p>
+                                    {% else %}
+                                        <p>No remarks available</p>
+                                    {% endif %}
+                                </p></div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                <div class="row d-flex">
+                                    <div class="col-md-12">
+                                        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </td>

@@ -8,7 +8,7 @@
                         <a href="http://127.0.0.1:5500/html/" class="nav-icon me-2">
                             <i class="fa-solid fa-angle-left"></i>
                         </a>
-                        होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
+                        खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि <span class="sub-nav ms-2"> > रिपोर्ट</span>
                     </h3>
                 </div>
 
@@ -31,20 +31,48 @@
                     <h3 class="create-form-heading">Report Details</h3>
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>विवरण</h4>
-                            <p>{{obj.get_type_display}}</p>
+                            <h4>कार्यक्रम संचालन मिति</h4>
+                            <p>{{obj.miti}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>महिनाको प्रगति</h4>
-                            <p>{{obj.c_pragati}}</p>
+                            <h4>कार्यक्रम संचालन अवधि</h4>
+                            <p>{{obj.abadhi}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>यस आ ब को हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati1}}</p>
+                            <h4>कार्यक्रमको नाम</h4>
+                            <p>{{obj.naam}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>बिगत बर्षहरुदेखि हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati2}}</p>
+                            <h4>कार्यक्रम संचालन स्थान</h4>
+                            <p>{{obj.sthan}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>महिला सहभागी संख्या</h4>
+                            <p>{{obj.m_sankhya}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>पुरुष सहभागी संख्या</h4>
+                            <p>{{obj.p_sankhya}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>कार्यक्रम संयोजक नाम</h4>
+                            <p>{{obj.sanyojak}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>कार्यक्रम संयोजक फोन नं</h4>
+                            <p>{{obj.phone}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>प्रशिक्षक</h4>
+                            <p>{{obj.prasikshak}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>उपस्थित निकायहरु</h4>
+                            <p>{{obj.nikaya}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>समेटिएका बिषयबस्तु</h4>
+                            <p>{{obj.bisaya}}</p>
                         </div>
                         <div class="col-md-4">
                             <h4>कैफियत</h4>
@@ -64,7 +92,7 @@
                     </div>
                 </div>
 
-            <form action="{% url 'hotel-remarks' id=obj.id %}" method="post">
+            <form action="{% url 'patrakar-remarks' id=obj.id %}" method="post">
                 {% csrf_token %}
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

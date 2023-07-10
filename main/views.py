@@ -2093,7 +2093,7 @@ def gunasho_report(request):
 def gunasho_view(request, id):
     obj = get_object_or_404(UjuriGunaso, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/gunasho_detail.html', context)
 
 
 def gunasho_edit(request, id):
@@ -2159,7 +2159,7 @@ def patrakar_report(request):
 def patrakar_view(request, id):
     obj = get_object_or_404(KhadyaPrasodhan, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/patrakar_detail.html', context)
 
 
 def patrakar_edit(request, id):
@@ -2225,7 +2225,7 @@ def patrajari_report(request):
 def patrajari_view(request, id):
     obj = get_object_or_404(PatraJari, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/patrajari_detail.html', context)
 
 
 def patrajari_edit(request, id):
@@ -2291,7 +2291,7 @@ def renew_report(request):
 def renew_view(request, id):
     obj = get_object_or_404(PatraNabikaran, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/renew_detail.html', context)
 
 
 def renew_edit(request, id):
@@ -2357,7 +2357,7 @@ def udyog_report(request):
 def udyog_view(request, id):
     obj = get_object_or_404(UdyogSifaris, id=id)
     context = {'obj': obj}
-    return render(request, 'detail', context)
+    return render(request, 'detail/udyog_detail.html', context)
 
 
 def udyog_edit(request, id):
@@ -2521,7 +2521,7 @@ def monthly_report_delete(request, id):
     return redirect('monthly-report')
 
 
-def finance_remarks(request, id):
+def monthly_remarks(request, id):
     obj = get_object_or_404(PragatiBibaran, id=id)
     if request.method == 'POST':
         updated_remarks = request.POST.get('remarks')

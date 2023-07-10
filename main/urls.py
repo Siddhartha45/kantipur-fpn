@@ -53,8 +53,13 @@ urlpatterns = [
     path('detail/prayogsala/<int:id>/', views.prayogsala_view, name="prayogsala-view"),
     path('detail/rbpr/<int:id>/', views.rbpa_view, name="rbpa-view"),
     path('detail/import-export/<int:id>/', views.importexport_view, name="import-export-view"),
+    path('detail/gunasho/<int:id>/', views.gunasho_view, name="gunasho-view"),
+    path('detail/patrakar/<int:id>/', views.patrakar_view, name="patrakar-view"),
+    path('detail/patrajari/<int:id>/', views.patrajari_view, name="patrajari-view"),
+    path('detail/renew/<int:id>/', views.renew_view, name="renew-view"),
+    path('detail/udyog/<int:id>/', views.udyog_view, name="udyog-view"),
     path('detail/finance/<int:id>/', views.finance_view, name="finance-view"),
-    
+    path('detail/monthly/<int:id>/', views.monthly_view, name="monthly-view"),
     #edit path
     path('edit/khadyaact/<int:id>/', views.khadyaact_edit, name="namunabibaran-edit"),
     path('edit/anugaman/<int:id>/', views.anugaman_edit, name="anugaman-edit"),
@@ -92,5 +97,11 @@ urlpatterns = [
     path('prayogsala/remarks/<int:id>/', views.prayogsala_remarks, name="prayogsala-remarks"),
     path('rbpr/remarks/<int:id>/', views.rbpa_remarks, name="rbpa-remarks"),
     path('import-export/remarks/<int:id>/', views.importexport_remarks, name="import-export-remarks"),
+    path('gunasho/remarks/<int:id>/', views.gunasho_remarks, name="gunasho-remarks"),
+    path('patrakar/remarks/<int:id>/', views.patrakar_remarks, name="patrakar-remarks"),
+    path('patrajari/remarks/<int:id>/', views.patrajari_remarks, name="patrajari-remarks"),
+    path('renew/remarks/<int:id>/', views.renew_remarks, name="renew-remarks"),
+    path('udyog/remarks/<int:id>/', views.udyog_remarks, name="udyog-remarks"),
     path('finance/remarks/<int:id>/', views.finance_remarks, name="finance-remarks"),
+    path('monthly/remarks/<int:id>/', views.monthly_remarks, name="monthly-remarks"),
 ]

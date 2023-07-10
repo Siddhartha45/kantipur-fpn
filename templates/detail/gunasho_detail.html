@@ -8,7 +8,7 @@
                         <a href="http://127.0.0.1:5500/html/" class="nav-icon me-2">
                             <i class="fa-solid fa-angle-left"></i>
                         </a>
-                        होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
+                        उजुरी/गुनासो ब्येवस्थापन <span class="sub-nav ms-2"> > रिपोर्ट</span>
                     </h3>
                 </div>
 
@@ -31,24 +31,52 @@
                     <h3 class="create-form-heading">Report Details</h3>
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>विवरण</h4>
-                            <p>{{obj.get_type_display}}</p>
+                            <h4>गुनासो पेटीका</h4>
+                            <p>{{obj.gunaso_petika}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>महिनाको प्रगति</h4>
-                            <p>{{obj.c_pragati}}</p>
+                            <h4>गुनासो अधिकारी समक्ष</h4>
+                            <p>{{obj.gunaso_adhikari}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>यस आ ब को हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati1}}</p>
+                            <h4>जिल्ला प्रशासन कार्यालय</h4>
+                            <p>{{obj.zilla}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>बिगत बर्षहरुदेखि हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati2}}</p>
+                            <h4>बाणिज्य कार्यालय</h4>
+                            <p>{{obj.banijya}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>कैफियत</h4>
-                            <p>{{obj.kaifiyat}}</p>
+                            <h4>पत्र पत्रिका</h4>
+                            <p>{{obj.patra}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>अख्तियार दु. अ.आ.</h4>
+                            <p>{{obj.akhtiyar}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>पत्रकार</h4>
+                            <p>{{obj.patrakar}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>हेलो सरकार</h4>
+                            <p>{{obj.sarkar}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>उपभोक्ता संघ संस्था</h4>
+                            <p>{{obj.upavokta}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>अन्य</h4>
+                            <p>{{obj.others}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>जम्मा उजुरी/ गुनासो संख्या</h4>
+                            <p>{{obj.jamma}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>सम्बोधन गरीएका गुनासो/उजुरी</h4>
+                            <p>{{obj.sambodhan}}</p>
                         </div>
                         <div class="col-md-4">
                             <h4>महिना</h4>
@@ -64,7 +92,7 @@
                     </div>
                 </div>
 
-            <form action="{% url 'hotel-remarks' id=obj.id %}" method="post">
+            <form action="{% url 'gunasho-remarks' id=obj.id %}" method="post">
                 {% csrf_token %}
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

@@ -8,7 +8,7 @@
                         <a href="http://127.0.0.1:5500/html/" class="nav-icon me-2">
                             <i class="fa-solid fa-angle-left"></i>
                         </a>
-                        होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
+                        मासिक प्रगति विवरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
                     </h3>
                 </div>
 
@@ -31,28 +31,56 @@
                     <h3 class="create-form-heading">Report Details</h3>
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>विवरण</h4>
-                            <p>{{obj.get_type_display}}</p>
+                            <h4>बजेट उपशीर्षक न.</h4>
+                            <p>{{obj.upasirshak}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>महिनाको प्रगति</h4>
-                            <p>{{obj.c_pragati}}</p>
+                            <h4>कार्यक्रम</h4>
+                            <p>{{obj.karya}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>यस आ ब को हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati1}}</p>
+                            <h4>इकाई</h4>
+                            <p>{{obj.get_ekai_display}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>बिगत बर्षहरुदेखि हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati2}}</p>
+                            <h4>बार्षिक लक्ष्य</h4>
+                            <p>{{obj.b_lakshya}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>मासिक परिणाम</h4>
+                            <p>{{obj.m_parinam}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>त्रैमसिकको लक्ष्य</h4>
+                            <p>{{obj.t_lakshya}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>त्रैमसिकको प्रगति</h4>
+                            <p>{{obj.t_pragati}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>त्रैमसिकको प्रगति प्रतिशत</h4>
+                            <p>{{obj.t_pratisat}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>हाल सम्मको प्रगति परिणाम</h4>
+                            <p>{{obj.h_pragati}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>बार्षिक प्रगति प्रतिशत</h4>
+                            <p>{{obj.h_pratisat}}</p>
                         </div>
                         <div class="col-md-4">
                             <h4>कैफियत</h4>
                             <p>{{obj.kaifiyat}}</p>
                         </div>
                         <div class="col-md-4">
+                            <h4>वर्ग</h4>
+                            <p>{{obj.get_kharcha_type_display}}</p>
+                        </div>
+                        <div class="col-md-4">
                             <h4>महिना</h4>
-                            <p>{{obj.created_on_np_date|slice:"5:7"|nepali_month_name}}</p>
+                            <p>{{obj.get_months_display}}</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +92,7 @@
                     </div>
                 </div>
 
-            <form action="{% url 'hotel-remarks' id=obj.id %}" method="post">
+            <form action="{% url 'monthly-remarks' id=obj.id %}" method="post">
                 {% csrf_token %}
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

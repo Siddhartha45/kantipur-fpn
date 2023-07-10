@@ -8,7 +8,7 @@
                         <a href="http://127.0.0.1:5500/html/" class="nav-icon me-2">
                             <i class="fa-solid fa-angle-left"></i>
                         </a>
-                        होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
+                        खाद्य तथा दाना अनुज्ञा पत्र जारी <span class="sub-nav ms-2"> > रिपोर्ट</span>
                     </h3>
                 </div>
 
@@ -31,24 +31,56 @@
                     <h3 class="create-form-heading">Report Details</h3>
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>विवरण</h4>
-                            <p>{{obj.get_type_display}}</p>
+                            <h4>दुध तथा दुध पदार्थ</h4>
+                            <p>{{obj.milk}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>महिनाको प्रगति</h4>
-                            <p>{{obj.c_pragati}}</p>
+                            <h4>तेल तथा घेउ जन्य</h4>
+                            <p>{{obj.oil}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>यस आ ब को हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati1}}</p>
+                            <h4>फल तथा सागपात</h4>
+                            <p>{{obj.fruits}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>बिगत बर्षहरुदेखि हालसम्मको प्रगति</h4>
-                            <p>{{obj.h_pragati2}}</p>
+                            <h4>मसला</h4>
+                            <p>{{obj.spice}}</p>
                         </div>
                         <div class="col-md-4">
-                            <h4>कैफियत</h4>
-                            <p>{{obj.kaifiyat}}</p>
+                            <h4>चिया, कफि</h4>
+                            <p>{{obj.tea}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>नुन</h4>
+                            <p>{{obj.salt}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>खाद्यान्न दलहन र सोबाट बनेको</h4>
+                            <p>{{obj.khadanna}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>प्र. पिउने पानी</h4>
+                            <p>{{obj.water}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>गुलियो पदार्थ</h4>
+                            <p>{{obj.sweets}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>कन्फेक्सनरी</h4>
+                            <p>{{obj.confectionery}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>मासु तथा मासुजन्य</h4>
+                            <p>{{obj.meat}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>दाना</h4>
+                            <p>{{obj.grain}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>अन्य</h4>
+                            <p>{{obj.others}}</p>
                         </div>
                         <div class="col-md-4">
                             <h4>महिना</h4>
@@ -64,7 +96,7 @@
                     </div>
                 </div>
 
-            <form action="{% url 'hotel-remarks' id=obj.id %}" method="post">
+            <form action="{% url 'patrajari-remarks' id=obj.id %}" method="post">
                 {% csrf_token %}
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
                     tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
