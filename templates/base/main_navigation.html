@@ -130,13 +130,20 @@
                                 {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
                                 <a class="nav-link" href="{% url 'detail-mudha' %}">मुद्धा दायरी</a>
                                 {% endif %}
-                                <a class="nav-link" href="{% url 'detail-rbpa' %}">RBPR Analysis</a>
                                 {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
                                 <a class="nav-link" href="{% url 'detail-gunasho' %}">उजुरी गुनासो</a>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                        href="{% url 'detail-rbpa' %}"><span class="material-symbols-outlined">
+                        event_list
+                        </span>
+                        RBPR Analysis</a>
                 </li>
 
                 {% if request.user.department_category == 'FTDND' or request.user.department_category == 'FO' %}
