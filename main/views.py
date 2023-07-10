@@ -1958,7 +1958,7 @@ def rbpa_report(request):
 def rbpa_view(request, id):
     obj = get_object_or_404(DetailRbpa, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/rbpa_detail.html', context)
 
 
 def rbpa_edit(request, id):
@@ -2024,7 +2024,7 @@ def importexport_report(request):
 def importexport_view(request, id):
     obj = get_object_or_404(AayatNiryat, id=id)
     context = {'obj': obj}
-    return render(request, 'detail/', context)
+    return render(request, 'detail/importexport_detail.html', context)
 
 
 def importexport_edit(request, id):

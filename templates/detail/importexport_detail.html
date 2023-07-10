@@ -1,0 +1,133 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load nepali_month_filter %}
+{% block container %}
+
+                <div class="add-heading">
+                    <h3 class="heading-cm">
+                        <a href="http://127.0.0.1:5500/html/" class="nav-icon me-2">
+                            <i class="fa-solid fa-angle-left"></i>
+                        </a>
+                        मासिक प्रगति विवरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
+                    </h3>
+                </div>
+
+
+
+                <div class="product-search-form mb-3">
+                    <div class="row log-details">
+                        <div class="col-md-2">
+                            <p>Created By</p>
+                            <h4>{{obj.created_by.office.name}}</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <p>Created at</p>
+                            <h4>{{obj.created_on_np_date}}</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-page mb-4">
+                    <h3 class="create-form-heading">Report Details</h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>इकाई</h4>
+                            <p>{{obj.get_ekai_display}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>बार्षिक लक्ष्य</h4>
+                            <p>{{obj.b_lakshya}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>चौमासिक लक्ष्य</h4>
+                            <p>{{obj.c_lakshya}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>चौमासिक प्रगति</h4>
+                            <p>{{obj.c_pragati}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>महिनाको प्रगति</h4>
+                            <p>{{obj.m_pragati}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>प्रतिकूल नमूना संख्या</h4>
+                            <p>{{obj.pratikul_n}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>प्रतिकूल पारामिटर</h4>
+                            <p>{{obj.pratikul_p}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>हाल सम्मको प्रगति</h4>
+                            <p>{{obj.h_pragati}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>हाल सम्मको प्रगति प्रतिशत</h4>
+                            <p>{{obj.h_pratisat}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>कैफियत</h4>
+                            <p>{{obj.kaifiyat}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>महिना</h4>
+                            <p>{{obj.created_on_np_date|slice:"5:7"|nepali_month_name}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-end">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">Proceed</button>
+                    </div>
+                </div>
+
+            <form action="{% url 'import-export-remarks' id=obj.id %}" method="post">
+                {% csrf_token %}
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered approval-modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Product Verification Remarks</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="mb-3 col-md-12">
+                                        <label for="" class="form-label cm">Remarks</label>
+                                        <textarea name="remarks" class="form-control cm" cols="30" rows="4"
+                                        >{{obj.remarks|default_if_none:''}}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" name="reject" class="btn btn-primary reject-btn">Reject</button>
+                                <button type="submit" name="verify" class="btn btn-primary">Verify</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+
+    <script src="../../js/script.js"></script>
+
+{% endblock %}
