@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import (NamunaBibaran, PatraJari, PatraNabikaran, UdyogSifaris, UjuriGunaso, BittiyaBibaran, AnugamanBibaran,
+from .models import (BarsikLakshya, NamunaBibaran, PatraJari, PatraNabikaran, UdyogSifaris, UjuriGunaso, BittiyaBibaran, AnugamanBibaran,
                     NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, KhadyaPrasodhan, PragatiBibaran,
                     DetailHotel, DetailRegistration, DetailRenew, DetailUdyog, DetailAnugaman, DetailGunaso, DetailMudha, DetailRbpa)
 # Register your models here.
 
+admin.site.register(BarsikLakshya)
 #admin.site.register(NamunaBibaran)
 admin.site.register(PatraJari)
 admin.site.register(PatraNabikaran)

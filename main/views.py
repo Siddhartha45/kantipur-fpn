@@ -1,10 +1,10 @@
 from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
-from .forms import (UjuriGunasoForm, BittiyaBibaranForm, NamunaBibaranForm, PatraJariForm, PatraNabikaranForm,
+from .forms import (BarsikLakshyaForm, UjuriGunasoForm, BittiyaBibaranForm, NamunaBibaranForm, PatraJariForm, PatraNabikaranForm,
                     UdyogSifarisForm, AnugamanBibaranForm, NamunaBisleysanForm, AayatNiryatForm, PrayogsalaBisleysanForm,
                     LogobitaranForm, KhadyaPrasodhanForm,UdyogSifarisEditForm, DetailAnugamanForm, DetailHotelForm, DetailRegistrationForm, DetailRenewForm,
                     DetailUdyogForm,PatraNabikaranEditForm,PatraJariEditForm, DetailGunasoForm,KhadyaPrasodhanEditForm, DetailMudhaForm, DetailRbpaForm, MasikPragatiForm,
                     AnugamanEditForm,BittiyaBibaranEditForm,PragatiBibaranEditForm, KhadyaactEditForm,UjuriGunasoEditForm, HotelEditForm, KhadyaEditForm, PrayogsalaEditForm,RbpaEditForm,AayatNiryatEditForm)
-from .models import (AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, BittiyaBibaran, UjuriGunaso,
+from .models import (BarsikLakshya, AnugamanBibaran, NamunaBisleysan, AayatNiryat, PrayogsalaBisleysan, Logobitaran, BittiyaBibaran, UjuriGunaso,
                     NamunaBibaran, PragatiBibaran, DetailRbpa, UdyogSifaris, PatraNabikaran, PatraJari, KhadyaPrasodhan,
                     DetailAnugaman, DetailGunaso, DetailHotel, DetailMudha, DetailRegistration, DetailRenew, DetailUdyog)
 from fpn import commons
@@ -28,11 +28,32 @@ def home(request):
 
 
 def progress_count(request):
+    # user = CustomUser.objects.filter(role=request.user)
+    # print("--------------")
+    # print(user)
+    # obj = BarsikLakshya.objects.get(created_by=)
+    # context = {'obj': obj}
     return render(request, 'count.html')
 
 
 def progress_amount(request):
     return render(request, 'amount.html')
+
+
+def barsik_lakshya(request):
+    """for adding barsik lakshya to meet to check progress(used in मासिक प्रगति विवरण)"""
+    if request.method == 'POST':
+        form = BarsikLakshyaForm(request.POST)
+        if form.is_valid():
+            BarsikLakshya.objects.create(created_by=request.user, **form.cleaned_data)
+            messages.success(request, "Barsik Lakshya Added")
+            return redirect('barsik-lakshya')
+        else:
+            messages.error(request, "Barsik Lakshya was not added. Please fill the form again")
+    else:
+        form = BarsikLakshyaForm()
+    context = {'form': form}
+    return render(request, 'forms/barsik_lakshya/barsik_lakshya.html', context)
 
 
 #------------------------------------------------------------FORMS PART BELOW -----------------------------------------------------------
@@ -44,7 +65,6 @@ def namuna_bibaran(request):
     
     if request.method == 'POST':
         form = NamunaBibaranForm(request.POST)
-        print(form.data)
         if form.is_valid():
             NamunaBibaran.new(created_by=request.user, **form.cleaned_data)
             messages.success(request, "Form submitted successfully")

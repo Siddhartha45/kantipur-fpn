@@ -7,6 +7,7 @@ urlpatterns = [
     path('count/', views.progress_count, name="count"),
     path('amount/', views.progress_amount, name="amount"),
     #forms path
+    path('barsik-lakshya/', views.barsik_lakshya, name="barsik-lakshya"),
     path('forms/namuna-bibaran', views.namuna_bibaran, name="namuna"),
     path('forms/anugaman-bibaran/', views.anugaman, name="anugaman"),
     path('forms/logobitaran/', views.logobitaran, name="logobitaran"),

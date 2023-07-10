@@ -1,9 +1,22 @@
 from django.db import models
 from fpn import commons
-import nepali_datetime
-from datetime import date
-from django.utils import timezone
 from fpn.model_mixins import FPNBaseModel
+from account.models import CustomUser
+
+
+class BarsikLakshya(models.Model):
+    created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="users")
+    namuna_bibaran = models.PositiveIntegerField(default=0, blank=True)
+    anugaman = models.PositiveIntegerField(default=0, blank=True)
+    logo = models.PositiveIntegerField(default=0, blank=True)
+    namuna_bisleysan = models.PositiveIntegerField(default=0, blank=True)
+    prayogsala = models.PositiveIntegerField(default=0, blank=True)
+    patrajari = models.PositiveIntegerField(default=0, blank=True)
+    patranabikaran = models.PositiveIntegerField(default=0, blank=True)
+    udyog_sifaris = models.PositiveIntegerField(default=0, blank=True)
+    aayat_niryat = models.PositiveIntegerField(default=0, blank=True)
+    ujuri_gunaso = models.PositiveIntegerField(default=0, blank=True)
+    rbpr = models.PositiveIntegerField(default=0, blank=True)
 
 
 class NamunaBibaran(FPNBaseModel):

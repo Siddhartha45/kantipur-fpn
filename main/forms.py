@@ -1,6 +1,6 @@
 from django import forms
 from .models import (BittiyaBibaran, UjuriGunaso, NamunaBibaran, PatraJari, PatraNabikaran, UdyogSifaris, PrayogsalaBisleysan,
-                    KhadyaPrasodhan, DetailAnugaman, DetailHotel, DetailRegistration, DetailRenew, DetailUdyog,
+                    KhadyaPrasodhan, DetailAnugaman, DetailHotel, DetailRegistration, DetailRenew, DetailUdyog, BarsikLakshya,
                     DetailGunaso,KhadyaPrasodhan,UjuriGunaso, DetailMudha, DetailRbpa, PragatiBibaran, AnugamanBibaran, Logobitaran, NamunaBisleysan,AayatNiryat)
 from fpn import commons
 
@@ -14,6 +14,12 @@ class BaseModelForm(forms.ModelForm):
             if field.name in cleaned_data and cleaned_data[field.name] is None:
                 cleaned_data[field.name] = field.default    
         return cleaned_data
+    
+    
+class BarsikLakshyaForm(BaseModelForm):
+    class Meta:
+        model = BarsikLakshya
+        exclude = ["created_by",]
 
 
 class BittiyaBibaranForm(BaseModelForm):

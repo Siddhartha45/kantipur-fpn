@@ -17,6 +17,14 @@
                             dashboard
                         </span> ड्यासबोर्ड</a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                        href="{% url 'barsik-lakshya' %}">
+                        <span class="material-symbols-outlined">
+                            summarize
+                        </span> Barsik Lakshya</a>
+                </li>
     
                 
                 {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' or request.user.role == "A" %}

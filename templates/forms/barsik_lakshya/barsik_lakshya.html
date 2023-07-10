@@ -1,0 +1,230 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+
+    <div class="add-heading">
+        <h3 class="heading-cm">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            वार्षिक लक्ष्य <span class="sub-nav ms-2"> > नया इन्ट्री</span>
+        </h3>
+    </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">नया इन्ट्री</h3>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">कार्यालयको नाम</label>
+                    <input type="text" class="form-control cm" placeholder="" value="{{user.office|default_if_none:'------'}}" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">मिति</label>
+                    <input type="text" class="form-control cm" placeholder="" value="{{current_nepali_date}}" name="name" disabled>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="" class="form-label cm">आर्थिक वर्ष</label>
+                    <input type="text" class="form-control cm" placeholder="रु. " value="{{current_nepali_year}}" name="name" disabled>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12 heading-cm">वार्षिक लक्ष्य डेटा हल्नुहोस्</div>
+        </div>
+
+        <div class="field-container mb-4">
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="" name="namuna_bibaran">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">निरीक्षण अनुगमन विवरण</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="" name="anugaman">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="" name="logo">
+                </div>
+                <div class="col-md-3">
+                    <label for="" class="form-label cm">खाद्य तथा दाना नमुना विश्लेषण विवरण</label>
+                    <input type="number" min="0" class="form-control cm" placeholder="" name="namuna_bisleysan">
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">प्रयोगशाला विश्लेषण प्रतिवेदन सारांश</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="" name="prayogsala">
+                </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">खाद्य तथा दाना अनुज्ञा पत्र जारी</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="" name="patrajari">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">खाद्य तथा दाना अनुज्ञा पत्र नविकरण</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="" name="patranabikaran">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">उद्योग सिफारिस</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="" name="udyog_sifaris">
+                    </div>
+                </div>
+                <div class="row mb-4">
+                <div class="col-md-3">
+                        <label for="" class="form-label cm">आयात निर्यात गुण प्रमाणिकरण</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="" name="aayat_niryat">
+                </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">उजुरी/गुनासो ब्येवस्थापन</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="" name="ujuri_gunaso">
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="" class="form-label cm">RBPR Analysis</label>
+                        <input type="number" min="0" class="form-control cm" placeholder="" name="rbpr">
+                    </div>
+                    
+                </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end">
+                <button type="submit" name="verify" class="btn btn-primary">पेश गर्नुहोस</button>
+            </div>
+        </div>
+
+    </form> 
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script src="../datepicker/nepali-date-picker.min.js"></script>
+    <script src="../../js/script.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.mySelect').select2({
+                placeholder: 'Select'
+            });
+        });
+
+        $(document).ready(function () {
+            $('.multipleselect').select2({
+                closeOnSelect: false,
+                placeholder: 'Select'
+            });
+        });
+
+
+        $(document).ready(function () {
+            var successAlert = $(".alert");
+
+            if (successAlert.length > 0) {
+                setTimeout(function () {
+                    successAlert.alert('close');
+                }, 5000);
+            }
+        });
+
+        jQuery(document).ready(function() {
+            $('.date-picker').nepaliDatePicker();
+        })
+
+
+
+        function previewImages(event) {
+        var previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = '';
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var image = document.createElement('img');
+                image.src = e.target.result;
+                image.classList.add('previewImage');
+                previewContainer.appendChild(image);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+
+
+
+
+    $('#select_box').change(function () {
+        var select1 = $(this).find(':selected').val();
+        $(".hide").hide();
+        $('#' + select1).show();
+    }).change()
+
+    $('#office-selection').change(function () {
+        var select2 = $(this).find(':selected').val();
+        $(".hide").hide();
+        if(select2==5){
+            $("#1").show();
+            $('#import-export').show();
+        }else if(select2==6){
+            $("#1").show();
+            $('#division-office').show();
+        }else if(select2==7){
+            $("#1").show();
+            $('#food-office').show();
+        }else if(select2==8 || select2==9 || select2==10 || select2==11){
+            $("#1").show();
+        }
+    }).change()
+
+
+
+    $(document).ready(function(){
+        $('#addNew').click(function(){
+            var newElement = $('.field-container:last').clone();
+            $(newElement).insertAfter(".field-container:last");
+        });
+    });
+
+
+
+
+
+
+
+
+    </script>
+
+{% endblock %}
