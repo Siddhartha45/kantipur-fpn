@@ -70,6 +70,7 @@
                 <th>बिगत बर्षहरुदेखि हालसम्मको प्रगति</th>
                 <th>कैफियत</th>
                 <th>महिना</th>
+                <th>कुल</th>
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -87,6 +88,7 @@
                 <td>{{d.h_pragati2}}</td>
                 <td>{{d.kaifiyat}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
+                <td>{{d.logobitaran_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

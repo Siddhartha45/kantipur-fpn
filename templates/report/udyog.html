@@ -71,6 +71,7 @@
                 <th>दाना</th>
                 <th>अन्य</th>
                 <th>महिना</th>
+                <th>कुल</th>
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -97,6 +98,7 @@
                 <td>{{d.grain}}</td>
                 <td>{{d.others}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
+                <td>{{d.udyogsifaris_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

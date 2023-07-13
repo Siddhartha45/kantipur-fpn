@@ -69,6 +69,7 @@
                 <th>कैफियत</th>
                 <th>वर्ग</th>
                 <th>महिना</th>
+                <th>कुल</th>
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -77,6 +78,9 @@
             {% for d in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                {% if request.user.role != 'DE' %}
+                    <td>{{d.created_by.office.name}}</td>
+                {% endif %}
                 <td>{{d.upasirshak}}</td>
                 <td>{{d.karya}}</td>
                 <td>{{d.get_ekai_display}}</td>
@@ -90,9 +94,7 @@
                 <td>{{d.kaifiyat}}</td>
                 <td>{{d.get_kharcha_type_display}}</td>
                 <td>{{d.get_months_display}}</td>
-                {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.office.name}}</td>
-                {% endif %}
+                <td>{{d.pragatibibaran_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

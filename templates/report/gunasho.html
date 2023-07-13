@@ -69,6 +69,7 @@
                 <th>जम्मा उजुरी/ गुनासो संख्या</th>
                 <th>सम्बोधन गरीएका गुनासो/उजुरी</th>
                 <th>महिना</th>
+                <th>कुल</th>
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -93,6 +94,7 @@
                 <td>{{d.jamma}}</td>
                 <td>{{d.sambodhan}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
+                <td>{{d.ujurigunaso_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">
