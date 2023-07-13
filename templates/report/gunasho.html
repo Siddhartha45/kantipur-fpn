@@ -53,6 +53,9 @@
         <thead>
             <tr>
                 <th>क्र. सं.</th>
+                {% if request.user.role != 'DE' %}
+                    <th>कार्यालय</th>
+                {% endif %}
                 <th>गुनासो पेटीका</th>
                 <th>गुनासो अधिकारी समक्ष</th>
                 <th>जिल्ला प्रशासन कार्यालय</th>
@@ -66,10 +69,6 @@
                 <th>जम्मा उजुरी/ गुनासो संख्या</th>
                 <th>सम्बोधन गरीएका गुनासो/उजुरी</th>
                 <th>महिना</th>
-                {% if request.user.role != 'DE' %}
-                    <th>department</th>
-                    <th>कार्यालय</th>
-                {% endif %}
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -78,6 +77,9 @@
             {% for d in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                {% if request.user.role != 'DE' %}
+                    <td>{{d.created_by.office.name}}</td>
+                {% endif %}
                 <td>{{d.gunaso_petika}}</td>
                 <td>{{d.gunaso_adhikari}}</td>
                 <td>{{d.zilla}}</td>
@@ -91,10 +93,6 @@
                 <td>{{d.jamma}}</td>
                 <td>{{d.sambodhan}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
-                {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.get_department_category_display}}</td>
-                    <td>{{d.created_by.office.name}}</td>
-                {% endif %}
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

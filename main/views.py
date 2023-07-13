@@ -16,8 +16,11 @@ from fpn.decorators import (all_required, fo_and_ie_required, fo_and_ffsqrd_requ
                             do_and_ffsqrd_and_fo_required, fo_and_ftdnd_required)
 from account.models import CustomUser
 from django.http import JsonResponse
+from django.db.models import Sum
 
-
+from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum, logobitaran_sum,
+                        namunabisleysan_sum, prayogsala_sum, patrajari_sum, patranabikaran_sum,
+                        udyogsifaris_sum, ujurigunaso_sum, rbpa_sum)
 #----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -28,12 +31,48 @@ def home(request):
 
 
 def progress_count(request):
-    # user = CustomUser.objects.filter(role=request.user)
-    # print("--------------")
-    # print(user)
-    # obj = BarsikLakshya.objects.get(created_by=)
-    # context = {'obj': obj}
-    return render(request, 'count.html')
+    
+    aayat_niryat_sum = ayatniryat_sum(request)
+    namuna_bibaran_sum = namunabibaran_sum(request)
+    anugaman_bibaran_sum = anugamanbibaran_sum(request)
+    logo_bitaran_sum = logobitaran_sum(request)
+    namuna_bisleysan_sum = namunabisleysan_sum(request)
+    prayog_sala_sum = prayogsala_sum(request)
+    patra_jari_sum = patrajari_sum(request)
+    patra_nabikaran_sum = patranabikaran_sum(request)
+    udyog_sifaris_sum = udyogsifaris_sum(request)
+    ujuri_gunaso_sum = ujurigunaso_sum(request)
+    rbpa_analysis_sum = rbpa_sum(request)
+    
+    
+    if request.user.role == 'A':
+        try:
+            obj = BarsikLakshya.objects.filter(created_by__role='A').latest('created_on')
+        except:
+            obj = None
+    elif request.user.role == 'DE':
+        try:
+            obj = BarsikLakshya.objects.filter(created_by__office=request.user.office).latest('created_on')
+        except:
+            obj = None
+    else:
+        obj = None
+        
+    context = {
+        'obj': obj,
+        'aayat_niryat_sum': aayat_niryat_sum,
+        'namuna_bibaran_sum': namuna_bibaran_sum,
+        'anugaman_bibaran_sum': anugaman_bibaran_sum,
+        'logo_bitaran_sum': logo_bitaran_sum,
+        'namuna_bisleysan_sum': namuna_bisleysan_sum,
+        'prayog_sala_sum': prayog_sala_sum,
+        'patra_jari_sum': patra_jari_sum,
+        'patra_nabikaran_sum': patra_nabikaran_sum,
+        'udyog_sifaris_sum': udyog_sifaris_sum,
+        'ujuri_gunaso_sum': ujuri_gunaso_sum,
+        'rbpa_analysis_sum': rbpa_analysis_sum,
+    }
+    return render(request, 'count.html', context)
 
 
 def progress_amount(request):

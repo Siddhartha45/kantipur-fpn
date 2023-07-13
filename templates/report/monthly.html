@@ -53,6 +53,9 @@
         <thead>
             <tr>
                 <th>क्र. सं.</th>
+                {% if request.user.role != 'DE' %}
+                    <th>कार्यालय</th>
+                {% endif %}
                 <th>बजेट उपशीर्षक न.</th>
                 <th>कार्यक्रम</th>
                 <th>इकाई</th>
@@ -66,10 +69,6 @@
                 <th>कैफियत</th>
                 <th>वर्ग</th>
                 <th>महिना</th>
-                {% if request.user.role != 'DE' %}
-                    <th>department</th>
-                    <th>कार्यालय</th>
-                {% endif %}
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -92,7 +91,6 @@
                 <td>{{d.get_kharcha_type_display}}</td>
                 <td>{{d.get_months_display}}</td>
                 {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.get_department_category_display}}</td>
                     <td>{{d.created_by.office.name}}</td>
                 {% endif %}
                 <td>

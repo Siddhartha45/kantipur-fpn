@@ -53,6 +53,9 @@
         <thead>
             <tr>
                 <th>क्र. सं.</th>
+                {% if request.user.role != 'DE' %}
+                    <th>कार्यालय</th>
+                {% endif %}
                 <th>दुध तथा दुध पदार्थ</th>
                 <th>तेल तथा घेउ जन्य</th>
                 <th>फल तथा सागपात</th>
@@ -67,10 +70,6 @@
                 <th>दाना</th>
                 <th>अन्य</th>
                 <th>महिना</th>
-                {% if request.user.role != 'DE' %}
-                    <th>department</th>
-                    <th>कार्यालय</th>
-                {% endif %}
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -79,6 +78,9 @@
             {% for d in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                {% if request.user.role != 'DE' %}
+                    <td>{{d.created_by.office.name}}</td>
+                {% endif %}
                 <td>{{d.milk}}</td>
                 <td>{{d.oil}}</td>
                 <td>{{d.fruits}}</td>
@@ -93,10 +95,6 @@
                 <td>{{d.grain}}</td>
                 <td>{{d.others}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
-                {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.get_department_category_display}}</td>
-                    <td>{{d.created_by.office.name}}</td>
-                {% endif %}
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

@@ -5,6 +5,8 @@ from account.models import CustomUser
 
 
 class BarsikLakshya(models.Model):
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="users")
     namuna_bibaran = models.PositiveIntegerField(default=0, blank=True)
     anugaman = models.PositiveIntegerField(default=0, blank=True)
@@ -17,6 +19,8 @@ class BarsikLakshya(models.Model):
     aayat_niryat = models.PositiveIntegerField(default=0, blank=True)
     ujuri_gunaso = models.PositiveIntegerField(default=0, blank=True)
     rbpr = models.PositiveIntegerField(default=0, blank=True)
+    
+    
 
 
 class NamunaBibaran(FPNBaseModel):
@@ -35,6 +39,14 @@ class NamunaBibaran(FPNBaseModel):
     grain = models.PositiveIntegerField(default=0, blank=True)
     others = models.PositiveIntegerField(default=0, blank=True)
     
+    def namunabibaran_total_sum(self):
+        fields = [
+            'milk', 'oil', 'fruits', 'spice', 'tea', 'salt', 'khadanna',
+            'water', 'sweets', 'confectionery', 'meat', 'grain', 'others',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
+    
     
 class AnugamanBibaran(FPNBaseModel):
     """model for निरीक्षण अनुगमन विवरण"""
@@ -44,6 +56,13 @@ class AnugamanBibaran(FPNBaseModel):
     pragati = models.PositiveIntegerField(default=0, blank=True)
     kaifiyat = models.TextField(default="", blank=True)
     
+    def anugamanbibaran_total_sum(self):
+        fields = [
+            'patak', 'sankhya', 'pragati',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
+    
     
 class Logobitaran(FPNBaseModel):
     """model for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
@@ -52,6 +71,13 @@ class Logobitaran(FPNBaseModel):
     h_pragati1 = models.PositiveIntegerField(default=0, blank=True)
     h_pragati2 = models.PositiveIntegerField(default=0, blank=True)
     kaifiyat = models.TextField(default="", blank=True)
+    
+    def logobitaran_total_sum(self):
+        fields = [
+            'c_pragati', 'h_pragati1', 'h_pragati2',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
     
     
 class NamunaBisleysan(FPNBaseModel):
@@ -66,6 +92,14 @@ class NamunaBisleysan(FPNBaseModel):
     pragati2 = models.PositiveIntegerField(default=0, blank=True)
     pratisat = models.FloatField(default=0, blank=True)
     kaifiyat = models.TextField(default="", blank=True)
+    
+    def namunabisleysan_total_sum(self):
+        fields = [
+            'lakshya', 'pragati1', 'mahina_pragati', 'sankhya',
+            'parameter', 'pragati2', 'pratisat',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
     
     
 class PrayogsalaBisleysan(FPNBaseModel):
@@ -88,6 +122,16 @@ class PrayogsalaBisleysan(FPNBaseModel):
     sample = models.PositiveIntegerField(default=0, blank=True)
     kaifiyat = models.TextField(default="", blank=True)
     
+    def prayogsalabisleysan_total_sum(self):
+        fields = [
+            'b_sankhya', 'b_pratikul', 'u_sankhya', 'u_pratikul',
+            'ay_sankhya', 'ay_pratikul', 'v_sankhya', 'v_pratikul',
+            'k_sankhya', 'k_pratikul', 'a_sankhya', 'a_pratikul',
+            'kul_sankhya', 'kul_pratikul', 'sample',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
+    
     
 class PatraJari(FPNBaseModel):
     """model for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
@@ -104,6 +148,16 @@ class PatraJari(FPNBaseModel):
     meat = models.PositiveIntegerField(default=0, blank=True)
     grain = models.PositiveIntegerField(default=0, blank=True)
     others = models.PositiveIntegerField(default=0, blank=True)
+    
+    def patrajari_total_sum(self):
+        fields = [
+            'milk', 'oil', 'fruits', 'spice',
+            'tea', 'salt', 'khadanna', 'water',
+            'sweets', 'confectionery', 'meat', 'grain',
+            'others',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
     
     
 class PatraNabikaran(FPNBaseModel):
@@ -122,6 +176,16 @@ class PatraNabikaran(FPNBaseModel):
     grain = models.PositiveIntegerField(default=0, blank=True)
     others = models.PositiveIntegerField(default=0, blank=True)
     
+    def patranabikaran_total_sum(self):
+        fields = [
+            'milk', 'oil', 'fruits', 'spice',
+            'tea', 'salt', 'khadanna', 'water',
+            'sweets', 'confectionery', 'meat', 'grain',
+            'others',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
+    
     
 class UdyogSifaris(FPNBaseModel):
     """model for उद्योग सिफारिस"""
@@ -139,6 +203,16 @@ class UdyogSifaris(FPNBaseModel):
     grain = models.PositiveIntegerField(default=0, blank=True)
     others = models.PositiveIntegerField(default=0, blank=True)
     
+    def udyogsifaris_total_sum(self):
+        fields = [
+            'milk', 'oil', 'fruits', 'spice',
+            'tea', 'salt', 'khadanna', 'water',
+            'sweets', 'confectionery', 'meat', 'grain',
+            'others',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
+    
     
 class AayatNiryat(FPNBaseModel):
     """model for आयात निर्यात गुण प्रमाणिकरण"""
@@ -152,7 +226,15 @@ class AayatNiryat(FPNBaseModel):
     pratikul_p = models.PositiveIntegerField(default=0, blank=True)
     h_pragati = models.PositiveIntegerField(default=0, blank=True)
     h_pratisat = models.PositiveIntegerField(default=0, blank=True)
-    kaifiyat = models.TextField(default="", blank=True)    
+    kaifiyat = models.TextField(default="", blank=True)
+    
+    def aayatniryat_total_sum(self):
+        fields = [
+            'b_lakshya', 'c_lakshya', 'c_pragati', 'm_pragati',
+            'pratikul_n', 'pratikul_p', 'h_pragati', 'h_pratisat',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum    
 
 
 class UjuriGunaso(FPNBaseModel):
@@ -170,6 +252,15 @@ class UjuriGunaso(FPNBaseModel):
     jamma = models.PositiveIntegerField(default=0, blank=True)
     sambodhan = models.PositiveIntegerField(default=0, blank=True)
     
+    def ujurigunaso_total_sum(self):
+        fields = [
+            'gunaso_petika', 'gunaso_adhikari', 'zilla', 'banijya',
+            'patra', 'akhtiyar', 'patrakar', 'sarkar', 'upavokta',
+            'others', 'jamma', 'sambodhan',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
+    
     
 class KhadyaPrasodhan(FPNBaseModel):
     """model for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
@@ -184,7 +275,14 @@ class KhadyaPrasodhan(FPNBaseModel):
     prasikshak = models.CharField(max_length=255, default="", blank=True)
     nikaya = models.TextField(default="", blank=True)
     bisaya = models.TextField(default="", blank=True)
-    kaifiyat = models.TextField(default="", blank=True)    
+    kaifiyat = models.TextField(default="", blank=True)
+    
+    def khadyaprasodhan_total_sum(self):
+        fields = [
+            'm_sankhya', 'p_sankhya',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
 
 
 class BittiyaBibaran(FPNBaseModel):
@@ -194,6 +292,13 @@ class BittiyaBibaran(FPNBaseModel):
     monthly_pujigat = models.FloatField(default=0, blank=True)
     monthly_chalu= models.FloatField(default=0, blank=True)
     monthly_rajaswo = models.FloatField(default=0, blank=True)
+    
+    def bittiyabibaran_total_sum(self):
+        fields = [
+            'yearly_pujigat', 'yearly_chalu', 'monthly_pujigat', 'monthly_chalu', 'monthly_rajaswo',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
 
 
 class PragatiBibaran(FPNBaseModel):
@@ -212,25 +317,16 @@ class PragatiBibaran(FPNBaseModel):
     h_pratisat = models.FloatField(default=0, blank=True)
     kaifiyat = models.TextField(default="", blank=True)
     
-    
-# class MasikPragati(models.Model):
-#     """model for मासिक वित्तिय विवरण"""
-#     upasirshak = models.PositiveIntegerField(default=0, blank=True)
-#     karyakram = models.CharField(max_length=255, default="", blank=True)
-#     ekai = models.CharField(max_length=15, choices=commons.EKAI_CHOICES, blank=True)
-#     b_lakshya = models.PositiveIntegerField(default=0, blank=True)
-#     m_parina = models.PositiveIntegerField(default=0, blank=True)
-#     t_lakshya = models.PositiveIntegerField(default=0, blank=True)
-#     t_pragati = models.PositiveIntegerField(default=0, blank=True)
-#     t_pratisat = models.PositiveIntegerField(default=0, blank=True)
-#     h_parinam = models.PositiveIntegerField(default=0, blank=True)
-#     h_pratisat = models.PositiveIntegerField(default=0, blank=True)
-#     kaifiyat = models.TextField(default="", blank=True)
-
-
+    def pragatibibaran_total_sum(self):
+        fields = [
+            'b_lakshya', 'm_parinam', 't_lakshya', 't_pragati', 't_pratisat', 'h_pragati', 'h_pratisat',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
 
 
 #Details Models
+
 
 class DetailHotel(FPNBaseModel):
     """model for detail होटल रेष्टुरेण्टको स्तरकिरण लोगो वितरण"""
@@ -339,6 +435,13 @@ class DetailRbpa(FPNBaseModel):
     sample3 = models.PositiveIntegerField(default=0, blank=True)
     quantity3 = models.PositiveIntegerField(default=0, blank=True)
     commodity3 = models.CharField(max_length=255, default="", blank=True)
+    
+    def rbpa_total_sum(self):
+        fields = [
+            'sample1', 'quantity1', 'sample2', 'quantity2', 'sample3', 'quantity3',
+        ]
+        total_sum = sum(getattr(self, field) for field in fields)
+        return total_sum
 
 
 class DetailGunaso(FPNBaseModel):

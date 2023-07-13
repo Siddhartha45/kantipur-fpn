@@ -60,16 +60,17 @@
         <thead>
             <tr>
                 <th>क्र. सं.</th>
+                {% if request.user.role != 'DE' %}
+                    <th>department</th>
+                    <th>कार्यालय</th>
+                {% endif %}
                 <th>बार्षिक पुँजीगत बजेट</th>
                 <th>बार्षिक चालु बजेट</th>
                 <th>महिनाको पुँजीगत खर्च</th>
                 <th>महिनाको चालु खर्च</th>
                 <th>महिनाको राजस्वो</th>
                 <th>महिना</th>
-                {% if request.user.role != 'DE' %}
-                    <th>department</th>
-                    <th>कार्यालय</th>
-                {% endif %}
+                <th>कुल</th>
                 <th>Verified</th>
                 <th>Rejected</th>
                 <th>Action</th>
@@ -79,16 +80,17 @@
             {% for d in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                {% if request.user.role != 'DE' %}
+                    <td>{{d.created_by.get_department_category_display}}</td>
+                    <td>{{d.created_by.office.name}}</td>
+                {% endif %}
                 <td>{{d.yearly_pujigat}}</td>
                 <td>{{d.yearly_chalu}}</td>
                 <td>{{d.monthly_pujigat}}</td>
                 <td>{{d.monthly_chalu}}</td>
                 <td>{{d.monthly_rajaswo}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
-                {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.get_department_category_display}}</td>
-                    <td>{{d.created_by.office.name}}</td>
-                {% endif %}
+                <td>{{d.bittiyabibaran_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

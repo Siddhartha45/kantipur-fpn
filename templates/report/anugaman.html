@@ -61,16 +61,16 @@
         <thead>
             <tr>
                 <th>क्र. सं.</th>
+                {% if request.user.role != 'DE' %}
+                    <th>कार्यालय</th>
+                {% endif %}
                 <th>अनुगमन निरीक्षण बिवरण</th>
                 <th>पटक</th>
                 <th>संख्या</th>
                 <th>हालसम्मको प्रगति</th>
                 <th>कैफियत</th>
                 <th>महिना</th>
-                {% if request.user.role != 'DE' %}
-                    <th>department</th>
-                    <th>कार्यालय</th>
-                {% endif %}
+                <th>कुल</th>
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -79,16 +79,16 @@
             {% for d in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                {% if request.user.role != 'DE' %}
+                    <td>{{d.created_by.office.name}}</td>
+                {% endif %}
                 <td>{{d.get_type_display}}</td>
                 <td>{{d.patak}}</td>
                 <td>{{d.sankhya}}</td>
                 <td>{{d.pragati}}</td>
                 <td>{{d.kaifiyat}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
-                {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.get_department_category_display}}</td>
-                    <td>{{d.created_by.office.name}}</td>
-                {% endif %}
+                <td>{{d.anugamanbibaran_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

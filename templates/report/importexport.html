@@ -53,6 +53,9 @@
         <thead>
             <tr>
                 <th>क्र. सं.</th>
+                {% if request.user.role != 'DE' %}
+                    <th>कार्यालय</th>
+                {% endif %}
                 <th>इकाई</th>
                 <th>बार्षिक लक्ष्य</th>
                 <th>चौमासिक लक्ष्य</th>
@@ -64,10 +67,6 @@
                 <th>हाल सम्मको प्रगति प्रतिशत</th>
                 <th>कैफियत</th>
                 <th>महिना</th>
-                {% if request.user.role != 'DE' %}
-                    <th>department</th>
-                    <th>कार्यालय</th>
-                {% endif %}
                 <th>Verified</th>
                 <th>Action</th>
             </tr>
@@ -76,6 +75,9 @@
             {% for d in data %}
             <tr>
                 <td>{{forloop.counter}}</td>
+                {% if request.user.role != 'DE' %}
+                    <td>{{d.created_by.office.name}}</td>
+                {% endif %}
                 <td>{{d.get_ekai_display}}</td>
                 <td>{{d.b_lakshya}}</td>
                 <td>{{d.c_lakshya}}</td>
@@ -87,10 +89,6 @@
                 <td>{{d.h_pratisat}}</td>
                 <td>{{d.kaifiyat}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
-                {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.get_department_category_display}}</td>
-                    <td>{{d.created_by.office.name}}</td>
-                {% endif %}
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">
