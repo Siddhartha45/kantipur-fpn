@@ -264,7 +264,7 @@ class UjuriGunaso(FPNBaseModel):
     
 class KhadyaPrasodhan(FPNBaseModel):
     """model for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
-    miti= models.DateField(blank=True, null=True)
+    miti= models.CharField(max_length=10, blank=True, null=True)
     abadhi = models.CharField(max_length=255, default="", blank=True)
     naam = models.CharField(max_length=255, default="", blank=True)
     sthan = models.CharField(max_length=255, default="", blank=True)

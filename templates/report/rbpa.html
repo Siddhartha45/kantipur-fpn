@@ -56,9 +56,12 @@
                 {% if request.user.role != 'DE' %}
                     <th>कार्यालय</th>
                 {% endif %}
-                <th>35% Inhibition</th>
-                <th>35-45% Inhibition</th>
-                <th>45% Inhibition</th>
+                <th>35% Inhibition (sample)</th>
+                <th>35% Inhibition (quantity)</th>
+                <th>35-45% Inhibition (sample)</th>
+                <th>35-45% Inhibition (quantity)</th>
+                <th>45% Inhibition (sample)</th>
+                <th>45% Inhibition (quantity)</th>
                 <th>महिना</th>
                 <th>कुल</th>
                 <th>Verified</th>
@@ -73,8 +76,11 @@
                     <td>{{d.created_by.office.name}}</td>
                 {% endif %}
                 <td>{{d.sample1}}</td>
+                <td>{{d.quantity1}}</td>
                 <td>{{d.sample2}}</td>
+                <td>{{d.quantity2}}</td>
                 <td>{{d.sample3}}</td>
+                <td>{{d.quantity3}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
                 <td>{{d.rbpa_total_sum}}</td>
                 <td>

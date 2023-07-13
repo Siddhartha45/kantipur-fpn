@@ -65,13 +65,21 @@
                     <th>कार्यालय</th>
                 {% endif %}
                 <th>product</th>
-                <th>बजार</th>
-                <th>उद्योग</th>
-                <th>आयात निर्यात</th>
-                <th>भन्सार मुद्दा</th>
-                <th>कार्यालय, संघ, संस्था, ब्याक्तिगत, अन्य</th>
-                <th>अनुज्ञा पत्र संग सम्बन्धित</th>
-                <th>कुल नमुना संख्या</th> 
+                <th>बजार (नमुना संख्या)</th>
+                <th>बजार (प्रतिकुल)</th>
+                <th>उद्योग (नमुना संख्या)</th>
+                <th>उद्योग (प्रतिकुल)</th>
+                <th>आयात निर्यात (नमुना संख्या)</th>
+                <th>आयात निर्यात (प्रतिकुल)</th>
+                <th>भन्सार मुद्दा (नमुना संख्या)</th>
+                <th>भन्सार मुद्दा (प्रतिकुल)</th>
+                <th>कार्यालय (नमुना संख्या)</th>
+                <th>कार्यालय (प्रतिकुल)</th>
+                <th>अनुज्ञा पत्र (नमुना संख्या)</th>
+                <th>अनुज्ञा पत्र (प्रतिकुल)</th>
+                <th>कुल (नमुना संख्या)</th> 
+                <th>कुल (प्रतिकुल)</th>
+                <th>चेक सेम्पल (नमुना संख्या)</th>
                 <th>कैफियत</th>
                 <th>महिना</th>
                 <th>कुल</th>
@@ -88,15 +96,23 @@
                 {% endif %}
                 <td>{{d.get_type_display}}</td>
                 <td>{{d.b_sankhya}}</td>
+                <td>{{d.b_pratikul}}</td>
                 <td>{{d.u_sankhya}}</td>
+                <td>{{d.u_pratikul}}</td>
                 <td>{{d.ay_sankhya}}</td>
+                <td>{{d.ay_pratikul}}</td>
                 <td>{{d.v_sankhya}}</td>
+                <td>{{d.v_pratikul}}</td>
                 <td>{{d.k_sankhya}}</td>
+                <td>{{d.k_pratikul}}</td>
                 <td>{{d.a_sankhya}}</td>
+                <td>{{d.a_pratikul}}</td>
                 <td>{{d.kul_sankhya}}</td>
+                <td>{{d.kul_pratikul}}</td>
+                <td>{{d.sample}}</td>
                 <td>{{d.kaifiyat}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
-                <td>{{d.prayogsala_total_sum}}</td>
+                <td>{{d.prayogsalabisleysan_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">

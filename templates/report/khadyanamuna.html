@@ -66,6 +66,8 @@
                 {% endif %}
                 <th>नमुना विश्लेषण</th>
                 <th>इकाई</th>
+                <th>लक्ष्य</th>
+                <th>प्रगति</th>
                 <th>महिनाको प्रगति</th>
                 <th>प्रतिकूल नमूना संख्या</th>
                 <th>प्रतिकूल पारामिटर</th>
@@ -86,7 +88,9 @@
                     <td>{{d.created_by.office.name}}</td>
                 {% endif %}
                 <td>{{d.get_type_display}}</td>
-                <td>{{d.get_ekai_choices}}</td>
+                <td>{{d.get_ekai_display}}</td>
+                <td>{{d.lakshya}}</td>
+                <td>{{d.pragati1}}</td>
                 <td>{{d.mahina_pragati}}</td>
                 <td>{{d.sankhya}}</td>
                 <td>{{d.parameter}}</td>

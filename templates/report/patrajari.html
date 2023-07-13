@@ -113,7 +113,7 @@
 
                     {% if not request.user.role == 'DE' %}
                         <div class="action-btn-pen">
-                            <a href="{% url 'patrajari-view' %}" method="put"><span class="material-symbols-outlined">
+                            <a href="{% url 'patrajari-view' id=d.id %}" method="put"><span class="material-symbols-outlined">
                                 visibility
                                 </span></a>
                             </div>
