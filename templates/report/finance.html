@@ -72,7 +72,6 @@
                 <th>महिना</th>
                 <th>कुल</th>
                 <th>Verified</th>
-                <th>Rejected</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -102,7 +101,6 @@
                         </div>
                     {% endif %}
                 </td>
-                <td>{{d.is_rejected}}</td>
                 <td>
                     <div class="d-flex kit-action-com">
                         
@@ -193,14 +191,17 @@
             </tr>
             {% endfor %}
             <td>Total:</td>
+            {% if request.user.role != 'DE' %}
+                <td></td>
+            {% endif %}
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
             <td></td>
-            <td>100</td>
             <td></td>
+            <td>{{total_sum}}</td>
             <td></td>
             <td></td>
         </tbody>

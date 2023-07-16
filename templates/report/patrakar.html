@@ -186,6 +186,26 @@
             </tr>
             {% endfor %}
         </tbody>
+        <td>Total:</td>
+        {% if request.user.role != 'DE' %}
+            <td></td>
+        {% endif %}
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{total_sum}}</td>
+        <td></td>
+        <td></td>
     </table>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

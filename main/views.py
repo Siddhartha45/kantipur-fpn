@@ -18,7 +18,7 @@ from django.db.models import Sum
 
 from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum, logobitaran_sum,
                         namunabisleysan_sum, prayogsala_sum, patrajari_sum, patranabikaran_sum,
-                        udyogsifaris_sum, ujurigunaso_sum, rbpa_sum)
+                        udyogsifaris_sum, ujurigunaso_sum, rbpa_sum, khadyaprasodhan_sum, bittiyabibaran_sum)
 #----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1738,6 +1738,7 @@ def khadyaact_remarks(request, id):
 @login_required
 def anugaman_report(request):
     """table list for निरीक्षण अनुगमन विवरण"""
+    total_sum = anugamanbibaran_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = AnugamanBibaran.objects.filter(is_verified=True)
@@ -1748,7 +1749,7 @@ def anugaman_report(request):
     # month = request.query_params.get("month", "")
     # if month:
     #     data = data.filter(created_on_np_date__regex=r"[\d]*-{month}-[\d]*".format(month=month))
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/anugaman.html', context)
 
 
@@ -1807,6 +1808,7 @@ def anugaman_remarks(request, id):
 @login_required
 def hotel_report(request):
     """table list for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
+    total_sum = logobitaran_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = Logobitaran.objects.filter(is_verified=True)
@@ -1815,7 +1817,7 @@ def hotel_report(request):
     else:
         data = Logobitaran.objects.filter(created_by__in=user_office)
     
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/hotel.html', context)
 
 
@@ -1874,6 +1876,7 @@ def hotel_remarks(request, id):
 @login_required
 def khadya_report(request):
     """table list for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
+    total_sum = namunabisleysan_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = NamunaBisleysan.objects.filter(is_verified=True)
@@ -1881,7 +1884,7 @@ def khadya_report(request):
         data = NamunaBisleysan.objects.all()
     else:
         data = NamunaBisleysan.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/khadyanamuna.html', context)
 
 
@@ -1943,6 +1946,7 @@ def khadya_remarks(request, id):
 @login_required
 def prayogsala_report(request):
     """table list for प्रयोगशाला विश्लेषण प्रतिवेदन सारांश"""
+    total_sum = prayogsala_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = PrayogsalaBisleysan.objects.filter(is_verified=True)
@@ -1950,7 +1954,7 @@ def prayogsala_report(request):
         data = PrayogsalaBisleysan.objects.all()
     else:
         data = PrayogsalaBisleysan.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/prayogsala.html', context)
 
 
@@ -2009,6 +2013,7 @@ def prayogsala_remarks(request, id):
 @login_required
 def rbpa_report(request):
     """table list for RBPA Analysis Report"""
+    total_sum = rbpa_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = DetailRbpa.objects.filter(is_verified=True)
@@ -2016,7 +2021,7 @@ def rbpa_report(request):
         data = DetailRbpa.objects.all()
     else:
         data = DetailRbpa.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/rbpa.html', context)
 
 
@@ -2075,6 +2080,7 @@ def rbpa_remarks(request, id):
 @login_required
 def importexport_report(request):
     """table list for आयात निर्यात गुण प्रमाणिकरण"""
+    total_sum = ayatniryat_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = AayatNiryat.objects.filter(is_verified=True)
@@ -2082,7 +2088,7 @@ def importexport_report(request):
         data = AayatNiryat.objects.all()
     else:
         data = AayatNiryat.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/importexport.html', context)
 
 
@@ -2144,6 +2150,7 @@ def importexport_remarks(request, id):
 @login_required
 def gunasho_report(request):
     """table list for उजुरी/गुनासो ब्येवस्थापन"""
+    total_sum = ujurigunaso_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = UjuriGunaso.objects.filter(is_verified=True)
@@ -2151,7 +2158,7 @@ def gunasho_report(request):
         data = UjuriGunaso.objects.all()
     else:
         data = UjuriGunaso.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/gunasho.html', context)
 
 
@@ -2210,6 +2217,7 @@ def gunasho_remarks(request, id):
 @login_required
 def patrakar_report(request):
     """table list for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
+    total_sum = khadyaprasodhan_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = KhadyaPrasodhan.objects.filter(is_verified=True)
@@ -2217,7 +2225,7 @@ def patrakar_report(request):
         data = KhadyaPrasodhan.objects.all()
     else:
         data = KhadyaPrasodhan.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/patrakar.html', context)
 
 
@@ -2276,6 +2284,7 @@ def patrakar_remarks(request, id):
 @login_required
 def patrajari_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र जारी"""
+    total_sum = patrajari_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = PatraJari.objects.filter(is_verified=True)
@@ -2283,7 +2292,7 @@ def patrajari_report(request):
         data = PatraJari.objects.all()
     else:
         data = PatraJari.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/patrajari.html', context)
 
 
@@ -2342,6 +2351,7 @@ def patrajari_remarks(request, id):
 @login_required
 def renew_report(request):
     """table list for खाद्य तथा दाना अनुज्ञा पत्र नविकरण"""
+    total_sum = patranabikaran_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = PatraNabikaran.objects.filter(is_verified=True)
@@ -2349,7 +2359,7 @@ def renew_report(request):
         data = PatraNabikaran.objects.all()
     else:
         data = PatraNabikaran.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/renew.html', context)
 
 
@@ -2408,6 +2418,7 @@ def renew_remarks(request, id):
 @login_required
 def udyog_report(request):
     """table list for उद्योग सिफारिस"""
+    total_sum = udyogsifaris_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = UdyogSifaris.objects.filter(is_verified=True)
@@ -2415,7 +2426,7 @@ def udyog_report(request):
         data = UdyogSifaris.objects.all()
     else:
         data = UdyogSifaris.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/udyog.html', context)
 
 
@@ -2474,6 +2485,7 @@ def udyog_remarks(request, id):
 @login_required
 def finance_report(request):
     """table list for मासिक वित्तिय विवरण"""
+    total_sum = bittiyabibaran_sum(request)
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = BittiyaBibaran.objects.filter(is_verified=True)
@@ -2481,7 +2493,7 @@ def finance_report(request):
         data = BittiyaBibaran.objects.all()
     else:
         data = BittiyaBibaran.objects.filter(created_by__in=user_office)
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/finance.html', context)
 
 
