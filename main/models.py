@@ -335,8 +335,8 @@ class DetailHotel(FPNBaseModel):
     thegana = models.CharField(max_length=255, default="", blank=True)
     samparka = models.CharField(max_length=255, default="", blank=True)
     jilla = models.CharField(max_length=255, default="", blank=True)
-    j_miti = models.DateField(blank=True)
-    n_miti = models.DateField(blank=True)
+    j_miti = models.CharField(max_length=10, default="", blank=True)
+    n_miti = models.CharField(max_length=10, default="", blank=True)
     karyalaya = models.CharField(max_length=255, default="", blank=True)
     kaifiyat = models.TextField(default="", blank=True)
     
@@ -352,8 +352,8 @@ class DetailRegistration(FPNBaseModel):
     mukhya = models.CharField(max_length=255, default="", blank=True)
     brand = models.CharField(max_length=255, default="", blank=True)
     karyalaya = models.CharField(max_length=255, default="", blank=True)
-    j_miti = models.DateField(blank=True)
-    n_miti = models.DateField(blank=True)
+    j_miti = models.CharField(max_length=10, default="", blank=True)
+    n_miti = models.CharField(max_length=10, default="", blank=True)
     kaifiyat = models.TextField(default="", blank=True) 
     
     
@@ -368,8 +368,8 @@ class DetailRenew(FPNBaseModel):
     mukhya = models.CharField(max_length=255, default="", blank=True)
     brand = models.CharField(max_length=255, default="", blank=True)
     karyalaya = models.CharField(max_length=255, default="", blank=True)
-    j_miti = models.DateField(blank=True)
-    n_miti = models.DateField(blank=True)
+    j_miti = models.CharField(max_length=10, default="", blank=True)
+    n_miti = models.CharField(max_length=10, default="", blank=True)
     kaifiyat = models.TextField(default="", blank=True)
     
     
@@ -384,8 +384,8 @@ class DetailUdyog(FPNBaseModel):
     mukhya = models.CharField(max_length=255, default="", blank=True)
     brand = models.CharField(max_length=255, default="", blank=True)
     karyalaya = models.CharField(max_length=255, default="", blank=True)
-    j_miti = models.DateField(blank=True)
-    n_miti = models.DateField(blank=True)
+    j_miti = models.CharField(max_length=10, default="", blank=True)
+    n_miti = models.CharField(max_length=10, default="", blank=True)
     kaifiyat = models.TextField(default="", blank=True)
     
     
@@ -409,15 +409,15 @@ class DetailMudha(FPNBaseModel):
     """model for detail मुद्धा दायरी"""
     naam = models.CharField(max_length=255, default="", blank=True)
     b_naam = models.CharField(max_length=255, default="", blank=True)
-    n_miti = models.DateField(blank=True)
+    n_miti = models.CharField(max_length=10, default="", blank=True)
     n_sthan = models.CharField(max_length=255, default="", blank=True)
     n_khani = models.CharField(max_length=255, default="", blank=True)
-    p_miti = models.DateField(blank=True)
-    b_miti = models.DateField(blank=True)
+    p_miti = models.CharField(max_length=10, default="", blank=True)
+    b_miti = models.CharField(max_length=10, default="", blank=True)
     prakar = models.CharField(max_length=255, default="", blank=True)
     parameter = models.CharField(max_length=255, default="", blank=True)
     m_sthan = models.CharField(max_length=255, default="", blank=True)
-    m_miti = models.DateField(blank=True)
+    m_miti = models.CharField(max_length=10, default="", blank=True)
     m_khani = models.CharField(max_length=255, default="", blank=True)
     karyalaya = models.CharField(max_length=255, default="", blank=True)
     kaifiyat = models.TextField(default="", blank=True)    
@@ -446,8 +446,8 @@ class DetailRbpa(FPNBaseModel):
 
 class DetailGunaso(FPNBaseModel):
     """model for detail उजुरी गुनासो"""
-    p_miti = models.DateField(blank=True)
+    p_miti = models.CharField(max_length=10, default="", blank=True)
     srot = models.CharField(max_length=10, choices=commons.DETAIL_SROT_CHOICES, blank=True)
-    s_miti = models.DateField(blank=True)
+    s_miti = models.CharField(max_length=10, default="", blank=True)
     bibaran = models.TextField(default="", blank=True)
 

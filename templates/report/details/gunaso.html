@@ -5,19 +5,27 @@
 
     <div class="add-heading">
         <h3 class="heading-cm">
-            <a href="http://127.0.0.1:5500/html/" class="nav-icon me-2">
+            <a href="" class="nav-icon me-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
-            मासिक वित्तिय विवरण<span class="sub-nav ms-2"> > रिपोर्ट</span>
+            होटल रेष्टुरेण्टको स्तरकिरण लोगो वितरण <span class="sub-nav ms-2"> > रिपोर्ट</span>
         </h3>
     </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
 
     <div class="row mb-4 filter-row filters">
         <div class="row">
             <div class="col-md-5">
                 <select id="office" name="status" class="form-select kit-form-control">
                     <option value="all" disabled selected>कार्यालय छान्नुहोस्</option>
-                    <option value="खाद्य प्रबिधि तथा गुण नियन्त्रण कार्यालय, हेटौडा">खाद्य प्रबिधि तथा गुण नियन्त्रण कार्यालय, हेटौडा</option>
+                    <option value="Pending">Pending</option>
                     <option value="Verified">Verified</option>
                     <option value="Rejected">Rejected</option>
                 </select>
@@ -25,18 +33,18 @@
             <div class="col-md-3">
                 <select id="month" name="status" class="form-select kit-form-control">
                     <option value="all" disabled selected>महिना छान्नुहोस्</option>
-                    <option value="बैशाख">बैशाख</option>
-                    <option value="जेठ">जेठ</option>
-                    <option value="असार">असार</option>
-                    <option value="श्रावण">श्रावण</option>
-                    <option value="भदौ">भदौ</option>
-                    <option value="आश्विन">आश्विन</option>
-                    <option value="कार्तिक">कार्तिक</option>
-                    <option value="मंसिर">मंसिर</option>
-                    <option value="पुष">पुष</option>
-                    <option value="माघ">माघ</option>
-                    <option value="फाल्गुन">फाल्गुन</option>
-                    <option value="चैत्र">चैत्र</option>
+                    <option value="01">बैशाख</option>
+                    <option value="02">जेठ</option>
+                    <option value="03">असार</option>
+                    <option value="04">श्रावण</option>
+                    <option value="05">भदौ</option>
+                    <option value="06">आश्विन</option>
+                    <option value="07">कार्तिक</option>
+                    <option value="08">मंसिर</option>
+                    <option value="09">पुष</option>
+                    <option value="10">माघ</option>
+                    <option value="11">फाल्गुन</option>
+                    <option value="12">चैत्र</option>
                 </select>
             </div>
             <div class="col-md-2">
@@ -48,31 +56,20 @@
         </div>
     </div>
 
-    {% for message in messages %}
-        {% if message.tags == "success" %}
-            <div class="alert alert-success">{{ message }}</div>
-        {% elif message.tags == "error" %}
-            <div class="alert alert-danger">{{ message }}</div>
-        {% endif %}
-    {% endfor %}
 
     <table id="sampleTable" class="table hover-table" style="width:100%">
         <thead>
             <tr>
                 <th>क्र. सं.</th>
                 {% if request.user.role != 'DE' %}
-                    <th>department</th>
                     <th>कार्यालय</th>
                 {% endif %}
-                <th>बार्षिक पुँजीगत बजेट</th>
-                <th>बार्षिक चालु बजेट</th>
-                <th>महिनाको पुँजीगत खर्च</th>
-                <th>महिनाको चालु खर्च</th>
-                <th>महिनाको राजस्वो</th>
+                <th>उजुरी तथा गुनासो प्राप्त मिति</th>
+                <th>उजुरी तथा गुनासोको स्रोत</th>
+                <th>उजुरी/गुनासो सम्बोधन मिति</th>
+                <th>सम्बोधन/कार्यवाही विवरण</th>
                 <th>महिना</th>
-                <th>कुल</th>
                 <th>Verified</th>
-                <th>Rejected</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -81,16 +78,13 @@
             <tr>
                 <td>{{forloop.counter}}</td>
                 {% if request.user.role != 'DE' %}
-                    <td>{{d.created_by.get_department_category_display}}</td>
                     <td>{{d.created_by.office.name}}</td>
                 {% endif %}
-                <td>{{d.yearly_pujigat}}</td>
-                <td>{{d.yearly_chalu}}</td>
-                <td>{{d.monthly_pujigat}}</td>
-                <td>{{d.monthly_chalu}}</td>
-                <td>{{d.monthly_rajaswo}}</td>
+                <td>{{d.p_miti}}</td>
+                <td>{{d.srot}}</td>
+                <td>{{d.s_miti}}</td>
+                <td>{{d.bibaran}}</td>
                 <td>{{d.created_on_np_date|slice:"5:7"|nepali_month_name}}</td>
-                <td>{{d.bittiyabibaran_total_sum}}</td>
                 <td>
                     {% if d.is_verified %}
                         <div class="status-box verified">
@@ -102,43 +96,39 @@
                         </div>
                     {% endif %}
                 </td>
-                <td>{{d.is_rejected}}</td>
                 <td>
                     <div class="d-flex kit-action-com">
-                        
+
                         {% if not request.user.role == 'DE' %}
                             <div class="action-btn-pen">
-                            <a href="{% url 'finance-view' id=d.id %}" method="get"><span class="material-symbols-outlined">
+                            <a href="{% url 'anugaman-view' id=d.id %}" method="get"><span class="material-symbols-outlined">
                                 visibility
                                 </span></a>
                             </div>
                         {% endif %}
-                        
-                        
+
                         {% if not d.is_verified %}
-                            
                             <div class="action-btn-pen">
-                                <a href="{% url 'finance-edit' id=d.id %}" method="put"><span class="material-symbols-outlined">
+                                <a href="{% url 'anugaman-edit' id=d.id %}" method="put"><span class="material-symbols-outlined">
                                         edit
                                         </span></a>
-                                </div>
+                            </div>
 
                             <div class="action-btn-pen dlt-btn">
-                                <a href="" method="put" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-symbols-outlined ">
+                                <a href="#" method="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><span class="material-symbols-outlined ">
                                     delete
+                                    </span></a>
+                            </div>
+
+                            <div class="action-btn-pen dlt-btn">
+                                <a href="" method="put" data-bs-toggle="modal" data-bs-target="#report{{d.id}}"><span class="material-symbols-outlined">
+                                    report
                                     </span></a>
                                 </div>
 
-                                <div class="action-btn-pen dlt-btn">
-                                    <a href="" method="put" data-bs-toggle="modal" data-bs-target="#report{{d.id}}"><span class="material-symbols-outlined">
-                                        report
-                                        </span></a>
-                                    </div>
-                        
                         {% endif %}
-                            
 
-                        <form class="action-btn-dlt" action="{% url 'finance-delete' id=d.id %}" method="post">
+                        <form class="action-btn-dlt" action="{% url 'anugaman-delete' id=d.id %}" method="post">
                             {% csrf_token %}
 
                             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -187,22 +177,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </td>
             </tr>
             {% endfor %}
-            <td>Total:</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>100</td>
-            <td></td>
-            <td></td>
-            <td></td>
         </tbody>
     </table>
 
@@ -270,7 +248,7 @@
 
             $('#office').on('change', function () {
                 var type = $(this).val();
-                table.columns(8).search(type).draw();
+                table.columns(7).search(type).draw();
             });
             $('#month').on('change', function () {
                 var type = $(this).val();
@@ -288,5 +266,4 @@
 
         });
     </script>
-
 {% endblock %}

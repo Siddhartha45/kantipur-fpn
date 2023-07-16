@@ -203,6 +203,27 @@
                 </td>
             </tr>
             {% endfor %}
+            <td>Total:</td>
+            {% if request.user.role != 'DE' %}
+                <td></td>
+            {% endif %}
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{total_sum}}</td>
+            <td></td>
+            <td></td>
         </tbody>
     </table>
 
@@ -237,25 +258,25 @@
                 {
                     extend: 'csv',
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
                     }
                 },
                 {
                     extend: 'excel',
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
                     }
                 },
                 {
                     extend: 'pdf',
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
                     }
                 },
                 {
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
                     }
                 }
                 ],
@@ -274,7 +295,7 @@
             });
             $('#month').on('change', function () {
                 var type = $(this).val();
-                table.columns(3).search(type).draw();
+                table.columns(15).search(type).draw();
             });
 
 

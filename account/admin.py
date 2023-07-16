@@ -10,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ("email", "username", "is_staff", "is_superuser",)
+    list_display = ("email", "username", "department_category", "office", "is_staff", "is_superuser",)
     list_filter = ("email", "username", "is_staff", "is_superuser",)
     
     """for showing fields we want in admin panel"""

@@ -185,6 +185,19 @@
                 </td>
             </tr>
             {% endfor %}
+            <td>Total:</td>
+            {% if request.user.role != 'DE' %}
+                <td></td>
+            {% endif %}
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>100</td>
+            <td></td>
+            <td></td>
         </tbody>
     </table>
 

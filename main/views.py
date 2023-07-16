@@ -9,13 +9,11 @@ from .models import (BarsikLakshya, AnugamanBibaran, NamunaBisleysan, AayatNirya
                     DetailAnugaman, DetailGunaso, DetailHotel, DetailMudha, DetailRegistration, DetailRenew, DetailUdyog)
 from fpn import commons
 from django.contrib.auth.decorators import login_required
-import datetime
 import nepali_datetime
 from django.contrib import messages
 from fpn.decorators import (all_required, fo_and_ie_required, fo_and_ffsqrd_required, fo_and_nffrl_required, fo_required,
                             do_and_ffsqrd_and_fo_required, fo_and_ftdnd_required)
 from account.models import CustomUser
-from django.http import JsonResponse
 from django.db.models import Sum
 
 from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum, logobitaran_sum,
@@ -105,6 +103,13 @@ def namuna_bibaran(request):
     if request.method == 'POST':
         form = NamunaBibaranForm(request.POST)
         if form.is_valid():
+            user_office = CustomUser.objects.filter(office=request.user.office)
+            created_on_np_date = form.cleaned_data.get('created_on_np_date')
+            year_month = created_on_np_date[:7]
+            if NamunaBibaran.objects.filter(created_by__in=user_office, created_on_np_date__startswith=year_month).first():
+                messages.info(request, "Report for this month has already been submitted")
+                return redirect('namuna')
+            
             NamunaBibaran.new(created_by=request.user, **form.cleaned_data)
             messages.success(request, "Form submitted successfully")
             return redirect('khadya-act-report')
@@ -1624,8 +1629,6 @@ def detail_gunasho(request):
     
     data = {
         'srot': commons.DETAIL_SROT_CHOICES,
-        'current_nepali_date': nepali_datetime.date.today().strftime("%Y/%m/%d"),
-        'current_nepali_year': nepali_datetime.date.today().strftime("%Y"),
     }
     if request.method == 'POST':
         d_p_miti = request.POST.getlist('p_miti[]')
@@ -1667,6 +1670,9 @@ def detail_gunasho(request):
 @login_required
 def khadyaact_report(request):
     """table list for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
+    current_date = nepali_datetime.date.today().strftime("%Y-%m")
+    total_sum = namunabibaran_sum(request)
+    #obj = NamunaBibaran.objects.filter(is_verified=True).aggregate(total_milk=Sum('milk'))['total_milk']
     user_office = CustomUser.objects.filter(office=request.user.office)
     if request.user.role == 'A':
         data = NamunaBibaran.objects.filter(is_verified=True)
@@ -1675,7 +1681,7 @@ def khadyaact_report(request):
     else:
         data = NamunaBibaran.objects.filter(created_by__in=user_office)
     
-    context = {'data': data}
+    context = {'data': data, 'total_sum': total_sum}
     return render(request, 'report/khadyaact.html', context)
 
 

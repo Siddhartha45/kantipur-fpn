@@ -13,8 +13,16 @@ def ayatniryat_sum(request):
                     Sum('m_pragati') + Sum('pratikul_n') + Sum('pratikul_p') +
                     Sum('h_pragati') + Sum('h_pratisat')
         )
-    else:
+    elif request.user.role == 'V':
         sum_values = AayatNiryat.objects.aggregate(
+            total = Sum('b_lakshya') + Sum('c_lakshya') + Sum('c_pragati') +
+                    Sum('m_pragati') + Sum('pratikul_n') + Sum('pratikul_p') +
+                    Sum('h_pragati') + Sum('h_pratisat')
+        )
+    elif request.user.role == 'A':
+        sum_values = AayatNiryat.objects.filter(
+            is_verified = True
+            ).aggregate(
             total = Sum('b_lakshya') + Sum('c_lakshya') + Sum('c_pragati') +
                     Sum('m_pragati') + Sum('pratikul_n') + Sum('pratikul_p') +
                     Sum('h_pragati') + Sum('h_pratisat')
@@ -27,6 +35,15 @@ def namunabibaran_sum(request):
     if request.user.role == 'DE':
         sum_values = NamunaBibaran.objects.filter(
             created_by__office = request.user.office
+        ).aggregate(
+            total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
+                    Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
+                    Sum('sweets') + Sum('confectionery') + Sum('meat') + Sum('grain') +
+                    Sum('others')
+        )
+    elif request.user.role == 'A':
+        sum_values = NamunaBibaran.objects.filter(
+            is_verified = True
         ).aggregate(
             total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
                     Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
