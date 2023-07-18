@@ -78,88 +78,88 @@
                             <td>खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</td>
                             <td>संख्या</td>
                             <td>{{obj.namuna_bibaran}}</td>
-                            <td>tyghjgh</td>
-                            <td>{{namuna_bibaran_sum}}</td>
+                            <td>{{namuna_bibaran_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{namuna_bibaran_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>2</td>
                             <td>निरीक्षण अनुगमन विवरण</td>
                             <td>संख्या</td>
                             <td>{{obj.anugaman}}</td>
-                            <td>884</td>
-                            <td>{{anugaman_bibaran_sum}}</td>
+                            <td>{{anugaman_bibaran_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{anugaman_bibaran_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>3</td>
                             <td>होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण</td>
                             <td>संख्या</td>
                             <td>{{obj.logo}}</td>
-                            <td>884</td>
-                            <td>{{logo_bitaran_sum}}</td>
+                            <td>{{logo_bitaran_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{logo_bitaran_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>4</td>
                             <td>खाद्य तथा दाना नमुना विश्लेषण विवरण</td>
                             <td>संख्या</td>
                             <td>{{obj.namuna_bisleysan}}</td>
-                            <td>884</td>
-                            <td>{{namuna_bisleysan_sum}}</td>
+                            <td>{{namuna_bisleysan_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{namuna_bisleysan_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>5</td>
                             <td>प्रयोगशाला विश्लेषण प्रतिवेदन सारांश</td>
                             <td>संख्या</td>
                             <td>{{obj.prayogsala}}</td>
-                            <td>884</td>
-                            <td>{{prayog_sala_sum}}</td>
+                            <td>{{prayog_sala_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{prayog_sala_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>6</td>
                             <td>खाद्य तथा दाना अनुज्ञा पत्र जारी</td>
                             <td>संख्या</td>
                             <td>{{obj.patrajari}}</td>
-                            <td>884</td>
-                            <td>{{patra_jari_sum}}</td>
+                            <td>{{patra_jari_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{patra_jari_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>7</td>
                             <td>खाद्य तथा दाना अनुज्ञा पत्र नविकरण</td>
                             <td>संख्या</td>
                             <td>{{obj.patranabikaran}}</td>
-                            <td>884</td>
-                            <td>{{patra_nabikaran_sum}}</td>
+                            <td>{{patra_nabikaran_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{patra_nabikaran_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>8</td>
                             <td>उद्योग सिफारिस</td>
                             <td>संख्या</td>
                             <td>{{obj.udyog_sifaris}}</td>
-                            <td>884</td>
-                            <td>{{udyog_sifaris_sum}}</td>
+                            <td>{{udyog_sifaris_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{udyog_sifaris_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>9</td>
                             <td>आयात निर्यात गुण प्रमाणिकरण</td>
                             <td>संख्या</td>
                             <td>{{obj.aayat_niryat}}</td>
-                            <td>884</td>
-                            <td>{{aayat_niryat_sum}}</td>
+                            <td>{{ayat_niryat_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{aayat_niryat_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>10</td>
                             <td>उजुरी/गुनासो ब्येवस्थापन</td>
                             <td>संख्या</td>
                             <td>{{obj.ujuri_gunaso}}</td>
-                            <td>884</td>
-                            <td>{{ujuri_gunaso_sum}}</td>
+                            <td>{{ujuri_gunaso_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{ujuri_gunaso_sum|default_if_none:'----'}}</td>
                           </tr>
                           <tr>
                             <td>11</td>
                             <td>RBPR Analysis</td>
                             <td>संख्या</td>
                             <td>{{obj.rbpr}}</td>
-                            <td>884</td>
-                            <td>{{rbpa_analysis_sum}}</td>
+                            <td>{{rbpa_analysis_monthly_sum|default_if_none:'----'}}</td>
+                            <td>{{rbpa_analysis_sum|default_if_none:'----'}}</td>
                           </tr>
                         </tbody>
                     </table>
@@ -184,22 +184,28 @@
 
     <script>
         function ExportToExcel(type, fn, dl) {
-       var elt = document.getElementById('monthly_report');
-       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-       return dl ?
-         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
-         XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+        var elt = document.getElementById('monthly_report');
+        var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+        return dl ?
+          XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+          XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
     }
 
     $(document).ready(function(){
         $("#month").change(function(){
             $("#report-container").css("display", "block");
+            var selectedValue = $(this).val();
+            var url = '?month=' + selectedValue;
+            window.location.href = url;
         });
         $("#reset").click(function(){
             $("#month").val("all");
             $("#report-container").css("display", "none");
         });
     });
+    $("#report-container").css("display", "block");
     </script>
+
+    
 
 {% endblock %}

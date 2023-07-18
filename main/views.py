@@ -16,9 +16,11 @@ from fpn.decorators import (all_required, fo_and_ie_required, fo_and_ffsqrd_requ
 from account.models import CustomUser
 from django.db.models import Sum
 
-from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum, logobitaran_sum,
-                        namunabisleysan_sum, prayogsala_sum, patrajari_sum, patranabikaran_sum,
-                        udyogsifaris_sum, ujurigunaso_sum, rbpa_sum, khadyaprasodhan_sum, bittiyabibaran_sum)
+from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum, logobitaran_sum, namunabisleysan_sum, prayogsala_sum, 
+                        patrajari_sum, patranabikaran_sum,udyogsifaris_sum, ujurigunaso_sum, rbpa_sum, khadyaprasodhan_sum, bittiyabibaran_sum,
+                        namunabibaran_monthly_sum, anugamanbibaran_monthly_sum, logobitaran_monthly_sum, namunabisleysan_monthly_sum,
+                        prayogsala_monthly_sum, patrajari_monthly_sum, patranabikaran_monthly_sum, udyogsifaris_monthly_sum, ayatniryat_monthly_sum,
+                        ujurigunaso_monthly_sum, rbpa_monthly_sum)
 #----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -30,6 +32,7 @@ def home(request):
 
 def progress_count(request):
     
+    #variables for storing sum of models
     aayat_niryat_sum = ayatniryat_sum(request)
     namuna_bibaran_sum = namunabibaran_sum(request)
     anugaman_bibaran_sum = anugamanbibaran_sum(request)
@@ -42,6 +45,29 @@ def progress_count(request):
     ujuri_gunaso_sum = ujurigunaso_sum(request)
     rbpa_analysis_sum = rbpa_sum(request)
     
+    month = request.GET.get('month')    #gets the value of months from frontend
+    
+    #vvariables for storing sum of models for specific month
+    namuna_bibaran_monthly_sum = namunabibaran_monthly_sum(request, month)
+    anugaman_bibaran_monthly_sum = anugamanbibaran_monthly_sum(request, month)
+    logo_bitaran_monthly_sum = logobitaran_monthly_sum(request, month)
+    namuna_bisleysan_monthly_sum = namunabisleysan_monthly_sum(request, month)
+    prayog_sala_monthly_sum = prayogsala_monthly_sum(request, month)
+    patra_jari_monthly_sum = patrajari_monthly_sum(request, month)
+    patra_nabikaran_monthly_sum = patranabikaran_monthly_sum(request, month)
+    udyog_sifaris_monthly_sum = udyogsifaris_monthly_sum(request, month)
+    ayat_niryat_monthly_sum = ayatniryat_monthly_sum(request, month)
+    ujuri_gunaso_monthly_sum = ujurigunaso_monthly_sum(request, month)
+    rbpa_analysis_monthly_sum = rbpa_monthly_sum(request, month)
+    
+    # sum_values = NamunaBibaran.objects.filter(
+    #     is_verified = True, created_on_np_date__startswith=f'2080-{month}'
+    # ).aggregate(
+    #     total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
+    #             Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
+    #             Sum('sweets') + Sum('confectionery') + Sum('meat') + Sum('grain') +
+    #             Sum('others')
+    # )
     
     if request.user.role == 'A':
         try:
@@ -69,6 +95,18 @@ def progress_count(request):
         'udyog_sifaris_sum': udyog_sifaris_sum,
         'ujuri_gunaso_sum': ujuri_gunaso_sum,
         'rbpa_analysis_sum': rbpa_analysis_sum,
+        
+        'namuna_bibaran_monthly_sum': namuna_bibaran_monthly_sum,
+        'anugaman_bibaran_monthly_sum': anugaman_bibaran_monthly_sum,
+        'logo_bitaran_monthly_sum': logo_bitaran_monthly_sum,
+        'namuna_bisleysan_monthly_sum': namuna_bisleysan_monthly_sum,
+        'prayog_sala_monthly_sum': prayog_sala_monthly_sum,
+        'patra_jari_monthly_sum': patra_jari_monthly_sum,
+        'patra_nabikaran_monthly_sum': patra_nabikaran_monthly_sum,
+        'udyog_sifaris_monthly_sum': udyog_sifaris_monthly_sum,
+        'ayat_niryat_monthly_sum': ayat_niryat_monthly_sum,
+        'ujuri_gunaso_monthly_sum': ujuri_gunaso_monthly_sum,
+        'rbpa_analysis_monthly_sum': rbpa_analysis_monthly_sum,
     }
     return render(request, 'count.html', context)
 
