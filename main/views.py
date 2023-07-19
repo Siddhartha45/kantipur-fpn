@@ -11,8 +11,7 @@ from fpn import commons
 from django.contrib.auth.decorators import login_required
 import nepali_datetime
 from django.contrib import messages
-from fpn.decorators import (all_required, fo_and_ie_required, fo_and_ffsqrd_required, fo_and_nffrl_required, fo_required,
-                            do_and_ffsqrd_and_fo_required, fo_and_ftdnd_required)
+from fpn.decorators import (fo_and_do_and_ffsqrd_required, fo_and_ffsqrd_required, fo_required, fo_and_nffrl_required, ie_required, ie_and_fo_required)
 from account.models import CustomUser
 from django.db.models import Sum
 
@@ -134,7 +133,7 @@ def barsik_lakshya(request):
 #------------------------------------------------------------FORMS PART BELOW -----------------------------------------------------------
 
 
-@do_and_ffsqrd_and_fo_required
+@fo_and_do_and_ffsqrd_required
 def namuna_bibaran(request):
     """views for खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण"""
     
@@ -159,7 +158,7 @@ def namuna_bibaran(request):
     return render(request, 'forms/namuna_bibaran/newentry.html', context)
 
 
-@do_and_ffsqrd_and_fo_required
+@fo_and_do_and_ffsqrd_required
 def anugaman(request):
     """views for निरीक्षण अनुगमन विवरण"""
     if request.method == 'POST':
@@ -249,7 +248,7 @@ def anugaman(request):
     return render(request, 'forms/anugaman_bibaran/newentry.html', context)
 
 
-@do_and_ffsqrd_and_fo_required
+@fo_and_ffsqrd_required
 def logobitaran(request):
     """views for होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण"""
     
@@ -310,7 +309,7 @@ def logobitaran(request):
     return render(request, 'forms/logobitaran_bibaran/newentry.html', context)
 
 
-@fo_and_ftdnd_required
+@fo_and_nffrl_required
 def namuna_bisleysan(request):
     """views for खाद्य तथा दाना नमुना विश्लेषण विवरण"""
     
@@ -873,7 +872,7 @@ def khadya2(request):
     return render(request, 'forms/registration/renew.html', context)
 
 
-@login_required
+@fo_and_ffsqrd_required
 def udyog(request):
     """views for उद्योग सिफारिस"""
     
@@ -891,7 +890,7 @@ def udyog(request):
     return render(request, 'forms/registration/udyog.html', context)
 
 
-@fo_and_ie_required
+@ie_required
 def aayat(request):
     """views for आयात निर्यात गुण प्रमाणिकरण"""
     
@@ -1127,6 +1126,7 @@ def aayat(request):
     return render(request, 'forms/import-export/index.html', context)
 
 
+#not fixed
 @login_required
 def ujuri(request):
     """views for उजुरी/गुनासो ब्येवस्थापन"""
@@ -1145,7 +1145,8 @@ def ujuri(request):
     return render(request, 'forms/gunasho/index.html', context)
 
 
-@fo_and_ftdnd_required
+#not fixed
+@login_required
 def khadya_prasodhan(request):
     """views for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
     
@@ -1198,7 +1199,8 @@ def khadya_prasodhan(request):
     return render(request, 'forms/hotel-patrakar/index.html', context)
 
 
-@all_required
+#not fixed
+@login_required
 def masik_bittiya(request):
     """views for मासिक वित्तिय विवरण"""
     
@@ -1558,7 +1560,7 @@ def detail_anugaman(request):
     return render(request, 'forms/details/anugaman.html', context)
 
 
-@do_and_ffsqrd_and_fo_required
+@login_required
 def detail_mudha(request):
     """views for detail मुद्धा दायरी"""
     
@@ -1614,7 +1616,7 @@ def detail_mudha(request):
     return render(request, 'forms/details/mudha.html', context)
 
 
-@login_required
+@ie_and_fo_required
 def detail_rbpa(request):
     """views for detail RBPA Analysis"""
     
@@ -1661,7 +1663,7 @@ def detail_rbpa(request):
     return render(request, 'forms/details/rbpa.html', context)
 
 
-@do_and_ffsqrd_and_fo_required
+@login_required
 def detail_gunasho(request):
     """views for detail उजुरी गुनासो"""
     
