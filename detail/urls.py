@@ -3,6 +3,7 @@ from . import views
 
 
 urlpatterns = [
+    #table list for details part form
     path('report/detail/hotel/', views.detail_hotel_report, name="detail-hotel"),
     path('report/detail/anugaman/', views.detail_anugaman_report, name="detail-anugaman"),
     path('report/detail/gunaso/', views.detail_gunaso_report, name="detail-gunaso"),

@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('count/', views.progress_count, name="count"),
     path('amount/', views.progress_amount, name="amount"),
+    path('report/', views.report, name="report"),
     #forms path
     path('barsik-lakshya/', views.barsik_lakshya, name="barsik-lakshya"),
     path('forms/namuna-bibaran', views.namuna_bibaran, name="namuna"),
@@ -21,15 +22,15 @@ urlpatterns = [
     path('forms/khadya-prasodhan/', views.khadya_prasodhan, name="khadya-prasodhan"),
     path('forms/masik-bittiya/', views.masik_bittiya, name="masik-bittiya"),
     path('forms/masik-pragati/', views.masik_pragati, name="masik-pragati"),
-    #details form path
-    path('forms/details/anugaman/', views.detail_anugaman, name="detail-anugaman"),
-    path('forms/details/gunasho/', views.detail_gunasho, name="detail-gunasho"),
-    path('forms/details/hotel/', views.detail_hotel, name="detail-hotel"),
-    path('forms/details/mudha/', views.detail_mudha, name="detail-mudha"),
-    path('forms/details/rbpa/', views.detail_rbpa, name="detail-rbpa"),
-    path('forms/details/registration/', views.detail_registration, name="detail-registration"),
-    path('forms/details/renew/', views.detail_renew, name="detail-renew"),
-    path('forms/details/udyog/', views.detail_udyog, name="detail-udyog"),
+    #details form path--table list
+    path('forms/details/anugaman/', views.detail_anugaman, name="d-anugaman"),
+    path('forms/details/gunasho/', views.detail_gunasho, name="d-gunasho"),
+    path('forms/details/hotel/', views.detail_hotel, name="d-hotel"),
+    path('forms/details/mudha/', views.detail_mudha, name="d-mudha"),
+    path('forms/details/rbpa/', views.detail_rbpa, name="d-rbpa"),
+    path('forms/details/registration/', views.detail_registration, name="d-registration"),
+    path('forms/details/renew/', views.detail_renew, name="d-renew"),
+    path('forms/details/udyog/', views.detail_udyog, name="d-udyog"),
     #reports path
     path('report/khadya-act/', views.khadyaact_report, name="khadya-act-report"),
     path('report/anugaman/', views.anugaman_report, name="anugaman-report"),

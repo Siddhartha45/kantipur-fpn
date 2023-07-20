@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 import nepali_datetime
 from django.contrib import messages
 from fpn.decorators import (fo_and_do_and_ffsqrd_required, fo_and_ffsqrd_required, fo_required, fo_and_nffrl_required, ie_required, ie_and_fo_required)
-from account.models import CustomUser
+from account.models import CustomUser, Office
 from django.db.models import Sum
 
 from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum, logobitaran_sum, namunabisleysan_sum, prayogsala_sum, 
@@ -27,6 +27,15 @@ from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum,
 def home(request):
     """view for dashboard"""
     return render(request, 'index.html')
+
+
+def report(request):
+    offices = Office.objects.all()
+    
+    context = {
+        'offices': offices
+    }
+    return render(request, 'report.html', context)
 
 
 def progress_count(request):

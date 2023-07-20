@@ -141,17 +141,13 @@
                         <div id="details-collapsedetail"
                             class="accordion-collapse details-collapseOne collapse">
                             <div class="accordion-body d-flex flex-column">
-                                <a class="nav-link" href="{% url 'detail-hotel' %}">होटल रेष्टुरेण्टको स्तरकिरण लोगो वितरण</a>
-                                <a class="nav-link" href="{% url 'detail-registration' %}">अनुज्ञापत्र जारी</a>
-                                <a class="nav-link" href="{% url 'detail-renew' %}">अनुज्ञापत्र नवकिरण</a>
-                                <a class="nav-link" href="{% url 'detail-udyog' %}">उद्योग सिफारिस</a>
-                                <a class="nav-link" href="{% url 'detail-anugaman' %}">अनुगमन निरीक्षण</a>
-                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
-                                <a class="nav-link" href="{% url 'detail-mudha' %}">मुद्धा दायरी</a>
-                                {% endif %}
-                                {% if request.user.department_category == 'DO' or request.user.department_category == 'FFSQRD' or request.user.department_category == 'FO' %}
-                                <a class="nav-link" href="{% url 'detail-gunasho' %}">उजुरी गुनासो</a>
-                                {% endif %}
+                                <a class="nav-link" href="{% url 'd-hotel' %}">होटल रेष्टुरेण्टको स्तरकिरण लोगो वितरण</a>
+                                <a class="nav-link" href="{% url 'd-registration' %}">अनुज्ञापत्र जारी</a>
+                                <a class="nav-link" href="{% url 'd-renew' %}">अनुज्ञापत्र नवकिरण</a>
+                                <a class="nav-link" href="{% url 'd-udyog' %}">उद्योग सिफारिस</a>
+                                <a class="nav-link" href="{% url 'd-anugaman' %}">अनुगमन निरीक्षण</a>
+                                <a class="nav-link" href="{% url 'd-mudha' %}">मुद्धा दायरी</a>
+                                <a class="nav-link" href="{% url 'd-gunasho' %}">उजुरी गुनासो</a>
                             </div>
                         </div>
                     </div>
@@ -161,7 +157,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link"
-                            href="{% url 'detail-rbpa' %}"><span class="material-symbols-outlined">
+                            href="{% url 'd-rbpa' %}"><span class="material-symbols-outlined">
                             event_list
                             </span>
                             RBPR Analysis</a>
@@ -194,6 +190,19 @@
                     </span> 
                         मासिक प्रगति विवरण</a>
                 </li>
+                
+                 
+                {% if request.user.role == 'A' or request.user.role == 'V' %}
+
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{% url 'report' %}"><span class="material-symbols-outlined">
+                            summarize
+                        </span> 
+                            Report</a>
+                    </li>
+
+                {% endif %}
     
                 <li class="nav-item accordion" id="users">
                     <div class="accordion-item">
