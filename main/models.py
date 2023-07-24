@@ -19,8 +19,6 @@ class BarsikLakshya(models.Model):
     aayat_niryat = models.PositiveIntegerField(default=0, blank=True)
     ujuri_gunaso = models.PositiveIntegerField(default=0, blank=True)
     rbpr = models.PositiveIntegerField(default=0, blank=True)
-    
-    
 
 
 class NamunaBibaran(FPNBaseModel):

@@ -55,7 +55,7 @@
                     <table class="table count-report-table" id="monthly_report">
                         <thead>
                         <tr>
-                            <th scope="col">office</th>
+                            <th scope="col">Office Names</th>
                             <th scope="col">खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</th>
                             <th scope="col">निरीक्षण अनुगमन विवरण</th>
                             <th scope="col">होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण</th>
@@ -69,10 +69,10 @@
                             <th scope="col">RBPR Analysis</th>
                         </tr>
                         </thead>
+                        {% for office in offices %}
                         <tbody>
-                            {% for office in offices %}
                                 <td>{{office.name}}</td>
-                                <td>22</td>
+                                <td></td>
                                 <td>----</td>
                                 <td>30</td>
                                 <td>30</td>
@@ -83,8 +83,8 @@
                                 <td>----</td>
                                 <td>----</td>
                                 <td>----</td>
-                            {% endfor %}
                         </tbody>
+                        {% endfor %}
                     </table>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

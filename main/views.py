@@ -20,6 +20,7 @@ from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum,
                         namunabibaran_monthly_sum, anugamanbibaran_monthly_sum, logobitaran_monthly_sum, namunabisleysan_monthly_sum,
                         prayogsala_monthly_sum, patrajari_monthly_sum, patranabikaran_monthly_sum, udyogsifaris_monthly_sum, ayatniryat_monthly_sum,
                         ujurigunaso_monthly_sum, rbpa_monthly_sum)
+from fpn.exceptions import RecordAlreadyExists
 #----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -31,9 +32,11 @@ def home(request):
 
 def report(request):
     offices = Office.objects.all()
+    # fo_offices = Office.objects.filter(category = 'FO')
+    # ie_offices = Office.objects.filter(category = 'IE')
     
     context = {
-        'offices': offices
+        'offices': offices,
     }
     return render(request, 'report.html', context)
 
@@ -149,16 +152,13 @@ def namuna_bibaran(request):
     if request.method == 'POST':
         form = NamunaBibaranForm(request.POST)
         if form.is_valid():
-            user_office = CustomUser.objects.filter(office=request.user.office)
-            created_on_np_date = form.cleaned_data.get('created_on_np_date')
-            year_month = created_on_np_date[:7]
-            if NamunaBibaran.objects.filter(created_by__in=user_office, created_on_np_date__startswith=year_month).first():
-                messages.info(request, "Report for this month has already been submitted")
+            try:
+                NamunaBibaran.objects.create(created_by=request.user, **form.cleaned_data)
+                messages.success(request, "Form submitted successfully")
+                return redirect('khadya-act-report')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
                 return redirect('namuna')
-            
-            NamunaBibaran.new(created_by=request.user, **form.cleaned_data)
-            messages.success(request, "Form submitted successfully")
-            return redirect('khadya-act-report')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -173,82 +173,33 @@ def anugaman(request):
     if request.method == 'POST':
         form = AnugamanBibaranForm(request.POST)
         if form.is_valid():
-            #objects_to_create = []  #creating empty list to store different datas
-            
-            u_data = {
-                'type' : 'udyog',
-                'patak' : form.cleaned_data.get('u_patak'),
-                'sankhya' : form.cleaned_data.get('u_sankhya'),
-                'pragati': form.cleaned_data.get('u_pragati'),
-                'kaifiyat': form.cleaned_data.get('u_kaifiyat'),
+            types = {
+                'udyog': ['u_patak', 'u_sankhya', 'u_pragati', 'u_kaifiyat'],
+                'pasal': ['p_patak', 'p_sankhya', 'p_pragati', 'p_kaifiyat'],
+                'supermarket': ['s_patak', 's_sankhya', 's_pragati', 's_kaifiyat'],
+                'godam': ['g_patak', 'g_sankhya', 'g_pragati', 'g_kaifiyat'],
+                'hotel': ['h_patak', 'h_sankhya', 'h_pragati', 'h_kaifiyat'],
+                'dana': ['d_patak', 'd_sankhya', 'd_pragati', 'd_kaifiyat'],
+                'anya': ['a_patak', 'a_sankhya', 'a_pragati', 'a_kaifiyat'],
             }
-            #objects_to_create.append(AnugamanBibaran(**u_data))
-            AnugamanBibaran.new(created_by=request.user, **u_data)
-        
-            p_data = {
-                'type' : 'pasal',
-                'patak' : form.cleaned_data.get('p_patak'),
-                'sankhya' : form.cleaned_data.get('p_sankhya'),
-                'pragati': form.cleaned_data.get('p_pragati'),
-                'kaifiyat': form.cleaned_data.get('p_kaifiyat'),
-            }
-            #objects_to_create.append(AnugamanBibaran(**p_data))
-            AnugamanBibaran.new(created_by=request.user, **p_data)
-        
-            s_data = {
-                'type' : 'supermarket',
-                'patak' : form.cleaned_data.get('s_patak'),
-                'sankhya' : form.cleaned_data.get('s_sankhya'),
-                'pragati': form.cleaned_data.get('s_pragati'),
-                'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
-            }
-            #objects_to_create.append(AnugamanBibaran(**s_data))
-            AnugamanBibaran.new(created_by=request.user, **s_data)
-            
-            g_data = {
-                'type' : 'godam',
-                'patak' : form.cleaned_data.get('g_patak'),
-                'sankhya' : form.cleaned_data.get('g_sankhya'),
-                'pragati': form.cleaned_data.get('g_pragati'),
-                'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
-            }
-            #objects_to_create.append(AnugamanBibaran(**g_data))
-            AnugamanBibaran.new(created_by=request.user, **g_data)
-            
-            h_data = {
-                'type' : 'hotel',
-                'patak' : form.cleaned_data.get('h_patak'),
-                'sankhya' : form.cleaned_data.get('h_sankhya'),
-                'pragati': form.cleaned_data.get('h_pragati'),
-                'kaifiyat': form.cleaned_data.get('h_kaifiyat'),
-            }
-            #objects_to_create.append(AnugamanBibaran(**h_data))
-            AnugamanBibaran.new(created_by=request.user, **h_data)
-            
-            d_data = {
-                'type' : 'dana',
-                'patak' : form.cleaned_data.get('d_patak'),
-                'sankhya' : form.cleaned_data.get('d_sankhya'),
-                'pragati': form.cleaned_data.get('d_pragati'),
-                'kaifiyat': form.cleaned_data.get('d_kaifiyat'),
-            }
-            #objects_to_create.append(AnugamanBibaran(**d_data))
-            AnugamanBibaran.new(created_by=request.user, **d_data)
-            
-            a_data = {
-                'type' : 'anya',
-                'patak' : form.cleaned_data.get('a_patak'),
-                'sankhya' : form.cleaned_data.get('a_sankhya'),
-                'pragati': form.cleaned_data.get('a_pragati'),
-                'kaifiyat': form.cleaned_data.get('a_kaifiyat'),
-            }
-            #objects_to_create.append(AnugamanBibaran(**a_data))
-            AnugamanBibaran.new(created_by=request.user, **a_data)
 
-            #AnugamanBibaran.objects.bulk_create(objects_to_create)
-            
-            messages.success(request, "Form submitted successfully")
-            return redirect('anugaman')
+            objects_to_create = []  # Creating an empty list to store different data
+
+            for type_key, form_fields in types.items():
+                data = {
+                    'type': type_key,
+                }
+                for field in form_fields:
+                    data[field.split("_")[-1]] = form.cleaned_data.get(field)
+                objects_to_create.append(AnugamanBibaran(created_by=request.user, **data))
+
+            try:
+                AnugamanBibaran.objects.bulk_create(objects_to_create)
+                messages.success(request, "Form submitted successfully")
+                return redirect('anugaman')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('namuna')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -264,7 +215,7 @@ def logobitaran(request):
     if request.method == 'POST':
         form = LogobitaranForm(request.POST)
         if form.is_valid():
-            #objects_to_create = []
+            objects_to_create = []
             
             g_data = {
                 'type': 'green',
@@ -273,8 +224,8 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('g_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            #objects_to_create.append(Logobitaran(**g_data))
-            Logobitaran.new(created_by=request.user, **g_data)
+            objects_to_create.append(Logobitaran(created_by=request.user, **g_data))
+            #Logobitaran.objects.create(created_by=request.user, **g_data)
             
             y1_data = {
                 'type': 'yellow1',
@@ -283,8 +234,8 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('y1_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('y1_kaifiyat'),
             }
-            #objects_to_create.append(Logobitaran(**y1_data))
-            Logobitaran.new(created_by=request.user, **y1_data)
+            objects_to_create.append(Logobitaran(created_by=request.user, **y1_data))
+            #Logobitaran.objects.create(created_by=request.user, **y1_data)
             
             y2_data = {
                 'type': 'yellow2',
@@ -293,8 +244,8 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('y2_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('y2_kaifiyat'),
             }
-            #objects_to_create.append(Logobitaran(**y2_data))
-            Logobitaran.new(created_by=request.user, **y2_data)
+            objects_to_create.append(Logobitaran(created_by=request.user, **y2_data))
+            #Logobitaran.objects.create(created_by=request.user, **y2_data)
             
             r_data = {
                 'type': 'red',
@@ -303,13 +254,15 @@ def logobitaran(request):
                 'h_pragati2': form.cleaned_data.get('r_h_pragati2'),
                 'kaifiyat': form.cleaned_data.get('r_kaifiyat'),
             }
-            #objects_to_create.append(Logobitaran(**r_data))
-            Logobitaran.new(created_by=request.user, **r_data)
-            
-            #Logobitaran.objects.bulk_create(objects_to_create)
-            
-            messages.success(request, "Form submitted successfully")
-            return redirect('logobitaran')
+            objects_to_create.append(Logobitaran(created_by=request.user, **r_data))
+            #Logobitaran.objects.create(created_by=request.user, **r_data)
+            try:
+                Logobitaran.objects.bulk_create(objects_to_create)
+                messages.success(request, "Form submitted successfully")
+                return redirect('hotel-report')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('logobitaran')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -329,207 +282,42 @@ def namuna_bisleysan(request):
     if request.method == 'POST':
         form = NamunaBisleysanForm(request.POST)
         if form.is_valid():
-            #objects_to_create = []
-            
-            m_data = {
-                'type': 'milk',
-                'ekai': form.cleaned_data.get('m_ekai'),
-                'lakshya': form.cleaned_data.get('m_lakshya'),
-                'pragati1': form.cleaned_data.get('m_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('m_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('m_sankhya'),
-                'parameter': form.cleaned_data.get('m_parameter'),
-                'pragati2': form.cleaned_data.get('m_pragati2'),
-                'pratisat': form.cleaned_data.get('m_pratisat'),
-                'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
+            types = {
+                'milk': ['m_ekai', 'm_lakshya', 'm_pragati1', 'm_mahina_pragati', 'm_sankhya', 'm_parameter', 'm_pragati2', 'm_pratisat', 'm_kaifiyat'],
+                'oil': ['o_ekai', 'o_lakshya', 'o_pragati1', 'o_mahina_pragati', 'o_sankhya', 'o_parameter', 'o_pragati2', 'o_pratisat', 'o_kaifiyat'],
+                'fruits': ['f_ekai', 'f_lakshya', 'f_pragati1', 'f_mahina_pragati', 'f_sankhya', 'f_parameter', 'f_pragati2', 'f_pratisat', 'f_kaifiyat'],
+                'spice': ['s_ekai', 's_lakshya', 's_pragati1', 's_mahina_pragati', 's_sankhya', 's_parameter', 's_pragati2', 's_pratisat', 's_kaifiyat'],
+                'tea': ['t_ekai', 't_lakshya', 't_pragati1', 't_mahina_pragati', 't_sankhya', 't_parameter', 't_pragati2', 't_pratisat', 't_kaifiyat'],
+                'salt': ['sa_ekai', 'sa_lakshya', 'sa_pragati1', 'sa_mahina_pragati', 'sa_sankhya', 'sa_parameter', 'sa_pragati2', 'sa_pratisat', 'sa_kaifiyat'],
+                'khadanna': ['k_ekai', 'k_lakshya', 'k_pragati1', 'k_mahina_pragati', 'k_sankhya', 'k_parameter', 'k_pragati2', 'k_pratisat', 'k_kaifiyat'],
+                'water': ['w_ekai', 'w_lakshya', 'w_pragati1', 'w_mahina_pragati', 'w_sankhya', 'w_parameter', 'w_pragati2', 'w_pratisat', 'w_kaifiyat'],
+                'sweets': ['sw_ekai', 'sw_lakshya', 'sw_pragati1', 'sw_mahina_pragati', 'sw_sankhya', 'sw_parameter', 'sw_pragati2', 'sw_pratisat', 'sw_kaifiyat'],
+                'confectionery': ['c_ekai', 'c_lakshya', 'c_pragati1', 'c_mahina_pragati', 'c_sankhya', 'c_parameter', 'c_pragati2', 'c_pratisat', 'c_kaifiyat'],
+                'meat': ['me_ekai', 'me_lakshya', 'me_pragati1', 'me_mahina_pragati', 'me_sankhya', 'me_parameter', 'me_pragati2', 'me_pratisat', 'me_kaifiyat'],
+                'others': ['ot_ekai', 'ot_lakshya', 'ot_pragati1', 'ot_mahina_pragati', 'ot_sankhya', 'ot_parameter', 'ot_pragati2', 'ot_pratisat', 'ot_kaifiyat'],
+                'grain': ['g_ekai', 'g_lakshya', 'g_pragati1', 'g_mahina_pragati', 'g_sankhya', 'g_parameter', 'g_pragati2', 'g_pratisat', 'g_kaifiyat'],
             }
-            #objects_to_create.append(NamunaBisleysan(**m_data))
-            NamunaBisleysan.new(created_by=request.user, **m_data)
             
-            o_data = {
-                'type': 'oil',
-                'ekai': form.cleaned_data.get('o_ekai'),
-                'lakshya': form.cleaned_data.get('o_lakshya'),
-                'pragati1': form.cleaned_data.get('o_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('o_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('o_sankhya'),
-                'parameter': form.cleaned_data.get('o_parameter'),
-                'pragati2': form.cleaned_data.get('o_pragati2'),
-                'pratisat': form.cleaned_data.get('o_pratisat'),
-                'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**o_data))
-            NamunaBisleysan.new(created_by=request.user, **o_data)
+            objects_to_create = []
             
-            f_data = {
-                'type': 'fruits',
-                'ekai': form.cleaned_data.get('f_ekai'),
-                'lakshya': form.cleaned_data.get('f_lakshya'),
-                'pragati1': form.cleaned_data.get('f_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('f_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('f_sankhya'),
-                'parameter': form.cleaned_data.get('f_parameter'),
-                'pragati2': form.cleaned_data.get('f_pragati2'),
-                'pratisat': form.cleaned_data.get('f_pratisat'),
-                'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**f_data))
-            NamunaBisleysan.new(created_by=request.user, **f_data)
-            
-            s_data = {
-                'type': 'spice',
-                'ekai': form.cleaned_data.get('s_ekai'),
-                'lakshya': form.cleaned_data.get('s_lakshya'),
-                'pragati1': form.cleaned_data.get('s_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('s_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('s_sankhya'),
-                'parameter': form.cleaned_data.get('s_parameter'),
-                'pragati2': form.cleaned_data.get('s_pragati2'),
-                'pratisat': form.cleaned_data.get('s_pratisat'),
-                'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**s_data))
-            NamunaBisleysan.new(created_by=request.user, **s_data)
-            
-            t_data = {
-                'type': 'tea',
-                'ekai': form.cleaned_data.get('t_ekai'),
-                'lakshya': form.cleaned_data.get('t_lakshya'),
-                'pragati1': form.cleaned_data.get('t_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('t_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('t_sankhya'),
-                'parameter': form.cleaned_data.get('t_parameter'),
-                'pragati2': form.cleaned_data.get('t_pragati2'),
-                'pratisat': form.cleaned_data.get('t_pratisat'),
-                'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**t_data))
-            NamunaBisleysan.new(created_by=request.user, **t_data)
-            
-            sa_data = {
-                'type': 'salt',
-                'ekai': form.cleaned_data.get('sa_ekai'),
-                'lakshya': form.cleaned_data.get('sa_lakshya'),
-                'pragati1': form.cleaned_data.get('sa_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('sa_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('sa_sankhya'),
-                'parameter': form.cleaned_data.get('sa_parameter'),
-                'pragati2': form.cleaned_data.get('sa_pragati2'),
-                'pratisat': form.cleaned_data.get('sa_pratisat'),
-                'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**sa_data))
-            NamunaBisleysan.new(created_by=request.user, **sa_data)
-            
-            k_data = {
-                'type': 'khadanna',
-                'ekai': form.cleaned_data.get('k_ekai'),
-                'lakshya': form.cleaned_data.get('k_lakshya'),
-                'pragati1': form.cleaned_data.get('k_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('k_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('k_sankhya'),
-                'parameter': form.cleaned_data.get('k_parameter'),
-                'pragati2': form.cleaned_data.get('k_pragati2'),
-                'pratisat': form.cleaned_data.get('k_pratisat'),
-                'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**k_data))
-            NamunaBisleysan.new(created_by=request.user, **k_data)
-            
-            w_data = {
-                'type': 'water',
-                'ekai': form.cleaned_data.get('w_ekai'),
-                'lakshya': form.cleaned_data.get('w_lakshya'),
-                'pragati1': form.cleaned_data.get('w_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('w_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('w_sankhya'),
-                'parameter': form.cleaned_data.get('w_parameter'),
-                'pragati2': form.cleaned_data.get('w_pragati2'),
-                'pratisat': form.cleaned_data.get('w_pratisat'),
-                'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**w_data))
-            NamunaBisleysan.new(created_by=request.user, **w_data)
-            
-            sw_data = {
-                'type': 'sweets',
-                'ekai': form.cleaned_data.get('sw_ekai'),
-                'lakshya': form.cleaned_data.get('sw_lakshya'),
-                'pragati1': form.cleaned_data.get('sw_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('sw_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('sw_sankhya'),
-                'parameter': form.cleaned_data.get('sw_parameter'),
-                'pragati2': form.cleaned_data.get('sw_pragati2'),
-                'pratisat': form.cleaned_data.get('sw_pratisat'),
-                'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**sw_data))
-            NamunaBisleysan.new(created_by=request.user, **sw_data)
-            
-            c_data = {
-                'type': 'confectionery',
-                'ekai': form.cleaned_data.get('c_ekai'),
-                'lakshya': form.cleaned_data.get('c_lakshya'),
-                'pragati1': form.cleaned_data.get('c_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('c_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('c_sankhya'),
-                'parameter': form.cleaned_data.get('c_parameter'),
-                'pragati2': form.cleaned_data.get('c_pragati2'),
-                'pratisat': form.cleaned_data.get('c_pratisat'),
-                'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**c_data))
-            NamunaBisleysan.new(created_by=request.user, **c_data)
-            
-            me_data = {
-                'type': 'meat',
-                'ekai': form.cleaned_data.get('me_ekai'),
-                'lakshya': form.cleaned_data.get('me_lakshya'),
-                'pragati1': form.cleaned_data.get('me_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('me_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('me_sankhya'),
-                'parameter': form.cleaned_data.get('me_parameter'),
-                'pragati2': form.cleaned_data.get('me_pragati2'),
-                'pratisat': form.cleaned_data.get('me_pratisat'),
-                'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**me_data))
-            NamunaBisleysan.new(created_by=request.user, **me_data)
-            
-            ot_data = {
-                'type': 'others',
-                'ekai': form.cleaned_data.get('ot_ekai'),
-                'lakshya': form.cleaned_data.get('ot_lakshya'),
-                'pragati1': form.cleaned_data.get('ot_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('ot_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('ot_sankhya'),
-                'parameter': form.cleaned_data.get('ot_parameter'),
-                'pragati2': form.cleaned_data.get('ot_pragati2'),
-                'pratisat': form.cleaned_data.get('ot_pratisat'),
-                'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**ot_data))
-            NamunaBisleysan.new(created_by=request.user, **ot_data)
-            
-            g_data = {
-                'type': 'grain',
-                'ekai': form.cleaned_data.get('g_ekai'),
-                'lakshya': form.cleaned_data.get('g_lakshya'),
-                'pragati1': form.cleaned_data.get('g_pragati1'),
-                'mahina_pragati': form.cleaned_data.get('g_mahina_pragati'),
-                'sankhya': form.cleaned_data.get('g_sankhya'),
-                'parameter': form.cleaned_data.get('g_parameter'),
-                'pragati2': form.cleaned_data.get('g_pragati2'),
-                'pratisat': form.cleaned_data.get('g_pratisat'),
-                'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
-            }
-            #objects_to_create.append(NamunaBisleysan(**g_data))
-            NamunaBisleysan.new(created_by=request.user, **g_data)
-            
-            #NamunaBisleysan.objects.bulk_create(objects_to_create)
-            
-            messages.success(request, "Form submitted successfully")
-            return redirect('namuna-bisleysan')
+            for type_key, form_fields in types.items():
+                data = {
+                    'type': type_key,
+                }
+                for field in form_fields:
+                    if field.endswith('_mahina_pragati'):
+                        data['mahina_pragati'] = form.cleaned_data.get(field)
+                    else:
+                        data[field.split("_")[-1]] = form.cleaned_data.get(field)
+                objects_to_create.append(NamunaBisleysan(created_by=request.user, **data))
+
+            try:
+                NamunaBisleysan.objects.bulk_create(objects_to_create)
+                messages.success(request, "Form submitted successfully")
+                return redirect('khadya-report')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('namuna-bisleysan')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -545,7 +333,7 @@ def prayogsala_bisleysan(request):
     if request.method == 'POST':
         form = PrayogsalaBisleysanForm(request.POST)
         if form.is_valid():
-            #objects_to_create = []
+            objects_to_create = []
             
             m_data = {
                 'type': 'milk',
@@ -566,8 +354,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('m_sample'),
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**m_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **m_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **m_data))
             
             o_data = {
                 'type': 'oil',
@@ -588,8 +375,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('o_sample'),
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**o_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **o_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **o_data))
             
             f_data = {
                 'type': 'fruits',
@@ -610,8 +396,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('f_sample'),
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**f_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **f_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **f_data))
             
             s_data = {
                 'type': 'spice',
@@ -632,8 +417,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('s_sample'),
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**s_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **s_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **s_data))
             
             t_data = {
                 'type': 'tea',
@@ -654,8 +438,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('t_sample'),
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**t_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **t_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **t_data))
             
             sa_data = {
                 'type': 'salt',
@@ -676,8 +459,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('sa_sample'),
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**sa_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **sa_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **sa_data))
             
             k_data = {
                 'type': 'khadanna',
@@ -698,8 +480,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('k_sample'),
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**k_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **k_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **k_data))
             
             w_data = {
                 'type': 'water',
@@ -720,8 +501,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('w_sample'),
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**w_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **w_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **w_data))
             
             sw_data = {
                 'type': 'sweets',
@@ -742,8 +522,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('sw_sample'),
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**sw_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **sw_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **sw_data))
             
             c_data = {
                 'type': 'confectionery',
@@ -764,8 +543,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('c_sample'),
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**c_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **c_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **c_data))
             
             me_data = {
                 'type': 'meat',
@@ -786,8 +564,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('me_sample'),
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**me_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **me_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **me_data))
             
             g_data = {
                 'type': 'grain',
@@ -808,8 +585,7 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('g_sample'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**g_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **g_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **g_data))
             
             ot_data = {
                 'type': 'others',
@@ -830,13 +606,15 @@ def prayogsala_bisleysan(request):
                 'sample': form.cleaned_data.get('ot_sample'),
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
-            #objects_to_create.append(PrayogsalaBisleysan(**ot_data))
-            PrayogsalaBisleysan.new(created_by=request.user, **ot_data)
+            objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **ot_data))
             
-            #PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
-            
-            messages.success(request, "Form submitted successfully")
-            return redirect('prayogsala-bisleysan')
+            try:
+                PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
+                messages.success(request, "Form submitted successfully")
+                return redirect('prayogsala-report')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('prayogsala-bisleysan')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -852,9 +630,13 @@ def khadya1(request):
     if request.method == 'POST':
         form = PatraJariForm(request.POST)
         if form.is_valid():
-            PatraJari.new(created_by=request.user, **form.cleaned_data)
-            messages.success(request, "Form submitted successfully")
-            return redirect('khadya1')
+            try:
+                PatraJari.objects.create(created_by=request.user, **form.cleaned_data)
+                messages.success(request, "Form submitted successfully")
+                return redirect('khadya1')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('khadya1')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -870,9 +652,13 @@ def khadya2(request):
     if request.method == 'POST':
         form = PatraNabikaranForm(request.POST)
         if form.is_valid():
-            PatraNabikaran.new(created_by=request.user, **form.cleaned_data)
-            messages.success(request, "Form submitted successfully")
-            return redirect('khadya2')
+            try:
+                PatraNabikaran.objects.create(created_by=request.user, **form.cleaned_data)
+                messages.success(request, "Form submitted successfully")
+                return redirect('khadya2')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('khadya2')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -888,9 +674,13 @@ def udyog(request):
     if request.method == 'POST':
         form = UdyogSifarisForm(request.POST)
         if form.is_valid():
-            UdyogSifaris.new(created_by=request.user, **form.cleaned_data)
-            messages.success(request, "Form submitted successfully")
-            return redirect('udyog')
+            try:
+                UdyogSifaris.objects.create(created_by=request.user, **form.cleaned_data)
+                messages.success(request, "Form submitted successfully")
+                return redirect('udyog-report')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('udyog')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -910,7 +700,8 @@ def aayat(request):
     if request.method == 'POST':
         form = AayatNiryatForm(request.POST)
         if form.is_valid():
-            #objects_to_create = []
+            
+            objects_to_create = []
             
             m_data = {
                 'type': 'milk',
@@ -925,8 +716,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('m_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('m_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**m_data))
-            AayatNiryat.new(created_by=request.user, **m_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **m_data))
             
             o_data = {
                 'type': 'oil',
@@ -941,8 +731,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('o_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('o_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**o_data))
-            AayatNiryat.new(created_by=request.user, **o_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **o_data))
             
             f_data = {
                 'type': 'fruits',
@@ -957,8 +746,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('f_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('f_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**f_data))
-            AayatNiryat.new(created_by=request.user, **f_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **f_data))
             
             s_data = {
                 'type': 'spice',
@@ -973,8 +761,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('s_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('s_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**s_data))
-            AayatNiryat.new(created_by=request.user, **s_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **s_data))
             
             t_data = {
                 'type': 'tea',
@@ -989,8 +776,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('t_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('t_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**t_data))
-            AayatNiryat.new(created_by=request.user, **t_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **t_data))
             
             sa_data = {
                 'type': 'salt',
@@ -1005,8 +791,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('sa_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('sa_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**sa_data))
-            AayatNiryat.new(created_by=request.user, **sa_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **sa_data))
             
             k_data = {
                 'type': 'khadanna',
@@ -1021,8 +806,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('k_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('k_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**k_data))
-            AayatNiryat.new(created_by=request.user, **k_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **k_data))
             
             w_data = {
                 'type': 'water',
@@ -1037,8 +821,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('w_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('w_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**w_data))
-            AayatNiryat.new(created_by=request.user, **w_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **w_data))
             
             sw_data = {
                 'type': 'sweets',
@@ -1053,8 +836,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('sw_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('sw_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**sw_data))
-            AayatNiryat.new(created_by=request.user, **sw_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **sw_data))
             
             c_data = {
                 'type': 'confectionery',
@@ -1069,8 +851,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('c_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('c_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**c_data))
-            AayatNiryat.new(created_by=request.user, **c_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **c_data))
             
             me_data = {
                 'type': 'meat',
@@ -1085,8 +866,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('me_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('me_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**me_data))
-            AayatNiryat.new(created_by=request.user, **me_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **me_data))
             
             ot_data = {
                 'type': 'others',
@@ -1101,8 +881,7 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('ot_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('ot_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**ot_data))
-            AayatNiryat.new(created_by=request.user, **ot_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **ot_data))
             
             g_data = {
                 'type': 'grain',
@@ -1117,13 +896,15 @@ def aayat(request):
                 'h_pratisat': form.cleaned_data.get('g_h_pratisat'),
                 'kaifiyat': form.cleaned_data.get('g_kaifiyat'),
             }
-            #objects_to_create.append(AayatNiryat(**g_data))
-            AayatNiryat.new(created_by=request.user, **g_data)
+            objects_to_create.append(AayatNiryat(created_by=request.user, **g_data))
             
-            #AayatNiryat.objects.bulk_create(objects_to_create)
-            
-            messages.success(request, "Form submitted successfully")
-            return redirect('aayat')
+            try:
+                AayatNiryat.objects.bulk_create(objects_to_create)
+                messages.success(request, "Form submitted successfully")
+                return redirect('aayat')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('aayat')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -1143,9 +924,13 @@ def ujuri(request):
     if request.method == 'POST':
         form = UjuriGunasoForm(request.POST)
         if form.is_valid():
-            UjuriGunaso.new(created_by=request.user, **form.cleaned_data)
-            messages.success(request, "Form submitted successfully")
-            return redirect('ujuri')
+            try:
+                UjuriGunaso.objects.create(created_by=request.user, **form.cleaned_data)
+                messages.success(request, "Form submitted successfully")
+                return redirect('ujuri')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('ujuri')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -1173,6 +958,8 @@ def khadya_prasodhan(request):
         k_bisaya = request.POST.getlist('bisaya[]')
         k_kaifiyat = request.POST.getlist('kaifiyat[]')
 
+        objects_to_create = []
+
         for miti, abadhi, naam, sthan, m_sankhya, p_sankhya, sanyojak, phone, prasikshak, nikaya, bisaya, kaifiyat in zip(
             k_miti, k_abadhi, k_naam, k_sthan, k_m_sankhya, k_p_sankhya, k_sanyojak, k_phone, k_prasikshak, k_nikaya, k_bisaya, k_kaifiyat):
             
@@ -1194,14 +981,18 @@ def khadya_prasodhan(request):
             if form.is_valid():
                 # khadya_object = form.save(commit=False)
                 # khadya_object.save()
-                KhadyaPrasodhan.new(created_by=request.user, **form.cleaned_data)
-                
+                objects_to_create.append(KhadyaPrasodhan(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('khadya-prasodhan')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('khadya-prasodhan')
+        
+        try:
+            KhadyaPrasodhan.objects.bulk_create(objects_to_create)
+            messages.success(request, "Form submitted successfully")
+            return redirect('khadya-prasodhan')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('khadya-prasodhan')
     else:
         form = KhadyaPrasodhanForm()
     context = {'form': form}
@@ -1215,11 +1006,14 @@ def masik_bittiya(request):
     
     if request.method == 'POST':
         form = BittiyaBibaranForm(request.POST)
-        print(form.data)
         if form.is_valid():
-            BittiyaBibaran.new(created_by=request.user, **form.cleaned_data)
-            messages.success(request, "Form submitted successfully")
-            return redirect('masik-bittiya')
+            try:
+                BittiyaBibaran.objects.create(created_by=request.user, **form.cleaned_data)
+                messages.success(request, "Form submitted successfully")
+                return redirect('masik-bittiya')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('masik-bittiya')
         else:
             messages.error(request, "Please fill the form with correct data")
         print(form.errors)
@@ -1253,6 +1047,8 @@ def masik_pragati(request):
         p_h_pratisat = request.POST.getlist('h_pratisat[]')
         p_kaifiyat = request.POST.getlist('kaifiyat[]')
         
+        objects_to_create = []
+        
         for kharcha_type, upasirshak, karya, ekai, b_lakshya, m_parinam, t_lakshya, t_pragati, t_pratisat, h_pragati, h_pratisat, kaifiyat in zip(
             p_kharcha_type, p_upasirshak, p_karya, p_ekai, p_b_lakshya, p_m_parinam, p_t_lakshya, p_t_pragati, p_t_pratisat, 
             p_h_pragati, p_h_pratisat, p_kaifiyat
@@ -1274,15 +1070,17 @@ def masik_pragati(request):
             }
             form = MasikPragatiForm(form_data)
             if form.is_valid():
-                # masik_object = form.save(commit=False)
-                # masik_object.save()
-                PragatiBibaran.new(**form.cleaned_data)
+                objects_to_create.append(PragatiBibaran(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('masik-pragati')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('masik-pragati')
+        try:
+            PragatiBibaran.objects.bulk_create(objects_to_create)
+            messages.success(request, "Form submitted successfully")
+            return redirect('masik-pragati')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('masik-pragati')
     else:
         form = MasikPragatiForm()
     context = {'form': form, 'data': data}
@@ -1310,7 +1108,7 @@ def detail_hotel(request):
         d_karyalaya = request.POST.getlist('karyalaya[]')
         d_kaifiyat = request.POST.getlist('kaifiyat[]')
         
-        is_valid_form = True
+        objects_to_create = []
         
         for naam, logo, thegana, samparka, jilla, j_miti, n_miti, karyalaya, kaifiyat in zip(
             d_naam, d_logo, d_thegana, d_samparka, d_jilla, d_j_miti, d_n_miti, d_karyalaya, d_kaifiyat
@@ -1328,22 +1126,20 @@ def detail_hotel(request):
             }
             form = DetailHotelForm(form_data)
             if form.is_valid():
-                # hotel_object = form.save(commit=False)
-                # hotel_object.save()
-                DetailHotel.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailHotel(created_by=request.user, **form.cleaned_data))
             else:
-                is_valid_form = False
-        
-        if is_valid_form:
+                messages.error(request, "Please fill the form with correct data")
+                return redirect('d-hotel')
+        try:
+            DetailHotel.objects.bulk_create(objects_to_create)
             messages.success(request, "Form submitted successfully")
-            return redirect('detail-hotel')
-        else:
-            messages.error(request, "Please fill the form with correct data")
-            return redirect('detail-hotel')
+            return redirect('d-hotel')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-hotel')
     else:
         form = DetailHotelForm()
     context = {'form': form, 'data': data}
-
     return render(request, 'forms/details/hotel.html', context)
 
 
@@ -1368,6 +1164,8 @@ def detail_registration(request):
         d_n_miti = request.POST.getlist('n_miti[]')
         d_kaifiyat = request.POST.getlist('kaifiyat[]')
         
+        objects_to_create = []
+        
         for samuha, naam, thegana, byakti, samparka, jilla, mukhya, brand, karyalaya, j_miti, n_miti, kaifiyat in zip(
             d_samuha, d_naam, d_thegana, d_byakti, d_samparka, d_jilla, d_mukhya, d_brand, d_karyalaya, d_j_miti, d_n_miti, d_kaifiyat 
         ):
@@ -1387,15 +1185,17 @@ def detail_registration(request):
             }
             form = DetailRegistrationForm(form_data)
             if form.is_valid():
-                # reg_object = form.save(commit=False)
-                # reg_object.save()
-                DetailRegistration.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailRegistration(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-registration')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-registration')
+                return redirect('d-registration')
+        try:
+            DetailRegistration.objects.bulk_create(objects_to_create)
+            messages.success(request, "Form submitted successfully")
+            return redirect('d-registration')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-registration')
     else:
         form = DetailRegistrationForm()
     context = {'form': form, 'data': data}
@@ -1423,6 +1223,8 @@ def detail_renew(request):
         d_n_miti = request.POST.getlist('n_miti[]')
         d_kaifiyat = request.POST.getlist('kaifiyat[]')
         
+        objects_to_create = []
+        
         for samuha, naam, thegana, byakti, samparka, jilla, mukhya, brand, karyalaya, j_miti, n_miti, kaifiyat in zip(
             d_samuha, d_naam, d_thegana, d_byakti, d_samparka, d_jilla, d_mukhya, d_brand, d_karyalaya, d_j_miti, d_n_miti, d_kaifiyat 
         ):
@@ -1442,15 +1244,17 @@ def detail_renew(request):
             }
             form = DetailRenewForm(form_data)
             if form.is_valid():
-                # reg_object = form.save(commit=False)
-                # reg_object.save()
-                DetailRenew.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailRenew(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-renew')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-renew')
+                return redirect('d-renew')
+        try:
+            DetailRenew.objects.bulk_create(objects_to_create)
+            messages.success(request, "Form submitted successfully")
+            return redirect('d-renew')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-renew')
     else:
         form = DetailRenewForm()
     context = {'form': form, 'data': data}
@@ -1478,6 +1282,8 @@ def detail_udyog(request):
         d_n_miti = request.POST.getlist('n_miti[]')
         d_kaifiyat = request.POST.getlist('kaifiyat[]')
         
+        objects_to_create = []
+        
         for samuha, naam, thegana, byakti, samparka, jilla, mukhya, brand, karyalaya, j_miti, n_miti, kaifiyat in zip(
             d_samuha, d_naam, d_thegana, d_byakti, d_samparka, d_jilla, d_mukhya, d_brand, d_karyalaya, d_j_miti, d_n_miti, d_kaifiyat 
         ):
@@ -1497,15 +1303,17 @@ def detail_udyog(request):
             }
             form = DetailUdyogForm(form_data)
             if form.is_valid():
-                # reg_object = form.save(commit=False)
-                # reg_object.save()
-                DetailUdyog.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailUdyog(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-udyog')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-udyog')
+                return redirect('d-udyog')
+        try:
+            DetailUdyog.objects.bulk_create(objects_to_create)
+            messages.success(request, "Form submitted successfully")
+            return redirect('d-udyog')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-udyog')
     else:
         form = DetailUdyogForm()
     context = {'form': form, 'data': data}
@@ -1534,6 +1342,8 @@ def detail_anugaman(request):
         a_d_bibaran = request.POST.getlist('d_bibaran[]')
         a_kaifiyat = request.POST.getlist('kaifiyat[]')
         
+        objects_to_create = []
+        
         for nirichad, miti, naam, thegana, nikaya, a_bibaran, silbandi, parinam, mulya, nirdesan, d_bibaran, kaifiyat in zip (
             a_nirichad, a_miti, a_naam, a_thegana, a_nikaya, a_a_bibaran, a_silbandi, a_parinam, a_mulya, a_nirdesan, a_d_bibaran, a_kaifiyat
         ):
@@ -1554,15 +1364,17 @@ def detail_anugaman(request):
     
             form = DetailAnugamanForm(form_data)
             if form.is_valid():
-                # anugaman_object = form.save(commit=False)
-                # anugaman_object.save()
-                DetailAnugaman.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailAnugaman(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-anugaman')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-anugaman')
+                return redirect('d-anugaman')
+        try:
+            DetailAnugaman.objects.bulk_create()
+            messages.success(request, "Form submitted successfully")
+            return redirect('d-anugaman')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-anugaman')
     else:
         form = DetailAnugamanForm()
     context = {'form': form, 'data': data}
@@ -1589,6 +1401,8 @@ def detail_mudha(request):
         d_karyalaya = request.POST.getlist('karyalaya[]')
         d_kaifiyat = request.POST.getlist('kaifiyat[]')
         
+        objects_to_create = []
+        
         for naam, b_naam, n_miti, n_sthan, n_khani, p_miti, b_miti, prakar, parameter, m_sthan, m_miti, m_khani, karyalaya, kaifiyat in zip(
             d_naam, d_b_naam, d_n_miti, d_n_sthan, d_n_khani, d_p_miti, d_b_miti, d_prakar, d_parameter, d_m_sthan, d_m_miti, d_m_khani, 
             d_karyalaya, d_kaifiyat):
@@ -1610,15 +1424,17 @@ def detail_mudha(request):
             }
             form = DetailMudhaForm(form_data)
             if form.is_valid():
-                # mudha_object = form.save(commit=False)
-                # mudha_object.save()
-                DetailMudha.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailMudha(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-mudha')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-mudha')
+                return redirect('d-mudha')
+        try:
+            DetailMudha.objects.bulk_create(objects_to_create)    
+            messages.success(request, "Form submitted successfully")
+            return redirect('d-mudha')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-mudha')
     else:
         form = DetailMudhaForm()
     context = {'form': form}
@@ -1641,6 +1457,8 @@ def detail_rbpa(request):
         d_quantity3 = request.POST.getlist('quantity3[]')
         d_commodity3 = request.POST.getlist('commodity3[]')
         
+        objects_to_create = []
+        
         for date, commodity1, sample1, quantity1, sample2, quantity2, commodity2, sample3, quantity3, commodity3 in zip(d_date, d_commodity1,
             d_sample1, d_quantity1, d_sample2, d_quantity2, d_commodity2, d_sample3, d_quantity3, d_commodity3):
             form_data = {
@@ -1657,15 +1475,17 @@ def detail_rbpa(request):
             }
             form = DetailRbpaForm(form_data)
             if form.is_valid():
-                # rbpa_object = form.save(commit=False)
-                # rbpa_object.save()
-                DetailRbpa.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailRbpa(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-rbpa')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-rbpa')
+                return redirect('d-rbpa')
+        try:
+            DetailRbpa.objects.bulk_create(objects_to_create)    
+            messages.success(request, "Form submitted successfully")
+            return redirect('d-rbpa')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-rbpa')
     else:
         form = DetailRbpaForm()
     context = {'form': form}
@@ -1685,6 +1505,8 @@ def detail_gunasho(request):
         d_s_miti = request.POST.getlist('s_miti[]')
         d_bibaran = request.POST.getlist('bibaran[]')
         
+        objects_to_create = []
+        
         for p_miti, srot, s_miti, bibaran in zip (d_p_miti, d_srot, d_s_miti, d_bibaran):
             form_data = {
                 'p_miti': p_miti,
@@ -1694,15 +1516,17 @@ def detail_gunasho(request):
             }
             form = DetailGunasoForm(form_data)
             if form.is_valid():
-                # gunaso_object = form.save(commit=False)
-                # gunaso_object.save()
-                DetailGunaso.new(created_by=request.user, **form.cleaned_data)
+                objects_to_create.append(DetailGunaso(created_by=request.user, **form.cleaned_data))
             else:
                 messages.error(request, "Please fill the form with correct data")
-                return redirect('detail-gunasho')
-            
-        messages.success(request, "Form submitted successfully")
-        return redirect('detail-gunasho')
+                return redirect('d-gunasho')
+        try:
+            DetailGunaso.objects.bulk_create(objects_to_create)    
+            messages.success(request, "Form submitted successfully")
+            return redirect('d-gunasho')
+        except RecordAlreadyExists as e:
+            messages.error(request, e.message)
+            return redirect('d-gunasho')
     else:
         form = DetailGunasoForm()
     context = {'form': form, 'data': data}
