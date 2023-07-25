@@ -17,9 +17,14 @@ from django.db.models import Sum
 
 from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum, logobitaran_sum, namunabisleysan_sum, prayogsala_sum, 
                         patrajari_sum, patranabikaran_sum,udyogsifaris_sum, ujurigunaso_sum, rbpa_sum, khadyaprasodhan_sum, bittiyabibaran_sum,
+                        
                         namunabibaran_monthly_sum, anugamanbibaran_monthly_sum, logobitaran_monthly_sum, namunabisleysan_monthly_sum,
                         prayogsala_monthly_sum, patrajari_monthly_sum, patranabikaran_monthly_sum, udyogsifaris_monthly_sum, ayatniryat_monthly_sum,
-                        ujurigunaso_monthly_sum, rbpa_monthly_sum)
+                        ujurigunaso_monthly_sum, rbpa_monthly_sum, 
+                        
+                        office_namunabibaran_monthly_sum, office_anugamanbibaran_monthly_sum, office_logobitaran_monthly_sum, office_namunabisleysan_monthly_sum,
+                        office_patrajari_monthly_sum, office_patranabikaran_monthly_sum, office_prayogsala_monthly_sum, office_rbpa_monthly_sum,
+                        office_udyogsifaris_monthly_sum, office_ujurigunaso_monthly_sum, office_ayatniryat_monthly_sum)
 from fpn.exceptions import RecordAlreadyExists
 #----------------------------------------------------------------------------------------------------------------------------------
 
@@ -32,12 +37,47 @@ def home(request):
 
 def report(request):
     offices = Office.objects.all()
-    # fo_offices = Office.objects.filter(category = 'FO')
-    # ie_offices = Office.objects.filter(category = 'IE')
+    selected_month = request.GET.get('month')
     
+    for office in offices:
+        office_namunabibaran_monthly = office_namunabibaran_monthly_sum(request, office.id, selected_month)
+        office.office_namunabibaran_monthly = office_namunabibaran_monthly
+        
+        office_anugamanbibaran_monthly = office_anugamanbibaran_monthly_sum(request, office.id, selected_month)
+        office.office_anugamanbibaran_monthly = office_anugamanbibaran_monthly
+        
+        office_logobitaran_monthly = office_logobitaran_monthly_sum(request, office.id, selected_month)
+        office.office_logobitaran_monthly = office_logobitaran_monthly
+        
+        office_namunabisleysan_monthly = office_namunabisleysan_monthly_sum(request, office.id, selected_month)
+        office.office_namunabisleysan_monthly = office_namunabisleysan_monthly
+        
+        office_prayogsala_monthly = office_prayogsala_monthly_sum(request, office.id, selected_month)
+        office.office_prayogsala_monthly = office_prayogsala_monthly
+        
+        office_patrajari_monthly = office_patrajari_monthly_sum(request, office.id, selected_month)
+        office.office_patrajari_monthly = office_patrajari_monthly
+        
+        office_patranabikaran_monthly = office_patranabikaran_monthly_sum(request, office.id, selected_month)
+        office.office_patranabikaran_monthly = office_patranabikaran_monthly
+        
+        office_udyogsifaris_monthly = office_udyogsifaris_monthly_sum(request, office.id, selected_month)
+        office.office_udyogsifaris_monthly = office_udyogsifaris_monthly
+        
+        office_ayatniryat_monthly = office_ayatniryat_monthly_sum(request, office.id, selected_month)
+        office.office_ayatniryat_monthly = office_ayatniryat_monthly
+        
+        office_ujurigunaso_monthly = office_ujurigunaso_monthly_sum(request, office.id, selected_month)
+        office.office_ujurigunaso_monthly = office_ujurigunaso_monthly
+        
+        office_rbpa_monthly = office_rbpa_monthly_sum(request, office.id, selected_month)
+        office.office_rbpa_monthly = office_rbpa_monthly
+        
     context = {
         'offices': offices,
+        'selected_month': selected_month,
     }
+    
     return render(request, 'report.html', context)
 
 

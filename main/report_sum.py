@@ -663,3 +663,180 @@ def bittiyabibaran_sum(request):
         )
     total_sum = sum_values['total'] if 'total' in sum_values else 0
     return total_sum
+
+
+#--------------------------------------MONTHLY PROGRESS REPORT OF EACH OFFICE-------------------------------------------------
+
+def office_namunabibaran_monthly_sum(request, office_id, month):
+    """calculates total sum of NamunaBibaran model for specific month of specific office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = NamunaBibaran.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
+                    Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
+                    Sum('sweets') + Sum('confectionery') + Sum('meat') + Sum('grain') +
+                    Sum('others')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_anugamanbibaran_monthly_sum(request, office_id, month):
+    """calculates total sum of AnugamanBibaran model for specific month of specific office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = AnugamanBibaran.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('patak') + Sum('sankhya') + Sum('pragati')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_logobitaran_monthly_sum(request, office_id, month):
+    """calculates total sum of Logobitaran model for specific month of specific office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = Logobitaran.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('c_pragati') + Sum('h_pragati1') + Sum('h_pragati2')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_namunabisleysan_monthly_sum(request, office_id, month):
+    """calculates total sum of NamunaBisleysan model for specific month of specific office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = NamunaBisleysan.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('lakshya') + Sum('pragati1') + Sum('mahina_pragati') + Sum('sankhya') + 
+                    Sum('parameter') + Sum('pragati2') + Sum('pratisat')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_prayogsala_monthly_sum(request, office_id, month):
+    """calculates total sum of PrayogsalaBisleysan model for specific month of specific office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = PrayogsalaBisleysan.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('b_sankhya') + Sum('b_pratikul') + Sum('u_sankhya') + Sum('u_pratikul') + 
+                    Sum('ay_sankhya') + Sum('ay_pratikul') + Sum('v_sankhya') + Sum('v_pratikul') + 
+                    Sum('k_sankhya') + Sum('k_pratikul') + Sum('a_sankhya') + Sum('a_pratikul') +
+                    Sum('kul_sankhya')+ Sum('kul_pratikul')+ Sum('sample')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_patrajari_monthly_sum(request, office_id, month):
+    """calculates total sum of PatraJari model for specific month of specific month"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = PatraJari.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
+                    Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
+                    Sum('sweets') + Sum('confectionery') + Sum('meat') + Sum('grain') +
+                    Sum('others')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_patranabikaran_monthly_sum(request, office_id, month):
+    """calculates total sum of PatraNabikaran model for specific month"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = PatraNabikaran.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
+                    Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
+                    Sum('sweets') + Sum('confectionery') + Sum('meat') + Sum('grain') +
+                    Sum('others')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_udyogsifaris_monthly_sum(request, office_id, month):
+    """calculates total sum of UdyogSifaris model of specific month"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = UdyogSifaris.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
+                    Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
+                    Sum('sweets') + Sum('confectionery') + Sum('meat') + Sum('grain') +
+                    Sum('others')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_ujurigunaso_monthly_sum(request, office_id, month):
+    """calculates total sum of UjuriGunaso model of specific month of specific office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = UjuriGunaso.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('gunaso_petika') + Sum('gunaso_adhikari') + Sum('zilla') + Sum('banijya') + 
+                    Sum('patra') + Sum('akhtiyar') + Sum('patrakar') + Sum('sarkar') + 
+                    Sum('upavokta') + Sum('others') + Sum('jamma') + Sum('sambodhan')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_rbpa_monthly_sum(request, office_id, month):
+    """calculates total sum of DetailRbpa model of specific month of specific office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = DetailRbpa.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+        ).aggregate(
+            total = Sum('sample1') + Sum('quantity1') + Sum('sample2') + 
+                    Sum('quantity2') + Sum('sample3') + Sum('quantity3')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum
+
+
+def office_ayatniryat_monthly_sum(request, office_id, month):
+    """calculates total sum of AayatNiryat model of specific month and office"""
+    if request.user.role == 'A' or request.user.role == 'V':
+        sum_values = AayatNiryat.objects.filter(
+            is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
+            ).aggregate(
+            total = Sum('b_lakshya') + Sum('c_lakshya') + Sum('c_pragati') +
+                    Sum('m_pragati') + Sum('pratikul_n') + Sum('pratikul_p') +
+                    Sum('h_pragati') + Sum('h_pratisat')
+        )
+    else:
+        None
+    total_sum = sum_values['total'] if 'total' in sum_values else 0
+    return total_sum

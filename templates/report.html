@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load sum_calculate %}
 {% block container %}
 
                 <div class="add-heading">
@@ -69,22 +70,26 @@
                             <th scope="col">RBPR Analysis</th>
                         </tr>
                         </thead>
-                        {% for office in offices %}
+                        
                         <tbody>
+                            {% for office in offices %}
+                            <tr>
                                 <td>{{office.name}}</td>
-                                <td></td>
-                                <td>----</td>
-                                <td>30</td>
-                                <td>30</td>
-                                <td>30</td>
-                                <td>----</td>
-                                <td>30</td>
-                                <td>30</td>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
+                                <td>{{office.office_namunabibaran_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_anugamanbibaran_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_logobitaran_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_namunabisleysan_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_prayogsala_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_patrajari_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_patranabikaran_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_udyogsifaris_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_ayatniryat_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_ujurigunaso_monthly|default_if_none:'----'}}</td>
+                                <td>{{office.office_rbpa_monthly|default_if_none:'----'}}</td>
+                            </tr>
+                            {% endfor %}
                         </tbody>
-                        {% endfor %}
+                        
                     </table>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
