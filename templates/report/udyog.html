@@ -13,6 +13,14 @@
         </h3>
     </div>
 
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
     <div class="row mb-4 filter-row filters">
         <div class="row">
             <div class="col-md-5">

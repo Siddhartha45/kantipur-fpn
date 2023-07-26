@@ -236,10 +236,10 @@ def anugaman(request):
             try:
                 AnugamanBibaran.objects.bulk_create(objects_to_create)
                 messages.success(request, "Form submitted successfully")
-                return redirect('anugaman')
+                return redirect('anugaman-report')
             except RecordAlreadyExists as e:
                 messages.error(request, e.message)
-                return redirect('namuna')
+                return redirect('anugaman')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -673,7 +673,7 @@ def khadya1(request):
             try:
                 PatraJari.objects.create(created_by=request.user, **form.cleaned_data)
                 messages.success(request, "Form submitted successfully")
-                return redirect('khadya1')
+                return redirect('patrajari-report')
             except RecordAlreadyExists as e:
                 messages.error(request, e.message)
                 return redirect('khadya1')
@@ -695,7 +695,7 @@ def khadya2(request):
             try:
                 PatraNabikaran.objects.create(created_by=request.user, **form.cleaned_data)
                 messages.success(request, "Form submitted successfully")
-                return redirect('khadya2')
+                return redirect('renew-report')
             except RecordAlreadyExists as e:
                 messages.error(request, e.message)
                 return redirect('khadya2')
@@ -941,7 +941,7 @@ def aayat(request):
             try:
                 AayatNiryat.objects.bulk_create(objects_to_create)
                 messages.success(request, "Form submitted successfully")
-                return redirect('aayat')
+                return redirect('import-export-report')
             except RecordAlreadyExists as e:
                 messages.error(request, e.message)
                 return redirect('aayat')
@@ -967,7 +967,7 @@ def ujuri(request):
             try:
                 UjuriGunaso.objects.create(created_by=request.user, **form.cleaned_data)
                 messages.success(request, "Form submitted successfully")
-                return redirect('ujuri')
+                return redirect('gunasho-report')
             except RecordAlreadyExists as e:
                 messages.error(request, e.message)
                 return redirect('ujuri')
@@ -1029,7 +1029,7 @@ def khadya_prasodhan(request):
         try:
             KhadyaPrasodhan.objects.bulk_create(objects_to_create)
             messages.success(request, "Form submitted successfully")
-            return redirect('khadya-prasodhan')
+            return redirect('patrakar-report')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('khadya-prasodhan')
@@ -1050,7 +1050,7 @@ def masik_bittiya(request):
             try:
                 BittiyaBibaran.objects.create(created_by=request.user, **form.cleaned_data)
                 messages.success(request, "Form submitted successfully")
-                return redirect('masik-bittiya')
+                return redirect('finance-report')
             except RecordAlreadyExists as e:
                 messages.error(request, e.message)
                 return redirect('masik-bittiya')
@@ -1117,7 +1117,7 @@ def masik_pragati(request):
         try:
             PragatiBibaran.objects.bulk_create(objects_to_create)
             messages.success(request, "Form submitted successfully")
-            return redirect('masik-pragati')
+            return redirect('monthly-report')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('masik-pragati')
@@ -1173,7 +1173,7 @@ def detail_hotel(request):
         try:
             DetailHotel.objects.bulk_create(objects_to_create)
             messages.success(request, "Form submitted successfully")
-            return redirect('d-hotel')
+            return redirect('detail-hotel')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-hotel')
@@ -1232,7 +1232,7 @@ def detail_registration(request):
         try:
             DetailRegistration.objects.bulk_create(objects_to_create)
             messages.success(request, "Form submitted successfully")
-            return redirect('d-registration')
+            return redirect('detail-registration')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-registration')
@@ -1291,7 +1291,7 @@ def detail_renew(request):
         try:
             DetailRenew.objects.bulk_create(objects_to_create)
             messages.success(request, "Form submitted successfully")
-            return redirect('d-renew')
+            return redirect('detail-renew')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-renew')
@@ -1350,7 +1350,7 @@ def detail_udyog(request):
         try:
             DetailUdyog.objects.bulk_create(objects_to_create)
             messages.success(request, "Form submitted successfully")
-            return redirect('d-udyog')
+            return redirect('detail-udyog')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-udyog')
@@ -1411,7 +1411,7 @@ def detail_anugaman(request):
         try:
             DetailAnugaman.objects.bulk_create()
             messages.success(request, "Form submitted successfully")
-            return redirect('d-anugaman')
+            return redirect('detail-anugaman')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-anugaman')
@@ -1471,7 +1471,7 @@ def detail_mudha(request):
         try:
             DetailMudha.objects.bulk_create(objects_to_create)    
             messages.success(request, "Form submitted successfully")
-            return redirect('d-mudha')
+            return redirect('detail-mudha')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-mudha')
@@ -1522,7 +1522,7 @@ def detail_rbpa(request):
         try:
             DetailRbpa.objects.bulk_create(objects_to_create)    
             messages.success(request, "Form submitted successfully")
-            return redirect('d-rbpa')
+            return redirect('rbpa-report')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-rbpa')
@@ -1563,7 +1563,7 @@ def detail_gunasho(request):
         try:
             DetailGunaso.objects.bulk_create(objects_to_create)    
             messages.success(request, "Form submitted successfully")
-            return redirect('d-gunasho')
+            return redirect('detail-gunaso')
         except RecordAlreadyExists as e:
             messages.error(request, e.message)
             return redirect('d-gunasho')
