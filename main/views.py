@@ -11,7 +11,7 @@ from fpn import commons
 from django.contrib.auth.decorators import login_required
 import nepali_datetime
 from django.contrib import messages
-from fpn.decorators import (fo_and_do_and_ffsqrd_required, fo_and_ffsqrd_required, fo_required, fo_and_nffrl_required, ie_required, ie_and_fo_required)
+from fpn.decorators import (fo_and_do_and_ffsqrd_required, fo_and_ffsqrd_required, fo_and_nffrl_required, ie_required, ie_and_fo_required, ie_and_fo_and_do_and_account_required)
 from account.models import CustomUser, Office
 from django.db.models import Sum
 
@@ -36,6 +36,8 @@ def home(request):
 
 
 def report(request):
+    """shows monthly progress for all programs of each offices"""
+    
     offices = Office.objects.all()
     selected_month = request.GET.get('month')
     
@@ -98,7 +100,7 @@ def progress_count(request):
     
     month = request.GET.get('month')    #gets the value of months from frontend
     
-    #vvariables for storing sum of models for specific month
+    #variables for storing sum of models for specific month
     namuna_bibaran_monthly_sum = namunabibaran_monthly_sum(request, month)
     anugaman_bibaran_monthly_sum = anugamanbibaran_monthly_sum(request, month)
     logo_bitaran_monthly_sum = logobitaran_monthly_sum(request, month)
@@ -111,15 +113,7 @@ def progress_count(request):
     ujuri_gunaso_monthly_sum = ujurigunaso_monthly_sum(request, month)
     rbpa_analysis_monthly_sum = rbpa_monthly_sum(request, month)
     
-    # sum_values = NamunaBibaran.objects.filter(
-    #     is_verified = True, created_on_np_date__startswith=f'2080-{month}'
-    # ).aggregate(
-    #     total = Sum('milk') + Sum('oil') + Sum('fruits') + Sum('spice') + 
-    #             Sum('tea') + Sum('salt') + Sum('khadanna') + Sum('water') + 
-    #             Sum('sweets') + Sum('confectionery') + Sum('meat') + Sum('grain') +
-    #             Sum('others')
-    # )
-    
+    #from BarsikLakshya model i get the latest data of that model to show in barsik lakshya field in forntend
     if request.user.role == 'A':
         try:
             obj = BarsikLakshya.objects.filter(created_by__role='A').latest('created_on')
@@ -210,6 +204,7 @@ def namuna_bibaran(request):
 @fo_and_do_and_ffsqrd_required
 def anugaman(request):
     """views for निरीक्षण अनुगमन विवरण"""
+    
     if request.method == 'POST':
         form = AnugamanBibaranForm(request.POST)
         if form.is_valid():
@@ -1039,8 +1034,7 @@ def khadya_prasodhan(request):
     return render(request, 'forms/hotel-patrakar/index.html', context)
 
 
-#not fixed
-@login_required
+@ie_and_fo_and_do_and_account_required
 def masik_bittiya(request):
     """views for मासिक वित्तिय विवरण"""
     
