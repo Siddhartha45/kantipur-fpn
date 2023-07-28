@@ -119,3 +119,27 @@ def user_login_check(view_func):
         else:
             return redirect('home')
     return wrap
+
+
+def admin_required(view_func):
+    """restricts views to only users with role==Admin"""
+    def wrap(request, *args, **kwargs):
+        if (
+            request.user.is_authenticated and
+            request.user.role == 'A'
+            ):
+            return view_func(request, *args, **kwargs)
+        else:
+            return redirect('home')
+    return wrap
+
+
+def current_user_check(view_func):
+    def wrap(request, *args, **kwargs):
+        if (
+            request.user.id == id
+        ):
+            return view_func(request, *args, **kwargs)
+        else:
+            return redirect('home')
+    return wrap

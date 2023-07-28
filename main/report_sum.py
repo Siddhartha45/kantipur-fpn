@@ -667,9 +667,11 @@ def bittiyabibaran_sum(request):
 
 #--------------------------------------MONTHLY PROGRESS REPORT OF EACH OFFICE-------------------------------------------------
 
-def office_namunabibaran_monthly_sum(request, office_id, month):
+def office_namunabibaran_monthly_sum(request, office_id, month):    #takes office_id and month as parameters
     """calculates total sum of NamunaBibaran model for specific month of specific office"""
     if request.user.role == 'A' or request.user.role == 'V':
+        
+        #sum values stores the total sum of NamunaBibaran model objects which are verified, created by specific office and in specific month
         sum_values = NamunaBibaran.objects.filter(
             is_verified = True, created_by__office=office_id, created_on_np_date__startswith=f'2080-{month}'
         ).aggregate(

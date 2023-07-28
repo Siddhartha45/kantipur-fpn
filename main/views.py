@@ -11,7 +11,7 @@ from fpn import commons
 from django.contrib.auth.decorators import login_required
 import nepali_datetime
 from django.contrib import messages
-from fpn.decorators import (fo_and_do_and_ffsqrd_required, fo_and_ffsqrd_required, fo_and_nffrl_required, ie_required, ie_and_fo_required, ie_and_fo_and_do_and_account_required)
+from fpn.decorators import (fo_and_do_and_ffsqrd_required, fo_and_ffsqrd_required, fo_and_nffrl_required, ie_required, ie_and_fo_required, ie_and_fo_and_do_and_account_required, admin_required)
 from account.models import CustomUser, Office
 from django.db.models import Sum
 
@@ -35,11 +35,12 @@ def home(request):
     return render(request, 'index.html')
 
 
+@admin_required
 def report(request):
     """shows monthly progress for all programs of each offices"""
     
     offices = Office.objects.all()
-    selected_month = request.GET.get('month')
+    selected_month = request.GET.get('month')   #gets month value from frontend as 01, 02 etc
     
     for office in offices:
         office_namunabibaran_monthly = office_namunabibaran_monthly_sum(request, office.id, selected_month)

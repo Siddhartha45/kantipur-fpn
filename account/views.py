@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from fpn.email_normalization import normalize_email
 from django.contrib.auth.views import PasswordResetView
-from fpn.decorators import user_login_check
+from fpn.decorators import user_login_check, admin_required, current_user_check
 from django.http import JsonResponse
 
 
@@ -40,7 +40,7 @@ def user_logout(request):
 #--------------------------------------------------------------USER PART---------------------------------------------------------
 
 
-@login_required
+@admin_required
 def user_create(request):
     """for creating new users"""
     
@@ -95,18 +95,23 @@ def user_create(request):
     return render(request, 'user/usercreate.html', context)
 
 
-#left to do
+@login_required
 def user_edit(request, id):
     """for updating users details"""
     
-    data = {
-        'role': commons.ROLE_CHOICES,
-        'department': commons.DEPARTMENT_CHOICES,
-        'office_IE': Office.objects.filter(category='IE'),
-        'office_DO': Office.objects.filter(category='DO'),
-        'office_FO': Office.objects.filter(category='FO'),
-    }
+    # data = {
+    #     'role': commons.ROLE_CHOICES,
+    #     'department': commons.DEPARTMENT_CHOICES,
+    #     'office_IE': Office.objects.filter(category='IE'),
+    #     'office_DO': Office.objects.filter(category='DO'),
+    #     'office_FO': Office.objects.filter(category='FO'),
+    # }
     user_object = get_object_or_404(CustomUser, id=id)
+    
+    if request.user.id != user_object.id and request.user.role != 'A':  #allows users to update their own details only while allowing admin to update other users details too
+        messages.error(request, 'Cannot Access!')
+        return redirect('user-edit', id=request.user.id)
+    
     if request.method == 'POST':
         form = UserEditForm(request.POST, instance=user_object)
         
@@ -126,20 +131,29 @@ def user_edit(request, id):
         
         if form.is_valid():
             form.save()
-            messages.success(request, "User Details Updated Successfully")
-            return redirect('user-list')
+            if request.user.role == 'A':
+                messages.success(request, "User Details Updated Successfully")
+                return redirect('user-list')
+            else:
+                messages.success(request, "Details Updated Successfully")
+                return redirect('user-profile', user_id=request.user.id)
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
         form = UserEditForm(instance=user_object)
-    context = {'form': form, 'user_object': user_object, 'data': data}
+    context = {'form': form, 'user_object': user_object}
     return render(request, 'user/useredit.html', context)
 
 
+@login_required
 def password_change(request, id):
     """for changing users password"""
     
     user_object = get_object_or_404(CustomUser, id=id)
+    
+    if request.user.id != user_object.id:       #cannot let one user change other users password
+        messages.error(request, 'Cannot access!')
+        return redirect('password-change', id=request.user.id)
     
     if request.method == 'POST':
         current_password = request.POST.get('current_password')
@@ -172,7 +186,7 @@ def password_change(request, id):
     return render(request,'user/changepassword.html', context)
 
 
-@login_required
+@admin_required
 def user_list(request):
     """list of users"""
     
@@ -192,6 +206,7 @@ def user_profile(request, user_id):
     return render(request, 'user/userprofile.html', context)
 
 
+@admin_required
 def user_delete(request, id):
     """for deleting users"""
     
@@ -203,7 +218,7 @@ def user_delete(request, id):
 #---------------------------------------------------------------OFFICE PART----------------------------------------------------------------
 
 
-@login_required
+@admin_required
 def create_office(request):
     """for adding new offices"""
     
@@ -224,7 +239,7 @@ def create_office(request):
     return render(request, 'office/office.html', context)
 
 
-@login_required
+@admin_required
 def office_list(request):
     """for viewing offices lists"""
     
@@ -233,6 +248,7 @@ def office_list(request):
     return render(request, 'office/officetable.html', context)
 
 
+@admin_required
 def office_edit(request, id):
     """for editing office details"""
     
@@ -255,6 +271,7 @@ def office_edit(request, id):
     return render(request, 'office/office_edit.html', context)
 
 
+@admin_required
 def office_delete(request, id):
     """for deleting office"""
     

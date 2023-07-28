@@ -10,6 +10,10 @@
         </h3>
     </div>
 
+    {% for message in messages %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
     <div class="form-cm">
         <div class="row userprofile-das">
             <div class="col-md-6 userprofile-das-left">
@@ -23,7 +27,8 @@
                 </div>
             </div>
             <div class="col-md-6 userprofile-das-right">
-                <a href="http://127.0.0.1:5500/html/user/changepassword.html">Change Password</a>
+                <a href="{% url 'user-edit' id=user.id %}">Edit Details</a>
+                <a href="{% url 'password-change' id=user.id %}">Change Password</a>
             </div>
         </div>
         <div class="row userprofile-details">
@@ -54,7 +59,7 @@
             </div>
             <div class="col-md-3">
                 <h3>Office Name</h3>
-                <p>{{user.office}}</p>
+                <p>{{user.office.name}}</p>
             </div>
             <div class="col-md-3">
                 <h3>Office Address</h3>
