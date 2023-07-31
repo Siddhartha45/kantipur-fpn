@@ -30,7 +30,16 @@ def site_settings(request):
         form = SiteSettingsModelForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Dates Added")
+            form_open_date = form.cleaned_data['open_date']
+            form_close_date = form.cleaned_data['close_date']
+            
+            # Stores open_date and close_date month name and day ex: July 7
+            open_date_month = form_open_date.strftime('%B')
+            open_date_day = form_open_date.strftime('%d')
+            close_date_month = form_close_date.strftime('%B')
+            close_date_day = form_close_date.strftime('%d')
+            
+            messages.success(request, f"Forms Opened from {open_date_month} {open_date_day} to {close_date_month} {close_date_day}")
             return redirect('settings')
         else:
             messages.error(request, 'Please add valid date and time!')
