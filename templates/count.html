@@ -77,7 +77,7 @@
                             <td>1</td>
                             <td>खाद्य ऐन/नियम बमोजिम संकलित नमुना विवरण</td>
                             <td>संख्या</td>
-                            <td>{{obj.namuna_bibaran}}</td>
+                            <td>{{obj.namuna_bibaran|default_if_none:'----'}}</td>
                             <td>{{namuna_bibaran_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{namuna_bibaran_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -85,7 +85,7 @@
                             <td>2</td>
                             <td>निरीक्षण अनुगमन विवरण</td>
                             <td>संख्या</td>
-                            <td>{{obj.anugaman}}</td>
+                            <td>{{obj.anugaman|default_if_none:'----'}}</td>
                             <td>{{anugaman_bibaran_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{anugaman_bibaran_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -93,7 +93,7 @@
                             <td>3</td>
                             <td>होटल स्तरीकरण लोगो वितरण सम्बन्धि विवरण</td>
                             <td>संख्या</td>
-                            <td>{{obj.logo}}</td>
+                            <td>{{obj.logo|default_if_none:'----'}}</td>
                             <td>{{logo_bitaran_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{logo_bitaran_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -101,7 +101,7 @@
                             <td>4</td>
                             <td>खाद्य तथा दाना नमुना विश्लेषण विवरण</td>
                             <td>संख्या</td>
-                            <td>{{obj.namuna_bisleysan}}</td>
+                            <td>{{obj.namuna_bisleysan|default_if_none:'----'}}</td>
                             <td>{{namuna_bisleysan_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{namuna_bisleysan_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -109,7 +109,7 @@
                             <td>5</td>
                             <td>प्रयोगशाला विश्लेषण प्रतिवेदन सारांश</td>
                             <td>संख्या</td>
-                            <td>{{obj.prayogsala}}</td>
+                            <td>{{obj.prayogsala|default_if_none:'----'}}</td>
                             <td>{{prayog_sala_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{prayog_sala_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -117,7 +117,7 @@
                             <td>6</td>
                             <td>खाद्य तथा दाना अनुज्ञा पत्र जारी</td>
                             <td>संख्या</td>
-                            <td>{{obj.patrajari}}</td>
+                            <td>{{obj.patrajari|default_if_none:'----'}}</td>
                             <td>{{patra_jari_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{patra_jari_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -125,7 +125,7 @@
                             <td>7</td>
                             <td>खाद्य तथा दाना अनुज्ञा पत्र नविकरण</td>
                             <td>संख्या</td>
-                            <td>{{obj.patranabikaran}}</td>
+                            <td>{{obj.patranabikaran|default_if_none:'----'}}</td>
                             <td>{{patra_nabikaran_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{patra_nabikaran_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -133,7 +133,7 @@
                             <td>8</td>
                             <td>उद्योग सिफारिस</td>
                             <td>संख्या</td>
-                            <td>{{obj.udyog_sifaris}}</td>
+                            <td>{{obj.udyog_sifaris|default_if_none:'----'}}</td>
                             <td>{{udyog_sifaris_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{udyog_sifaris_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -141,7 +141,7 @@
                             <td>9</td>
                             <td>आयात निर्यात गुण प्रमाणिकरण</td>
                             <td>संख्या</td>
-                            <td>{{obj.aayat_niryat}}</td>
+                            <td>{{obj.aayat_niryat|default_if_none:'----'}}</td>
                             <td>{{ayat_niryat_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{aayat_niryat_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -149,7 +149,7 @@
                             <td>10</td>
                             <td>उजुरी/गुनासो ब्येवस्थापन</td>
                             <td>संख्या</td>
-                            <td>{{obj.ujuri_gunaso}}</td>
+                            <td>{{obj.ujuri_gunaso|default_if_none:'----'}}</td>
                             <td>{{ujuri_gunaso_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{ujuri_gunaso_sum|default_if_none:'----'}}</td>
                           </tr>
@@ -157,7 +157,7 @@
                             <td>11</td>
                             <td>RBPR Analysis</td>
                             <td>संख्या</td>
-                            <td>{{obj.rbpr}}</td>
+                            <td>{{obj.rbpr|default_if_none:'----'}}</td>
                             <td>{{rbpa_analysis_monthly_sum|default_if_none:'----'}}</td>
                             <td>{{rbpa_analysis_sum|default_if_none:'----'}}</td>
                           </tr>

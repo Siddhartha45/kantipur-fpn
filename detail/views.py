@@ -1,7 +1,43 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from account.models import CustomUser
 from main.models import (DetailAnugaman, DetailGunaso, DetailHotel, DetailMudha, DetailRegistration, 
                         DetailRenew, DetailUdyog)
+from .forms import SiteSettingsModelForm
+from django.contrib import messages
+from django.core.exceptions import ObjectDoesNotExist
+from detail.models import SiteSettings
+from datetime import datetime
+
+
+def site_settings(request):
+    """for setting open and close dates of forms submission"""
+    
+    try:
+        obj = SiteSettings.objects.order_by('-id').first()
+        open_date = obj.open_date
+        close_date = obj.close_date
+    except ObjectDoesNotExist:
+        # Handle the case where obj does not exists
+        obj = None
+    except AttributeError:
+        # Handle the case where obj exists, but open_date or close_date is not available
+        open_date = None
+        close_date = None
+    
+    current_date = datetime.now().date()
+    
+    if request.method == 'POST':
+        form = SiteSettingsModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Dates Added")
+            return redirect('settings')
+        else:
+            messages.error(request, 'Please add valid date and time!')
+    else:
+        form = SiteSettingsModelForm()
+    context = {'form': form, 'open_date': open_date, 'close_date': close_date, 'current_date': current_date}
+    return render(request, 'settings.html', context)
 
 
 def detail_hotel_report(request):

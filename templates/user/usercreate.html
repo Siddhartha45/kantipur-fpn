@@ -8,7 +8,7 @@
             </a>
             User<span class="sub-nav ms-2"> > Create</span>
         </h3>
-        <p><a href=""><i class="fa-regular fa-eye"></i>View Users</a></p>
+        <p><a href="{% url 'user-list' %}"><i class="fa-regular fa-eye"></i>View Users</a></p>
     </div>
 
     {% for message in messages %}

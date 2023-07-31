@@ -26,6 +26,10 @@ from .report_sum import (ayatniryat_sum, namunabibaran_sum, anugamanbibaran_sum,
                         office_patrajari_monthly_sum, office_patranabikaran_monthly_sum, office_prayogsala_monthly_sum, office_rbpa_monthly_sum,
                         office_udyogsifaris_monthly_sum, office_ujurigunaso_monthly_sum, office_ayatniryat_monthly_sum)
 from fpn.exceptions import RecordAlreadyExists
+from detail.models import SiteSettings
+from datetime import datetime
+from django.core.exceptions import ObjectDoesNotExist
+from .utils import is_form_open
 #----------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -161,8 +165,10 @@ def progress_amount(request):
     return render(request, 'amount.html')
 
 
+@login_required
 def barsik_lakshya(request):
     """for adding barsik lakshya to meet to check progress(used in मासिक प्रगति विवरण)"""
+    
     if request.method == 'POST':
         form = BarsikLakshyaForm(request.POST)
         if form.is_valid():
@@ -187,13 +193,16 @@ def namuna_bibaran(request):
     if request.method == 'POST':
         form = NamunaBibaranForm(request.POST)
         if form.is_valid():
-            try:
-                NamunaBibaran.objects.create(created_by=request.user, **form.cleaned_data)
-                messages.success(request, "Form submitted successfully")
-                return redirect('khadya-act-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('namuna')
+            if is_form_open():
+                try:
+                    NamunaBibaran.objects.create(created_by=request.user, **form.cleaned_data)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('khadya-act-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('namuna')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -228,14 +237,16 @@ def anugaman(request):
                 for field in form_fields:
                     data[field.split("_")[-1]] = form.cleaned_data.get(field)
                 objects_to_create.append(AnugamanBibaran(created_by=request.user, **data))
-
-            try:
-                AnugamanBibaran.objects.bulk_create(objects_to_create)
-                messages.success(request, "Form submitted successfully")
-                return redirect('anugaman-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('anugaman')
+            if is_form_open():
+                try:
+                    AnugamanBibaran.objects.bulk_create(objects_to_create)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('anugaman-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('anugaman')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -292,13 +303,17 @@ def logobitaran(request):
             }
             objects_to_create.append(Logobitaran(created_by=request.user, **r_data))
             #Logobitaran.objects.create(created_by=request.user, **r_data)
-            try:
-                Logobitaran.objects.bulk_create(objects_to_create)
-                messages.success(request, "Form submitted successfully")
-                return redirect('hotel-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('logobitaran')
+            
+            if is_form_open():
+                try:
+                    Logobitaran.objects.bulk_create(objects_to_create)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('hotel-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('logobitaran')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -347,13 +362,16 @@ def namuna_bisleysan(request):
                         data[field.split("_")[-1]] = form.cleaned_data.get(field)
                 objects_to_create.append(NamunaBisleysan(created_by=request.user, **data))
 
-            try:
-                NamunaBisleysan.objects.bulk_create(objects_to_create)
-                messages.success(request, "Form submitted successfully")
-                return redirect('khadya-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('namuna-bisleysan')
+            if is_form_open():
+                try:
+                    NamunaBisleysan.objects.bulk_create(objects_to_create)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('khadya-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('namuna-bisleysan')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -644,13 +662,16 @@ def prayogsala_bisleysan(request):
             }
             objects_to_create.append(PrayogsalaBisleysan(created_by=request.user, **ot_data))
             
-            try:
-                PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
-                messages.success(request, "Form submitted successfully")
-                return redirect('prayogsala-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('prayogsala-bisleysan')
+            if is_form_open():
+                try:
+                    PrayogsalaBisleysan.objects.bulk_create(objects_to_create)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('prayogsala-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('prayogsala-bisleysan')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -666,13 +687,16 @@ def khadya1(request):
     if request.method == 'POST':
         form = PatraJariForm(request.POST)
         if form.is_valid():
-            try:
-                PatraJari.objects.create(created_by=request.user, **form.cleaned_data)
-                messages.success(request, "Form submitted successfully")
-                return redirect('patrajari-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('khadya1')
+            if is_form_open():
+                try:
+                    PatraJari.objects.create(created_by=request.user, **form.cleaned_data)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('patrajari-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('khadya1')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -688,13 +712,16 @@ def khadya2(request):
     if request.method == 'POST':
         form = PatraNabikaranForm(request.POST)
         if form.is_valid():
-            try:
-                PatraNabikaran.objects.create(created_by=request.user, **form.cleaned_data)
-                messages.success(request, "Form submitted successfully")
-                return redirect('renew-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('khadya2')
+            if is_form_open():
+                try:
+                    PatraNabikaran.objects.create(created_by=request.user, **form.cleaned_data)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('renew-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('khadya2')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -710,13 +737,16 @@ def udyog(request):
     if request.method == 'POST':
         form = UdyogSifarisForm(request.POST)
         if form.is_valid():
-            try:
-                UdyogSifaris.objects.create(created_by=request.user, **form.cleaned_data)
-                messages.success(request, "Form submitted successfully")
-                return redirect('udyog-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('udyog')
+            if is_form_open():
+                try:
+                    UdyogSifaris.objects.create(created_by=request.user, **form.cleaned_data)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('udyog-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('udyog')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -934,13 +964,16 @@ def aayat(request):
             }
             objects_to_create.append(AayatNiryat(created_by=request.user, **g_data))
             
-            try:
-                AayatNiryat.objects.bulk_create(objects_to_create)
-                messages.success(request, "Form submitted successfully")
-                return redirect('import-export-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('aayat')
+            if is_form_open():
+                try:
+                    AayatNiryat.objects.bulk_create(objects_to_create)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('import-export-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('aayat')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -952,7 +985,6 @@ def aayat(request):
     return render(request, 'forms/import-export/index.html', context)
 
 
-#not fixed
 @login_required
 def ujuri(request):
     """views for उजुरी/गुनासो ब्येवस्थापन"""
@@ -960,13 +992,16 @@ def ujuri(request):
     if request.method == 'POST':
         form = UjuriGunasoForm(request.POST)
         if form.is_valid():
-            try:
-                UjuriGunaso.objects.create(created_by=request.user, **form.cleaned_data)
-                messages.success(request, "Form submitted successfully")
-                return redirect('gunasho-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('ujuri')
+            if is_form_open():
+                try:
+                    UjuriGunaso.objects.create(created_by=request.user, **form.cleaned_data)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('gunasho-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('ujuri')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
     else:
@@ -975,7 +1010,6 @@ def ujuri(request):
     return render(request, 'forms/gunasho/index.html', context)
 
 
-#not fixed
 @login_required
 def khadya_prasodhan(request):
     """views for खाद्य प्रसोधन, खाद्य पोषण, उद्योग, होटेल, पत्रकार, कार्यशाला आदि"""
@@ -1022,13 +1056,16 @@ def khadya_prasodhan(request):
                 messages.error(request, "Please fill the form with correct data")
                 return redirect('khadya-prasodhan')
         
-        try:
-            KhadyaPrasodhan.objects.bulk_create(objects_to_create)
-            messages.success(request, "Form submitted successfully")
-            return redirect('patrakar-report')
-        except RecordAlreadyExists as e:
-            messages.error(request, e.message)
-            return redirect('khadya-prasodhan')
+        if is_form_open():
+            try:
+                KhadyaPrasodhan.objects.bulk_create(objects_to_create)
+                messages.success(request, "Form submitted successfully")
+                return redirect('patrakar-report')
+            except RecordAlreadyExists as e:
+                messages.error(request, e.message)
+                return redirect('khadya-prasodhan')
+        else:
+            messages.error(request, 'Form has not opened yet')
     else:
         form = KhadyaPrasodhanForm()
     context = {'form': form}
@@ -1042,13 +1079,16 @@ def masik_bittiya(request):
     if request.method == 'POST':
         form = BittiyaBibaranForm(request.POST)
         if form.is_valid():
-            try:
-                BittiyaBibaran.objects.create(created_by=request.user, **form.cleaned_data)
-                messages.success(request, "Form submitted successfully")
-                return redirect('finance-report')
-            except RecordAlreadyExists as e:
-                messages.error(request, e.message)
-                return redirect('masik-bittiya')
+            if is_form_open():
+                try:
+                    BittiyaBibaran.objects.create(created_by=request.user, **form.cleaned_data)
+                    messages.success(request, "Form submitted successfully")
+                    return redirect('finance-report')
+                except RecordAlreadyExists as e:
+                    messages.error(request, e.message)
+                    return redirect('masik-bittiya')
+            else:
+                messages.error(request, 'Form has not opened yet')
         else:
             messages.error(request, "Please fill the form with correct data")
         print(form.errors)

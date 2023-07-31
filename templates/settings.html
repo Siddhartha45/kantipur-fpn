@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block container %}
+    <div class="add-heading">
+        <h3 class="heading-cm d-flex" style="width: 100%; justify-content: space-between;">
+            <span class="d-flex">
+            <a href="" class="nav-icon me-2">
+                <i class="fa-solid fa-angle-left"></i>
+            </a>
+            today date: {{current_date}}
+        </span>
+            <span class="sub-nav ms-2">forms open date:{{open_date}}</span>
+            <span class="sub-nav ms-2">forms close date:{{close_date}}</span>
+        </h3>
+    </div>
+
+    {% for message in messages %}
+        {% if message.tags == "success" %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% elif message.tags == "error" %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+    {% endfor %}
+
+    <form action="" method="POST" class="form-cm" enctype="multipart/form-data"
+        id="myForm">
+        {% csrf_token %}
+        <div class="col-md-12">
+            <h3 class="create-form-heading">Settings</h3>
+        </div>
+
+        <div class="row mb-2">
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Open Date</label>
+                <input type="date" class="form-control cm" placeholder="Enter date from when forms open" name="open_date" required>
+            </div>
+
+            <div class="mb-3 col-md-6">
+                <label for="" class="form-label cm">Close Date</label>
+                <input type="date" class="form-control cm" placeholder="Enter date when forms closes " name="close_date" required>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-12 text-end"><button type="submit" name="verify" class="btn btn-primary">Open Forms</button></div>
+        </div>
+
+    </form> 
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+{% endblock %}
+    
