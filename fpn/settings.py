@@ -95,8 +95,8 @@ DATABASES = {
         'NAME': 'pme',      
         'USER': 'kantipur',
         'PASSWORD': 'kantipur',
-        'HOST': 'localhost',
-        'PORT': '',
+        # 'HOST': 'localhost',
+        # 'PORT': '',
     }
 }
 
