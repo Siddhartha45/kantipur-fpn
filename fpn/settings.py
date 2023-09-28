@@ -26,7 +26,14 @@ SECRET_KEY = 'django-insecure-i3rq@1m7a1&=p3lng&ckjz@*sxyj!l*5n59gej@d7i)e*opftf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'pme.kantipurinfotech.com.np', 'pme.dftqc.gov.np']
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    'localhost', 
+    'pme.kantipurinfotech.com.np', 
+    'pme.dftqc.gov.np',
+    '10.5.3.252',
+    '103.175.192.94',
+]
 
 
 # Application definition
